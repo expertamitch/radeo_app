@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:redeo/screens/authentication/login_page.dart';
 import 'package:redeo/screens/authentication/register_page.dart';
-
-import '../../widgets/colors.dart';
+import 'package:redeo/widgets/image_view.dart';
+import '../../assets/images.dart';
+import '../../styling/app_colors.dart';
+import '../../styling/font_style_globle.dart';
+import '../../widgets/app_text.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -32,19 +31,18 @@ class _WelcomePageState extends State<WelcomePage> {
               SizedBox(
                 height: 20,
               ),
-              Text(
-                "Welcome to REDEO",
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: purpleColor),
+              AppText(
+                textSize: 16,
+                text: "Welcome to REDEO",
+                color: AppColors.purpleColor,
+                fontWeight: FontWeight.w800,
               ),
               SizedBox(
                 height: 20,
               ),
-              Image.asset(
-                'assets/icons/screen 1/Logo.png',
-                width: MediaQuery.of(context).size.width * 0.45,
+              ImageView(
+                path: Images.welcomeScreenLogo,
+                width: MediaQuery.of(context).size.width * 0.4,
               ),
               SizedBox(
                 height: 20,
@@ -53,11 +51,15 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 50,
                   width: double.maxFinite,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(primary: purpleColor),
+                      style: ElevatedButton.styleFrom(
+                          primary: AppColors.purpleColor),
                       onPressed: () {
                         Get.to(LoginPage());
                       },
-                      child: Text('Login Now'))),
+                      child: Text(
+                        'Login Now',
+                        style: w600_14(color: Colors.white),
+                      ))),
               SizedBox(
                 height: 10,
               ),
@@ -65,40 +67,35 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 50,
                   width: double.maxFinite,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(primary: lighBlueColor),
+                      style: ElevatedButton.styleFrom(
+                          primary: AppColors.lighBlueColor),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterPage()));
+                        Get.to(RegisterPage());
                       },
-                      child: Text('Register Now'))),
+                      child: Text(
+                        'Register Now',
+                        style: w600_14(color: Colors.white),
+                      ))),
               SizedBox(
                 height: 10,
               ),
               Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      height: 1,
-                      color: Colors.black,
-                    ),
+                    child: Container(height: 1, color: AppColors.greyColor),
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
                     'Or login with',
-                    style: TextStyle(fontSize: 12, color: Colors.black),
+                    style: w500_12(),
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Expanded(
-                    child: Container(
-                      height: 1,
-                      color: Colors.black,
-                    ),
+                    child: Container(height: 1, color: AppColors.greyColor),
                   ),
                 ],
               ),
@@ -125,7 +122,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           ),
                           Text(
                             'Google',
-                            style: TextStyle(color: Colors.black),
+                            style: w500_12(),
                           )
                         ],
                       ),
@@ -152,7 +149,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           ),
                           Text(
                             'Facebook',
-                            style: TextStyle(color: Colors.black),
+                            style: w500_12(),
                           )
                         ],
                       ),

@@ -1,8 +1,16 @@
 import 'package:get/get.dart';
 import 'package:redeo/route/routes.dart';
+import 'package:redeo/screens/authentication/fogot_password_page.dart';
+import 'package:redeo/screens/authentication/otp_verification_page.dart';
+import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
 
 import '../screens/authentication/login_page.dart';
+import '../screens/create_message/create_message_page.dart';
+
+import '../screens/create_message/select message/select_audio_message_page.dart';
+import '../screens/create_message/select message/select_text_message_page.dart';
+import '../screens/create_message/select message/select_video_message_page.dart';
 import '../screens/splash/splash_binding.dart';
 import '../screens/splash/splash_screen.dart';
 
@@ -13,17 +21,52 @@ class AppPages {
         transition: Transition.cupertino,
         page: () => SplashScreen(),
         binding: SplashBinding()),
+    //authentication
     GetPage(
       name: Routes.mainScreen,
       transition: Transition.cupertino,
       page: () => WelcomePage(),
-      // binding: SplashBinding()
     ),
     GetPage(
       name: Routes.loginScreen,
       transition: Transition.cupertino,
       page: () => LoginPage(),
-      // binding: SplashBinding()
+    ),
+    GetPage(
+      name: Routes.registerScreen,
+      transition: Transition.cupertino,
+      page: () => RegisterPage(),
+    ),
+    GetPage(
+      name: Routes.forgotPasswordScreen,
+      transition: Transition.cupertino,
+      page: () => ForgotPasswordPage(),
+    ),
+    GetPage(
+      name: Routes.otpVerficationScreen,
+      transition: Transition.cupertino,
+      page: () => OtpVerficationPage(),
+    ),
+    //create messages
+    GetPage(
+      name: Routes.createMessageScreen,
+      transition: Transition.cupertino,
+      page: () => CreateMessagePage(),
+    ),
+    GetPage(
+      name: Routes.selectTextMessageScreen,
+      transition: Transition.cupertino,
+      page: () => SelectTextMessagePage(),
+    ),
+    GetPage(
+      name: Routes.selectAudioMessageScreen,
+      transition: Transition.cupertino,
+      page: () => SelectAudioMessage(),
+    ),
+    GetPage(
+      name: Routes.selectVideoMessageScreen,
+      transition: Transition.cupertino,
+      page: () => SelectVideoMessagePage(),
     ),
   ];
 }
