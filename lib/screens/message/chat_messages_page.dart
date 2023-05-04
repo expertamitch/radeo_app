@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
-import 'package:redeo/widgets/app_text_field.dart';
 import 'package:redeo/widgets/image_view.dart';
 
 import '../../styling/app_colors.dart';
@@ -31,7 +29,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
           Container(
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: AppText(
               text: 'John Doe',
               textSize: 30,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
-import 'package:redeo/screens/event/event_details_page/edit_event_details_page.dart';
-
 import '../../../assets/images.dart';
+import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 import '../../../widgets/app_text.dart';
@@ -31,7 +29,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           actions: [
             GestureDetector(
                 onTap: () {
-                  Get.to(EditEventDetailsPage());
+                  Get.toNamed(Routes.editEventDetailsScreen);
                 },
                 child: Icon(Icons.edit)),
             SizedBox(
@@ -48,7 +46,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             height: 40,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
           ),
           SingleChildScrollView(
             child: Padding(
@@ -158,6 +156,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: TextFormField(
                           style: w500_14(),
                           decoration: InputDecoration(
+                              hintStyle: w500_14(
+                                color: AppColors.dark2GreyColor,
+                              ),
                               border: InputBorder.none,
                               hintText: 'Serach Clients...',
                               isDense: true),

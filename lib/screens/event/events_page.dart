@@ -3,14 +3,11 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
-import '../../widgets/app_text_field.dart';
-import '../message/chat_messages_page.dart';
-import 'create_new_event/create_event_page.dart';
-import 'event_details_page/event_details_page.dart';
-import '../notice_of_event/create_notice_of_event_page.dart';
+import '../../widgets/colors.dart';
 
 class EventPage extends StatefulWidget {
   const EventPage({Key? key}) : super(key: key);
@@ -40,7 +37,7 @@ class _EventPageState extends State<EventPage> {
                           shape: StadiumBorder(),
                           primary: AppColors.purpleColor),
                       onPressed: () {
-                        Get.to(CreateEventPage());
+                        Get.toNamed(Routes.createEventScreen);
                       },
                       child: AppText(
                         text: 'New Event',
@@ -59,7 +56,7 @@ class _EventPageState extends State<EventPage> {
           Container(
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: AppText(
               text: 'Events',
               textSize: 30,
@@ -83,6 +80,9 @@ class _EventPageState extends State<EventPage> {
                     child: TextFormField(
                   style: w500_14(),
                   decoration: InputDecoration(
+                      hintStyle: w500_14(
+                        color: AppColors.dark2GreyColor,
+                      ),
                       border: InputBorder.none,
                       hintText: 'Serach Event...',
                       isDense: true),
@@ -115,7 +115,7 @@ class _EventPageState extends State<EventPage> {
   }) {
     return GestureDetector(
       onTap: () {
-        Get.to(EventDetailsPage());
+        Get.toNamed(Routes.eventDetailsScreen);
       },
       child: ListTile(
         minLeadingWidth: 10,

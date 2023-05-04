@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
-import 'package:redeo/widgets/image_view.dart';
-
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
@@ -29,7 +27,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
           Container(
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: AppText(
               text: 'Return Visits',
               textSize: 30,

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:redeo/screens/notice_of_event/return_visits.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../widgets/app_text.dart';
-import 'history_page.dart';
 import '../../get_controller/notice_of_event_controller.dart';
 
 class NoticeOfEventSummaryPage extends StatefulWidget {
@@ -38,7 +37,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                     style: ElevatedButton.styleFrom(
                         shape: StadiumBorder(), primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.to(ReturnVisitsPage());
+                      Get.toNamed(Routes.returnVisitsScreen);
                     },
                     child: AppText(
                       text: 'Create Return',
@@ -55,7 +54,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       style: ElevatedButton.styleFrom(
                           shape: StadiumBorder(), primary: AppColors.blueColor),
                       onPressed: () {
-                        Get.to(HistoryPage());
+                        Get.toNamed(Routes.historyPage);
                       },
                       child: ImageView(
                         path: Images.historyIcon,

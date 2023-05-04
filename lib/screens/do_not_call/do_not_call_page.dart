@@ -27,7 +27,7 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
           Container(
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: AppText(
               text: 'Do Not Call',
               textSize: 30,

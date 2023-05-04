@@ -64,7 +64,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.0),
                     child: Text('OTP Verification',
-                        style: w600_40(color: Colors.white)),
+                        style: w600_35(color: Colors.white)),
                   ),
                 ),
                 SizedBox(
@@ -135,6 +135,8 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                     width: double.maxFinite,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             primary: AppColors.purpleColor),
                         onPressed: () {
                           Get.to(DummyHomepage());

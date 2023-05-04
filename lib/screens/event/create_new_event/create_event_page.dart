@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:redeo/screens/contacts/contacts_page.dart';
 import 'package:redeo/widgets/app_text.dart';
+import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
-import 'cordinator/cordinator_page.dart';
+import '../../../styling/font_style_globle.dart';
+import '../../../widgets/colors.dart';
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
           Container(
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: AppText(
               text: 'Create Event',
               textSize: 30,
@@ -80,7 +81,11 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                   color: AppColors.blueColor,
                                 ),
                                 TextFormField(
+                                  style: w500_14(),
                                   decoration: InputDecoration(
+                                      hintStyle: w500_14(
+                                        color: AppColors.dark2GreyColor,
+                                      ),
                                       hintText: 'Event Name',
                                       contentPadding: EdgeInsets.zero,
                                       border: InputBorder.none),
@@ -160,7 +165,11 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                   color: AppColors.blueColor,
                                 ),
                                 TextFormField(
+                                  style: w500_14(),
                                   decoration: InputDecoration(
+                                      hintStyle: w500_14(
+                                        color: AppColors.dark2GreyColor,
+                                      ),
                                       hintText: 'Event Location',
                                       contentPadding: EdgeInsets.zero,
                                       border: InputBorder.none),
@@ -180,8 +189,12 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                   height: 10,
                                 ),
                                 TextFormField(
+                                  style: w500_14(),
                                   maxLines: 4,
                                   decoration: InputDecoration(
+                                      hintStyle: w500_14(
+                                        color: AppColors.dark2GreyColor,
+                                      ),
                                       hintText: 'Enter Description…',
                                       fillColor: AppColors.greyColor,
                                       filled: true,
@@ -224,7 +237,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Get.to(ContactPage());
+                                    Get.toNamed(Routes.contactScreen);
                                   },
                                   child: AppText(
                                     text:
@@ -249,7 +262,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Get.to(CordinatorPage());
+                                    Get.toNamed(Routes.cordinatorScreen);
                                   },
                                   child: AppText(
                                     text: 'Select Cordinator',

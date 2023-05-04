@@ -322,6 +322,7 @@ class _MyAppState extends State<MyApp> {
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: Colors.white,
             textTheme: Typography.englishLike2018
                 .apply(bodyColor: Colors.black, fontSizeFactor: 1.sp),
           ),

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CreateMessagesController extends GetxController {
-  String? selectedMessageType; //Text, Audio, Video
+  String selectedMessageType = 'Text'; //Text, Audio, Video
 
   String? selectedResponseType; //open, custom
   List<Map<String, dynamic>> selectedResponseList = [

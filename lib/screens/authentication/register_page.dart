@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/colors.dart';
-import 'login_page.dart';
-import 'otp_verification_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -52,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 21.0),
                       child: Text('Register your Account',
-                          style: w600_40(color: Colors.white)),
+                          style: w600_35(color: Colors.white)),
                     ),
                     SizedBox(
                       height: 20,
@@ -68,9 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
+                    style: w500_14(),
                     decoration:
                         inputDecoration.copyWith(labelText: 'First Name'),
                     validator: (value) => value == null || value.isEmpty
@@ -85,9 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
+                    style: w500_14(),
                     decoration:
                         inputDecoration.copyWith(labelText: 'Last Name'),
                     validator: (value) => value == null || value.isEmpty
@@ -117,6 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       selectorTextStyle: TextStyle(color: Colors.black),
                       initialValue: number,
                       formatInput: true,
+                      textStyle: w500_14(),
                       keyboardType: TextInputType.numberWithOptions(
                           signed: true, decimal: true),
                       inputDecoration: inputDecoration.copyWith(
@@ -125,10 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             onTap: () {},
                             child: Text(
                               'GET OTP',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.purpleColor),
+                              style: w700_12(color: AppColors.purpleColor),
                             ),
                           )),
                       onSaved: (PhoneNumber number) {
@@ -136,39 +129,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                     ),
                   ),
-
-                  // TextFormField(
-                  //   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  //   style: TextStyle(
-                  //     fontFamily: 'satoshi',
-                  //   ),
-                  //   decoration: inputDecoration.copyWith(
-                  //       labelText: 'Mobile',
-                  //       suffix: GestureDetector(
-                  //         onTap: () {},
-                  //         child: Text(
-                  //           'GET OTP',
-                  //           style: TextStyle(
-                  //               fontSize: 14,
-                  //               fontWeight: FontWeight.bold,
-                  //               color: AppColors.purpleColor),
-                  //         ),
-                  //       )),
-                  //   validator: (value) => value == null || value.isEmpty
-                  //       ? 'Please enter mobile no.'
-                  //       : null,
-                  //   onChanged: (value) => setState(() {
-                  //     mobileNo = value;
-                  //   }),
-                  // ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
+                    style: w500_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter email id'
@@ -182,9 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
+                    style: w500_14(),
                     obscureText: true,
                     decoration: inputDecoration.copyWith(
                       labelText: 'Password',
@@ -201,9 +165,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
+                    style: w500_14(),
                     obscureText: true,
                     decoration:
                         inputDecoration.copyWith(labelText: 'Confirm Password'),
@@ -222,10 +184,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: double.maxFinite,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                               primary: AppColors.purpleColor),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Get.to(OtpVerficationPage());
+                              Get.toNamed(Routes.otpVerficationScreen);
                             }
                           },
                           child: Text(
@@ -241,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Text('Already have an account? ', style: w500_12()),
                       GestureDetector(
                         onTap: () {
-                          Get.to(LoginPage());
+                          Get.toNamed(Routes.loginScreen);
                         },
                         child: Text('Login here',
                             style: w700_12(

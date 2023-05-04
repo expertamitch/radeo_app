@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:redeo/styling/font_style_globle.dart';
-
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
 import '../../../../widgets/app_text.dart';
+import '../../../../widgets/colors.dart';
 import '../../../../widgets/image_view.dart';
 
 class CordinatorPage extends StatefulWidget {
@@ -62,6 +62,9 @@ class _CordinatorPageState extends State<CordinatorPage> {
                         child: TextFormField(
                       style: w500_14(),
                       decoration: InputDecoration(
+                          hintStyle: w500_14(
+                            color: AppColors.dark2GreyColor,
+                          ),
                           border: InputBorder.none,
                           hintText: 'Search Coordinator…',
                           isDense: true),

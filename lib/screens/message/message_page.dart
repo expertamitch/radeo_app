@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
-import 'package:redeo/widgets/image_view.dart';
-
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
-import 'chat_messages_page.dart';
 
 class MessagePage extends StatefulWidget {
   const MessagePage({Key? key}) : super(key: key);
@@ -31,7 +27,7 @@ class _MessagePageState extends State<MessagePage> {
           Container(
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: AppText(
               text: 'Message',
               textSize: 30,
@@ -65,7 +61,7 @@ class _MessagePageState extends State<MessagePage> {
   }) {
     return GestureDetector(
       onTap: () {
-        Get.to(ChatMessagePage());
+        Get.toNamed(Routes.chatMessageScreen);
       },
       child: ListTile(
         leading: CircleAvatar(

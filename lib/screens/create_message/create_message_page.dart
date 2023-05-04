@@ -1,24 +1,16 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
-import 'package:redeo/screens/create_message/review_message/review_message_page.dart';
-import 'package:redeo/screens/create_message/select%20message/select_audio_message_page.dart';
-import 'package:redeo/screens/create_message/select%20message/select_text_message_page.dart';
-
-import 'package:redeo/screens/create_message/select%20message/select_video_message_page.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/widgets/app_text.dart';
 import 'package:redeo/widgets/image_view.dart';
-import 'package:video_player/video_player.dart';
-
 import '../../get_controller/create_messages_controller.dart';
-import '../../get_controller/notice_of_event_controller.dart';
+
+import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
+import '../../widgets/colors.dart';
 
 class CreateMessagePage extends StatefulWidget {
   const CreateMessagePage({Key? key}) : super(key: key);
@@ -47,7 +39,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     style: ElevatedButton.styleFrom(
                         shape: StadiumBorder(), primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.to(ReviewMessagePage());
+                      Get.toNamed(Routes.reviewMessageScreen);
                     },
                     child: AppText(
                       text: 'Review',
@@ -66,7 +58,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         Container(
           width: double.maxFinite,
           color: AppColors.darkGreyColor,
-          padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+          padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
           child: AppText(
             text: 'Create Message',
             textSize: 30,
@@ -89,7 +81,11 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     color: AppColors.blueColor,
                   ),
                   TextFormField(
+                    style: w500_14(),
                     decoration: InputDecoration(
+                        labelStyle: w500_14(
+                          color: AppColors.dark2GreyColor,
+                        ),
                         hintText: 'Select Location',
                         border: InputBorder.none,
                         prefixIconConstraints:
@@ -441,15 +437,14 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
       height: 40,
       width: MediaQuery.of(context).size.width,
       child: OutlinedButton(
-        onPressed: () async {
+        onPressed: () {
           if (getController.selectedMessageType == 'Text') {
-            Get.to(SelectTextMessagePage());
+            Get.toNamed(Routes.selectTextMessageScreen);
           } else if (getController.selectedMessageType == 'Audio') {
-            Get.to(SelectAudioMessage());
+            Get.toNamed(Routes.selectAudioMessageScreen);
           } else {
-            await Get.to(SelectVideoMessagePage());
+            Get.toNamed(Routes.selectVideoMessageScreen);
           }
-          setState(() {});
         },
         style: OutlinedButton.styleFrom(primary: AppColors.purpleColor),
         child: Row(
@@ -468,6 +463,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
               text: 'Select Files',
               textSize: 14,
               color: Colors.black,
+              fontWeight: FontWeight.w600,
             ),
           ],
         ),

@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
 import 'package:get/get.dart';
-import 'package:redeo/screens/create_message/create_message_page.dart';
-import 'package:redeo/screens/do_not_call/do_not_call_page.dart';
-import 'package:redeo/screens/event/events_page.dart';
-import 'package:redeo/screens/groups/groups_page.dart';
-import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
-import 'package:redeo/screens/field_service/field_service_page.dart';
-import 'package:redeo/screens/message/message_page.dart';
-import 'package:redeo/screens/scan_qr_page.dart';
+import 'package:redeo/route/routes.dart';
 
 class DummyHomepage extends StatefulWidget {
   const DummyHomepage({Key? key}) : super(key: key);
@@ -29,42 +21,42 @@ class _DummyHomepageState extends State<DummyHomepage> {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  Get.to(CreateNoticeOfEvent());
+                  Get.toNamed(Routes.createNoticeOfEventScreen);
                 },
                 child: Text('Notice of Event')),
             ElevatedButton(
                 onPressed: () {
-                  Get.to(EventPage());
+                  Get.toNamed(Routes.eventScreen);
                 },
                 child: Text('Event Page')),
             ElevatedButton(
                 onPressed: () {
-                  Get.to(ScanQrPage());
+                  Get.toNamed(Routes.scanQrScreen);
                 },
                 child: Text('Scan Qr Page')),
             ElevatedButton(
                 onPressed: () {
-                  Get.to(CreateMessagePage());
+                  Get.toNamed(Routes.createMessageScreen);
                 },
                 child: Text('Create Messages')),
             ElevatedButton(
                 onPressed: () {
-                  Get.to(FieldServicePage());
+                  Get.toNamed(Routes.fieldServiceScreen);
                 },
                 child: Text('Field Service Page')),
             ElevatedButton(
                 onPressed: () {
-                  Get.to(MessagePage());
+                  Get.toNamed(Routes.messagePageScreen);
                 },
                 child: Text('Message Page')),
             ElevatedButton(
                 onPressed: () {
-                  Get.to(DoNotCallPage());
+                  Get.toNamed(Routes.doNotCallScreen);
                 },
                 child: Text('Do Not Call Page')),
             ElevatedButton(
                 onPressed: () {
-                  Get.to(GroupsPage());
+                  Get.toNamed(Routes.groupsPageScreen);
                 },
                 child: Text('Groups')),
           ],

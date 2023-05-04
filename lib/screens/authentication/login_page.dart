@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/home_page.dart';
-import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/widgets/colors.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-
-import 'fogot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -47,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 21.0),
                       child: Text('Sign in to your Account',
-                          style: w600_40(color: Colors.white)),
+                          style: w600_35(color: Colors.white)),
                     ),
                     SizedBox(
                       height: 20,
@@ -65,9 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
+                    style: w500_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Username'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter username'
@@ -81,9 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
+                    style: w500_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Password'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter password'
@@ -102,6 +96,13 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Checkbox(
                             value: rememberPassword,
+                            fillColor: MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if (!states.contains(MaterialState.selected)) {
+                                return AppColors.dark2GreyColor;
+                              }
+                              return AppColors.blueColor;
+                            }),
                             onChanged: (value) {
                               setState(() {
                                 rememberPassword = value ?? false;
@@ -120,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                       )),
                       TextButton(
                           onPressed: () {
-                            Get.to(ForgotPasswordPage());
+                            Get.toNamed(Routes.forgotPasswordScreen);
                           },
                           child: Text('Forgot Password ?',
                               style: w500_12(
@@ -136,6 +137,8 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.maxFinite,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                               primary: AppColors.purpleColor),
                           onPressed: () {
                             print('username : $username');
@@ -157,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text('Don\'t have an account? ', style: w500_12()),
                       GestureDetector(
                         onTap: () {
-                          Get.to(RegisterPage());
+                          Get.toNamed(Routes.registerScreen);
                         },
                         child: Text('Register Now',
                             style: w700_12(

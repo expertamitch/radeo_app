@@ -6,11 +6,12 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
-import 'package:redeo/screens/notice_of_event/notice_of_event_summary_page.dart';
 import 'package:redeo/widgets/image_view.dart';
 import 'package:redeo/widgets/show_toast.dart';
 import '../../get_controller/notice_of_event_controller.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
+import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
 import '../../widgets/colors.dart';
 
@@ -91,7 +92,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         setState(() {});
 
                         if (goToSummaryPage) {
-                          Get.to(NoticeOfEventSummaryPage());
+                          Get.toNamed(Routes.noticeOfEventSummaryScreen);
                         }
                       },
                       child: AppText(
@@ -111,7 +112,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
           Container(
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: AppText(
               text: 'Notice of Event',
               textSize: 30,
@@ -140,7 +141,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Flexible(
                                     child: TextFormField(
+                                      style: w500_14(),
                                       decoration: InputDecoration(
+                                          hintStyle: w500_14(
+                                            color: AppColors.dark2GreyColor,
+                                          ),
                                           hintText: 'Name',
                                           contentPadding: EdgeInsets.zero,
                                           border: InputBorder.none),
@@ -188,7 +193,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 color: AppColors.blueColor,
                               ),
                               TextFormField(
+                                style: w500_14(),
                                 decoration: InputDecoration(
+                                    hintStyle: w500_14(
+                                      color: AppColors.dark2GreyColor,
+                                    ),
                                     hintText: 'Location',
                                     contentPadding: EdgeInsets.zero,
                                     border: InputBorder.none),
@@ -209,7 +218,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 color: AppColors.blueColor,
                               ),
                               TextFormField(
+                                style: w500_14(),
                                 decoration: InputDecoration(
+                                    hintStyle: w500_14(
+                                      color: AppColors.dark2GreyColor,
+                                    ),
                                     hintText: 'Email',
                                     contentPadding: EdgeInsets.zero,
                                     border: InputBorder.none),
@@ -230,7 +243,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 color: AppColors.blueColor,
                               ),
                               TextFormField(
+                                style: w500_14(),
                                 decoration: InputDecoration(
+                                    hintStyle: w500_14(
+                                      color: AppColors.dark2GreyColor,
+                                    ),
                                     hintText: 'Telephone',
                                     contentPadding: EdgeInsets.zero,
                                     border: InputBorder.none),
@@ -315,7 +332,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 color: AppColors.blueColor,
                               ),
                               TextFormField(
+                                style: w500_14(),
                                 decoration: InputDecoration(
+                                    hintStyle: w500_14(
+                                      color: AppColors.dark2GreyColor,
+                                    ),
                                     hintText: 'Territory',
                                     contentPadding: EdgeInsets.zero,
                                     border: InputBorder.none),
@@ -483,7 +504,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               ),
                               if (controller.noticeTypes.isNotEmpty)
                                 TextFormField(
+                                  style: w500_14(),
                                   decoration: InputDecoration(
+                                      hintStyle: w500_14(
+                                        color: AppColors.dark2GreyColor,
+                                      ),
                                       hintText:
                                           controller.noticeTypes + ' Name',
                                       fillColor: AppColors.greyColor,
@@ -690,16 +715,16 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                                 controller.boysController,
                                             autovalidateMode: AutovalidateMode
                                                 .onUserInteraction,
-                                            style: TextStyle(
-                                                fontFamily: 'satoshi',
-                                                fontSize: 12),
-                                            decoration:
-                                                inputDecoration.copyWith(
-                                                    isDense: true,
-                                                    contentPadding:
-                                                        EdgeInsets.zero,
-                                                    labelText: '',
-                                                    border: InputBorder.none),
+                                            style: w500_12(),
+                                            decoration: InputDecoration(
+                                                hintStyle: w500_14(
+                                                  color:
+                                                      AppColors.dark2GreyColor,
+                                                ),
+                                                isDense: true,
+                                                contentPadding: EdgeInsets.zero,
+                                                labelText: '',
+                                                border: InputBorder.none),
                                             onChanged: (value) =>
                                                 setState(() {}),
                                           ),
@@ -748,16 +773,16 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                                 controller.girlsController,
                                             autovalidateMode: AutovalidateMode
                                                 .onUserInteraction,
-                                            style: TextStyle(
-                                                fontFamily: 'satoshi',
-                                                fontSize: 12),
-                                            decoration:
-                                                inputDecoration.copyWith(
-                                                    isDense: true,
-                                                    contentPadding:
-                                                        EdgeInsets.zero,
-                                                    labelText: '',
-                                                    border: InputBorder.none),
+                                            style: w500_12(),
+                                            decoration: InputDecoration(
+                                                hintStyle: w500_14(
+                                                  color:
+                                                      AppColors.dark2GreyColor,
+                                                ),
+                                                isDense: true,
+                                                contentPadding: EdgeInsets.zero,
+                                                labelText: '',
+                                                border: InputBorder.none),
                                             onChanged: (value) =>
                                                 setState(() {}),
                                           ),
@@ -783,7 +808,8 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   child: TextFormField(
                                     maxLines: 4,
                                     controller: controller.noteController,
-                                    decoration: InputDecoration(
+                                    style: w500_14(),
+                                    decoration: inputDecoration.copyWith(
                                         hintText: 'Notes',
                                         fillColor: AppColors.greyColor,
                                         filled: true,

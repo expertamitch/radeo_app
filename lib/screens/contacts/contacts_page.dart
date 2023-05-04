@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:redeo/screens/contacts/tabs/contact_tab_page.dart';
 import 'package:redeo/screens/contacts/tabs/redeo_tab_page.dart';
-import 'package:redeo/styling/font_style_globle.dart';
-
-import '../../assets/images.dart';
 import '../../styling/app_colors.dart';
 import '../../widgets/app_text.dart';
-import '../../widgets/image_view.dart';
 import 'tabs/group_tab_page.dart';
 
 class ContactPage extends StatefulWidget {

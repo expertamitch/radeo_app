@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/widgets/colors.dart';
 import '../../assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
@@ -42,7 +42,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.0),
                     child: Text('Forgot your Password',
-                        style: w600_40(color: Colors.white)),
+                        style: w600_35(color: Colors.white)),
                   ),
                   SizedBox(
                     height: 10,
@@ -53,8 +53,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         text: 'Please enter your register email address',
                         color: Colors.white,
                         textSize: 14),
-                    //  Text('Please enter your register email address',
-                    //     style: w500_14(color: Colors.white)),
                   ),
                   SizedBox(
                     height: 20,
@@ -70,14 +68,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               child: Column(
                 children: [
                   TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: TextStyle(
-                      fontFamily: 'satoshi',
-                    ),
-                    decoration: inputDecoration.copyWith(labelText: 'Username'),
-                    validator: (value) => value == null || value.isEmpty
-                        ? 'Please enter username'
-                        : null,
+                    style: w500_14(),
+                    decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     controller: usernameController,
                   ),
                   SizedBox(
@@ -88,6 +80,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       width: double.maxFinite,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                               primary: AppColors.purpleColor),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
@@ -111,7 +105,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(RegisterPage());
+                          Get.toNamed(Routes.registerScreen);
                         },
                         child: Text('Register Now',
                             style: w700_12(

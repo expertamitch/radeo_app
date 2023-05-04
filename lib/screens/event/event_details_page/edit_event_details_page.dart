@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
-
-import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 import '../../../widgets/app_text.dart';
-import '../../../widgets/image_view.dart';
+import '../../../widgets/colors.dart';
 
 class EditEventDetailsPage extends StatefulWidget {
   const EditEventDetailsPage({Key? key}) : super(key: key);
@@ -54,7 +51,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             height: 40,
-            padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 20),
+            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
           ),
           SingleChildScrollView(
             child: Padding(
@@ -200,8 +197,13 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     color: AppColors.blueColor,
                   ),
                   TextFormField(
+                    style: w500_14(),
                     decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Enter Name'),
+                        hintStyle: w500_14(
+                          color: AppColors.dark2GreyColor,
+                        ),
+                        border: InputBorder.none,
+                        hintText: 'Enter Name'),
                   ),
                   Divider(thickness: 1, color: AppColors.greyColor),
                   SizedBox(
@@ -216,8 +218,12 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     height: 10,
                   ),
                   TextFormField(
+                    style: w500_14(),
                     maxLines: 4,
                     decoration: InputDecoration(
+                        hintStyle: w500_14(
+                          color: AppColors.dark2GreyColor,
+                        ),
                         hintText: 'Enter Description…',
                         fillColor: AppColors.greyColor,
                         filled: true,

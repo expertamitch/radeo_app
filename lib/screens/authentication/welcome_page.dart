@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:redeo/screens/authentication/login_page.dart';
-import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
@@ -25,11 +24,13 @@ class _WelcomePageState extends State<WelcomePage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 20,
+              Expanded(
+                child: SizedBox(
+                  height: 20,
+                ),
               ),
               AppText(
                 textSize: 16,
@@ -37,47 +38,55 @@ class _WelcomePageState extends State<WelcomePage> {
                 color: AppColors.purpleColor,
                 fontWeight: FontWeight.w800,
               ),
-              SizedBox(
-                height: 20,
+              Expanded(
+                child: SizedBox(
+                  height: 20,
+                ),
               ),
               ImageView(
                 path: Images.welcomeScreenLogo,
                 width: MediaQuery.of(context).size.width * 0.4,
               ),
-              SizedBox(
-                height: 20,
+              Expanded(
+                child: SizedBox(
+                  height: 20,
+                ),
               ),
               SizedBox(
                   height: 50,
                   width: double.maxFinite,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
                           primary: AppColors.purpleColor),
                       onPressed: () {
-                        Get.to(LoginPage());
+                        Get.toNamed(Routes.loginScreen);
                       },
                       child: Text(
                         'Login Now',
                         style: w600_14(color: Colors.white),
                       ))),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               SizedBox(
                   height: 50,
                   width: double.maxFinite,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
                           primary: AppColors.blueColor),
                       onPressed: () {
-                        Get.to(RegisterPage());
+                        Get.toNamed(Routes.registerScreen);
                       },
                       child: Text(
                         'Register Now',
                         style: w600_14(color: Colors.white),
                       ))),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: [
@@ -100,7 +109,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: [
@@ -157,8 +166,10 @@ class _WelcomePageState extends State<WelcomePage> {
                   )
                 ],
               ),
-              SizedBox(
-                height: 20,
+              Expanded(
+                child: SizedBox(
+                  height: 20,
+                ),
               ),
             ],
           ),

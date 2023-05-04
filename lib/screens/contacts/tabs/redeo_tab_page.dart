@@ -54,6 +54,9 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Serach Redeo Contact',
+                      hintStyle: w500_14(
+                        color: AppColors.dark2GreyColor,
+                      ),
                       isDense: true),
                 ))
               ],

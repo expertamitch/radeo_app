@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 import '../../../widgets/app_text.dart';
+import '../../../widgets/colors.dart';
 import '../../../widgets/image_view.dart';
 
 class GroupTabPage extends StatefulWidget {
@@ -56,6 +54,9 @@ class _GroupTabPageState extends State<GroupTabPage> {
                   style: w500_14(),
                   decoration: InputDecoration(
                       border: InputBorder.none,
+                      hintStyle: w500_14(
+                        color: AppColors.dark2GreyColor,
+                      ),
                       hintText: 'Serach Group...',
                       isDense: true),
                 ))
