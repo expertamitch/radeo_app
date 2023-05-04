@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/home_page.dart';
 import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/widgets/colors.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../create_message/create_message_page.dart';
+
 import 'fogot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -123,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Text('Forgot Password ?',
                               style: w500_12(
-                                color: AppColors.lighBlueColor,
+                                color: AppColors.blueColor,
                               )))
                     ],
                   ),
@@ -137,11 +138,9 @@ class _LoginPageState extends State<LoginPage> {
                           style: ElevatedButton.styleFrom(
                               primary: AppColors.purpleColor),
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              print('username : $username');
-                              print('password : $password');
-                              Get.to(CreateMessagePage());
-                            }
+                            print('username : $username');
+                            print('password : $password');
+                            Get.to(DummyHomepage());
                           },
                           child: Text(
                             'Login Now',

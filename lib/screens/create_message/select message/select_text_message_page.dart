@@ -1,14 +1,11 @@
 import 'dart:io';
-
 import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:redeo/widgets/image_view.dart';
-
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
+import '../../../styling/font_style_globle.dart';
 import '../../../widgets/app_text.dart';
 
 class SelectTextMessagePage extends StatefulWidget {
@@ -20,42 +17,37 @@ class SelectTextMessagePage extends StatefulWidget {
 
 class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
   late TextEditingController controller;
-  late List<String> textMessagesList;
+
   @override
   void initState() {
     super.initState();
-    textMessagesList = ['dummy text 1', 'dummy text 2', 'dummy text 3'];
+
     controller = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 65),
-          child: SafeArea(
-              child: Container(
-            decoration: const BoxDecoration(
-              color: AppColors.darkGreyColor,
-            ),
-            alignment: Alignment.center,
-            child: AnimationSearchBar(
-                backIconColor: Colors.black,
-                centerTitle: 'Select Text',
-                backIcon: Platform.isAndroid ? Icons.arrow_back_outlined : null,
-                onChanged: (text) {
-                  textMessagesList = textMessagesList
-                      .where(
-                          (e) => e.toLowerCase().contains(text.toLowerCase()))
-                      .toList();
-                  setState(() {});
-                },
-                searchTextEditingController: controller,
-                horizontalPadding: 5),
-          ))),
-      body: SingleChildScrollView(
-          child: Column(
-        children: [
+        appBar: PreferredSize(
+            preferredSize: const Size(double.infinity, 65),
+            child: SafeArea(
+                child: Container(
+              decoration: const BoxDecoration(
+                color: AppColors.darkGreyColor,
+              ),
+              alignment: Alignment.center,
+              child: AnimationSearchBar(
+                  backIconColor: Colors.black,
+                  centerTitle: 'Select Text',
+                  backIcon:
+                      Platform.isAndroid ? Icons.arrow_back_outlined : null,
+                  onChanged: (text) {
+                    setState(() {});
+                  },
+                  searchTextEditingController: controller,
+                  horizontalPadding: 5),
+            ))),
+        body: Column(children: [
           SizedBox(
             height: 15,
           ),
@@ -84,9 +76,40 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
           Divider(
             color: AppColors.greyColor,
             thickness: 1,
-          )
-        ],
-      )),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Expanded(
+              child: ListView.separated(
+                  separatorBuilder: (context, index) =>
+                      Divider(color: AppColors.greyColor),
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return textListTile(
+                      title: 'textfile_23052023',
+                    );
+                  }))
+        ]));
+  }
+
+  textListTile({
+    required String title,
+  }) {
+    return GestureDetector(
+      onTap: () {},
+      child: ListTile(
+        leading: SvgPicture.asset(
+          Images.textIcon,
+          width: 20,
+        ),
+        minLeadingWidth: 10,
+        title: Text(
+          title,
+          overflow: TextOverflow.ellipsis,
+          style: w600_14(),
+        ),
+      ),
     );
   }
 }

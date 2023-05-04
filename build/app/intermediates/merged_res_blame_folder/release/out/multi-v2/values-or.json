@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.app.redeo.redeo.app-mergeReleaseResources-22:/values-or/values-or.xml",
+            "outputFile": "com.app.redeo.redeo.app-mergeReleaseResources-24:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "/Users/ashishraturi/.gradle/caches/transforms-3/f46b9773282b7a3d38863a46e0e0b5d1/transformed/jetified-play-services-basement-18.1.0/res/values-or/values.xml",

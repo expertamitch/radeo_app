@@ -9,4 +9,8 @@ abstract class Routes {
   static const selectTextMessageScreen = '/selectTextMessageScreen';
   static const selectAudioMessageScreen = '/selectAudioMessageScreen';
   static const selectVideoMessageScreen = '/selectVideoMessageScreen';
+  static const videoRecordScreen = '/videoRecordScreen';
+  static const createNoticeOfEventScreen = '/createNoticeOfEventScreen';
+  static const noticeOfEventSummaryScreen = '/noticeOfEventSummaryScreen';
+  static const historyPage = '/historyPage';
 }

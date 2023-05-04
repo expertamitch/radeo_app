@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:redeo/screens/authentication/login_page.dart';
 import '../../assets/images.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/colors.dart';
+import 'login_page.dart';
 import 'otp_verification_page.dart';
 
 class RegisterPage extends StatefulWidget {

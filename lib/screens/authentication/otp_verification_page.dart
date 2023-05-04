@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import '../../assets/images.dart';
+import '../../home_page.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
@@ -123,7 +124,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                                 text: 'Get OTP',
                                 textSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.lighBlueColor)),
+                                color: AppColors.blueColor)),
                   ],
                 ),
                 SizedBox(
@@ -136,7 +137,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                         style: ElevatedButton.styleFrom(
                             primary: AppColors.purpleColor),
                         onPressed: () {
-                          Get.to(OtpVerficationPage());
+                          Get.to(DummyHomepage());
                         },
                         child: Text(
                           'Verfy OTP',

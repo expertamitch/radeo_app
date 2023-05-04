@@ -9,6 +9,7 @@ class Images {
 
   //screen 6
   static const String closeIcon = "assets/icons/screen 6/Close.svg";
+  static const String scanQrBgImg = "assets/images/scan_qr_bg_img.png";
 
   //screen 7
   static const String attachIcon = "assets/icons/screen 7/Attach.svg";
@@ -46,6 +47,7 @@ class Images {
   static const String radioIcon = "assets/icons/screen 17/Radio btn.svg";
 
   //screen 18
+  static const String uploadImg = "assets/icons/screen 18/upload_image.png";
   static const String downArrowIcon = "assets/icons/screen 18/Radio btn.svg";
   static const String galleryIcon = "assets/icons/screen 18/gallery.svg";
   static const String level1Icon = "assets/icons/screen 18/Level 1.svg";
@@ -55,6 +57,7 @@ class Images {
       "assets/icons/screen 18/Select_Radio.svg";
   static const String unselectRadioIcon =
       "assets/icons/screen 18/unselect_radio.svg";
+  static const String selectFiles = "assets/icons/screen 18/select_files.png";
 
   //screen 19
   static const String history1Icon = "assets/icons/screen 19/Hisotory1.svg";

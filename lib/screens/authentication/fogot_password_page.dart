@@ -16,7 +16,7 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String username = '';
+  TextEditingController usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,9 +78,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter username'
                         : null,
-                    onChanged: (value) => setState(() {
-                      username = value;
-                    }),
+                    controller: usernameController,
                   ),
                   SizedBox(
                     height: 40,
@@ -93,7 +91,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               primary: AppColors.purpleColor),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              print('username : $username');
+                              // print('username : $username');
                             }
                           },
                           child: Text(

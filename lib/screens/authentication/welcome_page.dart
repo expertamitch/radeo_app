@@ -68,7 +68,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   width: double.maxFinite,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: AppColors.lighBlueColor),
+                          primary: AppColors.blueColor),
                       onPressed: () {
                         Get.to(RegisterPage());
                       },

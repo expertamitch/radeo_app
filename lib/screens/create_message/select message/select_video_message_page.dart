@@ -1,14 +1,11 @@
 import 'dart:io';
 import 'package:animation_search_bar/animation_search_bar.dart';
-import 'package:fetch_all_videos/fetch_all_videos.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:redeo/widgets/loader.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
-import '../../../assets/images.dart';
-import '../../../styling/app_colors.dart';
-import '../../../widgets/app_text.dart';
-import '../../../widgets/image_view.dart';
+import 'package:redeo/styling/font_style_globle.dart';
+import '../../../../assets/images.dart';
+import '../../../../styling/app_colors.dart';
+import '../../../../widgets/app_text.dart';
+import '../../../../widgets/image_view.dart';
 
 class SelectVideoMessagePage extends StatefulWidget {
   const SelectVideoMessagePage({Key? key}) : super(key: key);
@@ -19,37 +16,33 @@ class SelectVideoMessagePage extends StatefulWidget {
 
 class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
   late TextEditingController controller;
-  late List textMessagesList;
-  List videos = [];
-  List videosThumnails = [];
-  bool isLoading = true;
+  List allVideosData = [
+    {'thumbnailPath': 'assets/dummy_data/video 01.png', 'name': 'video 01'},
+    {'thumbnailPath': 'assets/dummy_data/video 02.png', 'name': 'video 02'},
+    {'thumbnailPath': 'assets/dummy_data/video 03.png', 'name': 'video 03'},
+    {'thumbnailPath': 'assets/dummy_data/video 04.png', 'name': 'video 04'}
+  ];
+
+  int? selectedVideoIndex;
+  bool isLoading = false;
+
   @override
   void initState() {
     super.initState();
-    textMessagesList = ['dummy text 1', 'dummy text 2', 'dummy text 3'];
+
     controller = TextEditingController();
-    getVideos();
-  }
 
-  getVideos() async {
-    FetchAllVideos ob = FetchAllVideos();
-    videos = await ob.getAllVideos();
-
-    for (var v in videos)
-      videosThumnails.add(await VideoThumbnail.thumbnailFile(
-        video: v,
-        thumbnailPath: (await getTemporaryDirectory()).path,
-        imageFormat: ImageFormat.PNG,
-        quality: 100,
-      ));
-    setState(() {
-      isLoading = false;
-    });
+    // controller.addListener(() {
+    //   filteredVideosPaths = allVideosPaths.where((e) {
+    //     String fileName = e.split('/').last;
+    //     return fileName.toLowerCase().contains(controller.text.toLowerCase());
+    //   }).toList();
+    //   setState(() {});
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(videosThumnails.length);
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 65),
@@ -63,13 +56,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                 backIconColor: Colors.black,
                 centerTitle: 'Select Video',
                 backIcon: Platform.isAndroid ? Icons.arrow_back_outlined : null,
-                onChanged: (text) {
-                  textMessagesList = textMessagesList
-                      .where(
-                          (e) => e.toLowerCase().contains(text.toLowerCase()))
-                      .toList();
-                  setState(() {});
-                },
+                onChanged: (p0) {},
                 searchTextEditingController: controller,
                 horizontalPadding: 5),
           ))),
@@ -80,24 +67,27 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
           SizedBox(
             height: 15,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ImageView(
-                path: Images.videoIcon,
-                height: 16,
-                color: AppColors.purpleColor,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              AppText(
-                text: 'Create New Video',
-                textSize: 16,
-                fontWeight: FontWeight.w600,
-                color: AppColors.purpleColor,
-              ),
-            ],
+          GestureDetector(
+            onTap: () async {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ImageView(
+                  path: Images.videoIcon,
+                  height: 16,
+                  color: AppColors.purpleColor,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                AppText(
+                  text: 'Create New Video',
+                  textSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.purpleColor,
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 15,
@@ -109,14 +99,6 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
           SizedBox(
             height: 15,
           ),
-          if (isLoading == false && videosThumnails.length == 0)
-            Center(
-              child: AppText(
-                text: 'No videos found',
-                textSize: 18,
-                color: Colors.grey,
-              ),
-            ),
           if (isLoading)
             Center(
                 child: SizedBox(
@@ -128,21 +110,100 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
             )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Wrap(
-              alignment: WrapAlignment.start,
-              crossAxisAlignment: WrapCrossAlignment.start,
-              runAlignment: WrapAlignment.start,
-              runSpacing: 10,
-              spacing: 10,
-              children: videosThumnails
-                  .map((e) => Container(
-                        color: Colors.grey,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Column(
-                          children: [Image.file(File(e)), Text('video')],
-                        ),
-                      ))
-                  .toList(),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Wrap(
+                  alignment: allVideosData.length == 2
+                      ? WrapAlignment.start
+                      : WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runAlignment: allVideosData.length == 2
+                      ? WrapAlignment.start
+                      : WrapAlignment.spaceBetween,
+                  runSpacing: 10,
+                  spacing: 10,
+                  children: List.generate(
+                      allVideosData.length,
+                      (index) => GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (selectedVideoIndex == index) {
+                                  selectedVideoIndex = null;
+                                } else {
+                                  selectedVideoIndex = index;
+                                }
+                              });
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.27,
+                              child: Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        ImageView(
+                                          path: allVideosData.elementAt(
+                                              index)['thumbnailPath'],
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.26,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.27,
+                                        ),
+                                        if (selectedVideoIndex == index)
+                                          Container(
+                                            color: AppColors.purpleColor
+                                                .withOpacity(.38),
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.26,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.27,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                ImageView(
+                                                  path: Images.selectIcon,
+                                                  width: 25,
+                                                  height: 25,
+                                                  color: Colors.white,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        Positioned(
+                                          bottom: 5,
+                                          left: 10,
+                                          child: ImageView(
+                                            path: Images.videoIcon,
+                                            color: Colors.white,
+                                            width: 15,
+                                            height: 15,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      allVideosData.elementAt(index)['name'],
+                                      style: w600_14(),
+                                      overflow: TextOverflow.ellipsis,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ))),
             ),
           )
         ],

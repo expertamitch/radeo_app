@@ -1,0 +1,12 @@
+com.example.flutter_video_info-jetified-window-java-1.0.0-beta04-0 /Users/ashishraturi/.gradle/caches/transforms-3/006d93cd422dbc43e89591147c2de572/transformed/jetified-window-java-1.0.0-beta04/res
+com.example.flutter_video_info-core-1.6.0-1 /Users/ashishraturi/.gradle/caches/transforms-3/4ca28c4a71705f8a687c69dda140a277/transformed/core-1.6.0/res
+com.example.flutter_video_info-jetified-annotation-experimental-1.1.0-2 /Users/ashishraturi/.gradle/caches/transforms-3/8965c941cf4bee4d72541b965c7c9d39/transformed/jetified-annotation-experimental-1.1.0/res
+com.example.flutter_video_info-jetified-window-1.0.0-beta04-3 /Users/ashishraturi/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/res
+com.example.flutter_video_info-main-4 /Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_video_info-1.3.1/android/src/main/res
+com.example.flutter_video_info-release-5 /Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_video_info-1.3.1/android/src/release/res
+com.example.flutter_video_info-pngs-6 /Users/ashishraturi/ar work/Flutter work/Client work/12 redeo/redeo/build/flutter_video_info/generated/res/pngs/release
+com.example.flutter_video_info-resValues-7 /Users/ashishraturi/ar work/Flutter work/Client work/12 redeo/redeo/build/flutter_video_info/generated/res/resValues/release
+com.example.flutter_video_info-rs-8 /Users/ashishraturi/ar work/Flutter work/Client work/12 redeo/redeo/build/flutter_video_info/generated/res/rs/release
+com.example.flutter_video_info-mergeReleaseResources-9 /Users/ashishraturi/ar work/Flutter work/Client work/12 redeo/redeo/build/flutter_video_info/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.example.flutter_video_info-mergeReleaseResources-10 /Users/ashishraturi/ar work/Flutter work/Client work/12 redeo/redeo/build/flutter_video_info/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.example.flutter_video_info-merged_res-11 /Users/ashishraturi/ar work/Flutter work/Client work/12 redeo/redeo/build/flutter_video_info/intermediates/merged_res/release
