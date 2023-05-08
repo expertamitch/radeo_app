@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:redeo/styling/font_style_globle.dart';
 import '../../../assets/images.dart';
 import '../../../get_controller/create_messages_controller.dart';
 import '../../../styling/app_colors.dart';
@@ -59,148 +60,213 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
           ),
           Expanded(
               child: SingleChildScrollView(
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: Column(children: [
+                  child: Column(children: [
+            SizedBox(
+              height: 15,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: AppText(
+                text: 'QR Code',
+                textSize: 14,
+                color: AppColors.blueColor,
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: PrettyQr(
+                // image: AssetImage('images/twitter.png'),
+                typeNumber: 3,
+                size: 100,
+                data: 'https://www.google.ru',
+                errorCorrectLevel: QrErrorCorrectLevel.M,
+                roundEdges: true,
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Divider(
+              color: AppColors.borderGreyColor,
+              thickness: 1,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: AppText(
+                      text: 'Video Message',
+                      textSize: 14,
+                      color: AppColors.blueColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.lightGreyColor),
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    child: Row(
+                      children: [
+                        ImageView(
+                          path: 'assets/dummy_data/video 02.png',
+                          height: 50,
+                        ),
                         SizedBox(
-                          height: 15,
+                          width: 15,
                         ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: AppText(
-                            text: 'QR Code',
-                            textSize: 14,
-                            color: AppColors.blueColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Center(
-                          child: PrettyQr(
-                            // image: AssetImage('images/twitter.png'),
-                            typeNumber: 3,
-                            size: 100,
-                            data: 'https://www.google.ru',
-                            errorCorrectLevel: QrErrorCorrectLevel.M,
-                            roundEdges: true,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Divider(
-                          color: AppColors.greyColor,
-                          thickness: 1,
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: AppText(
-                            text: 'Video Message',
-                            textSize: 14,
-                            color: AppColors.blueColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Image.asset('assets/dummy_data/video_tile.png'),
-                        Divider(
-                          color: AppColors.greyColor,
-                          thickness: 1,
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: AppText(
-                            text: 'Location',
-                            textSize: 14,
-                            color: AppColors.blueColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ImageView(
-                              path: Images.locationIcon,
-                              color: AppColors.purpleColor,
-                              height: 18,
+                            Text(
+                              'vidofile_23052023',
+                              style: w500_13(),
                             ),
                             SizedBox(
-                              width: 10,
+                              height: 2,
                             ),
-                            AppText(
-                              text:
-                                  '2006 Chapmans Lane, San Francisco, California…',
-                              textSize: 14,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Divider(
-                          color: AppColors.greyColor,
-                          thickness: 1,
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Row(
-                            children: [
-                              AppText(
-                                text: 'Response:',
-                                textSize: 14,
-                                color: AppColors.blueColor,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              AppText(
-                                text: 'Custom',
-                                textSize: 14,
-                                color: AppColors.purpleColor,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 7,
-                              backgroundColor: AppColors.purpleColor,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            AppText(
-                              text: 'The info was helpful, Thanks',
-                              textSize: 14,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 7,
-                              backgroundColor: AppColors.purpleColor,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            AppText(
-                              text: 'The info was helpful, Send more',
-                              textSize: 14,
-                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '00:12',
+                                  style:
+                                      w500_10(color: AppColors.dark2GreyColor),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  '12 KB',
+                                  style:
+                                      w500_10(color: AppColors.dark2GreyColor),
+                                ),
+                              ],
+                            )
                           ],
                         )
-                      ]))))
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Divider(
+              color: AppColors.borderGreyColor,
+              thickness: 1,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: AppText(
+                      text: 'Location',
+                      textSize: 14,
+                      color: AppColors.blueColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      ImageView(
+                        path: Images.locationIcon,
+                        color: AppColors.purpleColor,
+                        height: 18,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      AppText(
+                        text: '2006 Chapmans Lane, San Francisco, California…',
+                        textSize: 14,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Divider(
+              color: AppColors.borderGreyColor,
+              thickness: 1,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        AppText(
+                          text: 'Response:',
+                          textSize: 14,
+                          color: AppColors.blueColor,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        AppText(
+                          text: 'Custom',
+                          textSize: 14,
+                          color: AppColors.purpleColor,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 7,
+                        backgroundColor: AppColors.purpleColor,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      AppText(
+                        text: 'The info was helpful, Thanks',
+                        textSize: 14,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 7,
+                        backgroundColor: AppColors.purpleColor,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      AppText(
+                        text: 'The info was helpful, Send more',
+                        textSize: 14,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ])))
         ]));
   }
 }

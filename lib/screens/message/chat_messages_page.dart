@@ -63,13 +63,17 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                        color: AppColors.greyColor,
+                        color: AppColors.lightGreyColor,
                         borderRadius: BorderRadius.circular(22)),
                     padding: EdgeInsets.all(8),
                     child: Row(children: [
                       Flexible(
-                          child: TextField(
+                          child: TextFormField(
+                        style: w500_14(),
                         decoration: InputDecoration(
+                            hintStyle: w500_14(
+                              color: AppColors.dark2GreyColor,
+                            ),
                             contentPadding:
                                 EdgeInsets.only(bottom: 10, left: 10),
                             hintText: 'Message',

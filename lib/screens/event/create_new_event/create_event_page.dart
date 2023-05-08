@@ -65,319 +65,353 @@ class _CreateEventPageState extends State<CreateEventPage> {
           ),
           Expanded(
               child: SingleChildScrollView(
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: Form(
-                          key: _formKey,
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                AppText(
-                                  text: 'Event Name',
-                                  textSize: 14,
-                                  color: AppColors.blueColor,
-                                ),
-                                TextFormField(
-                                  style: w500_14(),
-                                  decoration: InputDecoration(
-                                      hintStyle: w500_14(
-                                        color: AppColors.dark2GreyColor,
-                                      ),
-                                      hintText: 'Event Name',
-                                      contentPadding: EdgeInsets.zero,
-                                      border: InputBorder.none),
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: AppColors.greyColor,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                AppText(
-                                  text: 'Date and Time',
-                                  textSize: 14,
-                                  color: AppColors.blueColor,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    DateTime? d = await showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(1990),
-                                        lastDate: DateTime(3000));
-                                    if (d != null) {
-                                      TimeOfDay? t = await showTimePicker(
-                                        context: context,
-                                        initialTime: TimeOfDay.now(),
-                                      );
+                  child: Form(
+                      key: _formKey,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppText(
+                                    text: 'Event Name',
+                                    textSize: 14,
+                                    color: AppColors.blueColor,
+                                  ),
+                                  TextFormField(
+                                    style: w500_14(),
+                                    decoration: InputDecoration(
+                                        hintStyle: w500_14(
+                                          color: AppColors.dark2GreyColor,
+                                        ),
+                                        hintText: 'Event Name',
+                                        contentPadding: EdgeInsets.zero,
+                                        border: InputBorder.none),
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: AppColors.greyColor,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppText(
+                                    text: 'Date and Time',
+                                    textSize: 14,
+                                    color: AppColors.blueColor,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      DateTime? d = await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(1990),
+                                          lastDate: DateTime(3000));
+                                      if (d != null) {
+                                        TimeOfDay? t = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.now(),
+                                        );
 
-                                      if (t != null) {
-                                        selectedDate = DateTime(d.year, d.month,
-                                            d.day, t.hour, t.minute);
-                                      } else {
-                                        selectedDate =
-                                            DateTime(d.year, d.month, d.day);
+                                        if (t != null) {
+                                          selectedDate = DateTime(d.year,
+                                              d.month, d.day, t.hour, t.minute);
+                                        } else {
+                                          selectedDate =
+                                              DateTime(d.year, d.month, d.day);
+                                        }
+                                        setState(() {
+                                          // showDateTimeError = false;
+                                        });
                                       }
-                                      setState(() {
-                                        // showDateTimeError = false;
-                                      });
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      AppText(
-                                        text: selectedDate == null
-                                            ? 'Select date'
-                                            : DateFormat('EEEE, MMM d, yyyy')
-                                                .format(selectedDate!),
-                                        textSize: 16,
-                                      ),
-                                      if (selectedDate != null)
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
                                         AppText(
-                                          text: DateFormat('h:mm a')
-                                              .format(selectedDate!),
+                                          text: selectedDate == null
+                                              ? 'Select date'
+                                              : DateFormat('EEEE, MMM d, yyyy')
+                                                  .format(selectedDate!),
                                           textSize: 16,
                                         ),
+                                        if (selectedDate != null)
+                                          AppText(
+                                            text: DateFormat('h:mm a')
+                                                .format(selectedDate!),
+                                            textSize: 16,
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: AppColors.greyColor,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppText(
+                                    text: 'Location',
+                                    textSize: 14,
+                                    color: AppColors.blueColor,
+                                  ),
+                                  TextFormField(
+                                    style: w500_14(),
+                                    decoration: InputDecoration(
+                                        hintStyle: w500_14(
+                                          color: AppColors.dark2GreyColor,
+                                        ),
+                                        hintText: 'Enter Location',
+                                        contentPadding: EdgeInsets.zero,
+                                        border: InputBorder.none),
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: AppColors.greyColor,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppText(
+                                    text: 'Description',
+                                    textSize: 14,
+                                    color: AppColors.blueColor,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  TextFormField(
+                                    style: w500_14(),
+                                    maxLines: 4,
+                                    decoration: InputDecoration(
+                                        hintStyle: w500_14(
+                                          color: AppColors.dark2GreyColor,
+                                        ),
+                                        hintText: 'Enter Description…',
+                                        fillColor: AppColors.lightGreyColor,
+                                        filled: true,
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            borderSide: BorderSide(
+                                                color:
+                                                    AppColors.lightGreyColor)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            borderSide: BorderSide(
+                                                color:
+                                                    AppColors.lightGreyColor)),
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            borderSide: BorderSide(
+                                                color:
+                                                    AppColors.lightGreyColor))),
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    validator: (value) =>
+                                        value == null || value.isEmpty
+                                            ? 'Please enter a name'
+                                            : null,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: AppColors.greyColor,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppText(
+                                    text: 'Invitee',
+                                    textSize: 14,
+                                    color: AppColors.blueColor,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(Routes.inviteeScreen);
+                                    },
+                                    child: AppText(
+                                      text:
+                                          'Select Groups, Redeo Contacts, Contacts',
+                                      textSize: 15,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: AppColors.greyColor,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppText(
+                                    text: 'Recurrence',
+                                    textSize: 14,
+                                    color: AppColors.blueColor,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Wrap(
+                                    spacing: 10,
+                                    runSpacing: 10,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedRecurrence = 'Once a Week';
+                                          });
+                                        },
+                                        child: Container(
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: selectedRecurrence ==
+                                                          'Once a Week'
+                                                      ? AppColors.purpleColor
+                                                      : AppColors.greyColor),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 18, vertical: 8),
+                                          child: AppText(
+                                            text: 'Once a Week',
+                                            color: selectedRecurrence ==
+                                                    'Once a Week'
+                                                ? AppColors.purpleColor
+                                                : Colors.black,
+                                            textSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedRecurrence = 'Once a Month';
+                                          });
+                                        },
+                                        child: Container(
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: selectedRecurrence ==
+                                                          'Once a Month'
+                                                      ? AppColors.purpleColor
+                                                      : AppColors.greyColor),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 18, vertical: 8),
+                                          child: AppText(
+                                            text: 'Once a Month',
+                                            color: selectedRecurrence ==
+                                                    'Once a Month'
+                                                ? AppColors.purpleColor
+                                                : Colors.black,
+                                            textSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedRecurrence = 'Once a Year';
+                                          });
+                                        },
+                                        child: Container(
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: selectedRecurrence ==
+                                                          'Once a Year'
+                                                      ? AppColors.purpleColor
+                                                      : AppColors.greyColor),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 18, vertical: 8),
+                                          child: AppText(
+                                            text: 'Once a Year',
+                                            color: selectedRecurrence ==
+                                                    'Once a Year'
+                                                ? AppColors.purpleColor
+                                                : Colors.black,
+                                            textSize: 14,
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: AppColors.greyColor,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                AppText(
-                                  text: 'Location',
-                                  textSize: 14,
-                                  color: AppColors.blueColor,
-                                ),
-                                TextFormField(
-                                  style: w500_14(),
-                                  decoration: InputDecoration(
-                                      hintStyle: w500_14(
-                                        color: AppColors.dark2GreyColor,
-                                      ),
-                                      hintText: 'Event Location',
-                                      contentPadding: EdgeInsets.zero,
-                                      border: InputBorder.none),
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: AppColors.greyColor,
-                                ),
-                                AppText(
-                                  text: 'Description',
-                                  textSize: 14,
-                                  color: AppColors.blueColor,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                TextFormField(
-                                  style: w500_14(),
-                                  maxLines: 4,
-                                  decoration: InputDecoration(
-                                      hintStyle: w500_14(
-                                        color: AppColors.dark2GreyColor,
-                                      ),
-                                      hintText: 'Enter Description…',
-                                      fillColor: AppColors.greyColor,
-                                      filled: true,
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          borderSide: BorderSide(
-                                              color: AppColors.greyColor)),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          borderSide: BorderSide(
-                                              color: AppColors.greyColor)),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          borderSide: BorderSide(
-                                              color: AppColors.greyColor))),
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (value) =>
-                                      value == null || value.isEmpty
-                                          ? 'Please enter a name'
-                                          : null,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: AppColors.greyColor,
-                                ),
-                                AppText(
-                                  text: 'Contacts',
-                                  textSize: 14,
-                                  color: AppColors.blueColor,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.contactScreen);
-                                  },
-                                  child: AppText(
-                                    text:
-                                        'Select Groups, Redeo Contacts, Contacts',
-                                    textSize: 15,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: AppColors.greyColor,
-                                ),
-                                AppText(
-                                  text: 'Cordinator',
-                                  textSize: 14,
-                                  color: AppColors.blueColor,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.cordinatorScreen);
-                                  },
-                                  child: AppText(
-                                    text: 'Select Cordinator',
-                                    textSize: 15,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: AppColors.greyColor,
-                                ),
-                                AppText(
-                                  text: 'Recurrence',
-                                  textSize: 14,
-                                  color: AppColors.blueColor,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Wrap(
-                                  spacing: 10,
-                                  runSpacing: 10,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          selectedRecurrence = 'Once a Week';
-                                        });
-                                      },
-                                      child: Container(
-                                        width: 130,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: selectedRecurrence ==
-                                                        'Once a Week'
-                                                    ? AppColors.purpleColor
-                                                    : AppColors.greyColor),
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 18, vertical: 8),
-                                        child: AppText(
-                                          text: 'Once a Week',
-                                          color: selectedRecurrence ==
-                                                  'Once a Week'
-                                              ? AppColors.purpleColor
-                                              : Colors.black,
-                                          textSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          selectedRecurrence = 'Once a Month';
-                                        });
-                                      },
-                                      child: Container(
-                                        width: 130,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: selectedRecurrence ==
-                                                        'Once a Month'
-                                                    ? AppColors.purpleColor
-                                                    : AppColors.greyColor),
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 18, vertical: 8),
-                                        child: AppText(
-                                          text: 'Once a Month',
-                                          color: selectedRecurrence ==
-                                                  'Once a Month'
-                                              ? AppColors.purpleColor
-                                              : Colors.black,
-                                          textSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          selectedRecurrence = 'Once a Year';
-                                        });
-                                      },
-                                      child: Container(
-                                        width: 130,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: selectedRecurrence ==
-                                                        'Once a Year'
-                                                    ? AppColors.purpleColor
-                                                    : AppColors.greyColor),
-                                            borderRadius:
-                                                BorderRadius.circular(8)),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 18, vertical: 8),
-                                        child: AppText(
-                                          text: 'Once a Year',
-                                          color: selectedRecurrence ==
-                                                  'Once a Year'
-                                              ? AppColors.purpleColor
-                                              : Colors.black,
-                                          textSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])))))
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                          ]))))
         ]));
   }
 }

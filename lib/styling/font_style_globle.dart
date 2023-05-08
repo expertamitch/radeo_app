@@ -299,3 +299,11 @@ TextStyle w900_15({Color? color = Colors.black}) {
       color: color,
       fontFamily: fontName);
 }
+
+TextStyle w900_30({Color? color = Colors.black}) {
+  return TextStyle(
+      fontSize: 30.sp,
+      fontWeight: FontWeight.w900,
+      color: color,
+      fontFamily: fontName);
+}

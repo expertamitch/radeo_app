@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import '../../../assets/images.dart';
@@ -31,13 +32,24 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 onTap: () {
                   Get.toNamed(Routes.editEventDetailsScreen);
                 },
-                child: Icon(Icons.edit)),
+                child: ImageView(
+                  path: Images.editIcon,
+                  height: 17,
+                )),
             SizedBox(
-              width: 10,
+              width: 15,
             ),
-            Icon(Icons.delete),
+            GestureDetector(
+              onTap: () {
+                //delete
+              },
+              child: ImageView(
+                path: Images.deleteIcon,
+                height: 17,
+              ),
+            ),
             SizedBox(
-              width: 10,
+              width: 15,
             )
           ],
         ),
@@ -64,13 +76,17 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         SizedBox(
                           height: 30,
                         ),
-                        PrettyQr(
-                          // image: AssetImage('images/twitter.png'),
-                          typeNumber: 3,
-                          size: 150,
-                          data: 'https://www.google.ru',
-                          errorCorrectLevel: QrErrorCorrectLevel.M,
-                          roundEdges: true, elementColor: Colors.white,
+                        // PrettyQr(
+                        //   // image: AssetImage('images/twitter.png'),
+                        //   typeNumber: 3,
+                        //   size: 150,
+                        //   data: 'https://www.google.ru',
+                        //   errorCorrectLevel: QrErrorCorrectLevel.M,
+                        //   roundEdges: true, elementColor: Colors.white,
+                        // ),
+                        ImageView(
+                          path: Images.barcodeImg,
+                          width: MediaQuery.of(context).size.width * 0.35,
                         ),
                         SizedBox(
                           height: 10,
@@ -131,11 +147,31 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  AppText(
-                    text: 'Client List',
-                    textSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppText(
+                        text: 'Client List',
+                        textSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shape: StadiumBorder(),
+                                primary: AppColors.purpleColor),
+                            onPressed: () {
+                              Get.toNamed(Routes.addInviteeScreen);
+                            },
+                            child: AppText(
+                              text: 'Add Invitee',
+                              textSize: 12,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 10,
@@ -205,7 +241,11 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(),
+          // CircleAvatar(),
+          SvgPicture.asset(
+            Images.clientUserIcon,
+            height: 45,
+          ),
           SizedBox(
             width: 15,
           ),

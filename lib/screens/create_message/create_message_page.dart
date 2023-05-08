@@ -153,7 +153,12 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               AppText(
                                 text: 'Text',
-                                textSize: 16,
+                                color:
+                                    getController.selectedMessageType == 'Text'
+                                        ? AppColors.purpleColor
+                                        : Colors.black,
+                                textSize: 15,
+                                fontWeight: FontWeight.w500,
                               ),
                             ],
                           ),
@@ -190,7 +195,12 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               AppText(
                                 text: 'Audio',
-                                textSize: 16,
+                                textSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color:
+                                    getController.selectedMessageType == 'Audio'
+                                        ? AppColors.purpleColor
+                                        : Colors.black,
                               ),
                             ],
                           ),
@@ -227,7 +237,12 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               AppText(
                                 text: 'Video',
-                                textSize: 16,
+                                textSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color:
+                                    getController.selectedMessageType == 'Video'
+                                        ? AppColors.purpleColor
+                                        : Colors.black,
                               ),
                             ],
                           ),
@@ -303,11 +318,14 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     child: PrettyQr(
                       // image: AssetImage('images/twitter.png'),
                       typeNumber: 3,
-                      size: 150,
+                      size: 130,
                       data: 'https://www.google.ru',
                       errorCorrectLevel: QrErrorCorrectLevel.M,
                       roundEdges: true,
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                 ],
               ),
@@ -412,6 +430,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             if (!states.contains(MaterialState.selected)) {
               return AppColors.dark2GreyColor;
             }
+
             return AppColors.purpleColor;
           }),
           onChanged: (value) {
@@ -433,41 +452,20 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
   }
 
   getAttachment() {
-    return SizedBox(
-      height: 40,
-      width: MediaQuery.of(context).size.width,
-      child: OutlinedButton(
-        onPressed: () {
-          if (getController.selectedMessageType == 'Text') {
-            Get.toNamed(Routes.selectTextMessageScreen);
-          } else if (getController.selectedMessageType == 'Audio') {
-            Get.toNamed(Routes.selectAudioMessageScreen);
-          } else {
-            Get.toNamed(Routes.selectVideoMessageScreen);
-          }
-        },
-        style: OutlinedButton.styleFrom(primary: AppColors.purpleColor),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ImageView(
-              path: Images.attachIcon,
-              height: 16,
-              color: AppColors.purpleColor,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            AppText(
-              text: 'Select Files',
-              textSize: 14,
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
-            ),
-          ],
-        ),
-      ),
+    return GestureDetector(
+      onTap: () {
+        if (getController.selectedMessageType == 'Text') {
+          Get.toNamed(Routes.selectTextMessageScreen);
+        } else if (getController.selectedMessageType == 'Audio') {
+          Get.toNamed(Routes.selectAudioMessageScreen);
+        } else {
+          Get.toNamed(Routes.selectVideoMessageScreen);
+        }
+      },
+      child: SizedBox(
+          height: 40,
+          width: MediaQuery.of(context).size.width,
+          child: ImageView(path: Images.selectFiles)),
     );
   }
 }

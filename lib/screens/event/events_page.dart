@@ -40,7 +40,7 @@ class _EventPageState extends State<EventPage> {
                         Get.toNamed(Routes.createEventScreen);
                       },
                       child: AppText(
-                        text: 'New Event',
+                        text: 'Add Event',
                         textSize: 12,
                         fontWeight: FontWeight.bold,
                       )),
@@ -67,7 +67,7 @@ class _EventPageState extends State<EventPage> {
             decoration: BoxDecoration(
                 color: AppColors.darkGreyColor,
                 borderRadius: BorderRadius.circular(8)),
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Row(
               children: [
@@ -91,12 +91,10 @@ class _EventPageState extends State<EventPage> {
             ),
           ),
           Expanded(
-              child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.greyColor),
+              child: ListView.builder(
                   itemCount: 2,
                   itemBuilder: (context, index) {
-                    return messageListTile(
+                    return eventListTile(
                       dateTime: DateTime.now(),
                       name: 'John Doe',
                       location:
@@ -107,7 +105,7 @@ class _EventPageState extends State<EventPage> {
         ]));
   }
 
-  messageListTile({
+  eventListTile({
     required DateTime dateTime,
     required String name,
     required String location,
@@ -117,30 +115,39 @@ class _EventPageState extends State<EventPage> {
       onTap: () {
         Get.toNamed(Routes.eventDetailsScreen);
       },
-      child: ListTile(
-        minLeadingWidth: 10,
-        title: Flexible(
-          child: Text(
-            name,
-            overflow: TextOverflow.ellipsis,
-            style: w600_14(),
+      child: Container(
+        decoration: BoxDecoration(
+            border:
+                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: ListTile(
+          minLeadingWidth: 10,
+          title: Flexible(
+            child: Text(
+              name,
+              overflow: TextOverflow.ellipsis,
+              style: w600_14(),
+            ),
           ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              location,
-              style: w500_12(color: Colors.grey),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              DateFormat('d MMM yyyy, h:mm a').format(dateTime),
-              style: w500_12(color: Colors.grey),
-            ),
-          ],
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                location,
+                style: w500_12(color: Colors.grey),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                DateFormat('dd MMM yyyy, h:mm a').format(dateTime),
+                style: w500_12(color: Colors.grey),
+              ),
+            ],
+          ),
         ),
       ),
     );

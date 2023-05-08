@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
-import 'package:redeo/home_page.dart';
 import 'package:redeo/widgets/colors.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
@@ -143,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             print('username : $username');
                             print('password : $password');
-                            Get.to(DummyHomepage());
+                            Get.toNamed(Routes.homepageScreen);
                           },
                           child: Text(
                             'Login Now',

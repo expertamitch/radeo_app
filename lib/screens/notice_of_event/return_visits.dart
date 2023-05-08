@@ -105,7 +105,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
             padding: EdgeInsets.all(10),
             child: Text(
               noteString,
-              style: w400_12(color: Colors.grey),
+              style: w400_12(color: AppColors.dark2GreyColor),
             ),
           ),
         ],

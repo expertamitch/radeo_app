@@ -92,7 +92,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           Row(
             children: [
               AppText(
-                text: 'Select Contacts',
+                text: 'Select Member',
                 padding: EdgeInsets.only(left: 18),
                 textSize: 15,
                 color: AppColors.blueColor,
@@ -108,7 +108,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     style: ElevatedButton.styleFrom(
                         shape: StadiumBorder(), primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.contactScreen);
+                      Get.toNamed(Routes.inviteeScreen);
                     },
                     child: AppText(
                       text: 'Select',
@@ -118,7 +118,49 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
               ),
               SizedBox(
                 width: 18,
-              )
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Divider(
+            thickness: 1,
+            color: AppColors.greyColor,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              AppText(
+                text: 'Select Attendants',
+                padding: EdgeInsets.only(left: 18),
+                textSize: 15,
+                color: AppColors.blueColor,
+              ),
+              Expanded(
+                child: SizedBox(
+                  width: 18,
+                ),
+              ),
+              SizedBox(
+                height: 30,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: StadiumBorder(), primary: AppColors.purpleColor),
+                    onPressed: () {
+                      Get.toNamed(Routes.attendantsScreen);
+                    },
+                    child: AppText(
+                      text: 'Select',
+                      textSize: 12,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              SizedBox(
+                width: 18,
+              ),
             ],
           )
         ]));

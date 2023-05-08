@@ -22,7 +22,8 @@ class NoticeOfEventController extends GetxController {
   String noticeTypes = ''; //Scripture, Magazine, Video, Other
 
   int? attributesStatus; //Single, Married, Divorced
-
+  String? selectedTimePeroid; // 'Everyday','Weekly','Monthy','Yearly'
+  String? selectedNotifyMe; // 'Everyday','Weekly','Monthy','Yearly'
   int? indicatorStatus; //openForEncouragment, Don not contract
   int? level;
 }

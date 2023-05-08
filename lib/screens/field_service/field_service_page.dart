@@ -35,9 +35,7 @@ class _FieldServicePageState extends State<FieldServicePage> {
             ),
           ),
           Expanded(
-              child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.greyColor),
+              child: ListView.builder(
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     return filedServiceListTile(
@@ -55,25 +53,30 @@ class _FieldServicePageState extends State<FieldServicePage> {
     required String location,
     required String leadingIconPath,
   }) {
-    return ListTile(
-      leading: Container(
-        height: 20,
-        // padding: EdgeInsets.all(1),
-        child: ImageView(
-          path: leadingIconPath,
-          height: 30,
-          color: AppColors.purpleColor,
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+      child: ListTile(
+        leading: Container(
+          height: 18,
+          // padding: EdgeInsets.all(1),
+          child: ImageView(
+            path: leadingIconPath,
+            height: 30,
+            color: AppColors.purpleColor,
+          ),
         ),
-      ),
-      minLeadingWidth: 10,
-      title: Text(
-        location,
-        style: w400_12(),
-      ),
-      subtitle: AppText(
-        text: DateFormat('MMM d, yyyy').format(dateTime),
-        textSize: 12,
-        color: Colors.grey,
+        minLeadingWidth: 10,
+        title: Text(
+          location,
+          style: w400_12(),
+        ),
+        subtitle: AppText(
+          padding: EdgeInsets.only(top: 5),
+          text: DateFormat('MMM d, yyyy').format(dateTime),
+          textSize: 12,
+          color: Colors.grey,
+        ),
       ),
     );
   }

@@ -1,41 +1,47 @@
 import 'package:flutter/material.dart';
-import '../../../assets/images.dart';
-import '../../../styling/app_colors.dart';
-import '../../../styling/font_style_globle.dart';
-import '../../../widgets/app_text.dart';
-import '../../../widgets/colors.dart';
-import '../../../widgets/image_view.dart';
+import 'package:flutter_svg/svg.dart';
 
-class ContactTabPage extends StatefulWidget {
-  const ContactTabPage({Key? key}) : super(key: key);
+import '../../../../assets/images.dart';
+import '../../../../styling/app_colors.dart';
+import '../../../../styling/font_style_globle.dart';
+import '../../../../widgets/app_text.dart';
+import '../../../../widgets/colors.dart';
+import '../../../../widgets/image_view.dart';
+
+class GroupTabPage extends StatefulWidget {
+  const GroupTabPage({Key? key}) : super(key: key);
 
   @override
-  State<ContactTabPage> createState() => _ContactTabPageState();
+  State<GroupTabPage> createState() => _GroupTabPageState();
 }
 
-class _ContactTabPageState extends State<ContactTabPage> {
+class _GroupTabPageState extends State<GroupTabPage> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '23 Contacts',
-                style: w900_15(),
-              ),
-              Text(
-                'Select All',
-                style: w600_14(color: AppColors.purpleColor),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '23 Groups',
+                  style: w900_15(),
+                ),
+                Text(
+                  'Select All',
+                  style: w600_14(color: AppColors.purpleColor),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
           ),
           Container(
+            margin: EdgeInsets.symmetric(horizontal: 18),
             decoration: BoxDecoration(
                 color: AppColors.darkGreyColor,
                 borderRadius: BorderRadius.circular(8)),
@@ -53,10 +59,10 @@ class _ContactTabPageState extends State<ContactTabPage> {
                   style: w500_14(),
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Serach Contact...',
                       hintStyle: w500_14(
                         color: AppColors.dark2GreyColor,
                       ),
+                      hintText: 'Serach Group...',
                       isDense: true),
                 ))
               ],
@@ -69,7 +75,7 @@ class _ContactTabPageState extends State<ContactTabPage> {
             child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
-                return groupsTile('Group Name A', '+1 12345 67890');
+                return groupsTile('Group Name A', '34 Members');
               },
             ),
           )
@@ -80,10 +86,20 @@ class _ContactTabPageState extends State<ContactTabPage> {
 
   groupsTile(String title, String subTitle) {
     return Container(
-      padding: EdgeInsets.only(bottom: 10, top: 10),
+      padding: EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 18,
+      ),
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: AppColors.greyColor))),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      child: Row(children: [
+        SvgPicture.asset(
+          Images.groupPeopleIcon,
+          height: 25,
+        ),
+        SizedBox(
+          width: 15,
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -97,6 +113,11 @@ class _ContactTabPageState extends State<ContactTabPage> {
               textSize: 12,
             )
           ],
+        ),
+        Expanded(
+          child: SizedBox(
+            width: 15,
+          ),
         ),
         Radio(
           value: false,

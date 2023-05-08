@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class CreateMessagesController extends GetxController {
   String selectedMessageType = 'Text'; //Text, Audio, Video
 
-  String? selectedResponseType; //open, custom
+  String selectedResponseType = 'Custom'; //Open, Custom
   List<Map<String, dynamic>> selectedResponseList = [
     {'title': 'The info was helpful, Thanks', 'isSelected': false},
     {'title': 'The info was helpful, Send more', 'isSelected': false},

@@ -29,6 +29,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColors.darkGreyColor,
         appBar: PreferredSize(
             preferredSize: const Size(double.infinity, 65),
             child: SafeArea(
@@ -38,65 +39,62 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
               ),
               alignment: Alignment.center,
               child: AnimationSearchBar(
+                  searchIconColor: AppColors.purpleColor,
                   backIconColor: Colors.black,
                   centerTitle: 'Select Audio',
+                  textStyle: w600_14(),
+                  centerTitleStyle: w700_16(),
                   backIcon:
                       Platform.isAndroid ? Icons.arrow_back_outlined : null,
                   onChanged: (text) {
-                    // textMessagesList = textMessagesList
-                    //     .where(
-                    //         (e) => e.toLowerCase().contains(text.toLowerCase()))
-                    //     .toList();
                     setState(() {});
                   },
                   searchTextEditingController: controller,
                   horizontalPadding: 5),
             ))),
-        body: Column(children: [
-          SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ImageView(
-                path: Images.micIcon,
-                height: 16,
-                color: AppColors.purpleColor,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              AppText(
-                text: 'Create New Audio',
-                textSize: 16,
-                fontWeight: FontWeight.w600,
-                color: AppColors.purpleColor,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Divider(
-            color: AppColors.greyColor,
-            thickness: 1,
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Expanded(
-              child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.greyColor),
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return audioListTile(
-                        title: 'textfile_23052023',
-                        duration: '00:12',
-                        size: '12 KB');
-                  }))
-        ]));
+        body: Container(
+          color: Colors.white,
+          child: Column(children: [
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ImageView(
+                  path: Images.micIcon,
+                  height: 16,
+                  color: AppColors.purpleColor,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                AppText(
+                  text: 'Create New Audio',
+                  textSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.purpleColor,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Divider(
+              color: AppColors.borderGreyColor,
+              thickness: 1,
+            ),
+            Expanded(
+                child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return audioListTile(
+                          title: 'Audiofile_23052023',
+                          duration: '00:12',
+                          size: '12 KB');
+                    }))
+          ]),
+        ));
   }
 
   audioListTile({
@@ -107,9 +105,10 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: EdgeInsets.only(bottom: 15),
         decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: AppColors.greyColor))),
+            border:
+                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+        padding: EdgeInsets.symmetric(vertical: 15),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -118,7 +117,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
             ),
             SvgPicture.asset(
               Images.audiFileIcon,
-              width: 35,
+              width: 30,
             ),
             SizedBox(
               width: 20,

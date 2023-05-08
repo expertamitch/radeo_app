@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import '../../assets/images.dart';
-import '../../home_page.dart';
+import '../../route/routes.dart';
+import '../home_page.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
@@ -139,7 +140,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                                 borderRadius: BorderRadius.circular(10)),
                             primary: AppColors.purpleColor),
                         onPressed: () {
-                          Get.to(DummyHomepage());
+                          Get.toNamed(Routes.homepageScreen);
                         },
                         child: Text(
                           'Verfy OTP',

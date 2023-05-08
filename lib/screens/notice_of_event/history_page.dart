@@ -36,12 +36,10 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
           ),
           Expanded(
-              child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.greyColor),
-                  itemCount: 6,
+              child: ListView.builder(
+                  itemCount: 2,
                   itemBuilder: (context, index) {
-                    if (index == 5)
+                    if (index == 1)
                       return historyListTile(
                           noteString:
                               'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et',
@@ -64,46 +62,66 @@ class _HistoryPageState extends State<HistoryPage> {
       required String leadingIconPath,
       required String trailingLevelPath,
       String? noteString}) {
-    return Column(
-      children: [
-        ListTile(
-          leading: Container(
-            height: 35,
-            // padding: EdgeInsets.all(1),
-            child: ImageView(
-              path: leadingIconPath,
-              height: 30,
-              color: AppColors.purpleColor,
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              ImageView(
+                path: leadingIconPath,
+                height: 20,
+                color: AppColors.purpleColor,
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      text: DateFormat('h:mm a | EEEE, MMM d, yyyy')
+                          .format(dateTime),
+                      textSize: 14,
+                    ),
+                    AppText(
+                      text: subTitle,
+                      textSize: 14,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              SvgPicture.asset(
+                trailingLevelPath,
+                height: 35,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          if (noteString != null)
+            Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: AppColors.lightGreyColor,
+                  borderRadius: BorderRadius.circular(4)),
+              // margin: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.all(10),
+              child: Text(
+                noteString,
+                style: w400_12(color: AppColors.dark2GreyColor),
+              ),
             ),
-          ),
-          trailing: SvgPicture.asset(
-            trailingLevelPath,
-            height: 35,
-          ),
-          title: AppText(
-            text: DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
-            textSize: 14,
-          ),
-          subtitle: AppText(
-            text: subTitle,
-            textSize: 14,
-            color: Colors.grey,
-          ),
-        ),
-        if (noteString != null)
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: AppColors.lightGreyColor,
-                borderRadius: BorderRadius.circular(4)),
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            padding: EdgeInsets.all(10),
-            child: Text(
-              noteString,
-              style: w400_12(color: Colors.grey),
-            ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -37,7 +37,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                     style: ElevatedButton.styleFrom(
                         shape: StadiumBorder(), primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.returnVisitsScreen);
+                      Get.toNamed(Routes.createReturnPageScreen);
                     },
                     child: AppText(
                       text: 'Create Return',
@@ -129,7 +129,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -152,7 +152,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -177,7 +177,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -202,7 +202,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -227,7 +227,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -253,7 +253,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -278,7 +278,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -303,7 +303,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 5,
               ),
@@ -336,39 +336,68 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 padding: EdgeInsets.all(10),
                 child: Text(
                   controller.noteController.text,
-                  style: w400_12(color: Colors.grey),
+                  style: w400_12(color: AppColors.dark2GreyColor),
                 ),
               ),
               SizedBox(
                 height: 5,
               ),
-              Divider(thickness: 1, color: AppColors.greyColor),
-              SizedBox(
-                height: 5,
-              ),
-              Divider(thickness: 1, color: AppColors.greyColor),
-              SizedBox(
-                height: 5,
-              ),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AppText(
-                    text: 'Return Visit',
+                    text: 'Attachment',
                     textSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
-                      child: Text(
-                        DateFormat('EEEE, MMM d, yyyy | h:mm a')
-                            .format(controller.setReturnVisitDate!),
-                        textAlign: TextAlign.right,
-                        style: w500_13(),
+                  OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8))),
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          Text(
+                            'Filename_23052023',
+                            style: w400_12(),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          ImageView(
+                            path: Images.closeIcon,
+                            height: 10,
+                            color: AppColors.purpleColor,
+                          )
+                        ],
                       ))
                 ],
               ),
+              Divider(thickness: 1, color: AppColors.borderGreyColor),
+              SizedBox(
+                height: 5,
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     AppText(
+              //       text: 'Return Visit',
+              //       textSize: 14,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //     SizedBox(
+              //         width: MediaQuery.of(context).size.width * .5,
+              //         child: Text(
+              //           DateFormat('EEEE, MMM d, yyyy | h:mm a')
+              //               .format(controller.setReturnVisitDate!),
+              //           textAlign: TextAlign.right,
+              //           style: w500_13(),
+              //         ))
+              //   ],
+              // ),
               SizedBox(
                 height: 20,
               ),

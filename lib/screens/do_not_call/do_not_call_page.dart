@@ -35,12 +35,10 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
             ),
           ),
           Expanded(
-              child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.greyColor),
+              child: ListView.builder(
                   itemCount: 2,
                   itemBuilder: (context, index) {
-                    return messageListTile(
+                    return doNotCallListTile(
                       dateTime: DateTime.now(),
                       location:
                           '2006 Chapmans Lane, San Francisc 2006 Chapmans Lane, San Franciscoo…',
@@ -50,19 +48,24 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
         ]));
   }
 
-  messageListTile({
+  doNotCallListTile({
     required DateTime dateTime,
     required String location,
     required String leadingIconPath,
   }) {
-    return Padding(
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ImageView(
-            path: leadingIconPath,
-            color: AppColors.purpleColor,
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: ImageView(
+              path: leadingIconPath,
+              color: AppColors.purpleColor,
+            ),
           ),
           SizedBox(
             width: 10,
@@ -82,7 +85,7 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      DateFormat('MMM d, yyyy').format(dateTime),
+                      DateFormat('dd MMM yyyy').format(dateTime),
                       style: w500_12(color: Colors.grey),
                     ),
                     Text(

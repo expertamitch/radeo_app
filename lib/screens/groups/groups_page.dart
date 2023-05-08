@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:redeo/styling/app_colors.dart';
 import '../../assets/images.dart';
@@ -27,13 +28,6 @@ class _GroupsPageState extends State<GroupsPage> {
           actions: [
             Row(
               children: [
-                ImageView(
-                  path: Images.searchIcon,
-                  color: Colors.purple,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
                 SizedBox(
                   height: 30,
                   child: ElevatedButton(
@@ -95,9 +89,7 @@ class _GroupsPageState extends State<GroupsPage> {
             ),
           ),
           Expanded(
-              child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.greyColor),
+              child: ListView.builder(
                   itemCount: 2,
                   itemBuilder: (context, index) {
                     return groupListTile(
@@ -115,10 +107,19 @@ class _GroupsPageState extends State<GroupsPage> {
     return GestureDetector(
         onTap: () {},
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          decoration: BoxDecoration(
+              border:
+                  Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SvgPicture.asset(
+                Images.groupPeopleIcon,
+                height: 25,
+              ),
+              SizedBox(
+                width: 10,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -133,13 +134,27 @@ class _GroupsPageState extends State<GroupsPage> {
                   ),
                 ],
               ),
+              Expanded(
+                  child: SizedBox(
+                width: 10,
+              )),
               Row(
                 children: [
-                  Icon(Icons.edit),
+                  // Icon(Icons.edit),
+                  ImageView(
+                    path: Images.editIcon,
+                    height: 15,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ImageView(
+                    path: Images.deleteIcon,
+                    height: 15,
+                  ),
                   SizedBox(
                     width: 10,
                   ),
-                  Icon(Icons.delete),
                 ],
               )
             ],

@@ -20,6 +20,9 @@ class Images {
   static const String toggleOnIcon = "assets/icons/screen 7/toggle on.svg";
   static const String videoIcon = "assets/icons/screen 7/Video.svg";
 
+  //screen 8
+  static const String selectFilesImg = "assets/images/select_files.png";
+
   //screen 9
   static const String createMessageIcon =
       "assets/icons/screen 9/create Message.svg";
@@ -48,7 +51,7 @@ class Images {
 
   //screen 18
   static const String uploadImg = "assets/icons/screen 18/upload_image.png";
-  static const String downArrowIcon = "assets/icons/screen 18/Radio btn.svg";
+  static const String downArrowIcon = "assets/icons/screen 18/Down_arrow.svg";
   static const String galleryIcon = "assets/icons/screen 18/gallery.svg";
   static const String level1Icon = "assets/icons/screen 18/Level 1.svg";
   static const String level2Icon = "assets/icons/screen 18/Level 2.svg";
@@ -67,4 +70,15 @@ class Images {
   // static const String attachIcon = "assets/icons/screen 19/Hisotory1.svg";
   static const String cameraIcon = "assets/icons/screen 25/Camera.svg";
   static const String sendIcon = "assets/icons/screen 25/Send.svg";
+
+  static const String barcodeImg = "assets/icons/barcode_img.png";
+  static const String deleteIcon = "assets/icons/delete_icon.svg";
+  static const String clientUserIcon = "assets/icons/client_user_icon.svg";
+  static const String editIcon = "assets/icons/edit_icon.svg";
+  static const String groupPeopleIcon = "assets/icons/group_people_icon.svg";
+  static const String peopleIcon = "assets/icons/people_icon.svg";
+  static const String smallUploadImg = "assets/icons/upload_img.png";
+
+  static const String shareImageImg = "assets/icons/share_image.png";
+  static const String qrCodeScanIcon = "assets/icons/qr-code-scan.svg";
 }

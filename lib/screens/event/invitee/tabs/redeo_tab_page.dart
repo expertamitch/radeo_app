@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../../../assets/images.dart';
-import '../../../styling/app_colors.dart';
-import '../../../styling/font_style_globle.dart';
-import '../../../widgets/app_text.dart';
-import '../../../widgets/image_view.dart';
+import '../../../../assets/images.dart';
+import '../../../../styling/app_colors.dart';
+import '../../../../styling/font_style_globle.dart';
+import '../../../../widgets/app_text.dart';
+import '../../../../widgets/image_view.dart';
 
 class RedeoTabPage extends StatefulWidget {
   const RedeoTabPage({Key? key}) : super(key: key);
@@ -19,18 +20,21 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
     return Expanded(
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '23 Redeo Contact',
-                style: w900_15(),
-              ),
-              Text(
-                'Select All',
-                style: w600_14(color: AppColors.purpleColor),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '23 Redeo Contact',
+                  style: w900_15(),
+                ),
+                Text(
+                  'Select All',
+                  style: w600_14(color: AppColors.purpleColor),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
@@ -39,7 +43,7 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
             decoration: BoxDecoration(
                 color: AppColors.darkGreyColor,
                 borderRadius: BorderRadius.circular(8)),
-            // margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            margin: EdgeInsets.symmetric(horizontal: 18),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Row(
               children: [
@@ -80,10 +84,20 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
 
   groupsTile(String title, String subTitle) {
     return Container(
-      padding: EdgeInsets.only(bottom: 10, top: 10),
+      padding: EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: 10,
+      ),
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: AppColors.greyColor))),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      child: Row(children: [
+        SvgPicture.asset(
+          Images.peopleIcon,
+          height: 25,
+        ),
+        SizedBox(
+          width: 15,
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -97,6 +111,11 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
               textSize: 12,
             )
           ],
+        ),
+        Expanded(
+          child: SizedBox(
+            width: 5,
+          ),
         ),
         Radio(
           value: false,
