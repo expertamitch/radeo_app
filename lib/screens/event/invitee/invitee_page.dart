@@ -26,7 +26,7 @@ class _InviteePageState extends State<InviteePage> {
           iconTheme: IconThemeData(color: Colors.black),
           title: Text(
             'Invitee',
-            style: w700_16(
+            style: w600_16(
               color: Colors.black,
             ),
           ),
@@ -61,7 +61,7 @@ class _InviteePageState extends State<InviteePage> {
                     alignment: Alignment.center,
                     child: Text(
                       'Group',
-                      style: w700_15(
+                      style: w900_15(
                         color: contactType == 'Group'
                             ? Colors.white
                             : Colors.black,
@@ -89,7 +89,7 @@ class _InviteePageState extends State<InviteePage> {
                     alignment: Alignment.center,
                     child: Text(
                       'Contact',
-                      style: w700_15(
+                      style: w900_15(
                         color: contactType == 'Contact'
                             ? Colors.white
                             : Colors.black,
@@ -117,7 +117,7 @@ class _InviteePageState extends State<InviteePage> {
                     alignment: Alignment.center,
                     child: Text(
                       'Redeo',
-                      style: w700_15(
+                      style: w900_15(
                         color: contactType == 'Redeo'
                             ? Colors.white
                             : Colors.black,

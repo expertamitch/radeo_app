@@ -31,7 +31,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Return Visits',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -68,7 +68,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
             children: [
               Text(
                 DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
-                style: w700_12(
+                style: w600_12(
                   color: AppColors.purpleColor,
                 ),
               ),
@@ -83,14 +83,14 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
           ),
           Text(
             name,
-            style: w700_12(),
+            style: w600_12(),
           ),
           SizedBox(
             height: 5.h,
           ),
           Text(
             location,
-            style: w400_13(
+            style: w300_13(
               color: Colors.grey,
             ),
           ),

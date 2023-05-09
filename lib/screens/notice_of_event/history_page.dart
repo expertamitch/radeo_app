@@ -32,7 +32,7 @@ class _HistoryPageState extends State<HistoryPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'History',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -85,9 +85,9 @@ class _HistoryPageState extends State<HistoryPage> {
                     Text(
                         DateFormat('h:mm a | EEEE, MMM d, yyyy')
                             .format(dateTime),
-                        style: w400_13()),
+                        style: w300_13()),
                     Text(subTitle,
-                        style: w400_13(
+                        style: w300_13(
                           color: Colors.grey,
                         )),
                   ],

@@ -30,7 +30,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Submit',
-                      style: w700_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -82,7 +82,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                         'Event Name',
-                        style: w700_20(
+                        style: w300_20(
                           color: Colors.white,
                         ),
                       ),
@@ -91,7 +91,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                         '27 Apr 2023, 3:17 PM',
-                        style: w400_14(
+                        style: w300_14(
                           color: Colors.white,
                         ),
                       ),
@@ -100,7 +100,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                         '2006 Chapmans Lane, San Francisco, California',
-                        style: w400_14(
+                        style: w300_14(
                           color: Colors.white,
                         ),
                       ),
@@ -124,7 +124,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     children: [
                       Text(
                         'Description',
-                        style: w400_13(
+                        style: w300_13(
                           color: AppColors.blueColor,
                         ),
                       ),
@@ -143,7 +143,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                 Center(
                   child: Text(
                     'Requested by John Doe',
-                    style: w400_13(
+                    style: w300_13(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -206,7 +206,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                           children: [
                             Text(
                               'Client Name',
-                              style: w400_13(
+                              style: w300_13(
                                 color: AppColors.blueColor,
                               ),
                             ),
@@ -240,7 +240,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     children: [
                       Text(
                         'Additional Guest',
-                        style: w400_13(
+                        style: w300_13(
                           color: AppColors.blueColor,
                         ),
                       ),
@@ -267,7 +267,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     children: [
                       Text(
                         'Special Needs',
-                        style: w400_13(
+                        style: w300_13(
                           color: AppColors.blueColor,
                         ),
                       ),

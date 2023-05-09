@@ -27,13 +27,8 @@ class _AddInviteePageState extends State<AddInviteePage> {
         iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
         title: Text(
-<<<<<<< HEAD
-          'Add Invitee',
-          style: w700_16(color: Colors.black),
-=======
           'Add invitee',
           style: w600_16(color: Colors.black),
->>>>>>> origin/font_fixes
         ),
         actions: [
           Row(
@@ -42,7 +37,7 @@ class _AddInviteePageState extends State<AddInviteePage> {
                   onPressedFunction: () {},
                   child: Text(
                     'Save',
-                    style: w500_12(color: Colors.white),
+                    style: w600_12(color: Colors.white),
                   ),
                   height: 30.h,
                   sodiumShapeBorder: true,
@@ -69,7 +64,7 @@ class _AddInviteePageState extends State<AddInviteePage> {
                 children: [
                   Text(
                     'Invitee Name',
-                    style: w400_13(
+                    style: w300_13(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -96,7 +91,7 @@ class _AddInviteePageState extends State<AddInviteePage> {
                 children: [
                   Text(
                     'Select Contacts',
-                    style: w400_13(
+                    style: w300_13(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -108,7 +103,7 @@ class _AddInviteePageState extends State<AddInviteePage> {
                         'Select',
                         // textSize: 12,
                         // fontWeight: FontWeight.bold,
-                        style: w500_12(color: Colors.white),
+                        style: w600_12(color: Colors.white),
                       ),
                       sodiumShapeBorder: true,
                       width: null,

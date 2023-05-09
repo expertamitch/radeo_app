@@ -44,7 +44,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Save',
-                      style: w500_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -64,7 +64,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Create Return',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -83,7 +83,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                   children: [
                     Text(
                       'Details',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -114,7 +114,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                   children: [
                     Text(
                       'Set Return Visit',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -180,7 +180,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(setReturnVisitDate!),
-                            style: w500_14(
+                            style: w300_14(
                                 color: setReturnVisitDate == null
                                     ? AppColors.dark2GreyColor
                                     : Colors.black),
@@ -188,7 +188,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                           if (setReturnVisitDate != null)
                             Text(
                               DateFormat('h:mm a').format(setReturnVisitDate!),
-                              style: w500_14(color: Colors.black),
+                              style: w300_14(color: Colors.black),
                             ),
                         ],
                       ),
@@ -198,7 +198,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a date',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),
@@ -294,7 +294,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
                             'Notify Joe',
-                            style: w400_14(),
+                            style: w300_14(),
                           ),
                         ),
                         Transform.scale(
@@ -323,7 +323,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Indicatores',
-                        style: w400_13(
+                        style: w300_13(
                           color: AppColors.blueColor,
                         )),
                     SizedBox(
@@ -331,7 +331,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                     ),
                     Text(
                       'Status',
-                      style: w700_15(),
+                      style: w600_14(),
                     ),
                     Row(
                       children: [
@@ -353,7 +353,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                           }),
                           child: Text(
                             'Open for encouragment',
-                            style: w500_14(),
+                            style: w300_14(),
                           ),
                         ),
                       ],
@@ -378,7 +378,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                           }),
                           child: Text(
                             'All Set',
-                            style: w500_14(),
+                            style: w300_14(),
                           ),
                         ),
                       ],
@@ -388,7 +388,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a indicator status',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),
@@ -403,7 +403,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Level',
-                        style: w400_13(
+                        style: w300_13(
                           color: AppColors.blueColor,
                         )),
                     SizedBox(
@@ -414,7 +414,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a level',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),

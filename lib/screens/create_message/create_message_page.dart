@@ -39,7 +39,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   },
                   child: Text(
                     'Review',
-                    style: w700_12(color: Colors.white),
+                    style: w600_12(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   height: 30.h,
@@ -59,7 +59,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
           padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
           child: Text(
             'Create Message',
-            style: w700_30(),
+            style: w900_30(),
           ),
         ),
         Expanded(
@@ -74,7 +74,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   ),
                   Text(
                     'Location',
-                    style: w400_13(
+                    style: w300_13(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -111,7 +111,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   ),
                   Text(
                     'Select Message',
-                    style: w400_13(
+                    style: w300_13(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -152,7 +152,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Text',
-                                style: w500_15(
+                                style: w300_15(
                                   color: getController.selectedMessageType ==
                                           'Text'
                                       ? AppColors.purpleColor
@@ -194,7 +194,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Audio',
-                                style: w500_15(
+                                style: w300_15(
                                   color: getController.selectedMessageType ==
                                           'Audio'
                                       ? AppColors.purpleColor
@@ -236,7 +236,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Video',
-                                style: w500_15(
+                                style: w300_15(
                                   color: getController.selectedMessageType ==
                                           'Video'
                                       ? AppColors.purpleColor
@@ -261,7 +261,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   ),
                   Text(
                     'Attachment',
-                    style: w400_13(
+                    style: w300_13(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -281,7 +281,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     children: [
                       Text(
                         'Response',
-                        style: w400_13(
+                        style: w300_13(
                           color: AppColors.blueColor,
                         ),
                       ),
@@ -309,7 +309,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   ),
                   Text(
                     'Associating QR Code',
-                    style: w400_13(
+                    style: w300_13(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -365,7 +365,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 alignment: Alignment.center,
                 child: Text(
                   'Open',
-                  style: w500_14(
+                  style: w300_14(
                     color: getController.selectedResponseType == 'Open'
                         ? AppColors.purpleColor
                         : Colors.black,
@@ -393,7 +393,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 alignment: Alignment.center,
                 child: Text(
                   'Custom',
-                  style: w500_14(
+                  style: w300_14(
                     color: getController.selectedResponseType == 'Custom'
                         ? AppColors.purpleColor
                         : Colors.black,
@@ -413,7 +413,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
               onPressed: () {},
               child: Text(
                 '+ Add New',
-                style: w700_13(
+                style: w600_12(
                   color: AppColors.purpleColor,
                 ),
               )),

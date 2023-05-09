@@ -53,7 +53,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
                       Center(
                         child: Text(
                           'Scan QR code',
-                          style: w700_18(
+                          style: w900_15(
                             color: Colors.white,
                           ),
                         ),

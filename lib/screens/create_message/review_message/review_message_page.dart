@@ -34,7 +34,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Submit',
-                      style: w700_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     sodiumShapeBorder: true,
                     width: null,
@@ -54,7 +54,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Review Message',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -67,7 +67,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
               alignment: Alignment.center,
               child: Text(
                 'QR Code',
-                style: w400_13(
+                style: w300_13(
                   color: AppColors.blueColor,
                 ),
               ),
@@ -100,7 +100,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Video Message',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -171,7 +171,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Location',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -192,7 +192,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       Flexible(
                         child: Text(
                           '2006 Chapmans Lane, San Francisco, California',
-                          style: w400_14(),
+                          style: w300_14(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -219,7 +219,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       children: [
                         Text(
                           'Response:',
-                          style: w400_13(
+                          style: w300_13(
                             color: AppColors.blueColor,
                           ),
                         ),
@@ -227,7 +227,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                           width: 5.w,
                         ),
                         Text('Custom',
-                            style: w400_14(
+                            style: w300_14(
                               color: AppColors.purpleColor,
                             )),
                       ],
@@ -247,7 +247,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       ),
                       Text(
                         'The info was helpful, Thanks',
-                        style: w400_14(),
+                        style: w300_14(),
                       ),
                     ],
                   ),
@@ -265,7 +265,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       ),
                       Text(
                         'The info was helpful, Send more',
-                        style: w400_14(),
+                        style: w300_14(),
                       ),
                     ],
                   )

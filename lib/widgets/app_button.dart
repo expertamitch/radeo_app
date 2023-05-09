@@ -14,7 +14,6 @@ class AppButton extends StatelessWidget {
   final bool sodiumShapeBorder;
 
   const AppButton(
-<<<<<<< HEAD
       {Key? key,
       required this.onPressedFunction,
       required this.child,
@@ -23,22 +22,6 @@ class AppButton extends StatelessWidget {
       this.sodiumShapeBorder = false,
       this.width = double.maxFinite})
       : super(key: key);
-=======
-      {
-      required this.txt,
-      this.textColor = Colors.white,
-      this.fontFamily = 'helvetica_neue',
-      this.fontWeight = FontWeight.w600,
-      this.textSize,
-      this.fillColor = Colors.black,
-      this.width,
-      this.leftWidget,
-      this.margin,
-      this.borderColor,
-      this.padding,
-      this.textAlign,
-      this.onPressed});
->>>>>>> origin/font_fixes
 
   @override
   Widget build(BuildContext context) {

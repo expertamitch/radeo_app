@@ -103,11 +103,11 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
           children: [
             Text(
               title,
-              style: w400_15(),
+              style: w300_15(),
             ),
             Text(
               subTitle,
-              style: w400_12(
+              style: w300_12(
                 color: AppColors.dark2GreyColor,
               ),
             )

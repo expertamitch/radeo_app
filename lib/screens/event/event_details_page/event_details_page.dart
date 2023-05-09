@@ -95,7 +95,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                           'Event Name',
-                          style: w700_20(
+                          style: w300_20(
                             color: Colors.white,
                           ),
                         ),
@@ -104,7 +104,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                           '27 Apr 2023, 3:17 PM',
-                          style: w400_14(
+                          style: w300_14(
                             color: Colors.white,
                           ),
                         ),
@@ -113,7 +113,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                           '2006 Chapmans Lane, San Francisco, California',
-                          style: w400_14(
+                          style: w300_14(
                             color: Colors.white,
                           ),
                         ),
@@ -136,7 +136,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       children: [
                         Text(
                           'Description',
-                          style: w400_13(
+                          style: w300_13(
                             color: AppColors.blueColor,
                           ),
                         ),
@@ -157,7 +157,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     children: [
                       Text(
                         'Client List',
-                        style: w700_18(
+                        style: w600_16(
                           color: Colors.black,
                         ),
                       ),
@@ -167,7 +167,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           },
                           child: Text(
                             'Add Invitee',
-                            style: w400_12(color: Colors.white),
+                            style: w300_12(color: Colors.white),
                           ),
                           sodiumShapeBorder: true,
                           width: null,

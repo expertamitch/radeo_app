@@ -95,7 +95,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                     },
                     child: Text(
                       'Save',
-                      style: w500_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     height: 30,
                     sodiumShapeBorder: true,
@@ -115,7 +115,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Notice of Event',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -134,7 +134,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Name',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -201,7 +201,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Location',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -233,7 +233,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Email',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -265,7 +265,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Telephone',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -297,7 +297,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Date and Time',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -363,7 +363,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(controller.selectedDate!),
-                            style: w500_14(
+                            style: w300_14(
                                 color: controller.selectedDate == null
                                     ? AppColors.dark2GreyColor
                                     : Colors.black),
@@ -372,7 +372,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             Text(
                               DateFormat('h:mm a')
                                   .format(controller.selectedDate!),
-                              style: w500_14(),
+                              style: w300_14(),
                             ),
                         ],
                       ),
@@ -382,7 +382,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a date',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),
@@ -401,7 +401,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Territory',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -461,7 +461,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Scripture',
-                                    style: w700_12(),
+                                    style: w600_12(),
                                   ),
                                 ],
                               ),
@@ -491,7 +491,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Magazine',
-                                    style: w700_12(),
+                                    style: w600_12(),
                                   ),
                                 ],
                               ),
@@ -520,7 +520,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Video',
-                                    style: w700_12(),
+                                    style: w600_12(),
                                   ),
                                 ],
                               ),
@@ -549,7 +549,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Other',
-                                    style: w700_12(),
+                                    style: w600_12(),
                                   ),
                                 ],
                               ),
@@ -563,7 +563,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select an option',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),
@@ -612,7 +612,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Attributes',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -627,7 +627,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
                             'Status',
-                            style: w700_14(),
+                            style: w600_14(),
                           ),
                         ),
                         SizedBox(
@@ -655,7 +655,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   }),
                                   child: Text(
                                     'Single',
-                                    style: w500_14(),
+                                    style: w300_14(),
                                   ),
                                 ),
                                 Radio(
@@ -675,7 +675,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   }),
                                   child: Text(
                                     'Married',
-                                    style: w500_14(),
+                                    style: w300_14(),
                                   ),
                                 ),
                               ],
@@ -699,7 +699,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   }),
                                   child: Text(
                                     'Divorced',
-                                    style: w500_14(),
+                                    style: w300_14(),
                                   ),
                                 ),
                               ],
@@ -709,7 +709,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 padding: EdgeInsets.only(top: 10),
                                 child: Text(
                                   'Please select a status',
-                                  style: w400_13(
+                                  style: w300_13(
                                     color: Colors.red[800],
                                   ),
                                 ),
@@ -753,7 +753,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Text(
                                   'Boy',
-                                  style: w700_14(),
+                                  style: w600_14(),
                                 ),
                               ),
                               Expanded(
@@ -804,7 +804,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Text(
                                   'Girl',
-                                  style: w700_14(),
+                                  style: w600_14(),
                                 ),
                               ),
                               Expanded(
@@ -892,7 +892,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Add Attachment',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -901,7 +901,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a file',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),
@@ -929,7 +929,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Set Return Visit',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -995,7 +995,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(controller.setReturnVisitDate!),
-                            style: w500_14(
+                            style: w300_14(
                                 color: controller.setReturnVisitDate == null
                                     ? AppColors.dark2GreyColor
                                     : Colors.black),
@@ -1004,7 +1004,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             Text(
                               DateFormat('h:mm a')
                                   .format(controller.setReturnVisitDate!),
-                              style: w500_14(),
+                              style: w300_14(),
                             ),
                         ],
                       ),
@@ -1014,7 +1014,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a date',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),
@@ -1110,7 +1110,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
                             'Notify Joe',
-                            style: w400_14(),
+                            style: w300_14(),
                           ),
                         ),
                         Transform.scale(
@@ -1140,7 +1140,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Indicatores',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -1149,7 +1149,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                     ),
                     Text(
                       'Status',
-                      style: w700_14(),
+                      style: w600_14(),
                     ),
                     Row(
                       children: [
@@ -1171,7 +1171,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           }),
                           child: Text(
                             'Open for encouragment',
-                            style: w500_14(),
+                            style: w300_14(),
                           ),
                         ),
                       ],
@@ -1196,7 +1196,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           }),
                           child: Text(
                             'Don not contract',
-                            style: w500_14(),
+                            style: w300_14(),
                           ),
                         ),
                       ],
@@ -1206,7 +1206,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a indicator status',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),
@@ -1222,7 +1222,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   children: [
                     Text(
                       'Level',
-                      style: w400_13(
+                      style: w300_13(
                         color: AppColors.blueColor,
                       ),
                     ),
@@ -1234,7 +1234,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
                           'Please select a level',
-                          style: w400_13(
+                          style: w300_13(
                             color: Colors.red[800],
                           ),
                         ),

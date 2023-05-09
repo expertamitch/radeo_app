@@ -31,7 +31,7 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Do Not Call',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(

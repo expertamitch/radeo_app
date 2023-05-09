@@ -38,7 +38,7 @@ class _EventPageState extends State<EventPage> {
                     },
                     child: Text(
                       'Add Event',
-                      style: w700_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -58,7 +58,7 @@ class _EventPageState extends State<EventPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Events',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Container(

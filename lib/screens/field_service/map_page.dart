@@ -64,41 +64,6 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-<<<<<<< HEAD
-              AppButton(
-                  onPressedFunction: () {
-                    Get.toNamed(Routes.createNoticeOfEventScreen);
-                  },
-                  child: Text(
-                    'NOE',
-                    style: w500_12(color: Colors.white),
-                  ),
-                  height: 40.h,
-                  width: (MediaQuery.of(context).size.width * 0.28).w,
-                  buttonColor: AppColors.purpleColor),
-              AppButton(
-                  onPressedFunction: () {
-                    Get.toNamed(Routes.chatScreen);
-                  },
-                  child: Text(
-                    'Message',
-                    style: w500_12(color: Colors.white),
-                  ),
-                  height: 40.h,
-                  width: (MediaQuery.of(context).size.width * 0.28).w,
-                  buttonColor: AppColors.purpleColor),
-              AppButton(
-                  onPressedFunction: () {
-                    Get.toNamed(Routes.doNotCallScreen);
-                  },
-                  child: Text(
-                    'DNC',
-                    style: w500_12(color: Colors.white),
-                  ),
-                  height: 40.h,
-                  width: (MediaQuery.of(context).size.width * 0.28).w,
-                  buttonColor: AppColors.purpleColor),
-=======
               SizedBox(
                   height: 40,
                   width: MediaQuery.of(context).size.width * 0.28,
@@ -124,7 +89,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.messagePageScreen);
+                      Get.toNamed(Routes.chatScreen);
                     },
                     child: Text(
                       'Message',
@@ -147,7 +112,6 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                       style: w300_12(color: Colors.white),
                     ),
                   )),
->>>>>>> origin/font_fixes
             ],
           ),
         ),

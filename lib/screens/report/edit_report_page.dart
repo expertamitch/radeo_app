@@ -31,7 +31,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Save',
-                      style: w500_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     height: 30.h,
                     width: null,
@@ -52,7 +52,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
               padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
               child: Text(
                 'Edit Reports',
-                style: w700_30(),
+                style: w900_30(),
               ),
             ),
             Container(

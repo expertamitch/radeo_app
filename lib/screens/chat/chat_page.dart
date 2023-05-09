@@ -29,7 +29,7 @@ class _ChatPageState extends State<ChatPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Chat',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -67,7 +67,7 @@ class _ChatPageState extends State<ChatPage> {
           backgroundColor: AppColors.purpleColor,
           child: Text(
             getInitials(title),
-            style: w700_12(
+            style: w600_12(
               color: Colors.white,
             ),
           ),
@@ -91,7 +91,7 @@ class _ChatPageState extends State<ChatPage> {
         ),
         subtitle: Text(
           subtitle,
-          style: w400_12(
+          style: w300_12(
             color: Colors.grey,
           ),
           maxLines: 1,

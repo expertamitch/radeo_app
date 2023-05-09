@@ -71,7 +71,6 @@ class _WelcomePageState extends State<WelcomePage> {
                   'Register Now',
                   style: w600_14(color: Colors.white),
                 ),
-<<<<<<< HEAD
                 height: 50.h,
                 buttonColor: AppColors.blueColor),
             SizedBox(
@@ -87,7 +86,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 Text(
                   'Or login with',
-                  style: w500_12(),
+                  style: w300_12(),
                 ),
                 SizedBox(
                   width: 10.w,
@@ -120,131 +119,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                         Text(
                           'Google',
-                          style: w500_12(),
+                          style: w300_12(),
                         )
                       ],
                     ),
                   ),
-=======
-              ),
-              SizedBox(
-                  height: 50,
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {
-                        Get.toNamed(Routes.loginScreen);
-                      },
-                      child: Text(
-                        'Login Now',
-                        style: w600_14(color: Colors.white),
-                      ))),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                  height: 50,
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          primary: AppColors.blueColor),
-                      onPressed: () {
-                        Get.toNamed(Routes.registerScreen);
-                      },
-                      child: Text(
-                        'Register Now',
-                        style: w600_14(color: Colors.white),
-                      ))),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(height: 1, color: AppColors.greyColor),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Or login with',
-                    style: w300_12(),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Container(height: 1, color: AppColors.greyColor),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 15,
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.grey, width: 0.5)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset('assets/icons/screen 1/google.svg',
-                              height: 20, semanticsLabel: 'Acme Logo'),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Google',
-                            style: w300_12(),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 15,
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.grey, width: 0.5)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset('assets/icons/screen 1/Facebook.svg',
-                              height: 20, semanticsLabel: 'Acme Logo'),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Facebook',
-                            style: w300_12(),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Expanded(
-                child: SizedBox(
-                  height: 20,
->>>>>>> origin/font_fixes
                 ),
                 SizedBox(
                   width: 20.w,
@@ -267,7 +146,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                         Text(
                           'Facebook',
-                          style: w500_12(),
+                          style: w300_12(),
                         )
                       ],
                     ),

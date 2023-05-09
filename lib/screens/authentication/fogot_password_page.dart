@@ -51,7 +51,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.0),
                     child: Text('Please enter your register email address',
-                        style: w500_14(color: Colors.white)),
+                        style: w600_14(color: Colors.white)),
                   ),
                   SizedBox(
                     height: 20.h,
@@ -90,13 +90,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-<<<<<<< HEAD
-                      Text('Don\'t have an account? ', style: w500_12()),
-=======
                       Text('Don\'t have an account? ', style: w300_12()
                           //  TextStyle(color: Colors.black, fontSize: 14)
                           ),
->>>>>>> origin/font_fixes
                       GestureDetector(
                         onTap: () {
                           Get.toNamed(Routes.registerScreen);

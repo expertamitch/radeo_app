@@ -31,7 +31,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Save',
-                      style: w700_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -51,7 +51,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Create Group',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           SizedBox(
@@ -61,7 +61,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             padding: EdgeInsets.only(left: 18),
             child: Text(
               'Group Name',
-              style: w400_13(
+              style: w300_13(
                 color: AppColors.blueColor,
               ),
             ),
@@ -96,7 +96,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                 padding: EdgeInsets.only(left: 18),
                 child: Text(
                   'Select Member',
-                  style: w400_13(
+                  style: w300_13(
                     color: AppColors.blueColor,
                   ),
                 ),
@@ -112,7 +112,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   },
                   child: Text(
                     'Select',
-                    style: w700_12(color: Colors.white),
+                    style: w600_12(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   width: null,
@@ -139,7 +139,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                 padding: EdgeInsets.only(left: 18),
                 child: Text(
                   'Select Attendants',
-                  style: w400_13(
+                  style: w300_13(
                     color: AppColors.blueColor,
                   ),
                 ),
@@ -155,7 +155,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   },
                   child: Text(
                     'Select',
-                    style: w700_12(color: Colors.white),
+                    style: w600_12(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   width: null,

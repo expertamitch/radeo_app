@@ -38,7 +38,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Submit',
-                      style: w700_12(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     sodiumShapeBorder: true,
                     width: null,
@@ -58,7 +58,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Create Event',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -79,7 +79,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 children: [
                                   Text(
                                     'Event Name',
-                                    style: w400_13(
+                                    style: w300_13(
                                       color: AppColors.blueColor,
                                     ),
                                   ),
@@ -113,7 +113,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 children: [
                                   Text(
                                     'Date and Time',
-                                    style: w400_13(
+                                    style: w300_13(
                                       color: AppColors.blueColor,
                                     ),
                                   ),
@@ -191,14 +191,14 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               : DateFormat('EEEE, MMM d, yyyy')
                                                   .format(selectedDate!),
                                           // textSize: 16,
-                                          style: w500_14(
+                                          style: w300_14(
                                               color: AppColors.dark2GreyColor),
                                         ),
                                         if (selectedDate != null)
                                           Text(
                                             DateFormat('h:mm a')
                                                 .format(selectedDate!),
-                                            style: w500_14(),
+                                            style: w300_14(),
                                           ),
                                       ],
                                     ),
@@ -221,7 +221,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 children: [
                                   Text(
                                     'Location',
-                                    style: w400_13(
+                                    style: w300_13(
                                       color: AppColors.blueColor,
                                     ),
                                   ),
@@ -252,7 +252,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 children: [
                                   Text(
                                     'Description',
-                                    style: w400_13(
+                                    style: w300_13(
                                       color: AppColors.blueColor,
                                     ),
                                   ),
@@ -312,7 +312,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 children: [
                                   Text(
                                     'Invitee',
-                                    style: w400_13(
+                                    style: w300_13(
                                       color: AppColors.blueColor,
                                     ),
                                   ),
@@ -325,7 +325,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     },
                                     child: Text(
                                       'Select Groups, Redeo Contacts, Contacts',
-                                      style: w400_14(
+                                      style: w300_14(
                                           color: AppColors.dark2GreyColor),
                                     ),
                                   ),
@@ -350,7 +350,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 children: [
                                   Text(
                                     'Recurrence',
-                                    style: w400_13(
+                                    style: w300_13(
                                       color: AppColors.blueColor,
                                     ),
                                   ),
@@ -381,7 +381,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               horizontal: 18, vertical: 8),
                                           child: Text(
                                             'Once a Week',
-                                            style: w400_13(
+                                            style: w300_13(
                                               color: selectedRecurrence ==
                                                       'Once a Week'
                                                   ? AppColors.purpleColor
@@ -410,7 +410,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               horizontal: 18, vertical: 8),
                                           child: Text(
                                             'Once a Month',
-                                            style: w400_13(
+                                            style: w300_13(
                                               color: selectedRecurrence ==
                                                       'Once a Month'
                                                   ? AppColors.purpleColor
@@ -439,7 +439,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               horizontal: 18, vertical: 8),
                                           child: Text(
                                             'Once a Year',
-                                            style: w400_13(
+                                            style: w300_13(
                                               color: selectedRecurrence ==
                                                       'Once a Year'
                                                   ? AppColors.purpleColor

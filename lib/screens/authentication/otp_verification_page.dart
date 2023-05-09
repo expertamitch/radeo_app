@@ -75,7 +75,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   padding: EdgeInsets.symmetric(horizontal: 21.0),
                   child: Text(
                     'Check your mobile to see the OTP',
-                    style: w400_14(
+                    style: w300_14(
                       color: Colors.white,
                     ),
                     // color: Colors.white,
@@ -116,14 +116,14 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                 ),
                 Row(
                   children: [
-                    Text('Send code in ', style: w400_14()),
+                    Text('Send code in ', style: w300_14()),
                     sendOtpSecondsCountdown != 0
                         ? Text('00:${sendOtpSecondsCountdown}',
-                            style: w700_14())
+                            style: w600_14())
                         : GestureDetector(
                             onTap: () {},
                             child: Text('Get OTP',
-                                style: w700_14(color: AppColors.blueColor))),
+                                style: w600_14(color: AppColors.blueColor))),
                   ],
                 ),
                 SizedBox(

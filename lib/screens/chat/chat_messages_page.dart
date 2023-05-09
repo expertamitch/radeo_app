@@ -31,7 +31,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'John Doe',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -145,7 +145,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
               ),
               Text(
                 DateFormat('MMM d, yyyy').format(dateTime),
-                style: w400_12(
+                style: w300_12(
                   color: user1Msg ? Colors.white : Colors.grey,
                 ),
               ),

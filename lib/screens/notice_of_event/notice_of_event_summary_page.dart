@@ -40,7 +40,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                   },
                   child: Text(
                     'Create Return',
-                    style: w500_12(color: Colors.white),
+                    style: w600_12(color: Colors.white),
                   ),
                   height: 30.h,
                   sodiumShapeBorder: true,
@@ -96,7 +96,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       ),
                       Text(
                         controller.nameController.text,
-                        style: w700_13(),
+                        style: w600_12(),
                       )
                     ],
                   ),
@@ -119,7 +119,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       ),
                       Text(
                         'Level',
-                        style: w700_13(),
+                        style: w600_12(),
                       )
                     ],
                   ),
@@ -137,11 +137,11 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Indicatores',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   Text(
                     'Open for encouragement',
-                    style: w700_13(
+                    style: w600_12(
                       color: AppColors.blueColor,
                     ),
                   )
@@ -160,7 +160,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Location',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
@@ -184,7 +184,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Email',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
@@ -208,7 +208,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Telephone',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
@@ -232,7 +232,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Date and Time',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
@@ -257,7 +257,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Territory',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
@@ -281,7 +281,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Type',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
@@ -305,7 +305,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Attributes',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
@@ -340,7 +340,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 children: [
                   Text(
                     'Attachment',
-                    style: w700_13(),
+                    style: w600_12(),
                   ),
                   OutlinedButton(
                       style: OutlinedButton.styleFrom(

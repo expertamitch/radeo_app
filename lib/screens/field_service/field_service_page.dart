@@ -32,7 +32,7 @@ class _FieldServicePageState extends State<FieldServicePage> {
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
               'Field Service',
-              style: w700_30(),
+              style: w900_30(),
             ),
           ),
           Expanded(
@@ -75,17 +75,13 @@ class _FieldServicePageState extends State<FieldServicePage> {
           minLeadingWidth: 10,
           title: Text(
             location,
-<<<<<<< HEAD
-            style: w700_12(),
-=======
             style: w300_12(),
->>>>>>> origin/font_fixes
           ),
           subtitle: Padding(
             padding: EdgeInsets.only(top: 5),
             child: Text(
               DateFormat('dd MMM yyyy').format(dateTime),
-              style: w400_12(color: AppColors.dark2GreyColor),
+              style: w300_12(color: AppColors.dark2GreyColor),
             ),
           ),
         ),
