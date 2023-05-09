@@ -84,9 +84,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     ),
                                   ),
                                   TextFormField(
-                                    style: w500_14(),
+                                    style: w300_14(),
                                     decoration: InputDecoration(
-                                        hintStyle: w500_14(
+                                        hintStyle: w300_14(
                                           color: AppColors.dark2GreyColor,
                                         ),
                                         hintText: 'Event Name',
@@ -226,9 +226,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     ),
                                   ),
                                   TextFormField(
-                                    style: w500_14(),
+                                    style: w300_14(),
                                     decoration: InputDecoration(
-                                        hintStyle: w500_14(
+                                        hintStyle: w300_14(
                                           color: AppColors.dark2GreyColor,
                                         ),
                                         hintText: 'Enter Location',
@@ -260,10 +260,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     height: 10.h,
                                   ),
                                   TextFormField(
-                                    style: w500_14(),
+                                    style: w300_14(),
                                     maxLines: 4,
                                     decoration: InputDecoration(
-                                        hintStyle: w500_14(
+                                        hintStyle: w300_14(
                                           color: AppColors.dark2GreyColor,
                                         ),
                                         hintText: 'Enter Description…',

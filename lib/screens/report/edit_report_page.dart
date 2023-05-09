@@ -76,7 +76,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                 },
                 currentDay: selectedDate,
                 headerStyle: HeaderStyle(
-                    titleTextStyle: w500_14(color: AppColors.purpleColor),
+                    titleTextStyle: w300_14(color: AppColors.purpleColor),
                     leftChevronVisible: false,
                     headerPadding:
                         EdgeInsets.symmetric(horizontal: 12, vertical: 15),
@@ -84,22 +84,22 @@ class _EditReportsPageState extends State<EditReportsPage> {
                 calendarStyle: CalendarStyle(
                     isTodayHighlighted: true,
                     outsideDaysVisible: false,
-                    defaultTextStyle: w500_14(),
-                    weekendTextStyle: w500_14(color: Colors.black),
-                    selectedTextStyle: w500_14(color: Colors.blue),
-                    todayTextStyle: w500_14(color: Colors.blue),
+                    defaultTextStyle: w300_14(),
+                    weekendTextStyle: w300_14(color: Colors.black),
+                    selectedTextStyle: w300_14(color: Colors.blue),
+                    todayTextStyle: w300_14(color: Colors.blue),
                     todayDecoration: BoxDecoration(
                         color: AppColors.lightBlueColor,
                         shape: BoxShape.circle),
-                    holidayTextStyle: w500_14(color: Colors.black)),
+                    holidayTextStyle: w300_14(color: Colors.black)),
                 daysOfWeekStyle: DaysOfWeekStyle(
                     dowTextFormatter: (date, locale) {
                       return DateFormat('EE').format(date).toUpperCase();
                     },
                     weekdayStyle:
-                        w500_12(color: AppColors.calenderWeekdaysColor),
+                        w300_12(color: AppColors.calenderWeekdaysColor),
                     weekendStyle:
-                        w500_12(color: AppColors.calenderWeekdaysColor)),
+                        w300_12(color: AppColors.calenderWeekdaysColor)),
               ),
             ),
             SizedBox(
@@ -124,7 +124,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           ),
                           Text(
                             '24:30',
-                            style: w500_13(),
+                            style: w300_13(),
                           )
                         ],
                       )),
@@ -143,7 +143,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           ),
                           Text(
                             '6',
-                            style: w500_13(),
+                            style: w300_13(),
                           )
                         ],
                       )),
@@ -162,7 +162,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           ),
                           Text(
                             '6',
-                            style: w500_13(),
+                            style: w300_13(),
                           )
                         ],
                       )),
@@ -181,7 +181,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           ),
                           Text(
                             '2',
-                            style: w500_13(),
+                            style: w300_13(),
                           )
                         ],
                       )),
@@ -200,7 +200,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           ),
                           Text(
                             '10',
-                            style: w500_13(),
+                            style: w300_13(),
                           )
                         ],
                       )),
@@ -219,7 +219,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           ),
                           Text(
                             '15',
-                            style: w500_13(),
+                            style: w300_13(),
                           )
                         ],
                       )),
@@ -238,7 +238,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           ),
                           Text(
                             '3',
-                            style: w500_13(),
+                            style: w300_13(),
                           )
                         ],
                       )),

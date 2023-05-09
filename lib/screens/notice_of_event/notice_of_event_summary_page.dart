@@ -167,7 +167,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       child: Text(
                         controller.locationController.text,
                         textAlign: TextAlign.right,
-                        style: w500_13(),
+                        style: w300_13(),
                       ))
                 ],
               ),
@@ -191,7 +191,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       child: Text(
                         controller.emailController.text,
                         textAlign: TextAlign.right,
-                        style: w500_13(),
+                        style: w300_13(),
                       ))
                 ],
               ),
@@ -215,7 +215,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       child: Text(
                         controller.telephoneController.text,
                         textAlign: TextAlign.right,
-                        style: w500_13(),
+                        style: w300_13(),
                       ))
                 ],
               ),
@@ -240,7 +240,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                         DateFormat('EEEE, MMM d, yyyy | h:mm a')
                             .format(controller.selectedDate!),
                         textAlign: TextAlign.right,
-                        style: w500_13(),
+                        style: w300_13(),
                       ))
                 ],
               ),
@@ -264,7 +264,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       child: Text(
                         controller.territoryController.text,
                         textAlign: TextAlign.right,
-                        style: w500_13(),
+                        style: w300_13(),
                       ))
                 ],
               ),
@@ -288,7 +288,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       child: Text(
                         controller.locationController.text,
                         textAlign: TextAlign.right,
-                        style: w500_13(),
+                        style: w300_13(),
                       ))
                 ],
               ),
@@ -312,7 +312,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       child: Text(
                         '${controller.attributesStatus == 1 ? 'Single' : controller.attributesStatus == 2 ? 'Married' : 'Divorced'} | Boy: ${controller.boysController.text} | Girl : ${controller.girlsController.text} ',
                         textAlign: TextAlign.right,
-                        style: w500_13(),
+                        style: w300_13(),
                       ))
                 ],
               ),
@@ -327,7 +327,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 padding: EdgeInsets.all(10),
                 child: Text(
                   controller.noteController.text,
-                  style: w400_12(color: AppColors.dark2GreyColor),
+                  style: w300_12(color: AppColors.dark2GreyColor),
                 ),
               ),
               SizedBox(
@@ -351,7 +351,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                         children: [
                           Text(
                             'Filename_23052023',
-                            style: w400_12(),
+                            style: w300_12(),
                           ),
                           SizedBox(
                             width: 10.w,

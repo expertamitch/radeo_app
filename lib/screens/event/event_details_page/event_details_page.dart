@@ -145,7 +145,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero',
-                            style: w500_12()),
+                            style: w300_12()),
                       ],
                     ),
                   ),
@@ -192,9 +192,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         SizedBox(width: 15.w),
                         Flexible(
                             child: TextFormField(
-                          style: w500_14(),
+                          style: w300_14(),
                           decoration: InputDecoration(
-                              hintStyle: w500_14(
+                              hintStyle: w300_14(
                                 color: AppColors.dark2GreyColor,
                               ),
                               border: InputBorder.none,
@@ -255,20 +255,20 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: w500_14()),
+                Text(title, style: w300_14()),
                 SizedBox(
                   height: 5.h,
                 ),
                 Text(
                   subtitle,
-                  style: w500_12(color: AppColors.dark2GreyColor),
+                  style: w300_12(color: AppColors.dark2GreyColor),
                 ),
               ],
             ),
           ),
           Text(
             status,
-            style: w500_12(
+            style: w300_12(
                 color: status == 'Accepted'
                     ? AppColors.greenColor
                     : status == 'Rejected'

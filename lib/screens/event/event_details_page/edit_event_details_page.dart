@@ -133,7 +133,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                           'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero',
-                          style: w500_12()),
+                          style: w300_12()),
                     ],
                   ),
                 ),
@@ -160,7 +160,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                   child: Row(children: [
                     Text(
                       'RESERVE MY SPOT',
-                      style: w500_13(color: Colors.white),
+                      style: w300_13(color: Colors.white),
                     ),
                     Expanded(
                         child: SizedBox(
@@ -174,7 +174,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       child: Text(
                         'No',
-                        style: w500_13(color: Colors.white),
+                        style: w300_13(color: Colors.white),
                       ),
                     ),
                     SizedBox(
@@ -188,7 +188,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       child: Text(
                         'Yes',
-                        style: w500_13(color: Colors.white),
+                        style: w300_13(color: Colors.white),
                       ),
                     )
                   ]),
@@ -211,9 +211,9 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                               ),
                             ),
                             TextFormField(
-                              style: w500_14(),
+                              style: w300_14(),
                               decoration: InputDecoration(
-                                  hintStyle: w500_14(
+                                  hintStyle: w300_14(
                                     color: AppColors.dark2GreyColor,
                                   ),
                                   border: InputBorder.none,
@@ -245,9 +245,9 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                         ),
                       ),
                       TextFormField(
-                        style: w500_14(),
+                        style: w300_14(),
                         decoration: InputDecoration(
-                            hintStyle: w500_14(
+                            hintStyle: w300_14(
                               color: AppColors.dark2GreyColor,
                             ),
                             border: InputBorder.none,
@@ -275,10 +275,10 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                         height: 10.h,
                       ),
                       TextFormField(
-                        style: w500_14(),
+                        style: w300_14(),
                         maxLines: 4,
                         decoration: InputDecoration(
-                            hintStyle: w500_14(
+                            hintStyle: w300_14(
                               color: AppColors.dark2GreyColor,
                             ),
                             hintText: 'Enter Needs Here…',

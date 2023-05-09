@@ -67,9 +67,9 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                     child: Row(children: [
                       Flexible(
                           child: TextFormField(
-                        style: w500_14(),
+                        style: w300_14(),
                         decoration: InputDecoration(
-                            hintStyle: w500_14(
+                            hintStyle: w300_14(
                               color: AppColors.dark2GreyColor,
                             ),
                             contentPadding:
@@ -138,7 +138,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
             children: [
               Text(
                 msg,
-                style: w500_14(color: user1Msg ? Colors.white : Colors.black),
+                style: w300_14(color: user1Msg ? Colors.white : Colors.black),
               ),
               SizedBox(
                 height: 10.h,

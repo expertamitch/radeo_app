@@ -75,7 +75,11 @@ class _FieldServicePageState extends State<FieldServicePage> {
           minLeadingWidth: 10,
           title: Text(
             location,
+<<<<<<< HEAD
             style: w700_12(),
+=======
+            style: w300_12(),
+>>>>>>> origin/font_fixes
           ),
           subtitle: Padding(
             padding: EdgeInsets.only(top: 5),

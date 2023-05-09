@@ -98,7 +98,6 @@ flutter:
     - assets/icons/screen 18/
     - assets/icons/screen 19/
     - assets/icons/screen 25/
-    - assets/bg/
     - assets/dummy_data/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -113,18 +112,14 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: satoshi
+    - family: helvetica_neue
       fonts:
-        - asset: assets/fonts/w300.otf
+        - asset: assets/fonts/regular.otf
           weight: 300
-        - asset: assets/fonts/w400.otf
-          weight: 400
-        - asset: assets/fonts/w500.otf
-          weight: 500
-        - asset: assets/fonts/w600.otf
+        - asset: assets/fonts/medium.otf
           weight: 600
-        - asset: assets/fonts/w700.otf
-          weight: 700
+        - asset: assets/fonts/bold.ttf
+          weight: 900
 
   #
   # For details regarding fonts from package dependencies,

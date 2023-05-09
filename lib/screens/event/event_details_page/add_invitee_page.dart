@@ -27,8 +27,13 @@ class _AddInviteePageState extends State<AddInviteePage> {
         iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
         title: Text(
+<<<<<<< HEAD
           'Add Invitee',
           style: w700_16(color: Colors.black),
+=======
+          'Add invitee',
+          style: w600_16(color: Colors.black),
+>>>>>>> origin/font_fixes
         ),
         actions: [
           Row(
@@ -69,9 +74,9 @@ class _AddInviteePageState extends State<AddInviteePage> {
                     ),
                   ),
                   TextFormField(
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration: InputDecoration(
-                        hintStyle: w500_14(
+                        hintStyle: w300_14(
                           color: AppColors.dark2GreyColor,
                         ),
                         border: InputBorder.none,

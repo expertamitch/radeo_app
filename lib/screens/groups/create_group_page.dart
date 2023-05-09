@@ -72,9 +72,9 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: TextFormField(
-              style: w500_14(),
+              style: w300_14(),
               decoration: InputDecoration(
-                  hintStyle: w500_14(
+                  hintStyle: w300_14(
                     color: AppColors.dark2GreyColor,
                   ),
                   hintText: 'Group Name',
