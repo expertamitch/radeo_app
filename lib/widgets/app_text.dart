@@ -59,7 +59,7 @@ class AppText extends StatelessWidget {
         fontSize: textSize ?? 42.sp,
         fontStyle: fontStyle ?? FontStyle.normal,
         height: lineHeight,
-        fontFamily: fontFamily ?? 'satoshi',
+        fontFamily: fontFamily ?? 'helvetica_neue',
         decorationColor: color,
         decorationThickness: 1,
         decoration: strikeThrough != null && strikeThrough!

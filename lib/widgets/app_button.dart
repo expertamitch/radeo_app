@@ -23,7 +23,7 @@ class AppButton extends StatelessWidget {
       {
       required this.txt,
       this.textColor = Colors.white,
-      this.fontFamily = 'satoshi',
+      this.fontFamily = 'helvetica_neue',
       this.fontWeight = FontWeight.w600,
       this.textSize,
       this.fillColor = Colors.black,

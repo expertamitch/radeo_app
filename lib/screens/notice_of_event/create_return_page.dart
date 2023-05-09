@@ -89,9 +89,9 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       color: AppColors.blueColor,
                     ),
                     TextFormField(
-                      style: w500_14(),
+                      style: w300_14(),
                       decoration: InputDecoration(
-                          hintStyle: w500_14(
+                          hintStyle: w300_14(
                             color: AppColors.dark2GreyColor,
                           ),
                           hintText: 'Enter Details',
@@ -190,7 +190,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         value: selectedTimePeroid,
                         hint: Text(
                           'Select',
-                          style: w500_14(color: AppColors.dark2GreyColor),
+                          style: w300_14(color: AppColors.dark2GreyColor),
                         ),
                         items: <String>[
                           'Everyday',
@@ -202,7 +202,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                             value: value,
                             child: Text(
                               value,
-                              style: w500_15(),
+                              style: w300_15(),
                             ),
                           );
                         }).toList(),
@@ -230,7 +230,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         value: selectedNotifyMe,
                         hint: Text(
                           'Notify Me',
-                          style: w500_14(color: AppColors.dark2GreyColor),
+                          style: w300_14(color: AppColors.dark2GreyColor),
                         ),
                         items: <String>[
                           'Everyday',
@@ -242,7 +242,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                             value: value,
                             child: Text(
                               value,
-                              style: w500_15(),
+                              style: w300_15(),
                             ),
                           );
                         }).toList(),

@@ -117,7 +117,7 @@ class _HistoryPageState extends State<HistoryPage> {
               padding: EdgeInsets.all(10),
               child: Text(
                 noteString,
-                style: w400_12(color: AppColors.dark2GreyColor),
+                style: w300_12(color: AppColors.dark2GreyColor),
               ),
             ),
         ],

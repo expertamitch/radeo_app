@@ -43,7 +43,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                   backIconColor: Colors.black,
                   centerTitle: 'Select Audio',
                   textStyle: w600_14(),
-                  centerTitleStyle: w700_16(),
+                  centerTitleStyle: w600_16(),
                   backIcon:
                       Platform.isAndroid ? Icons.arrow_back_outlined : null,
                   onChanged: (text) {
@@ -128,12 +128,12 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                 children: [
                   Text(
                     title,
-                    style: w500_14(),
+                    style: w300_14(),
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     duration + '  ' + size,
-                    style: w500_12(color: AppColors.dark2GreyColor),
+                    style: w300_12(color: AppColors.dark2GreyColor),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

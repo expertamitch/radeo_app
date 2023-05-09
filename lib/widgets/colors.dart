@@ -7,7 +7,7 @@ import 'package:redeo/styling/font_style_globle.dart';
 // Color lighBlueColor = Color(0xff73BAD9);
 
 InputDecoration inputDecoration = InputDecoration(
-  labelStyle: w500_14(
+  labelStyle: w300_14(
     color: AppColors.dark2GreyColor,
   ),
   border: OutlineInputBorder(

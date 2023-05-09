@@ -86,7 +86,7 @@ class _ChatPageState extends State<ChatPage> {
             ),
             Text(
               timeAgo,
-              style: w500_12(),
+              style: w300_12(),
             ),
           ],
         ),

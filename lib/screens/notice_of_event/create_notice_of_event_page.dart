@@ -143,9 +143,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       children: [
                         Flexible(
                           child: TextFormField(
-                            style: w500_14(),
+                            style: w300_14(),
                             decoration: InputDecoration(
-                                hintStyle: w500_14(
+                                hintStyle: w300_14(
                                   color: AppColors.dark2GreyColor,
                                 ),
                                 hintText: 'Name',
@@ -205,9 +205,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       color: AppColors.blueColor,
                     ),
                     TextFormField(
-                      style: w500_14(),
+                      style: w300_14(),
                       decoration: InputDecoration(
-                          hintStyle: w500_14(
+                          hintStyle: w300_14(
                             color: AppColors.dark2GreyColor,
                           ),
                           hintText: 'Location',
@@ -236,9 +236,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       color: AppColors.blueColor,
                     ),
                     TextFormField(
-                      style: w500_14(),
+                      style: w300_14(),
                       decoration: InputDecoration(
-                          hintStyle: w500_14(
+                          hintStyle: w300_14(
                             color: AppColors.dark2GreyColor,
                           ),
                           hintText: 'Email',
@@ -267,9 +267,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       color: AppColors.blueColor,
                     ),
                     TextFormField(
-                      style: w500_14(),
+                      style: w300_14(),
                       decoration: InputDecoration(
-                          hintStyle: w500_14(
+                          hintStyle: w300_14(
                             color: AppColors.dark2GreyColor,
                           ),
                           hintText: 'Telephone',
@@ -369,9 +369,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       color: AppColors.blueColor,
                     ),
                     TextFormField(
-                      style: w500_14(),
+                      style: w300_14(),
                       decoration: InputDecoration(
-                          hintStyle: w500_14(
+                          hintStyle: w300_14(
                             color: AppColors.dark2GreyColor,
                           ),
                           hintText: 'Territory',
@@ -537,9 +537,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                     ),
                     if (controller.noticeTypes.isNotEmpty)
                       TextFormField(
-                        style: w500_14(),
+                        style: w300_14(),
                         decoration: InputDecoration(
-                            hintStyle: w500_14(
+                            hintStyle: w300_14(
                               color: AppColors.dark2GreyColor,
                             ),
                             hintText: controller.noticeTypes + ' Name',
@@ -734,9 +734,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   controller: controller.boysController,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  style: w500_12(),
+                                  style: w300_12(),
                                   decoration: InputDecoration(
-                                      hintStyle: w500_14(
+                                      hintStyle: w300_14(
                                         color: AppColors.dark2GreyColor,
                                       ),
                                       isDense: true,
@@ -786,9 +786,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   controller: controller.girlsController,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  style: w500_12(),
+                                  style: w300_12(),
                                   decoration: InputDecoration(
-                                      hintStyle: w500_14(
+                                      hintStyle: w300_14(
                                         color: AppColors.dark2GreyColor,
                                       ),
                                       isDense: true,
@@ -817,7 +817,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         child: TextFormField(
                           maxLines: 4,
                           controller: controller.noteController,
-                          style: w500_14(),
+                          style: w300_14(),
                           decoration: inputDecoration.copyWith(
                               hintText: 'Notes',
                               fillColor: AppColors.lightGreyColor,
@@ -966,7 +966,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         ),
                         hint: Text(
                           'Select',
-                          style: w500_14(color: AppColors.dark2GreyColor),
+                          style: w300_14(color: AppColors.dark2GreyColor),
                         ),
                         items: <String>[
                           'Everyday',
@@ -978,7 +978,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             value: value,
                             child: Text(
                               value,
-                              style: w500_15(),
+                              style: w300_15(),
                             ),
                           );
                         }).toList(),
@@ -1006,7 +1006,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         value: controller.selectedNotifyMe,
                         hint: Text(
                           'Notify Me',
-                          style: w500_14(color: AppColors.dark2GreyColor),
+                          style: w300_14(color: AppColors.dark2GreyColor),
                         ),
                         items: <String>[
                           'Everyday',
@@ -1018,7 +1018,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             value: value,
                             child: Text(
                               value,
-                              style: w500_15(),
+                              style: w300_15(),
                             ),
                           );
                         }).toList(),

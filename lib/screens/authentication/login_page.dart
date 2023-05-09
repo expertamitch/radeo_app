@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/colors.dart';
+
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
@@ -18,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   String username = '';
   String password = '';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Username'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter username'
@@ -76,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Password'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter password'
@@ -115,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                 });
                               },
                               child:
-                                  Text('Remember Password', style: w500_12())),
+                                  Text('Remember Password', style: w300_12())),
                         ],
                       )),
                       TextButton(
@@ -123,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                             Get.toNamed(Routes.forgotPasswordScreen);
                           },
                           child: Text('Forgot Password ?',
-                              style: w500_12(
+                              style: w300_12(
                                 color: AppColors.blueColor,
                               )))
                     ],
@@ -156,13 +158,13 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Don\'t have an account? ', style: w500_12()),
+                      Text('Don\'t have an account? ', style: w300_12()),
                       GestureDetector(
                         onTap: () {
                           Get.toNamed(Routes.registerScreen);
                         },
                         child: Text('Register Now',
-                            style: w700_12(
+                            style: w600_12(
                               color: AppColors.purpleColor,
                             )),
                       ),

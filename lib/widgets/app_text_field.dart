@@ -67,7 +67,7 @@ final bool isShadow;
               counterText: "",
               hintStyle: TextStyle(
                   color: Colors.grey,
-                  fontFamily: 'satoshi',
+                  fontFamily: 'helvetica_neue',
                   fontSize: 40.sp),
               border: _border(),
               contentPadding: isChangePadding
@@ -79,7 +79,7 @@ final bool isShadow;
               errorBorder: _border(),
               focusedErrorBorder: _border(),
               errorStyle: const TextStyle(
-                  color: Colors.red, fontFamily: 'satoshi'),
+                  color: Colors.red, fontFamily: 'helvetica_neue'),
               hintText: placeHolder,
               fillColor: fillColor),
         ),
@@ -101,7 +101,7 @@ final bool isShadow;
           filled: true,
           hintStyle: TextStyle(
               color: Colors.black,
-              fontFamily: 'satoshi',
+              fontFamily: 'helvetica_neue',
               fontSize: 40.sp),
           border: _border(),
           contentPadding: isChangePadding
@@ -113,7 +113,7 @@ final bool isShadow;
           errorBorder: _border(),
           focusedErrorBorder: _border(),
           errorStyle: const TextStyle(
-              color: Colors.red, fontFamily: 'satoshi'),
+              color: Colors.red, fontFamily: 'helvetica_neue'),
           hintText: placeHolder,
           fillColor: fillColor),
     );

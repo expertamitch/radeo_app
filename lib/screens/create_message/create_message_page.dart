@@ -81,9 +81,9 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     color: AppColors.blueColor,
                   ),
                   TextFormField(
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration: InputDecoration(
-                        labelStyle: w500_14(
+                        labelStyle: w300_14(
                           color: AppColors.dark2GreyColor,
                         ),
                         hintText: 'Select Location',
@@ -444,7 +444,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         Flexible(
           child: Text(
             r['title'],
-            style: w500_14(),
+            style: w300_14(),
           ),
         )
       ],

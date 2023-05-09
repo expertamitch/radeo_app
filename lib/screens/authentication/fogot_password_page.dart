@@ -68,7 +68,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               child: Column(
                 children: [
                   TextFormField(
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     controller: usernameController,
                   ),
@@ -100,7 +100,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Don\'t have an account? ', style: w500_12()
+                      Text('Don\'t have an account? ', style: w300_12()
                           //  TextStyle(color: Colors.black, fontSize: 14)
                           ),
                       GestureDetector(
@@ -108,7 +108,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           Get.toNamed(Routes.registerScreen);
                         },
                         child: Text('Register Now',
-                            style: w700_12(
+                            style: w600_12(
                               color: AppColors.purpleColor,
                             )),
                       ),

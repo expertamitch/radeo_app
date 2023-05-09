@@ -126,7 +126,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                           children: [
                             Text(
                               'vidofile_23052023',
-                              style: w500_13(),
+                              style: w300_13(),
                             ),
                             SizedBox(
                               height: 2,
@@ -138,7 +138,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                                 Text(
                                   '00:12',
                                   style:
-                                      w500_10(color: AppColors.dark2GreyColor),
+                                      w300_10(color: AppColors.dark2GreyColor),
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -146,7 +146,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                                 Text(
                                   '12 KB',
                                   style:
-                                      w500_10(color: AppColors.dark2GreyColor),
+                                      w300_10(color: AppColors.dark2GreyColor),
                                 ),
                               ],
                             )

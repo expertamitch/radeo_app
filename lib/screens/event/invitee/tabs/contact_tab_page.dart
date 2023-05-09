@@ -54,11 +54,11 @@ class _ContactTabPageState extends State<ContactTabPage> {
                 SizedBox(width: 15),
                 Flexible(
                     child: TextFormField(
-                  style: w500_14(),
+                  style: w300_14(),
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Serach Contact...',
-                      hintStyle: w500_14(
+                      hintStyle: w300_14(
                         color: AppColors.dark2GreyColor,
                       ),
                       isDense: true),

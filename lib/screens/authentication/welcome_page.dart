@@ -98,7 +98,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                   Text(
                     'Or login with',
-                    style: w500_12(),
+                    style: w300_12(),
                   ),
                   SizedBox(
                     width: 10,
@@ -131,7 +131,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           ),
                           Text(
                             'Google',
-                            style: w500_12(),
+                            style: w300_12(),
                           )
                         ],
                       ),
@@ -158,7 +158,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           ),
                           Text(
                             'Facebook',
-                            style: w500_12(),
+                            style: w300_12(),
                           )
                         ],
                       ),

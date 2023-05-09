@@ -78,9 +78,9 @@ class _EventPageState extends State<EventPage> {
                 SizedBox(width: 15),
                 Flexible(
                     child: TextFormField(
-                  style: w500_14(),
+                  style: w300_14(),
                   decoration: InputDecoration(
-                      hintStyle: w500_14(
+                      hintStyle: w300_14(
                         color: AppColors.dark2GreyColor,
                       ),
                       border: InputBorder.none,
@@ -137,14 +137,14 @@ class _EventPageState extends State<EventPage> {
               ),
               Text(
                 location,
-                style: w500_12(color: Colors.grey),
+                style: w300_12(color: Colors.grey),
               ),
               SizedBox(
                 height: 5,
               ),
               Text(
                 DateFormat('dd MMM yyyy, h:mm a').format(dateTime),
-                style: w500_12(color: Colors.grey),
+                style: w300_12(color: Colors.grey),
               ),
             ],
           ),

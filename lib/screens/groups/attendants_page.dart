@@ -57,9 +57,9 @@ class _AttendantsPageState extends State<AttendantsPage> {
                 SizedBox(width: 15),
                 Flexible(
                     child: TextFormField(
-                  style: w500_14(),
+                  style: w300_14(),
                   decoration: InputDecoration(
-                      hintStyle: w500_14(
+                      hintStyle: w300_14(
                         color: AppColors.dark2GreyColor,
                       ),
                       border: InputBorder.none,
@@ -108,11 +108,11 @@ class _AttendantsPageState extends State<AttendantsPage> {
                     Text(
                       title,
                       overflow: TextOverflow.ellipsis,
-                      style: w500_14(),
+                      style: w300_14(),
                     ),
                     Text(
                       subtitle,
-                      style: w500_12(color: Colors.grey),
+                      style: w300_12(color: Colors.grey),
                     ),
                   ],
                 ),

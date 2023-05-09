@@ -100,7 +100,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   length: 4,
                   width: MediaQuery.of(context).size.width,
                   fieldWidth: MediaQuery.of(context).size.width / 5.6,
-                  style: w500_14(),
+                  style: w300_14(),
                   textFieldAlignment: MainAxisAlignment.spaceAround,
                   fieldStyle: FieldStyle.box,
                   onCompleted: (pin) {

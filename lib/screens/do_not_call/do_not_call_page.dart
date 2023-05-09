@@ -86,11 +86,11 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
                   children: [
                     Text(
                       DateFormat('dd MMM yyyy').format(dateTime),
-                      style: w500_12(color: Colors.grey),
+                      style: w300_12(color: Colors.grey),
                     ),
                     Text(
                       'Do Not Call',
-                      style: w500_12(color: Colors.red),
+                      style: w300_12(color: Colors.red),
                     ),
                   ],
                 ),

@@ -58,7 +58,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                 backIconColor: Colors.black,
                 centerTitle: 'Select Video',
                 textStyle: w600_14(),
-                centerTitleStyle: w700_16(),
+                centerTitleStyle: w600_16(),
                 backIcon: Platform.isAndroid ? Icons.arrow_back_outlined : null,
                 onChanged: (text) {
                   setState(() {});

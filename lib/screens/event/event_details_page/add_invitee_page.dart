@@ -29,7 +29,7 @@ class _AddInviteePageState extends State<AddInviteePage> {
         centerTitle: true,
         title: Text(
           'Add invitee',
-          style: w700_16(color: Colors.black),
+          style: w600_16(color: Colors.black),
         ),
         actions: [
           Row(
@@ -71,9 +71,9 @@ class _AddInviteePageState extends State<AddInviteePage> {
                     color: AppColors.blueColor,
                   ),
                   TextFormField(
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration: InputDecoration(
-                        hintStyle: w500_14(
+                        hintStyle: w300_14(
                           color: AppColors.dark2GreyColor,
                         ),
                         border: InputBorder.none,

@@ -77,7 +77,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                     },
                     child: Text(
                       'NOE',
-                      style: w500_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                   )),
               SizedBox(
@@ -93,7 +93,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                     },
                     child: Text(
                       'Message',
-                      style: w500_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                   )),
               SizedBox(
@@ -109,7 +109,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                     },
                     child: Text(
                       'DNC',
-                      style: w500_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                   )),
             ],

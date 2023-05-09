@@ -42,7 +42,7 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
                   backIconColor: Colors.black,
                   centerTitle: 'Select Text',
                   textStyle: w600_14(),
-                  centerTitleStyle: w700_16(),
+                  centerTitleStyle: w600_16(),
                   backIcon:
                       Platform.isAndroid ? Icons.arrow_back_outlined : null,
                   onChanged: (text) {
@@ -114,7 +114,7 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
           title: Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: w500_14(),
+            style: w300_14(),
           ),
         ),
       ),

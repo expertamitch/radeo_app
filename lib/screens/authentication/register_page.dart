@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration:
                         inputDecoration.copyWith(labelText: 'First Name'),
                     validator: (value) => value == null || value.isEmpty
@@ -82,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration:
                         inputDecoration.copyWith(labelText: 'Last Name'),
                     validator: (value) => value == null || value.isEmpty
@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       selectorTextStyle: TextStyle(color: Colors.black),
                       initialValue: number,
                       formatInput: true,
-                      textStyle: w500_14(),
+                      textStyle: w300_14(),
                       keyboardType: TextInputType.numberWithOptions(
                           signed: true, decimal: true),
                       inputDecoration: inputDecoration.copyWith(
@@ -121,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             onTap: () {},
                             child: Text(
                               'GET OTP',
-                              style: w700_12(color: AppColors.purpleColor),
+                              style: w600_12(color: AppColors.purpleColor),
                             ),
                           )),
                       onSaved: (PhoneNumber number) {
@@ -134,7 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w500_14(),
+                    style: w300_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter email id'
@@ -148,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w500_14(),
+                    style: w300_14(),
                     obscureText: true,
                     decoration: inputDecoration.copyWith(
                       labelText: 'Password',
@@ -165,7 +165,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w500_14(),
+                    style: w300_14(),
                     obscureText: true,
                     decoration:
                         inputDecoration.copyWith(labelText: 'Confirm Password'),
@@ -202,13 +202,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Already have an account? ', style: w500_12()),
+                      Text('Already have an account? ', style: w300_12()),
                       GestureDetector(
                         onTap: () {
                           Get.toNamed(Routes.loginScreen);
                         },
                         child: Text('Login here',
-                            style: w700_12(
+                            style: w600_12(
                               color: AppColors.purpleColor,
                             )),
                       ),

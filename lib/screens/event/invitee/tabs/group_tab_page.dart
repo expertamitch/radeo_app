@@ -56,10 +56,10 @@ class _GroupTabPageState extends State<GroupTabPage> {
                 SizedBox(width: 15),
                 Flexible(
                     child: TextFormField(
-                  style: w500_14(),
+                  style: w300_14(),
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintStyle: w500_14(
+                      hintStyle: w300_14(
                         color: AppColors.dark2GreyColor,
                       ),
                       hintText: 'Serach Group...',
