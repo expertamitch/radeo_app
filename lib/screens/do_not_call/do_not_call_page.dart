@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
@@ -28,10 +29,9 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Do Not Call',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Do Not Call',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -68,7 +68,7 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
             ),
           ),
           SizedBox(
-            width: 10,
+            width: 10.w,
           ),
           Flexible(
             child: Column(
@@ -79,7 +79,7 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
                   style: w600_14(),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -100,43 +100,6 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
         ],
       ),
     );
-
-    // GestureDetector(
-    //   onTap: () {},
-    //   child: ListTile(
-    //     leading: CircleAvatar(
-    //       backgroundColor: AppColors.purpleColor,
-    //       child: AppText(
-    //         text: getInitials(title),
-    //         textSize: 12,
-    //         fontWeight: FontWeight.bold,
-    //         color: Colors.white,
-    //       ),
-    //     ),
-    //     minLeadingWidth: 10,
-    //     title: Row(
-    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         Flexible(
-    //           child: Text(
-    //             title,
-    //             overflow: TextOverflow.ellipsis,
-    //             style: w600_14(),
-    //           ),
-    //         ),
-    //         Text(
-    //           timeAgo,
-    //           style: w500_12(),
-    //         ),
-    //       ],
-    //     ),
-    //     subtitle: AppText(
-    //       text: subtitle,
-    //       textSize: 12,
-    //       color: Colors.grey,
-    //     ),
-    //   ),
-    // );
   }
 
   String getInitials(String bankAccountName) => bankAccountName.isNotEmpty

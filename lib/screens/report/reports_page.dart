@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:table_calendar/table_calendar.dart';
-import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
-import '../../widgets/colors.dart';
-import '../../widgets/image_view.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class ReportsPage extends StatefulWidget {
   const ReportsPage({Key? key}) : super(key: key);
@@ -31,42 +29,37 @@ class _ReportsPageState extends State<ReportsPage> {
           actions: [
             Row(
               children: [
+                AppButton(
+                    onPressedFunction: () {
+                      Get.toNamed(Routes.editReportsScreen);
+                    },
+                    child: Text(
+                      'Edit',
+                      style: w500_12(color: Colors.white),
+                    ),
+                    height: 30.h,
+                    sodiumShapeBorder: true,
+                    width: null,
+                    buttonColor: AppColors.purpleColor),
                 SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {
-                        Get.toNamed(Routes.editReportsScreen);
-                      },
-                      child: AppText(
-                        text: 'Edit',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  width: 10.w,
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(), primary: AppColors.blueColor),
-                      onPressed: () {
-                        Get.toNamed(Routes.shareReportsScreen);
-                      },
-                      child: AppText(
-                        text: 'Share',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+                AppButton(
+                    onPressedFunction: () {
+                      Get.toNamed(Routes.shareReportsScreen);
+                    },
+                    child: Text(
+                      'Share',
+                      style: w500_12(color: Colors.white),
+                    ),
+                    height: 30.h,
+                    sodiumShapeBorder: true,
+                    width: null,
+                    buttonColor: AppColors.blueColor),
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             )
           ],
         ),
@@ -76,10 +69,9 @@ class _ReportsPageState extends State<ReportsPage> {
               width: double.maxFinite,
               color: AppColors.darkGreyColor,
               padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-              child: AppText(
-                text: 'Reports',
-                textSize: 30,
-                fontWeight: FontWeight.bold,
+              child: Text(
+                'Reports',
+                style: w700_30(),
               ),
             ),
             Container(
@@ -130,7 +122,7 @@ class _ReportsPageState extends State<ReportsPage> {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 5.h,
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
@@ -270,7 +262,7 @@ class _ReportsPageState extends State<ReportsPage> {
                         ],
                       )),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                 ],
               ),

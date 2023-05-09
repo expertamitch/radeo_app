@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
@@ -56,7 +57,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
           color: Colors.white,
           child: Column(children: [
             SizedBox(
-              height: 15,
+              height: 15.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -67,18 +68,18 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                   color: AppColors.purpleColor,
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 10.w,
                 ),
-                AppText(
-                  text: 'Create New Audio',
-                  textSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.purpleColor,
+                Text(
+                  'Create New Audio',
+                  style: w600_14(
+                    color: AppColors.purpleColor,
+                  ),
                 ),
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 15.h,
             ),
             Divider(
               color: AppColors.borderGreyColor,
@@ -113,14 +114,14 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 20,
+              width: 20.w,
             ),
             SvgPicture.asset(
               Images.audiFileIcon,
               width: 30,
             ),
             SizedBox(
-              width: 20,
+              width: 20.w,
             ),
             Flexible(
               child: Column(

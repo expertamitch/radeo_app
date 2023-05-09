@@ -292,6 +292,14 @@ TextStyle w700_44({Color? color = Colors.black}) {
       fontFamily: fontName);
 }
 
+TextStyle w800_16({Color? color = Colors.black}) {
+  return TextStyle(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w800,
+      color: color,
+      fontFamily: fontName);
+}
+
 TextStyle w900_15({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 15.sp,

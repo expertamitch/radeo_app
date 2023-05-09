@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../assets/images.dart';
-import '../styling/app_colors.dart';
 
 class ImageView extends StatelessWidget {
   final String? path;

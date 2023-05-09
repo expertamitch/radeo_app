@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:redeo/styling/app_colors.dart';
+
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
-import '../../widgets/colors.dart';
 import '../../widgets/image_view.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class GroupsPage extends StatefulWidget {
   const GroupsPage({Key? key}) : super(key: key);
@@ -28,25 +30,22 @@ class _GroupsPageState extends State<GroupsPage> {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {
-                        Get.toNamed(Routes.createGroupScreen);
-                      },
-                      child: AppText(
-                        text: 'Create Group',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+                AppButton(
+                    onPressedFunction: () {
+                      Get.toNamed(Routes.createGroupScreen);
+                    },
+                    child: Text(
+                      'Create Group',
+                      style: w500_12(color: Colors.white),
+                    ),
+                    height: 30.h,
+                    sodiumShapeBorder: true,
+                    width: null,
+                    buttonColor: AppColors.purpleColor)
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             )
           ],
         ),
@@ -55,10 +54,9 @@ class _GroupsPageState extends State<GroupsPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Groups',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Groups',
+              style: w700_30(),
             ),
           ),
           Container(
@@ -73,7 +71,7 @@ class _GroupsPageState extends State<GroupsPage> {
                   path: Images.searchIcon,
                   color: Colors.purple,
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
                   style: w500_14(),
@@ -118,7 +116,7 @@ class _GroupsPageState extends State<GroupsPage> {
                 height: 25,
               ),
               SizedBox(
-                width: 10,
+                width: 10.w,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +134,7 @@ class _GroupsPageState extends State<GroupsPage> {
               ),
               Expanded(
                   child: SizedBox(
-                width: 10,
+                width: 10.w,
               )),
               Row(
                 children: [
@@ -146,14 +144,14 @@ class _GroupsPageState extends State<GroupsPage> {
                     height: 15,
                   ),
                   SizedBox(
-                    width: 20,
+                    width: 20.w,
                   ),
                   ImageView(
                     path: Images.deleteIcon,
                     height: 15,
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 10.w,
                   ),
                 ],
               )

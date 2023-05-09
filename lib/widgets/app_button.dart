@@ -1,69 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:redeo/styling/app_colors.dart';
 
-  import 'app_text.dart';
+import 'app_text.dart';
 
 class AppButton extends StatelessWidget {
-  final String txt;
-  final Color textColor;
-  final String fontFamily;
-  final FontWeight fontWeight;
-  final double? textSize;
-  final Color fillColor;
-  final Color? borderColor;
-  final VoidCallback? onPressed;
+  final Function onPressedFunction;
+  final Widget child;
+  final double height;
+  final Color buttonColor;
   final double? width;
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
-  final TextAlign? textAlign;
-  final Widget? leftWidget;
+  final bool sodiumShapeBorder;
 
   const AppButton(
-      {
-      required this.txt,
-      this.textColor = Colors.white,
-      this.fontFamily = 'satoshi',
-      this.fontWeight = FontWeight.w600,
-      this.textSize,
-      this.fillColor = Colors.black,
-      this.width,
-      this.leftWidget,
-      this.margin,
-      this.borderColor,
-      this.padding,
-      this.textAlign,
-      this.onPressed});
+      {Key? key,
+      required this.onPressedFunction,
+      required this.child,
+      required this.height,
+      required this.buttonColor,
+      this.sodiumShapeBorder = false,
+      this.width = double.maxFinite})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: padding,
+    return SizedBox(
+        height: height,
         width: width,
-        margin: margin,
-        decoration: BoxDecoration(
-            color: fillColor,
-            borderRadius: BorderRadius.all(Radius.circular(20.sp)),
-            border:
-                borderColor != null ? Border.all(color: borderColor!) : null),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-leftWidget??Container(width: 0,),
-            AppText(
-              text: txt,
-              color: textColor,
-              fontFamily: fontFamily,
-              textAlign: textAlign ?? TextAlign.center,
-              fontWeight: fontWeight,
-              textSize: textSize ?? 36.sp,
-            ),
-          ],
-        ),
-      ),
-    );
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: sodiumShapeBorder
+                    ? StadiumBorder()
+                    : RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                primary: buttonColor),
+            onPressed: () {
+              onPressedFunction();
+            },
+            child: child));
   }
 }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
+
 import '../../../assets/images.dart';
 import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 import '../../../widgets/app_text.dart';
 import '../../../widgets/image_view.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class EventDetailsPage extends StatefulWidget {
   const EventDetailsPage({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   height: 17,
                 )),
             SizedBox(
-              width: 15,
+              width: 15.w,
             ),
             GestureDetector(
               onTap: () {
@@ -49,7 +51,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               ),
             ),
             SizedBox(
-              width: 15,
+              width: 15.w,
             )
           ],
         ),
@@ -74,7 +76,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 30,
+                          height: 30.h,
                         ),
                         // PrettyQr(
                         //   // image: AssetImage('images/twitter.png'),
@@ -89,38 +91,40 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           width: MediaQuery.of(context).size.width * 0.35,
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
-                        AppText(
-                          text: 'Event Name',
-                          textSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        AppText(
-                          text: '27 Apr 2023, 3:17 PM',
-                          textSize: 14,
-                          color: Colors.white,
+                        Text(
+                          'Event Name',
+                          style: w700_20(
+                            color: Colors.white,
+                          ),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.h,
                         ),
-                        AppText(
-                          text: '2006 Chapmans Lane, San Francisco, California',
-                          textSize: 14,
-                          color: Colors.white,
+                        Text(
+                          '27 Apr 2023, 3:17 PM',
+                          style: w400_14(
+                            color: Colors.white,
+                          ),
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 5.h,
+                        ),
+                        Text(
+                          '2006 Chapmans Lane, San Francisco, California',
+                          style: w400_14(
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30.h,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -130,13 +134,14 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppText(
-                          text: 'Description',
-                          textSize: 15,
-                          color: AppColors.blueColor,
+                        Text(
+                          'Description',
+                          style: w400_13(
+                            color: AppColors.blueColor,
+                          ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         Text(
                             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero',
@@ -145,36 +150,33 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AppText(
-                        text: 'Client List',
-                        textSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                      Text(
+                        'Client List',
+                        style: w700_18(
+                          color: Colors.black,
+                        ),
                       ),
-                      SizedBox(
-                        height: 30,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: StadiumBorder(),
-                                primary: AppColors.purpleColor),
-                            onPressed: () {
-                              Get.toNamed(Routes.addInviteeScreen);
-                            },
-                            child: AppText(
-                              text: 'Add Invitee',
-                              textSize: 12,
-                              fontWeight: FontWeight.bold,
-                            )),
-                      ),
+                      AppButton(
+                          onPressedFunction: () {
+                            Get.toNamed(Routes.addInviteeScreen);
+                          },
+                          child: Text(
+                            'Add Invitee',
+                            style: w400_12(color: Colors.white),
+                          ),
+                          sodiumShapeBorder: true,
+                          width: null,
+                          height: 30.h,
+                          buttonColor: AppColors.purpleColor)
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -187,7 +189,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           path: Images.searchIcon,
                           color: Colors.purple,
                         ),
-                        SizedBox(width: 15),
+                        SizedBox(width: 15.w),
                         Flexible(
                             child: TextFormField(
                           style: w500_14(),
@@ -203,7 +205,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   clientLstTile(
                       status: 'Accepted',
@@ -221,7 +223,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           'Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod.',
                       title: 'John Doe Client'),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   )
                 ],
               ),
@@ -247,7 +249,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             height: 45,
           ),
           SizedBox(
-            width: 15,
+            width: 15.w,
           ),
           Flexible(
             child: Column(
@@ -255,7 +257,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               children: [
                 Text(title, style: w500_14()),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   subtitle,

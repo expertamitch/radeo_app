@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:redeo/screens/event/invitee/tabs/contact_tab_page.dart';
 import 'package:redeo/screens/event/invitee/tabs/redeo_tab_page.dart';
+import 'package:redeo/styling/font_style_globle.dart';
 import '../../../styling/app_colors.dart';
 import '../../../widgets/app_text.dart';
 import 'tabs/group_tab_page.dart';
@@ -22,17 +24,17 @@ class _InviteePageState extends State<InviteePage> {
           backgroundColor: AppColors.darkGreyColor,
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
-          title: AppText(
-            text: 'Invitee',
-            textSize: 16,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+          title: Text(
+            'Invitee',
+            style: w700_16(
+              color: Colors.black,
+            ),
           ),
           centerTitle: true,
         ),
         body: Column(children: [
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 18),
@@ -57,12 +59,13 @@ class _InviteePageState extends State<InviteePage> {
                           : AppColors.blueColor,
                     ),
                     alignment: Alignment.center,
-                    child: AppText(
-                      text: 'Group',
-                      textSize: 16,
-                      color:
-                          contactType == 'Group' ? Colors.white : Colors.black,
-                      fontWeight: FontWeight.bold,
+                    child: Text(
+                      'Group',
+                      style: w700_15(
+                        color: contactType == 'Group'
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -84,13 +87,13 @@ class _InviteePageState extends State<InviteePage> {
                           : AppColors.blueColor,
                     ),
                     alignment: Alignment.center,
-                    child: AppText(
-                      text: 'Contact',
-                      textSize: 16,
-                      color: contactType == 'Contact'
-                          ? Colors.white
-                          : Colors.black,
-                      fontWeight: FontWeight.bold,
+                    child: Text(
+                      'Contact',
+                      style: w700_15(
+                        color: contactType == 'Contact'
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -112,12 +115,13 @@ class _InviteePageState extends State<InviteePage> {
                           : AppColors.blueColor,
                     ),
                     alignment: Alignment.center,
-                    child: AppText(
-                      text: 'Redeo',
-                      textSize: 16,
-                      color:
-                          contactType == 'Redeo' ? Colors.white : Colors.black,
-                      fontWeight: FontWeight.bold,
+                    child: Text(
+                      'Redeo',
+                      style: w700_15(
+                        color: contactType == 'Redeo'
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -125,13 +129,13 @@ class _InviteePageState extends State<InviteePage> {
             ]),
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           if (contactType == 'Group') GroupTabPage(),
           if (contactType == 'Contact') ContactTabPage(),
           if (contactType == 'Redeo') RedeoTabPage(),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
         ]));
   }

@@ -37,7 +37,7 @@ abstract class Routes {
   static const attendantsScreen = '/attendantsScreen';
 
   //message page
-  static const messagePageScreen = '/messagePageScreen';
+  static const chatScreen = '/chatScreen';
   static const chatMessageScreen = '/chatMessageScreen';
 
   //notice of event

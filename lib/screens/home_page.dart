@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
@@ -69,7 +70,7 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
             SizedBox(
-                height: 50,
+                height: 50.h,
                 width: double.maxFinite,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -86,9 +87,10 @@ class _HomepageState extends State<Homepage> {
                         ImageView(
                           path: Images.qrCodeScanIcon,
                           color: Colors.white,
+                          height: 25,
                         ),
                         SizedBox(
-                          width: 10,
+                          width: 10.w,
                         ),
                         Text(
                           'Scan QR code',
@@ -181,7 +183,7 @@ class _HomepageState extends State<Homepage> {
         GestureDetector(
           onTap: () {
             Navigator.pop(context);
-            Get.toNamed(Routes.chatMessageScreen);
+            Get.toNamed(Routes.chatScreen);
           },
           child: Container(
             height: 50,
@@ -295,7 +297,7 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+        SizedBox(height: (MediaQuery.of(context).size.height * 0.03).h),
         GestureDetector(
           onTap: () {},
           child: Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
@@ -28,10 +29,9 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Return Visits',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Return Visits',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -66,11 +66,11 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppText(
-                text: DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
-                textSize: 13,
-                color: AppColors.purpleColor,
-                fontWeight: FontWeight.bold,
+              Text(
+                DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
+                style: w700_12(
+                  color: AppColors.purpleColor,
+                ),
               ),
               SvgPicture.asset(
                 trailingLevelPath,
@@ -79,23 +79,23 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
-          AppText(
-            text: name,
-            textSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          AppText(
-            text: location,
-            textSize: 14,
-            color: Colors.grey,
+          Text(
+            name,
+            style: w700_12(),
           ),
           SizedBox(
-            height: 5,
+            height: 5.h,
+          ),
+          Text(
+            location,
+            style: w400_13(
+              color: Colors.grey,
+            ),
+          ),
+          SizedBox(
+            height: 5.h,
           ),
           Container(
             width: MediaQuery.of(context).size.width,

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:redeo/styling/app_colors.dart';
-import 'package:table_calendar/table_calendar.dart';
 import '../../assets/images.dart';
-import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
-import '../../widgets/colors.dart';
 import '../../widgets/image_view.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class ShareReportsPage extends StatefulWidget {
   const ShareReportsPage({Key? key}) : super(key: key);
@@ -37,40 +32,30 @@ class _ShareReportsPageState extends State<ShareReportsPage> {
             ),
             Expanded(
               child: SizedBox(
-                height: 20,
+                height: 20.h,
               ),
             ),
+            AppButton(
+                onPressedFunction: () {},
+                child: Text(
+                  'Send Event Invite',
+                  style: w600_14(color: Colors.white),
+                ),
+                height: 50.h,
+                buttonColor: AppColors.purpleColor),
             SizedBox(
-                height: 50,
-                width: double.maxFinite,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        primary: AppColors.purpleColor),
-                    onPressed: () {},
-                    child: Text(
-                      'Send Event Invite',
-                      style: w600_14(color: Colors.white),
-                    ))),
-            SizedBox(
-              height: 15,
+              height: 15.h,
             ),
+            AppButton(
+                onPressedFunction: () {},
+                child: Text(
+                  'Send Message',
+                  style: w600_14(color: Colors.white),
+                ),
+                height: 50.h,
+                buttonColor: AppColors.blueColor),
             SizedBox(
-                height: 50,
-                width: double.maxFinite,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        primary: AppColors.blueColor),
-                    onPressed: () {},
-                    child: Text(
-                      'Send Message',
-                      style: w600_14(color: Colors.white),
-                    ))),
-            SizedBox(
-              height: 40,
+              height: 40.h,
             ),
           ]),
         ));

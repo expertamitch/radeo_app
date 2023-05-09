@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import '../../assets/images.dart';
 import '../../route/routes.dart';
-import '../home_page.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class OtpVerficationPage extends StatefulWidget {
   const OtpVerficationPage({Key? key}) : super(key: key);
@@ -58,7 +58,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   elevation: 0,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -69,22 +69,26 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 21.0),
-                  child: AppText(
-                      text: 'Check your mobile to see the OTP',
+                  child: Text(
+                    'Check your mobile to see the OTP',
+                    style: w400_14(
                       color: Colors.white,
-                      textSize: 14),
+                    ),
+                    // color: Colors.white,
+                    // textSize: 14
+                  ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
               ],
             )),
         SizedBox(
-          height: 20,
+          height: 20.h,
         ),
         Expanded(
           child: Padding(
@@ -94,7 +98,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 OTPTextField(
                   length: 4,
@@ -108,46 +112,35 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   },
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 40.h,
                 ),
                 Row(
                   children: [
-                    AppText(text: 'Send code in ', textSize: 14),
+                    Text('Send code in ', style: w400_14()),
                     sendOtpSecondsCountdown != 0
-                        ? AppText(
-                            text: '00:${sendOtpSecondsCountdown}',
-                            textSize: 14,
-                            fontWeight: FontWeight.bold,
-                          )
+                        ? Text('00:${sendOtpSecondsCountdown}',
+                            style: w700_14())
                         : GestureDetector(
                             onTap: () {},
-                            child: AppText(
-                                text: 'Get OTP',
-                                textSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.blueColor)),
+                            child: Text('Get OTP',
+                                style: w700_14(color: AppColors.blueColor))),
                   ],
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 40.h,
                 ),
+                AppButton(
+                    onPressedFunction: () {
+                      Get.toNamed(Routes.homepageScreen);
+                    },
+                    child: Text(
+                      'Verfy OTP',
+                      style: w600_14(color: Colors.white),
+                    ),
+                    height: 50.h,
+                    buttonColor: AppColors.purpleColor),
                 SizedBox(
-                    height: 50,
-                    width: double.maxFinite,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            primary: AppColors.purpleColor),
-                        onPressed: () {
-                          Get.toNamed(Routes.homepageScreen);
-                        },
-                        child: Text(
-                          'Verfy OTP',
-                          style: w600_14(color: Colors.white),
-                        ))),
-                SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
               ],
             ),

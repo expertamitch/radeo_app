@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
 import 'package:redeo/widgets/image_view.dart';
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
-import '../../widgets/colors.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class EventPage extends StatefulWidget {
   const EventPage({Key? key}) : super(key: key);
@@ -30,25 +32,22 @@ class _EventPageState extends State<EventPage> {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {
-                        Get.toNamed(Routes.createEventScreen);
-                      },
-                      child: AppText(
-                        text: 'Add Event',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+                AppButton(
+                    onPressedFunction: () {
+                      Get.toNamed(Routes.createEventScreen);
+                    },
+                    child: Text(
+                      'Add Event',
+                      style: w700_12(color: Colors.white),
+                    ),
+                    height: 30.h,
+                    sodiumShapeBorder: true,
+                    width: null,
+                    buttonColor: AppColors.purpleColor)
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             )
           ],
         ),
@@ -57,10 +56,9 @@ class _EventPageState extends State<EventPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Events',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Events',
+              style: w700_30(),
             ),
           ),
           Container(
@@ -75,7 +73,7 @@ class _EventPageState extends State<EventPage> {
                   path: Images.searchIcon,
                   color: Colors.purple,
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
                   style: w500_14(),
@@ -133,14 +131,14 @@ class _EventPageState extends State<EventPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Text(
                 location,
                 style: w500_12(color: Colors.grey),
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Text(
                 DateFormat('dd MMM yyyy, h:mm a').format(dateTime),

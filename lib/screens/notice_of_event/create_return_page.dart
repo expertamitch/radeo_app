@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class CreateReturnPage extends StatefulWidget {
   const CreateReturnPage({Key? key}) : super(key: key);
@@ -38,23 +40,20 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {},
-                      child: AppText(
-                        text: 'Save',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+                AppButton(
+                    onPressedFunction: () {},
+                    child: Text(
+                      'Save',
+                      style: w500_12(color: Colors.white),
+                    ),
+                    height: 30.h,
+                    sodiumShapeBorder: true,
+                    width: null,
+                    buttonColor: AppColors.purpleColor)
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             )
           ],
         ),
@@ -63,10 +62,9 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Create Return',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Create Return',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -76,17 +74,18 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
-                height: 15,
+                height: 15.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Details',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Details',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     TextFormField(
                       style: w500_14(),
@@ -106,31 +105,58 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Set Return Visit',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Set Return Visit',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     GestureDetector(
                       onTap: () async {
                         DateTime? d = await showDatePicker(
                             context: context,
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(
+                                  primaryColor: AppColors.purpleColor,
+                                  accentColor: AppColors.purpleColor,
+                                  colorScheme: ColorScheme.light(
+                                      primary: AppColors.purpleColor),
+                                  buttonTheme: ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary),
+                                ),
+                                child: child!,
+                              );
+                            },
                             initialDate: DateTime.now(),
                             firstDate: DateTime(1990),
                             lastDate: DateTime(3000));
                         if (d != null) {
                           TimeOfDay? t = await showTimePicker(
                             context: context,
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(
+                                  primaryColor: AppColors.purpleColor,
+                                  accentColor: AppColors.purpleColor,
+                                  colorScheme: ColorScheme.light(
+                                      primary: AppColors.purpleColor),
+                                  buttonTheme: ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary),
+                                ),
+                                child: child!,
+                              );
+                            },
                             initialTime: TimeOfDay.now(),
                           );
 
@@ -149,31 +175,36 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppText(
-                            text: setReturnVisitDate == null
+                          Text(
+                            setReturnVisitDate == null
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(setReturnVisitDate!),
-                            textSize: 16,
+                            style: w500_14(
+                                color: setReturnVisitDate == null
+                                    ? AppColors.dark2GreyColor
+                                    : Colors.black),
                           ),
                           if (setReturnVisitDate != null)
-                            AppText(
-                              text: DateFormat('h:mm a')
-                                  .format(setReturnVisitDate!),
-                              textSize: 16,
+                            Text(
+                              DateFormat('h:mm a').format(setReturnVisitDate!),
+                              style: w500_14(color: Colors.black),
                             ),
                         ],
                       ),
                     ),
                     if (showSetReturnVisitDateTimeError)
-                      AppText(
+                      Padding(
                         padding: EdgeInsets.only(top: 10),
-                        text: 'Please select a date',
-                        color: Colors.red[800],
-                        textSize: 13,
+                        child: Text(
+                          'Please select a date',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Divider(thickness: 1, color: AppColors.borderGreyColor),
                     Container(
@@ -214,7 +245,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -254,15 +285,17 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AppText(
-                          text: 'Notify Joe',
-                          textSize: 15,
+                        Padding(
                           padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            'Notify Joe',
+                            style: w400_14(),
+                          ),
                         ),
                         Transform.scale(
                           scale: 0.6,
@@ -275,32 +308,30 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                   ],
                 ),
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Indicatores',
-                      textSize: 14,
-                      color: AppColors.blueColor,
-                    ),
+                    Text('Indicatores',
+                        style: w400_13(
+                          color: AppColors.blueColor,
+                        )),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
-                    AppText(
-                      text: 'Status',
-                      textSize: 15,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Status',
+                      style: w700_15(),
                     ),
                     Row(
                       children: [
@@ -320,10 +351,9 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                             indicatorStatus = 1;
                             showIndicatorStatusError = false;
                           }),
-                          child: AppText(
-                            text: 'Open for encouragment',
-                            textSize: 15,
-                            fontWeight: FontWeight.w500,
+                          child: Text(
+                            'Open for encouragment',
+                            style: w500_14(),
                           ),
                         ),
                       ],
@@ -346,20 +376,22 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                             indicatorStatus = 2;
                             showIndicatorStatusError = false;
                           }),
-                          child: AppText(
-                            text: 'All Set',
-                            textSize: 15,
-                            fontWeight: FontWeight.w500,
+                          child: Text(
+                            'All Set',
+                            style: w500_14(),
                           ),
                         ),
                       ],
                     ),
                     if (showIndicatorStatusError)
-                      AppText(
+                      Padding(
                         padding: EdgeInsets.only(top: 10),
-                        text: 'Please select a indicator status',
-                        color: Colors.red[800],
-                        textSize: 13,
+                        child: Text(
+                          'Please select a indicator status',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                   ],
                 ),
@@ -370,20 +402,22 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Level',
-                      textSize: 14,
-                      color: AppColors.blueColor,
-                    ),
+                    Text('Level',
+                        style: w400_13(
+                          color: AppColors.blueColor,
+                        )),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     if (showLevelError)
-                      AppText(
-                        padding: EdgeInsets.only(bottom: 10),
-                        text: 'Please select a level',
-                        color: Colors.red[800],
-                        textSize: 13,
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          'Please select a level',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -451,7 +485,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     )
                   ],
                 ),

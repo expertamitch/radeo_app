@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/app_text.dart';
 import 'package:redeo/widgets/image_view.dart';
 
@@ -33,7 +35,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery.of(context).size.width.w,
                   child: Row(
                     children: [
                       IconButton(
@@ -46,22 +48,22 @@ class _ScanQrPageState extends State<ScanQrPage> {
                           )),
                       Expanded(
                           child: SizedBox(
-                        width: 10,
+                        width: 10.w,
                       )),
                       Center(
-                        child: AppText(
-                          text: 'Scan QR code',
-                          textSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                        child: Text(
+                          'Scan QR code',
+                          style: w700_18(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       Expanded(
                           child: SizedBox(
-                        width: 10,
+                        width: 10.w,
                       )),
                       SizedBox(
-                        width: 30,
+                        width: 30.w,
                       )
                     ],
                   ),
@@ -70,7 +72,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
             ),
             Expanded(
                 child: SizedBox(
-              height: 10,
+              height: 10.h,
             )),
             Align(
               alignment: Alignment.center,
@@ -99,11 +101,11 @@ class _ScanQrPageState extends State<ScanQrPage> {
                   )),
             ),
             SizedBox(
-              height: 30,
+              height: 30.h,
             ),
             Expanded(
                 child: SizedBox(
-              height: 10,
+              height: 10.h,
             )),
           ],
         ),

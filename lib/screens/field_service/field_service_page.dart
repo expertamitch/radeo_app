@@ -30,10 +30,9 @@ class _FieldServicePageState extends State<FieldServicePage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Field Service',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Field Service',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -67,7 +66,6 @@ class _FieldServicePageState extends State<FieldServicePage> {
         child: ListTile(
           leading: Container(
             height: 18,
-            // padding: EdgeInsets.all(1),
             child: ImageView(
               path: leadingIconPath,
               height: 30,
@@ -77,13 +75,14 @@ class _FieldServicePageState extends State<FieldServicePage> {
           minLeadingWidth: 10,
           title: Text(
             location,
-            style: w400_12(),
+            style: w700_12(),
           ),
-          subtitle: AppText(
+          subtitle: Padding(
             padding: EdgeInsets.only(top: 5),
-            text: DateFormat('MMM d, yyyy').format(dateTime),
-            textSize: 12,
-            color: Colors.grey,
+            child: Text(
+              DateFormat('dd MMM yyyy').format(dateTime),
+              style: w400_12(color: AppColors.dark2GreyColor),
+            ),
           ),
         ),
       ),

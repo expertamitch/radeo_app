@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../../assets/images.dart';
@@ -55,7 +56,7 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
           color: Colors.white,
           child: Column(children: [
             SizedBox(
-              height: 15,
+              height: 15.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -66,18 +67,18 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
                   color: AppColors.purpleColor,
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 10.w,
                 ),
-                AppText(
-                  text: 'Create Message',
-                  textSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.purpleColor,
+                Text(
+                  'Create Message',
+                  style: w600_14(
+                    color: AppColors.purpleColor,
+                  ),
                 ),
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 15.h,
             ),
             Divider(
               color: AppColors.borderGreyColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
@@ -29,10 +30,9 @@ class _HistoryPageState extends State<HistoryPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'History',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'History',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -76,27 +76,25 @@ class _HistoryPageState extends State<HistoryPage> {
                 color: AppColors.purpleColor,
               ),
               SizedBox(
-                width: 20,
+                width: 20.w,
               ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: DateFormat('h:mm a | EEEE, MMM d, yyyy')
-                          .format(dateTime),
-                      textSize: 14,
-                    ),
-                    AppText(
-                      text: subTitle,
-                      textSize: 14,
-                      color: Colors.grey,
-                    ),
+                    Text(
+                        DateFormat('h:mm a | EEEE, MMM d, yyyy')
+                            .format(dateTime),
+                        style: w400_13()),
+                    Text(subTitle,
+                        style: w400_13(
+                          color: Colors.grey,
+                        )),
                   ],
                 ),
               ),
               SizedBox(
-                width: 10,
+                width: 10.w,
               ),
               SvgPicture.asset(
                 trailingLevelPath,
@@ -105,7 +103,7 @@ class _HistoryPageState extends State<HistoryPage> {
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           if (noteString != null)
             Container(

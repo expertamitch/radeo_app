@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
@@ -7,10 +8,9 @@ import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/widgets/app_text.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../get_controller/create_messages_controller.dart';
-
+import 'package:redeo/widgets/app_button.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/colors.dart';
 
 class CreateMessagePage extends StatefulWidget {
   const CreateMessagePage({Key? key}) : super(key: key);
@@ -33,24 +33,22 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         actions: [
           Row(
             children: [
-              SizedBox(
-                height: 30,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: StadiumBorder(), primary: AppColors.purpleColor),
-                    onPressed: () {
-                      Get.toNamed(Routes.reviewMessageScreen);
-                    },
-                    child: AppText(
-                      text: 'Review',
-                      textSize: 12,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
+              AppButton(
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.reviewMessageScreen);
+                  },
+                  child: Text(
+                    'Review',
+                    style: w700_12(color: Colors.white),
+                  ),
+                  sodiumShapeBorder: true,
+                  height: 30.h,
+                  width: null,
+                  buttonColor: AppColors.purpleColor)
             ],
           ),
           SizedBox(
-            width: 10,
+            width: 10.w,
           )
         ],
       ),
@@ -59,10 +57,9 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
           width: double.maxFinite,
           color: AppColors.darkGreyColor,
           padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-          child: AppText(
-            text: 'Create Message',
-            textSize: 30,
-            fontWeight: FontWeight.bold,
+          child: Text(
+            'Create Message',
+            style: w700_30(),
           ),
         ),
         Expanded(
@@ -73,12 +70,13 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 15,
+                    height: 15.h,
                   ),
-                  AppText(
-                    text: 'Location',
-                    textSize: 14,
-                    color: AppColors.blueColor,
+                  Text(
+                    'Location',
+                    style: w400_13(
+                      color: AppColors.blueColor,
+                    ),
                   ),
                   TextFormField(
                     style: w500_14(),
@@ -109,15 +107,16 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     thickness: 1,
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 15.h,
                   ),
-                  AppText(
-                    text: 'Select Message',
-                    textSize: 14,
-                    color: AppColors.blueColor,
+                  Text(
+                    'Select Message',
+                    style: w400_13(
+                      color: AppColors.blueColor,
+                    ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 15.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,16 +148,16 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                                 color: AppColors.purpleColor,
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
-                              AppText(
-                                text: 'Text',
-                                color:
-                                    getController.selectedMessageType == 'Text'
-                                        ? AppColors.purpleColor
-                                        : Colors.black,
-                                textSize: 15,
-                                fontWeight: FontWeight.w500,
+                              Text(
+                                'Text',
+                                style: w500_15(
+                                  color: getController.selectedMessageType ==
+                                          'Text'
+                                      ? AppColors.purpleColor
+                                      : Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -191,16 +190,16 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                                 color: AppColors.purpleColor,
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
-                              AppText(
-                                text: 'Audio',
-                                textSize: 15,
-                                fontWeight: FontWeight.w500,
-                                color:
-                                    getController.selectedMessageType == 'Audio'
-                                        ? AppColors.purpleColor
-                                        : Colors.black,
+                              Text(
+                                'Audio',
+                                style: w500_15(
+                                  color: getController.selectedMessageType ==
+                                          'Audio'
+                                      ? AppColors.purpleColor
+                                      : Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -233,16 +232,16 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                                 color: AppColors.purpleColor,
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
-                              AppText(
-                                text: 'Video',
-                                textSize: 15,
-                                fontWeight: FontWeight.w500,
-                                color:
-                                    getController.selectedMessageType == 'Video'
-                                        ? AppColors.purpleColor
-                                        : Colors.black,
+                              Text(
+                                'Video',
+                                style: w500_15(
+                                  color: getController.selectedMessageType ==
+                                          'Video'
+                                      ? AppColors.purpleColor
+                                      : Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -251,26 +250,27 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   Divider(
                     color: AppColors.greyColor,
                     thickness: 1,
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 15.h,
                   ),
-                  AppText(
-                    text: 'Attachment',
-                    textSize: 14,
-                    color: AppColors.blueColor,
+                  Text(
+                    'Attachment',
+                    style: w400_13(
+                      color: AppColors.blueColor,
+                    ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 15.h,
                   ),
                   getAttachment(),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   Divider(
                     color: AppColors.greyColor,
@@ -279,10 +279,11 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AppText(
-                        text: 'Response',
-                        textSize: 14,
-                        color: AppColors.blueColor,
+                      Text(
+                        'Response',
+                        style: w400_13(
+                          color: AppColors.blueColor,
+                        ),
                       ),
                       Transform.scale(
                         scale: 0.6,
@@ -304,15 +305,16 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     thickness: 1,
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 15.h,
                   ),
-                  AppText(
-                    text: 'Associating QR Code',
-                    textSize: 14,
-                    color: AppColors.blueColor,
+                  Text(
+                    'Associating QR Code',
+                    style: w400_13(
+                      color: AppColors.blueColor,
+                    ),
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 25.h,
                   ),
                   Center(
                     child: PrettyQr(
@@ -325,7 +327,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                 ],
               ),
@@ -361,13 +363,13 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   vertical: 8,
                 ),
                 alignment: Alignment.center,
-                child: AppText(
-                  text: 'Open',
-                  textSize: 16,
-                  color: getController.selectedResponseType == 'Open'
-                      ? AppColors.purpleColor
-                      : Colors.black,
-                  fontWeight: FontWeight.w500,
+                child: Text(
+                  'Open',
+                  style: w500_14(
+                    color: getController.selectedResponseType == 'Open'
+                        ? AppColors.purpleColor
+                        : Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -389,31 +391,31 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   vertical: 8,
                 ),
                 alignment: Alignment.center,
-                child: AppText(
-                  text: 'Custom',
-                  color: getController.selectedResponseType == 'Custom'
-                      ? AppColors.purpleColor
-                      : Colors.black,
-                  textSize: 16,
-                  fontWeight: FontWeight.w500,
+                child: Text(
+                  'Custom',
+                  style: w500_14(
+                    color: getController.selectedResponseType == 'Custom'
+                        ? AppColors.purpleColor
+                        : Colors.black,
+                  ),
                 ),
               ),
             ),
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 10.h,
         ),
         for (var r in getController.selectedResponseList) responseListTile(r),
         Padding(
           padding: const EdgeInsets.only(left: 28.0),
           child: TextButton(
               onPressed: () {},
-              child: AppText(
-                text: '+ Add New',
-                textSize: 14,
-                fontWeight: FontWeight.bold,
-                color: AppColors.purpleColor,
+              child: Text(
+                '+ Add New',
+                style: w700_13(
+                  color: AppColors.purpleColor,
+                ),
               )),
         )
       ],
@@ -463,7 +465,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         }
       },
       child: SizedBox(
-          height: 40,
+          height: 40.h,
           width: MediaQuery.of(context).size.width,
           child: ImageView(path: Images.selectFiles)),
     );

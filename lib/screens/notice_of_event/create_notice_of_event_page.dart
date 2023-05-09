@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -7,13 +8,15 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
-import 'package:redeo/widgets/show_toast.dart';
 import '../../get_controller/notice_of_event_controller.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
 import '../../widgets/colors.dart';
+import 'package:redeo/widgets/app_button.dart';
+
+import '../../widgets/show_toast.dart';
 
 class CreateNoticeOfEvent extends StatefulWidget {
   const CreateNoticeOfEvent({Key? key}) : super(key: key);
@@ -45,66 +48,63 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {
-                        bool goToSummaryPage = true;
-                        if (_formKey.currentState!.validate() == false) {
-                          goToSummaryPage = false;
-                        }
-                        if (controller.uploadImg == null) {
-                          showToast('Please upload image', context);
-                          goToSummaryPage = false;
-                        }
-                        if (controller.selectedDate == null) {
-                          showDateTimeError = true;
-                          goToSummaryPage = false;
-                        }
-                        if (controller.noticeTypes.isEmpty) {
-                          noticeTypesError = true;
-                          goToSummaryPage = false;
-                        }
-                        if (controller.attributesStatus == null) {
-                          showAttributesStatusError = true;
-                          goToSummaryPage = false;
-                        }
-                        if (controller.setReturnVisitDate == null) {
-                          showSetReturnVisitDateTimeError = true;
-                          goToSummaryPage = false;
-                        }
-                        if (controller.indicatorStatus == null) {
-                          showIndicatorStatusError = true;
-                          goToSummaryPage = false;
-                        }
-                        // if (controller.attachment == null) {
-                        //   showAttachmentError = true;
-                        //   goToSummaryPage = false;
-                        // }
-                        if (controller.level == null) {
-                          showLevelError = true;
-                          goToSummaryPage = false;
-                        }
+                AppButton(
+                    onPressedFunction: () {
+                      bool goToSummaryPage = true;
+                      if (_formKey.currentState!.validate() == false) {
+                        goToSummaryPage = false;
+                      }
+                      if (controller.uploadImg == null) {
+                        showToast('Please upload image', context);
+                        goToSummaryPage = false;
+                      }
+                      if (controller.selectedDate == null) {
+                        showDateTimeError = true;
+                        goToSummaryPage = false;
+                      }
+                      if (controller.noticeTypes.isEmpty) {
+                        noticeTypesError = true;
+                        goToSummaryPage = false;
+                      }
+                      if (controller.attributesStatus == null) {
+                        showAttributesStatusError = true;
+                        goToSummaryPage = false;
+                      }
+                      if (controller.setReturnVisitDate == null) {
+                        showSetReturnVisitDateTimeError = true;
+                        goToSummaryPage = false;
+                      }
+                      if (controller.indicatorStatus == null) {
+                        showIndicatorStatusError = true;
+                        goToSummaryPage = false;
+                      }
+                      // if (controller.attachment == null) {
+                      //   showAttachmentError = true;
+                      //   goToSummaryPage = false;
+                      // }
+                      if (controller.level == null) {
+                        showLevelError = true;
+                        goToSummaryPage = false;
+                      }
 
-                        setState(() {});
+                      setState(() {});
 
-                        if (goToSummaryPage) {
-                          Get.toNamed(Routes.noticeOfEventSummaryScreen);
-                        }
-                      },
-                      child: AppText(
-                        text: 'Save',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+                      if (goToSummaryPage) {
+                        Get.toNamed(Routes.noticeOfEventSummaryScreen);
+                      }
+                    },
+                    child: Text(
+                      'Save',
+                      style: w500_12(color: Colors.white),
+                    ),
+                    height: 30,
+                    sodiumShapeBorder: true,
+                    width: null,
+                    buttonColor: AppColors.purpleColor)
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             )
           ],
         ),
@@ -113,10 +113,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Notice of Event',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Notice of Event',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -126,17 +125,18 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
-                height: 15,
+                height: 15.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Name',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Name',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,14 +159,14 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           ),
                         ),
                         SizedBox(
-                          width: 10,
+                          width: 10.w,
                         ),
                         GestureDetector(
                           onTap: () {
                             _showActionSheet();
                           },
                           child: SizedBox(
-                            width: 80,
+                            width: 80.w,
                             child: Row(
                               children: [
                                 ImageView(
@@ -185,24 +185,25 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(
                 thickness: 1,
                 color: AppColors.greyColor,
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Location',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Location',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     TextFormField(
                       style: w500_14(),
@@ -223,17 +224,18 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Email',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Email',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     TextFormField(
                       style: w500_14(),
@@ -246,7 +248,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           border: InputBorder.none),
                       controller: controller.emailController,
                       validator: (value) =>
-                          value!.isEmpty ? 'Please enter an emial' : null,
+                          value!.isEmpty ? 'Please enter an email' : null,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                   ],
@@ -254,17 +256,18 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Telephone',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Telephone',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     TextFormField(
                       style: w500_14(),
@@ -285,31 +288,58 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Date and Time',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Date and Time',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     GestureDetector(
                       onTap: () async {
                         DateTime? d = await showDatePicker(
                             context: context,
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(
+                                  primaryColor: AppColors.purpleColor,
+                                  accentColor: AppColors.purpleColor,
+                                  colorScheme: ColorScheme.light(
+                                      primary: AppColors.purpleColor),
+                                  buttonTheme: ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary),
+                                ),
+                                child: child!,
+                              );
+                            },
                             initialDate: DateTime.now(),
                             firstDate: DateTime(1990),
                             lastDate: DateTime(3000));
                         if (d != null) {
                           TimeOfDay? t = await showTimePicker(
                             context: context,
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(
+                                  primaryColor: AppColors.purpleColor,
+                                  accentColor: AppColors.purpleColor,
+                                  colorScheme: ColorScheme.light(
+                                      primary: AppColors.purpleColor),
+                                  buttonTheme: ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary),
+                                ),
+                                child: child!,
+                              );
+                            },
                             initialTime: TimeOfDay.now(),
                           );
 
@@ -328,45 +358,52 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppText(
-                            text: controller.selectedDate == null
+                          Text(
+                            controller.selectedDate == null
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(controller.selectedDate!),
-                            textSize: 14,
+                            style: w500_14(
+                                color: controller.selectedDate == null
+                                    ? AppColors.dark2GreyColor
+                                    : Colors.black),
                           ),
                           if (controller.selectedDate != null)
-                            AppText(
-                              text: DateFormat('h:mm a')
+                            Text(
+                              DateFormat('h:mm a')
                                   .format(controller.selectedDate!),
-                              textSize: 14,
+                              style: w500_14(),
                             ),
                         ],
                       ),
                     ),
                     if (showDateTimeError)
-                      AppText(
+                      Padding(
                         padding: EdgeInsets.only(top: 10),
-                        text: 'Please select a date',
-                        color: Colors.red[800],
-                        textSize: 13,
+                        child: Text(
+                          'Please select a date',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                   ],
                 ),
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Territory',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Territory',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     TextFormField(
                       style: w500_14(),
@@ -387,7 +424,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -395,7 +432,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width.w,
                       child: Wrap(
                         runSpacing: 10,
                         spacing: 10,
@@ -422,10 +459,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  AppText(
-                                    text: 'Scripture',
-                                    textSize: 12,
-                                    fontWeight: FontWeight.bold,
+                                  Text(
+                                    'Scripture',
+                                    style: w700_12(),
                                   ),
                                 ],
                               ),
@@ -453,10 +489,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  AppText(
-                                    text: 'Magazine',
-                                    textSize: 12,
-                                    fontWeight: FontWeight.bold,
+                                  Text(
+                                    'Magazine',
+                                    style: w700_12(),
                                   ),
                                 ],
                               ),
@@ -483,10 +518,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  AppText(
-                                    text: 'Video',
-                                    textSize: 12,
-                                    fontWeight: FontWeight.bold,
+                                  Text(
+                                    'Video',
+                                    style: w700_12(),
                                   ),
                                 ],
                               ),
@@ -513,10 +547,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  AppText(
-                                    text: 'Other',
-                                    textSize: 12,
-                                    fontWeight: FontWeight.bold,
+                                  Text(
+                                    'Other',
+                                    style: w700_12(),
                                   ),
                                 ],
                               ),
@@ -526,14 +559,17 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     if (noticeTypesError)
-                      AppText(
+                      Padding(
                         padding: EdgeInsets.only(top: 10),
-                        text: 'Please select an option',
-                        color: Colors.red[800],
-                        textSize: 13,
+                        child: Text(
+                          'Please select an option',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     if (controller.noticeTypes.isNotEmpty)
                       TextFormField(
@@ -567,20 +603,21 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Attributes',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Attributes',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -588,14 +625,13 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(top: 10),
-                          child: AppText(
-                            text: 'Status',
-                            textSize: 15,
-                            fontWeight: FontWeight.bold,
+                          child: Text(
+                            'Status',
+                            style: w700_14(),
                           ),
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 20.w,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -617,10 +653,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                     controller.attributesStatus = 1;
                                     showAttributesStatusError = false;
                                   }),
-                                  child: AppText(
-                                    text: 'Single',
-                                    textSize: 15,
-                                    fontWeight: FontWeight.w500,
+                                  child: Text(
+                                    'Single',
+                                    style: w500_14(),
                                   ),
                                 ),
                                 Radio(
@@ -638,10 +673,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                     controller.attributesStatus = 2;
                                     showAttributesStatusError = false;
                                   }),
-                                  child: AppText(
-                                    text: 'Married',
-                                    textSize: 15,
-                                    fontWeight: FontWeight.w500,
+                                  child: Text(
+                                    'Married',
+                                    style: w500_14(),
                                   ),
                                 ),
                               ],
@@ -663,44 +697,45 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                     controller.attributesStatus = 3;
                                     showAttributesStatusError = false;
                                   }),
-                                  child: AppText(
-                                    text: 'Divorced',
-                                    textSize: 15,
-                                    fontWeight: FontWeight.w500,
+                                  child: Text(
+                                    'Divorced',
+                                    style: w500_14(),
                                   ),
                                 ),
                               ],
                             ),
                             if (showAttributesStatusError)
-                              AppText(
-                                padding: EdgeInsets.only(top: 10, left: 18),
-                                text: 'Please select a status',
-                                color: Colors.red[800],
-                                textSize: 13,
+                              Padding(
+                                padding: EdgeInsets.only(top: 10),
+                                child: Text(
+                                  'Please select a status',
+                                  style: w400_13(
+                                    color: Colors.red[800],
+                                  ),
+                                ),
                               ),
                           ],
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 20.w,
                         )
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Row(
                       children: [
                         Padding(
                           padding: EdgeInsets.only(top: 10),
-                          child: AppText(
-                            text: 'Kids',
-                            textSize: 15,
-                            fontWeight: FontWeight.bold,
+                          child: Text(
+                            'Kids',
+                            style: w600_14(),
                           ),
                         ),
                         Expanded(
                           child: SizedBox(
-                            width: 5,
+                            width: 5.w,
                           ),
                         ),
                         Container(
@@ -712,19 +747,18 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
-                                child: AppText(
-                                  text: 'Boy',
-                                  textSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                child: Text(
+                                  'Boy',
+                                  style: w700_14(),
                                 ),
                               ),
                               Expanded(
                                 child: SizedBox(
-                                  width: 3,
+                                  width: 3.w,
                                 ),
                               ),
                               Container(
@@ -747,13 +781,13 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 ),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                             ],
                           ),
                         ),
                         SizedBox(
-                          width: 10,
+                          width: 10.w,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.35,
@@ -764,19 +798,18 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
-                                child: AppText(
-                                  text: 'Girl',
-                                  textSize: 15,
-                                  fontWeight: FontWeight.bold,
+                                child: Text(
+                                  'Girl',
+                                  style: w700_14(),
                                 ),
                               ),
                               Expanded(
                                 child: SizedBox(
-                                  width: 3,
+                                  width: 3.w,
                                 ),
                               ),
                               Container(
@@ -799,7 +832,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 ),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                             ],
                           ),
@@ -807,13 +840,14 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Align(
                       alignment: Alignment.centerRight,
                       child: SizedBox(
                         width:
-                            MediaQuery.of(context).size.width * 0.35 * 2 + 10,
+                            (MediaQuery.of(context).size.width * 0.35 * 2 + 10)
+                                .w,
                         child: TextFormField(
                           maxLines: 4,
                           controller: controller.noteController,
@@ -842,60 +876,65 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                   ],
                 ),
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Add Attachment',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Add Attachment',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     if (showAttachmentError)
-                      AppText(
+                      Padding(
                         padding: EdgeInsets.only(top: 10),
-                        text: 'Please select a file',
-                        color: Colors.red[800],
-                        textSize: 13,
+                        child: Text(
+                          'Please select a file',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     GestureDetector(
                       child: ImageView(path: Images.selectFiles),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                   ],
                 ),
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Set Return Visit',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Set Return Visit',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     GestureDetector(
                       onTap: () async {
@@ -903,10 +942,36 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             context: context,
                             initialDate: DateTime.now(),
                             firstDate: DateTime(1990),
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(
+                                  primaryColor: AppColors.purpleColor,
+                                  accentColor: AppColors.purpleColor,
+                                  colorScheme: ColorScheme.light(
+                                      primary: AppColors.purpleColor),
+                                  buttonTheme: ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary),
+                                ),
+                                child: child!,
+                              );
+                            },
                             lastDate: DateTime(3000));
                         if (d != null) {
                           TimeOfDay? t = await showTimePicker(
                             context: context,
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(
+                                  primaryColor: AppColors.purpleColor,
+                                  accentColor: AppColors.purpleColor,
+                                  colorScheme: ColorScheme.light(
+                                      primary: AppColors.purpleColor),
+                                  buttonTheme: ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary),
+                                ),
+                                child: child!,
+                              );
+                            },
                             initialTime: TimeOfDay.now(),
                           );
 
@@ -925,31 +990,37 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppText(
-                            text: controller.setReturnVisitDate == null
+                          Text(
+                            controller.setReturnVisitDate == null
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(controller.setReturnVisitDate!),
-                            textSize: 16,
+                            style: w500_14(
+                                color: controller.setReturnVisitDate == null
+                                    ? AppColors.dark2GreyColor
+                                    : Colors.black),
                           ),
                           if (controller.setReturnVisitDate != null)
-                            AppText(
-                              text: DateFormat('h:mm a')
+                            Text(
+                              DateFormat('h:mm a')
                                   .format(controller.setReturnVisitDate!),
-                              textSize: 16,
+                              style: w500_14(),
                             ),
                         ],
                       ),
                     ),
                     if (showSetReturnVisitDateTimeError)
-                      AppText(
+                      Padding(
                         padding: EdgeInsets.only(top: 10),
-                        text: 'Please select a date',
-                        color: Colors.red[800],
-                        textSize: 13,
+                        child: Text(
+                          'Please select a date',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Divider(thickness: 1, color: AppColors.borderGreyColor),
                     Container(
@@ -990,7 +1061,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -1030,15 +1101,17 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AppText(
-                          text: 'Notify Joe',
-                          textSize: 15,
+                        Padding(
                           padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            'Notify Joe',
+                            style: w400_14(),
+                          ),
                         ),
                         Transform.scale(
                           scale: 0.6,
@@ -1054,29 +1127,29 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Indicatores',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Indicatores',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
-                    AppText(
-                      text: 'Status',
-                      textSize: 15,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Status',
+                      style: w700_14(),
                     ),
                     Row(
                       children: [
@@ -1096,10 +1169,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             controller.indicatorStatus = 1;
                             showIndicatorStatusError = false;
                           }),
-                          child: AppText(
-                            text: 'Open for encouragment',
-                            textSize: 15,
-                            fontWeight: FontWeight.w500,
+                          child: Text(
+                            'Open for encouragment',
+                            style: w500_14(),
                           ),
                         ),
                       ],
@@ -1122,20 +1194,22 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             controller.indicatorStatus = 2;
                             showIndicatorStatusError = false;
                           }),
-                          child: AppText(
-                            text: 'Don not contract',
-                            textSize: 15,
-                            fontWeight: FontWeight.w500,
+                          child: Text(
+                            'Don not contract',
+                            style: w500_14(),
                           ),
                         ),
                       ],
                     ),
                     if (showIndicatorStatusError)
-                      AppText(
+                      Padding(
                         padding: EdgeInsets.only(top: 10),
-                        text: 'Please select a indicator status',
-                        color: Colors.red[800],
-                        textSize: 13,
+                        child: Text(
+                          'Please select a indicator status',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                   ],
                 ),
@@ -1146,20 +1220,24 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppText(
-                      text: 'Level',
-                      textSize: 14,
-                      color: AppColors.blueColor,
+                    Text(
+                      'Level',
+                      style: w400_13(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     if (showLevelError)
-                      AppText(
-                        padding: EdgeInsets.only(bottom: 10),
-                        text: 'Please select a level',
-                        color: Colors.red[800],
-                        textSize: 13,
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          'Please select a level',
+                          style: w400_13(
+                            color: Colors.red[800],
+                          ),
+                        ),
                       ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1227,7 +1305,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     )
                   ],
                 ),

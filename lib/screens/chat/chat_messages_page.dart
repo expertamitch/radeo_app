@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
-
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
 
 class ChatMessagePage extends StatefulWidget {
   const ChatMessagePage({Key? key}) : super(key: key);
@@ -31,10 +29,9 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'John Doe',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'John Doe',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -54,7 +51,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et');
                   })),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -81,7 +78,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                             border: InputBorder.none),
                       )),
                       SizedBox(
-                        width: 10,
+                        width: 10.w,
                       ),
                       ImageView(
                         path: Images.attachIcon,
@@ -89,7 +86,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                         width: 20,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 10.w,
                       ),
                       ImageView(
                         path: Images.cameraIcon,
@@ -97,13 +94,13 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                         width: 20,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 10.w,
                       ),
                     ]),
                   ),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 10.w,
                 ),
                 SvgPicture.asset(
                   Images.sendIcon,
@@ -113,7 +110,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           )
         ]));
   }
@@ -144,12 +141,13 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                 style: w500_14(color: user1Msg ? Colors.white : Colors.black),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
-              AppText(
-                text: DateFormat('MMM d, yyyy').format(dateTime),
-                textSize: 12,
-                color: user1Msg ? Colors.white : Colors.grey,
+              Text(
+                DateFormat('MMM d, yyyy').format(dateTime),
+                style: w400_12(
+                  color: user1Msg ? Colors.white : Colors.grey,
+                ),
               ),
             ],
           ),

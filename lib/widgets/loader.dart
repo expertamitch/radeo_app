@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../assets/images.dart';
-import '../styling/app_colors.dart';
 import 'image_view.dart';
 
 showLoader() {

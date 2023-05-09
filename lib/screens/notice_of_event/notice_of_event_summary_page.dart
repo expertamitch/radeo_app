@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/styling/font_style_globle.dart';
+
 import 'package:redeo/widgets/image_view.dart';
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../widgets/app_text.dart';
 import '../../get_controller/notice_of_event_controller.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class NoticeOfEventSummaryPage extends StatefulWidget {
   const NoticeOfEventSummaryPage({Key? key}) : super(key: key);
@@ -31,40 +34,38 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
         actions: [
           Row(
             children: [
+              AppButton(
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.createReturnPageScreen);
+                  },
+                  child: Text(
+                    'Create Return',
+                    style: w500_12(color: Colors.white),
+                  ),
+                  height: 30.h,
+                  sodiumShapeBorder: true,
+                  width: null,
+                  buttonColor: AppColors.purpleColor),
               SizedBox(
-                height: 30,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: StadiumBorder(), primary: AppColors.purpleColor),
-                    onPressed: () {
-                      Get.toNamed(Routes.createReturnPageScreen);
-                    },
-                    child: AppText(
-                      text: 'Create Return',
-                      textSize: 12,
-                      fontWeight: FontWeight.bold,
-                    )),
+                width: 10.w,
               ),
-              SizedBox(
-                width: 10,
-              ),
-              SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(), primary: AppColors.blueColor),
-                      onPressed: () {
-                        Get.toNamed(Routes.historyPage);
-                      },
-                      child: ImageView(
-                        path: Images.historyIcon,
-                        color: Colors.white,
-                        height: 18,
-                      ))),
+              AppButton(
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.historyPage);
+                  },
+                  child: ImageView(
+                    path: Images.historyIcon,
+                    color: Colors.white,
+                    height: 18,
+                  ),
+                  height: 30.h,
+                  sodiumShapeBorder: true,
+                  width: null,
+                  buttonColor: AppColors.blueColor)
             ],
           ),
           SizedBox(
-            width: 10,
+            width: 10.w,
           )
         ],
       ),
@@ -74,7 +75,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
           child: Column(
             children: [
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,12 +92,11 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
-                      AppText(
-                        text: controller.nameController.text,
-                        textSize: 14,
-                        fontWeight: FontWeight.bold,
+                      Text(
+                        controller.nameController.text,
+                        style: w700_13(),
                       )
                     ],
                   ),
@@ -115,58 +115,55 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                                   ? 'assets/icons/screen 18/Level 2.svg'
                                   : 'assets/icons/screen 18/Level 3.svg')),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
-                      AppText(
-                        text: 'Level',
-                        textSize: 14,
-                        fontWeight: FontWeight.bold,
+                      Text(
+                        'Level',
+                        style: w700_13(),
                       )
                     ],
                   ),
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppText(
-                    text: 'Indicatores',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Indicatores',
+                    style: w700_13(),
                   ),
-                  AppText(
-                    text: 'Open for encouragement',
-                    textSize: 14,
-                    color: AppColors.blueColor,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Open for encouragement',
+                    style: w700_13(
+                      color: AppColors.blueColor,
+                    ),
                   )
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Location',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Location',
+                    style: w700_13(),
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
                         controller.locationController.text,
                         textAlign: TextAlign.right,
@@ -175,23 +172,22 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Email',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Email',
+                    style: w700_13(),
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
                         controller.emailController.text,
                         textAlign: TextAlign.right,
@@ -200,23 +196,22 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Telephone',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Telephone',
+                    style: w700_13(),
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
                         controller.telephoneController.text,
                         textAlign: TextAlign.right,
@@ -225,23 +220,22 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Date and Time',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Date and Time',
+                    style: w700_13(),
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
                         DateFormat('EEEE, MMM d, yyyy | h:mm a')
                             .format(controller.selectedDate!),
@@ -251,23 +245,22 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Territory',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Territory',
+                    style: w700_13(),
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
                         controller.territoryController.text,
                         textAlign: TextAlign.right,
@@ -276,23 +269,22 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Type',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Type',
+                    style: w700_13(),
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
                         controller.locationController.text,
                         textAlign: TextAlign.right,
@@ -301,23 +293,22 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Attributes',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Attributes',
+                    style: w700_13(),
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
                         '${controller.attributesStatus == 1 ? 'Single' : controller.attributesStatus == 2 ? 'Married' : 'Divorced'} | Boy: ${controller.boysController.text} | Girl : ${controller.girlsController.text} ',
                         textAlign: TextAlign.right,
@@ -326,7 +317,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -340,17 +331,16 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AppText(
-                    text: 'Attachment',
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Attachment',
+                    style: w700_13(),
                   ),
                   OutlinedButton(
                       style: OutlinedButton.styleFrom(
@@ -364,7 +354,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                             style: w400_12(),
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 10.w,
                           ),
                           ImageView(
                             path: Images.closeIcon,
@@ -377,29 +367,10 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     AppText(
-              //       text: 'Return Visit',
-              //       textSize: 14,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //     SizedBox(
-              //         width: MediaQuery.of(context).size.width * .5,
-              //         child: Text(
-              //           DateFormat('EEEE, MMM d, yyyy | h:mm a')
-              //               .format(controller.setReturnVisitDate!),
-              //           textAlign: TextAlign.right,
-              //           style: w500_13(),
-              //         ))
-              //   ],
-              // ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
             ],
           ),

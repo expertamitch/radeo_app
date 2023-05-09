@@ -308,16 +308,6 @@ class _MyAppState extends State<MyApp> {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           builder: (context, child) => child ?? Scaffold(),
-          //     Scaffold(
-          //   // Global InkWell that will dismiss the keyboard
-          //   body: GestureDetector(
-          //     onTap: () {
-          //       // When running in iOS, dismiss the keyboard when any Tap happens outside a TextField
-          //       FocusScope.of(context).requestFocus(new FocusNode());
-          //     },
-          //     child: child,
-          //   ),
-          // ),
 
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(

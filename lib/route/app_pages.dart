@@ -171,14 +171,14 @@ class AppPages {
 
     //message
     GetPage(
-      name: Routes.messagePageScreen,
+      name: Routes.chatScreen,
       transition: Transition.cupertino,
-      page: () => CreateMessagePage(),
+      page: () => ChatPage(),
     ),
     GetPage(
       name: Routes.chatMessageScreen,
       transition: Transition.cupertino,
-      page: () => ChatPage(),
+      page: () => ChatMessagePage(),
     ),
 
     //notice of event

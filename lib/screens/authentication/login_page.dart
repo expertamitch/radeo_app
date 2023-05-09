@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/colors.dart';
+
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -39,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                       elevation: 0,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 21.0),
@@ -47,13 +50,13 @@ class _LoginPageState extends State<LoginPage> {
                           style: w600_35(color: Colors.white)),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                   ],
                 ),
               )),
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           Expanded(
             child: Padding(
@@ -72,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                     }),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -86,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                     }),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   Row(
                     children: [
@@ -129,28 +132,23 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
-                  SizedBox(
-                      height: 50,
-                      width: double.maxFinite,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              primary: AppColors.purpleColor),
-                          onPressed: () {
-                            print('username : $username');
-                            print('password : $password');
-                            Get.toNamed(Routes.homepageScreen);
-                          },
-                          child: Text(
-                            'Login Now',
-                            style: w600_14(color: Colors.white),
-                          ))),
+                  AppButton(
+                      onPressedFunction: () {
+                        print('username : $username');
+                        print('password : $password');
+                        Get.toNamed(Routes.homepageScreen);
+                      },
+                      child: Text(
+                        'Login Now',
+                        style: w600_14(color: Colors.white),
+                      ),
+                      height: 50.h,
+                      buttonColor: AppColors.purpleColor),
                   Expanded(
                     child: SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                   ),
                   Row(
@@ -169,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                 ],
               ),

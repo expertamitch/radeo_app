@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:redeo/styling/app_colors.dart';
 import '../../assets/images.dart';
-import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
-import '../../widgets/colors.dart';
 import '../../widgets/image_view.dart';
 
 class AttendantsPage extends StatefulWidget {
@@ -33,7 +30,7 @@ class _AttendantsPageState extends State<AttendantsPage> {
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -54,7 +51,7 @@ class _AttendantsPageState extends State<AttendantsPage> {
                   path: Images.searchIcon,
                   color: Colors.purple,
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
                   style: w500_14(),
@@ -99,7 +96,7 @@ class _AttendantsPageState extends State<AttendantsPage> {
                 height: 25,
               ),
               SizedBox(
-                width: 10,
+                width: 10.w,
               ),
               Expanded(
                 child: Column(

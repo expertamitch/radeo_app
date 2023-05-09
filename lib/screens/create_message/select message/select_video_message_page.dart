@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
@@ -74,7 +75,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 GestureDetector(
                   onTap: () async {},
@@ -87,32 +88,32 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                         color: AppColors.purpleColor,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 10.w,
                       ),
-                      AppText(
-                        text: 'Create New Video',
-                        textSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.purpleColor,
+                      Text(
+                        'Create New Video',
+                        style: w600_14(
+                          color: AppColors.purpleColor,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 Divider(
                   color: AppColors.greyColor,
                   thickness: 1,
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 if (isLoading)
                   Center(
                       child: SizedBox(
-                    width: 30,
-                    height: 30,
+                    width: 30.w,
+                    height: 30.h,
                     child: CircularProgressIndicator(
                       color: AppColors.purpleColor,
                     ),
@@ -120,7 +121,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width.w,
                       child: Wrap(
                           alignment: allVideosData.length == 2
                               ? WrapAlignment.start
@@ -208,7 +209,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                                               ],
                                             ),
                                             SizedBox(
-                                              height: 10,
+                                              height: 10.h,
                                             ),
                                             Text(
                                               allVideosData

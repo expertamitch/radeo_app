@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../assets/images.dart';
@@ -6,6 +7,7 @@ import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/colors.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -46,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       elevation: 0,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 21.0),
@@ -54,12 +56,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: w600_35(color: Colors.white)),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                   ],
                 )),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -78,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -93,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 5),
@@ -130,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -144,7 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -161,7 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -177,27 +179,22 @@ class _RegisterPageState extends State<RegisterPage> {
                     }),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 40.h,
                   ),
+                  AppButton(
+                      onPressedFunction: () {
+                        // if (_formKey.currentState!.validate()) {
+                        Get.toNamed(Routes.otpVerficationScreen);
+                        // }
+                      },
+                      child: Text(
+                        'Register Now',
+                        style: w600_14(color: Colors.white),
+                      ),
+                      height: 50.h,
+                      buttonColor: AppColors.purpleColor),
                   SizedBox(
-                      height: 50,
-                      width: double.maxFinite,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              primary: AppColors.purpleColor),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              Get.toNamed(Routes.otpVerficationScreen);
-                            }
-                          },
-                          child: Text(
-                            'Register Now',
-                            style: w600_14(color: Colors.white),
-                          ))),
-                  SizedBox(
-                    height: 40,
+                    height: 40.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -215,7 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                 ],
               ),

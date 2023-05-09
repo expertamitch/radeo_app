@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../assets/images.dart';
+import 'package:redeo/widgets/app_button.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/image_view.dart';
 
 class FiledServiceMapPage extends StatefulWidget {
   const FiledServiceMapPage({Key? key}) : super(key: key);
@@ -64,54 +64,39 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        primary: AppColors.purpleColor),
-                    onPressed: () {
-                      Get.toNamed(Routes.createNoticeOfEventScreen);
-                    },
-                    child: Text(
-                      'NOE',
-                      style: w500_12(color: Colors.white),
-                    ),
-                  )),
-              SizedBox(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        primary: AppColors.purpleColor),
-                    onPressed: () {
-                      Get.toNamed(Routes.messagePageScreen);
-                    },
-                    child: Text(
-                      'Message',
-                      style: w500_12(color: Colors.white),
-                    ),
-                  )),
-              SizedBox(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        primary: AppColors.purpleColor),
-                    onPressed: () {
-                      Get.toNamed(Routes.doNotCallScreen);
-                    },
-                    child: Text(
-                      'DNC',
-                      style: w500_12(color: Colors.white),
-                    ),
-                  )),
+              AppButton(
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.createNoticeOfEventScreen);
+                  },
+                  child: Text(
+                    'NOE',
+                    style: w500_12(color: Colors.white),
+                  ),
+                  height: 40.h,
+                  width: (MediaQuery.of(context).size.width * 0.28).w,
+                  buttonColor: AppColors.purpleColor),
+              AppButton(
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.chatScreen);
+                  },
+                  child: Text(
+                    'Message',
+                    style: w500_12(color: Colors.white),
+                  ),
+                  height: 40.h,
+                  width: (MediaQuery.of(context).size.width * 0.28).w,
+                  buttonColor: AppColors.purpleColor),
+              AppButton(
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.doNotCallScreen);
+                  },
+                  child: Text(
+                    'DNC',
+                    style: w500_12(color: Colors.white),
+                  ),
+                  height: 40.h,
+                  width: (MediaQuery.of(context).size.width * 0.28).w,
+                  buttonColor: AppColors.purpleColor),
             ],
           ),
         ),

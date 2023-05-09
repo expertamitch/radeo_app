@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
 import '../../../../styling/font_style_globle.dart';
 import '../../../../widgets/app_text.dart';
-import '../../../../widgets/colors.dart';
 import '../../../../widgets/image_view.dart';
 
 class ContactTabPage extends StatefulWidget {
@@ -37,7 +37,7 @@ class _ContactTabPageState extends State<ContactTabPage> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           Container(
             decoration: BoxDecoration(
@@ -51,7 +51,7 @@ class _ContactTabPageState extends State<ContactTabPage> {
                   path: Images.searchIcon,
                   color: Colors.purple,
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
                   style: w500_14(),
@@ -67,7 +67,7 @@ class _ContactTabPageState extends State<ContactTabPage> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           Expanded(
             child: ListView.builder(
@@ -96,25 +96,26 @@ class _ContactTabPageState extends State<ContactTabPage> {
           height: 25,
         ),
         SizedBox(
-          width: 15,
+          width: 15.w,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppText(
-              text: title,
-              textSize: 16,
+            Text(
+              title,
+              style: w400_15(),
             ),
-            AppText(
-              text: subTitle,
-              color: AppColors.dark2GreyColor,
-              textSize: 12,
+            Text(
+              subTitle,
+              style: w400_12(
+                color: AppColors.dark2GreyColor,
+              ),
             )
           ],
         ),
         Expanded(
           child: SizedBox(
-            width: 15,
+            width: 15.w,
           ),
         ),
         Radio(

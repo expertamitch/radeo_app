@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 import '../../../widgets/app_text.dart';
-import '../../../widgets/colors.dart';
 import '../../../widgets/image_view.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class EditEventDetailsPage extends StatefulWidget {
   const EditEventDetailsPage({Key? key}) : super(key: key);
@@ -15,8 +15,6 @@ class EditEventDetailsPage extends StatefulWidget {
 }
 
 class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,23 +26,20 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {},
-                      child: AppText(
-                        text: 'Submit',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+                AppButton(
+                    onPressedFunction: () {},
+                    child: Text(
+                      'Submit',
+                      style: w700_12(color: Colors.white),
+                    ),
+                    height: 30.h,
+                    sodiumShapeBorder: true,
+                    width: null,
+                    buttonColor: AppColors.purpleColor)
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             )
           ],
         ),
@@ -68,7 +63,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 30,
+                        height: 30.h,
                       ),
                       // PrettyQr(
                       //   // image: AssetImage('images/twitter.png'),
@@ -83,38 +78,40 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                         width: MediaQuery.of(context).size.width * 0.35,
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
-                      AppText(
-                        text: 'Event Name',
-                        textSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      AppText(
-                        text: '27 Apr 2023, 3:17 PM',
-                        textSize: 14,
-                        color: Colors.white,
+                      Text(
+                        'Event Name',
+                        style: w700_20(
+                          color: Colors.white,
+                        ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 5.h,
                       ),
-                      AppText(
-                        text: '2006 Chapmans Lane, San Francisco, California',
-                        textSize: 14,
-                        color: Colors.white,
+                      Text(
+                        '27 Apr 2023, 3:17 PM',
+                        style: w400_14(
+                          color: Colors.white,
+                        ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 5.h,
+                      ),
+                      Text(
+                        '2006 Chapmans Lane, San Francisco, California',
+                        style: w400_14(
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30.h,
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -125,13 +122,14 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppText(
-                        text: 'Description',
-                        textSize: 15,
-                        color: AppColors.blueColor,
+                      Text(
+                        'Description',
+                        style: w400_13(
+                          color: AppColors.blueColor,
+                        ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                           'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero',
@@ -140,17 +138,18 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Center(
-                  child: AppText(
-                    text: 'Requested by John Doe',
-                    textSize: 15,
-                    color: AppColors.blueColor,
+                  child: Text(
+                    'Requested by John Doe',
+                    style: w400_13(
+                      color: AppColors.blueColor,
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -165,7 +164,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     ),
                     Expanded(
                         child: SizedBox(
-                      width: 10,
+                      width: 10.w,
                     )),
                     Container(
                       decoration: BoxDecoration(
@@ -179,7 +178,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: 10.w,
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -195,7 +194,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                   ]),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -205,10 +204,11 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            AppText(
-                              text: 'Client Name',
-                              textSize: 15,
-                              color: AppColors.blueColor,
+                            Text(
+                              'Client Name',
+                              style: w400_13(
+                                color: AppColors.blueColor,
+                              ),
                             ),
                             TextFormField(
                               style: w500_14(),
@@ -231,17 +231,18 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                 ),
                 Divider(thickness: 1, color: AppColors.greyColor),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppText(
-                        text: 'Additional Guest',
-                        textSize: 15,
-                        color: AppColors.blueColor,
+                      Text(
+                        'Additional Guest',
+                        style: w400_13(
+                          color: AppColors.blueColor,
+                        ),
                       ),
                       TextFormField(
                         style: w500_14(),
@@ -257,20 +258,21 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                 ),
                 Divider(thickness: 1, color: AppColors.greyColor),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppText(
-                        text: 'Special Needs',
-                        textSize: 15,
-                        color: AppColors.blueColor,
+                      Text(
+                        'Special Needs',
+                        style: w400_13(
+                          color: AppColors.blueColor,
+                        ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       TextFormField(
                         style: w500_14(),
@@ -303,7 +305,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
               ],
             ),

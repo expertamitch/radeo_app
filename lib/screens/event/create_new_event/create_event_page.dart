@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/widgets/app_text.dart';
+
 import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
-import '../../../widgets/colors.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({Key? key}) : super(key: key);
@@ -32,23 +34,20 @@ class _CreateEventPageState extends State<CreateEventPage> {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  height: 30,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          primary: AppColors.purpleColor),
-                      onPressed: () {},
-                      child: AppText(
-                        text: 'Submit',
-                        textSize: 12,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+                AppButton(
+                    onPressedFunction: () {},
+                    child: Text(
+                      'Submit',
+                      style: w700_12(color: Colors.white),
+                    ),
+                    sodiumShapeBorder: true,
+                    width: null,
+                    height: 30.h,
+                    buttonColor: AppColors.purpleColor)
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 10.w,
             )
           ],
         ),
@@ -57,10 +56,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
             width: double.maxFinite,
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: AppText(
-              text: 'Create Event',
-              textSize: 30,
-              fontWeight: FontWeight.bold,
+            child: Text(
+              'Create Event',
+              style: w700_30(),
             ),
           ),
           Expanded(
@@ -71,7 +69,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 15,
+                              height: 15.h,
                             ),
                             Padding(
                               padding:
@@ -79,10 +77,11 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  AppText(
-                                    text: 'Event Name',
-                                    textSize: 14,
-                                    color: AppColors.blueColor,
+                                  Text(
+                                    'Event Name',
+                                    style: w400_13(
+                                      color: AppColors.blueColor,
+                                    ),
                                   ),
                                   TextFormField(
                                     style: w500_14(),
@@ -104,7 +103,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               color: AppColors.greyColor,
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 10.h,
                             ),
                             Padding(
                               padding:
@@ -112,24 +111,61 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  AppText(
-                                    text: 'Date and Time',
-                                    textSize: 14,
-                                    color: AppColors.blueColor,
+                                  Text(
+                                    'Date and Time',
+                                    style: w400_13(
+                                      color: AppColors.blueColor,
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 10.h,
                                   ),
                                   GestureDetector(
                                     onTap: () async {
                                       DateTime? d = await showDatePicker(
                                           context: context,
+                                          builder: (BuildContext context,
+                                              Widget? child) {
+                                            return Theme(
+                                              data: ThemeData.light().copyWith(
+                                                primaryColor:
+                                                    AppColors.purpleColor,
+                                                accentColor:
+                                                    AppColors.purpleColor,
+                                                colorScheme: ColorScheme.light(
+                                                    primary:
+                                                        AppColors.purpleColor),
+                                                buttonTheme: ButtonThemeData(
+                                                    textTheme: ButtonTextTheme
+                                                        .primary),
+                                              ),
+                                              child: child!,
+                                            );
+                                          },
                                           initialDate: DateTime.now(),
                                           firstDate: DateTime(1990),
                                           lastDate: DateTime(3000));
                                       if (d != null) {
                                         TimeOfDay? t = await showTimePicker(
                                           context: context,
+                                          builder: (BuildContext context,
+                                              Widget? child) {
+                                            return Theme(
+                                              data: ThemeData.light().copyWith(
+                                                primaryColor:
+                                                    AppColors.purpleColor,
+                                                accentColor:
+                                                    AppColors.purpleColor,
+                                                colorScheme: ColorScheme.light(
+                                                    primary:
+                                                        AppColors.purpleColor),
+                                                buttonTheme: ButtonThemeData(
+                                                    textTheme: ButtonTextTheme
+                                                        .primary),
+                                              ),
+                                              child: child!,
+                                            );
+                                          },
                                           initialTime: TimeOfDay.now(),
                                         );
 
@@ -149,18 +185,20 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        AppText(
-                                          text: selectedDate == null
+                                        Text(
+                                          selectedDate == null
                                               ? 'Select date'
                                               : DateFormat('EEEE, MMM d, yyyy')
                                                   .format(selectedDate!),
-                                          textSize: 16,
+                                          // textSize: 16,
+                                          style: w500_14(
+                                              color: AppColors.dark2GreyColor),
                                         ),
                                         if (selectedDate != null)
-                                          AppText(
-                                            text: DateFormat('h:mm a')
+                                          Text(
+                                            DateFormat('h:mm a')
                                                 .format(selectedDate!),
-                                            textSize: 16,
+                                            style: w500_14(),
                                           ),
                                       ],
                                     ),
@@ -173,7 +211,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               color: AppColors.greyColor,
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 10.h,
                             ),
                             Padding(
                               padding:
@@ -181,10 +219,11 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  AppText(
-                                    text: 'Location',
-                                    textSize: 14,
-                                    color: AppColors.blueColor,
+                                  Text(
+                                    'Location',
+                                    style: w400_13(
+                                      color: AppColors.blueColor,
+                                    ),
                                   ),
                                   TextFormField(
                                     style: w500_14(),
@@ -211,13 +250,14 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  AppText(
-                                    text: 'Description',
-                                    textSize: 14,
-                                    color: AppColors.blueColor,
+                                  Text(
+                                    'Description',
+                                    style: w400_13(
+                                      color: AppColors.blueColor,
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 10.h,
                                   ),
                                   TextFormField(
                                     style: w500_14(),
@@ -258,7 +298,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 10.h,
                             ),
                             Divider(
                               thickness: 1,
@@ -270,36 +310,37 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  AppText(
-                                    text: 'Invitee',
-                                    textSize: 14,
-                                    color: AppColors.blueColor,
+                                  Text(
+                                    'Invitee',
+                                    style: w400_13(
+                                      color: AppColors.blueColor,
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 10.h,
                                   ),
                                   GestureDetector(
                                     onTap: () {
                                       Get.toNamed(Routes.inviteeScreen);
                                     },
-                                    child: AppText(
-                                      text:
-                                          'Select Groups, Redeo Contacts, Contacts',
-                                      textSize: 15,
+                                    child: Text(
+                                      'Select Groups, Redeo Contacts, Contacts',
+                                      style: w400_14(
+                                          color: AppColors.dark2GreyColor),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 10.h,
                             ),
                             Divider(
                               thickness: 1,
                               color: AppColors.greyColor,
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 10.h,
                             ),
                             Padding(
                               padding:
@@ -307,13 +348,14 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  AppText(
-                                    text: 'Recurrence',
-                                    textSize: 14,
-                                    color: AppColors.blueColor,
+                                  Text(
+                                    'Recurrence',
+                                    style: w400_13(
+                                      color: AppColors.blueColor,
+                                    ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 10.h,
                                   ),
                                   Wrap(
                                     spacing: 10,
@@ -337,13 +379,14 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                                   BorderRadius.circular(8)),
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 8),
-                                          child: AppText(
-                                            text: 'Once a Week',
-                                            color: selectedRecurrence ==
-                                                    'Once a Week'
-                                                ? AppColors.purpleColor
-                                                : Colors.black,
-                                            textSize: 14,
+                                          child: Text(
+                                            'Once a Week',
+                                            style: w400_13(
+                                              color: selectedRecurrence ==
+                                                      'Once a Week'
+                                                  ? AppColors.purpleColor
+                                                  : Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -354,7 +397,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                           });
                                         },
                                         child: Container(
-                                          width: 130,
+                                          width: 135,
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   color: selectedRecurrence ==
@@ -365,13 +408,14 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                                   BorderRadius.circular(8)),
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 8),
-                                          child: AppText(
-                                            text: 'Once a Month',
-                                            color: selectedRecurrence ==
-                                                    'Once a Month'
-                                                ? AppColors.purpleColor
-                                                : Colors.black,
-                                            textSize: 14,
+                                          child: Text(
+                                            'Once a Month',
+                                            style: w400_13(
+                                              color: selectedRecurrence ==
+                                                      'Once a Month'
+                                                  ? AppColors.purpleColor
+                                                  : Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -393,13 +437,14 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                                   BorderRadius.circular(8)),
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 8),
-                                          child: AppText(
-                                            text: 'Once a Year',
-                                            color: selectedRecurrence ==
-                                                    'Once a Year'
-                                                ? AppColors.purpleColor
-                                                : Colors.black,
-                                            textSize: 14,
+                                          child: Text(
+                                            'Once a Year',
+                                            style: w400_13(
+                                              color: selectedRecurrence ==
+                                                      'Once a Year'
+                                                  ? AppColors.purpleColor
+                                                  : Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -409,7 +454,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               ),
                             ),
                             SizedBox(
-                              height: 30,
+                              height: 30.h,
                             ),
                           ]))))
         ]));
