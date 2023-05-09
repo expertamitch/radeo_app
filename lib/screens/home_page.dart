@@ -19,27 +19,27 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       drawer: appDrawer(),
       appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // ElevatedButton(onPressed: () {}, child: Text('Reports Page')),
-            // ElevatedButton(onPressed: () {}, child: Text('Notice of Event')),
-            // ElevatedButton(onPressed: () {}, child: Text('Return Visits Page')),
-            // ElevatedButton(onPressed: () {}, child: Text('Event Page')),
-            ElevatedButton(
-                onPressed: () {
-                  Get.toNamed(Routes.createMessageScreen);
-                },
-                child: Text('Create Messages')),
-            // ElevatedButton(onPressed: () {}, child: Text('Field Service Page')),
-            // ElevatedButton(onPressed: () {}, child: Text('Message Page')),
-            // ElevatedButton(onPressed: () {}, child: Text('Do Not Call Page')),
-            // ElevatedButton(onPressed: () {}, child: Text('Groups')),
-          ],
-        ),
-      ),
+      // body: Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     crossAxisAlignment: CrossAxisAlignment.center,
+      //     children: [
+      //       // ElevatedButton(onPressed: () {}, child: Text('Reports Page')),
+      //       // ElevatedButton(onPressed: () {}, child: Text('Notice of Event')),
+      //       // ElevatedButton(onPressed: () {}, child: Text('Return Visits Page')),
+      //       // ElevatedButton(onPressed: () {}, child: Text('Event Page')),
+      //       ElevatedButton(
+      //           onPressed: () {
+      //             Get.toNamed(Routes.createMessageScreen);
+      //           },
+      //           child: Text('Create Messages')),
+      //       // ElevatedButton(onPressed: () {}, child: Text('Field Service Page')),
+      //       // ElevatedButton(onPressed: () {}, child: Text('Message Page')),
+      //       // ElevatedButton(onPressed: () {}, child: Text('Do Not Call Page')),
+      //       // ElevatedButton(onPressed: () {}, child: Text('Groups')),
+      //     ],
+      //   ),
+      // ),
     );
   }
 
@@ -101,7 +101,7 @@ class _HomepageState extends State<Homepage> {
         GestureDetector(
           onTap: () {
             Navigator.pop(context);
-            Get.toNamed(Routes.createNoticeOfEventScreen);
+            Get.toNamed(Routes.fieldServiceScreen);
           },
           child: Container(
             height: 50,
@@ -113,7 +113,7 @@ class _HomepageState extends State<Homepage> {
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(left: 18),
             child: Text(
-              'NOE',
+              'Filed Service',
               style: w600_14(),
             ),
           ),
@@ -141,7 +141,7 @@ class _HomepageState extends State<Homepage> {
         GestureDetector(
           onTap: () {
             Navigator.pop(context);
-            Get.toNamed(Routes.fieldServiceScreen);
+            Get.toNamed(Routes.createNoticeOfEventScreen);
           },
           child: Container(
             height: 50,
@@ -153,7 +153,7 @@ class _HomepageState extends State<Homepage> {
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(left: 18),
             child: Text(
-              'Filed Service',
+              'NOE',
               style: w600_14(),
             ),
           ),
@@ -161,7 +161,7 @@ class _HomepageState extends State<Homepage> {
         GestureDetector(
           onTap: () {
             Navigator.pop(context);
-            Get.toNamed(Routes.messagePageScreen);
+            Get.toNamed(Routes.createMessageScreen);
           },
           child: Container(
             height: 50,
@@ -174,6 +174,43 @@ class _HomepageState extends State<Homepage> {
             padding: EdgeInsets.only(left: 18),
             child: Text(
               'Message',
+              style: w600_14(),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+            Get.toNamed(Routes.chatMessageScreen);
+          },
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+                // color: Colors.red,
+                border: Border(
+                    bottom: BorderSide(color: AppColors.borderGreyColor))),
+            width: double.maxFinite,
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
+              'Chat',
+              style: w600_14(),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {},
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+                // color: Colors.red,
+                border: Border(
+                    bottom: BorderSide(color: AppColors.borderGreyColor))),
+            width: double.maxFinite,
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 18),
+            child: Text(
+              'Notification',
               style: w600_14(),
             ),
           ),
@@ -258,7 +295,7 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         GestureDetector(
           onTap: () {},
           child: Container(

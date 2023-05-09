@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
@@ -53,29 +55,36 @@ class _FieldServicePageState extends State<FieldServicePage> {
     required String location,
     required String leadingIconPath,
   }) {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
-      child: ListTile(
-        leading: Container(
-          height: 18,
-          // padding: EdgeInsets.all(1),
-          child: ImageView(
-            path: leadingIconPath,
-            height: 30,
-            color: AppColors.purpleColor,
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routes.filedServiceMapPageScreen);
+        // FiledServiceMapPage
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            border:
+                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+        child: ListTile(
+          leading: Container(
+            height: 18,
+            // padding: EdgeInsets.all(1),
+            child: ImageView(
+              path: leadingIconPath,
+              height: 30,
+              color: AppColors.purpleColor,
+            ),
           ),
-        ),
-        minLeadingWidth: 10,
-        title: Text(
-          location,
-          style: w400_12(),
-        ),
-        subtitle: AppText(
-          padding: EdgeInsets.only(top: 5),
-          text: DateFormat('MMM d, yyyy').format(dateTime),
-          textSize: 12,
-          color: Colors.grey,
+          minLeadingWidth: 10,
+          title: Text(
+            location,
+            style: w400_12(),
+          ),
+          subtitle: AppText(
+            padding: EdgeInsets.only(top: 5),
+            text: DateFormat('MMM d, yyyy').format(dateTime),
+            textSize: 12,
+            color: Colors.grey,
+          ),
         ),
       ),
     );

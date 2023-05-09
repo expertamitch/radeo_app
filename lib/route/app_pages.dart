@@ -8,6 +8,7 @@ import 'package:redeo/screens/authentication/welcome_page.dart';
 import 'package:redeo/screens/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
 import '../screens/authentication/login_page.dart';
+import '../screens/chat/chat_page.dart';
 import '../screens/event/invitee/invitee_page.dart';
 import '../screens/create_message/create_message_page.dart';
 import '../screens/create_message/review_message/review_message_page.dart';
@@ -25,8 +26,8 @@ import '../screens/field_service/map_page.dart';
 import '../screens/groups/attendants_page.dart';
 import '../screens/groups/create_group_page.dart';
 import '../screens/groups/groups_page.dart';
-import '../screens/message/chat_messages_page.dart';
-import '../screens/message/message_page.dart';
+import '../screens/chat/chat_messages_page.dart';
+
 import '../screens/notice_of_event/create_return_page.dart';
 import '../screens/notice_of_event/history_page.dart';
 import '../screens/notice_of_event/notice_of_event_summary_page.dart';
@@ -172,12 +173,12 @@ class AppPages {
     GetPage(
       name: Routes.messagePageScreen,
       transition: Transition.cupertino,
-      page: () => MessagePage(),
+      page: () => CreateMessagePage(),
     ),
     GetPage(
       name: Routes.chatMessageScreen,
       transition: Transition.cupertino,
-      page: () => ChatMessagePage(),
+      page: () => ChatPage(),
     ),
 
     //notice of event

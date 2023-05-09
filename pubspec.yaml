@@ -55,13 +55,15 @@ dependencies:
   camera: ^0.10.4
   video_player: ^2.6.1
   fluttertoast: ^8.2.1
-  google_maps_flutter: ^2.2.5
+  
   # on_audio_query: ^2.8.1
   # image_picker: ^0.8.7+4
   path: ^1.6.4
   # flute_music_player: ^0.0.6
   # permission_handler: ^10.2.0
   table_calendar:
+  flutter_map: ^4.0.0
+  latlong2: ^0.8.1
 
 
 

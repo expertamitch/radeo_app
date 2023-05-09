@@ -6,14 +6,14 @@ import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_text.dart';
 
-class MessagePage extends StatefulWidget {
-  const MessagePage({Key? key}) : super(key: key);
+class ChatPage extends StatefulWidget {
+  const ChatPage({Key? key}) : super(key: key);
 
   @override
-  State<MessagePage> createState() => _MessagePageState();
+  State<ChatPage> createState() => _ChatPageState();
 }
 
-class _MessagePageState extends State<MessagePage> {
+class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
