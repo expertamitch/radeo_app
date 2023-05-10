@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-const String fontName = "helvetica_neue";
+const String fontRegular = "helvetica_regular";
+const String fontMedium = "helvetica_medium";
+const String fontBold = "helvetica_bold";
 const double margin = 20;
 
 /*
@@ -13,89 +15,84 @@ const double margin = 20;
 TextStyle w300_10({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 10.sp,
-      fontWeight: FontWeight.w300,
-      color: color,
-      fontFamily: fontName);
+       color: color,
+      fontFamily: fontRegular);
 }
 
 TextStyle w300_13({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 13.sp,
-      fontWeight: FontWeight.w300,
+      
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontRegular);
 }
 
 TextStyle w300_12({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 12.sp,
-      fontWeight: FontWeight.w300,
+      
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontRegular);
 }
 
 TextStyle w300_14({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 14.sp,
-      fontWeight: FontWeight.w300,
+      
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontRegular);
 }
 
 TextStyle w300_15({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 15.sp,
-      fontWeight: FontWeight.w300,
+      
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontRegular);
 }
 
 TextStyle w300_16({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 16.sp,
-      fontWeight: FontWeight.w300,
+      
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontRegular);
 }
 
 TextStyle w300_20({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 20.sp,
-      fontWeight: FontWeight.w300,
+      
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontRegular);
 }
 
 TextStyle w600_14({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 14.sp,
-      fontWeight: FontWeight.w600,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontMedium);
 }
 
 TextStyle w600_35({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 35.sp,
-      fontWeight: FontWeight.w600,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontMedium);
 }
 
 TextStyle w600_12({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 12.sp,
-      fontWeight: FontWeight.w600,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontMedium);
 }
 
 TextStyle w600_16({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 16.sp,
-      fontWeight: FontWeight.w600,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontMedium);
 }
 
 TextStyle w600_20({Color? color = Colors.black}) {
@@ -103,29 +100,26 @@ TextStyle w600_20({Color? color = Colors.black}) {
       fontSize: 20.sp,
       fontWeight: FontWeight.w600,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontBold);
 }
 
-TextStyle w800_16({Color? color = Colors.black}) {
+TextStyle w900_16({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 16.sp,
-      fontWeight: FontWeight.w800,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontBold);
 }
 
 TextStyle w900_15({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 15.sp,
-      fontWeight: FontWeight.w900,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontBold);
 }
 
 TextStyle w900_30({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 30.sp,
-      fontWeight: FontWeight.w900,
       color: color,
-      fontFamily: fontName);
+      fontFamily: fontBold);
 }

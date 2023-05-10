@@ -7,7 +7,7 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
+ 
 import 'package:redeo/widgets/app_button.dart';
 
 class CreateReturnPage extends StatefulWidget {

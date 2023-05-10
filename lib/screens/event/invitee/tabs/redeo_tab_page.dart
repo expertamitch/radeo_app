@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
 import '../../../../styling/font_style_globle.dart';
-import '../../../../widgets/app_text.dart';
+ 
 import '../../../../widgets/image_view.dart';
 
 class RedeoTabPage extends StatefulWidget {

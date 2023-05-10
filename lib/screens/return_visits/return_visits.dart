@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
+ 
 
 class ReturnVisitsPage extends StatefulWidget {
   const ReturnVisitsPage({Key? key}) : super(key: key);

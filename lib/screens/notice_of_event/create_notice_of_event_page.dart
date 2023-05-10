@@ -12,7 +12,7 @@ import '../../get_controller/notice_of_event_controller.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
+ 
 import '../../widgets/colors.dart';
 import 'package:redeo/widgets/app_button.dart';
 

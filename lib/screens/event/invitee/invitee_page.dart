@@ -4,7 +4,7 @@ import 'package:redeo/screens/event/invitee/tabs/contact_tab_page.dart';
 import 'package:redeo/screens/event/invitee/tabs/redeo_tab_page.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import '../../../styling/app_colors.dart';
-import '../../../widgets/app_text.dart';
+ 
 import 'tabs/group_tab_page.dart';
 
 class InviteePage extends StatefulWidget {

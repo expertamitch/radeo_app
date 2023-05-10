@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/styling/app_colors.dart';
-import 'package:redeo/widgets/app_text.dart';
+ 
 import 'package:redeo/widgets/image_view.dart';
 import '../../get_controller/create_messages_controller.dart';
 import 'package:redeo/widgets/app_button.dart';

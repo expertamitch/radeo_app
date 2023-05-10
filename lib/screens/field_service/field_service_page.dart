@@ -6,7 +6,7 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import '../../widgets/app_text.dart';
+ 
 
 class FieldServicePage extends StatefulWidget {
   const FieldServicePage({Key? key}) : super(key: key);

@@ -32,7 +32,7 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
             Text(
               "Welcome to REDEO",
-              style: w800_16(
+              style: w900_16(
                 color: AppColors.purpleColor,
               ),
             ),

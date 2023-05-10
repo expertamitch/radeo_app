@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
-import '../../../../widgets/app_text.dart';
+ 
 import '../../../../widgets/image_view.dart';
 
 class SelectVideoMessagePage extends StatefulWidget {

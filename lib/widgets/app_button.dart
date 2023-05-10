@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:redeo/styling/app_colors.dart';
 
-import 'app_text.dart';
 
 class AppButton extends StatelessWidget {
   final Function onPressedFunction;

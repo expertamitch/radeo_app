@@ -9,7 +9,7 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
-import '../../widgets/app_text.dart';
+ 
 import '../../get_controller/notice_of_event_controller.dart';
 import 'package:redeo/widgets/app_button.dart';
 
