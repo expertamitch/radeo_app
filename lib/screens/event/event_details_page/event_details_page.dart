@@ -95,7 +95,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                           'Event Name',
-                          style: w300_20(
+                          style: w600_20(
                             color: Colors.white,
                           ),
                         ),

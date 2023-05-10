@@ -83,16 +83,14 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
           ),
           Text(
             name,
-            style: w600_12(),
+            style: w600_14(),
           ),
           SizedBox(
             height: 5.h,
           ),
           Text(
             location,
-            style: w300_13(
-              color: Colors.grey,
-            ),
+            style: w300_12(color: AppColors.dark2GreyColor),
           ),
           SizedBox(
             height: 5.h,

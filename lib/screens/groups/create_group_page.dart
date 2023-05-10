@@ -31,7 +31,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Save',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -112,7 +112,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   },
                   child: Text(
                     'Select',
-                    style: w600_12(color: Colors.white),
+                    style: w300_12(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   width: null,
@@ -155,7 +155,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   },
                   child: Text(
                     'Select',
-                    style: w600_12(color: Colors.white),
+                    style: w300_12(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   width: null,

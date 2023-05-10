@@ -20,27 +20,6 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       drawer: appDrawer(),
       appBar: AppBar(),
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     children: [
-      //       // ElevatedButton(onPressed: () {}, child: Text('Reports Page')),
-      //       // ElevatedButton(onPressed: () {}, child: Text('Notice of Event')),
-      //       // ElevatedButton(onPressed: () {}, child: Text('Return Visits Page')),
-      //       // ElevatedButton(onPressed: () {}, child: Text('Event Page')),
-      //       ElevatedButton(
-      //           onPressed: () {
-      //             Get.toNamed(Routes.createMessageScreen);
-      //           },
-      //           child: Text('Create Messages')),
-      //       // ElevatedButton(onPressed: () {}, child: Text('Field Service Page')),
-      //       // ElevatedButton(onPressed: () {}, child: Text('Message Page')),
-      //       // ElevatedButton(onPressed: () {}, child: Text('Do Not Call Page')),
-      //       // ElevatedButton(onPressed: () {}, child: Text('Groups')),
-      //     ],
-      //   ),
-      // ),
     );
   }
 

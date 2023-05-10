@@ -30,7 +30,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Submit',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -82,7 +82,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                         'Event Name',
-                        style: w300_20(
+                        style: w600_20(
                           color: Colors.white,
                         ),
                       ),

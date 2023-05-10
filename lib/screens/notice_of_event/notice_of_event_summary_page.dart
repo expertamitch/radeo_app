@@ -40,7 +40,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                   },
                   child: Text(
                     'Create Return',
-                    style: w600_12(color: Colors.white),
+                    style: w300_12(color: Colors.white),
                   ),
                   height: 30.h,
                   sodiumShapeBorder: true,
@@ -56,7 +56,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                   child: ImageView(
                     path: Images.historyIcon,
                     color: Colors.white,
-                    height: 18,
+                    height: 16,
                   ),
                   height: 30.h,
                   sodiumShapeBorder: true,

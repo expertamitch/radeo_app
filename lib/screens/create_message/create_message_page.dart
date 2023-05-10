@@ -39,7 +39,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   },
                   child: Text(
                     'Review',
-                    style: w600_12(color: Colors.white),
+                    style: w300_12(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   height: 30.h,
@@ -152,7 +152,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Text',
-                                style: w300_15(
+                                style: w300_14(
                                   color: getController.selectedMessageType ==
                                           'Text'
                                       ? AppColors.purpleColor
@@ -194,7 +194,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Audio',
-                                style: w300_15(
+                                style: w300_14(
                                   color: getController.selectedMessageType ==
                                           'Audio'
                                       ? AppColors.purpleColor
@@ -236,7 +236,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Video',
-                                style: w300_15(
+                                style: w300_14(
                                   color: getController.selectedMessageType ==
                                           'Video'
                                       ? AppColors.purpleColor

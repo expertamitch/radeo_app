@@ -36,7 +36,7 @@ class _GroupsPageState extends State<GroupsPage> {
                     },
                     child: Text(
                       'Create Group',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -124,7 +124,10 @@ class _GroupsPageState extends State<GroupsPage> {
                   Text(
                     title,
                     overflow: TextOverflow.ellipsis,
-                    style: w300_14(),
+                    style: w600_14(),
+                  ),
+                  SizedBox(
+                    height: 5.h,
                   ),
                   Text(
                     subtitle,

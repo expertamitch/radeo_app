@@ -67,7 +67,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                     child: Row(children: [
                       Flexible(
                           child: TextFormField(
-                        style: w300_14(),
+                        style: w300_12(),
                         decoration: InputDecoration(
                             hintStyle: w300_14(
                               color: AppColors.dark2GreyColor,
@@ -138,14 +138,14 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
             children: [
               Text(
                 msg,
-                style: w300_14(color: user1Msg ? Colors.white : Colors.black),
+                style: w300_13(color: user1Msg ? Colors.white : Colors.black),
               ),
               SizedBox(
                 height: 10.h,
               ),
               Text(
                 DateFormat('MMM d, yyyy').format(dateTime),
-                style: w300_12(
+                style: w300_13(
                   color: user1Msg ? Colors.white : Colors.grey,
                 ),
               ),

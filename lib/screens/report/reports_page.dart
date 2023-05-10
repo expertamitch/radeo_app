@@ -35,7 +35,7 @@ class _ReportsPageState extends State<ReportsPage> {
                     },
                     child: Text(
                       'Edit',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,
@@ -50,7 +50,7 @@ class _ReportsPageState extends State<ReportsPage> {
                     },
                     child: Text(
                       'Share',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,

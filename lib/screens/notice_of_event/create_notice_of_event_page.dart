@@ -95,7 +95,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                     },
                     child: Text(
                       'Save',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     height: 30,
                     sodiumShapeBorder: true,
@@ -640,6 +640,16 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               children: [
                                 Radio(
                                   value: 1,
+                                  fillColor:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.selected)) {
+                                      return AppColors.purpleColor;
+                                    }
+                                    return AppColors.dark2GreyColor;
+                                  }),
+                                  //  AppColors.purpleColor,
                                   groupValue: controller.attributesStatus,
                                   onChanged: (int? value) {
                                     setState(() {
@@ -661,6 +671,15 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 Radio(
                                   value: 2,
                                   groupValue: controller.attributesStatus,
+                                  fillColor:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.selected)) {
+                                      return AppColors.purpleColor;
+                                    }
+                                    return AppColors.dark2GreyColor;
+                                  }),
                                   onChanged: (int? value) {
                                     setState(() {
                                       controller.attributesStatus = value;
@@ -685,6 +704,15 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 Radio(
                                   value: 3,
                                   groupValue: controller.attributesStatus,
+                                  fillColor:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.selected)) {
+                                      return AppColors.purpleColor;
+                                    }
+                                    return AppColors.dark2GreyColor;
+                                  }),
                                   onChanged: (int? value) {
                                     setState(() {
                                       controller.attributesStatus = value;

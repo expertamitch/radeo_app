@@ -98,6 +98,14 @@ TextStyle w600_16({Color? color = Colors.black}) {
       fontFamily: fontName);
 }
 
+TextStyle w600_20({Color? color = Colors.black}) {
+  return TextStyle(
+      fontSize: 20.sp,
+      fontWeight: FontWeight.w600,
+      color: color,
+      fontFamily: fontName);
+}
+
 TextStyle w800_16({Color? color = Colors.black}) {
   return TextStyle(
       fontSize: 16.sp,

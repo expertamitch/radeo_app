@@ -31,10 +31,11 @@ import '../screens/chat/chat_messages_page.dart';
 import '../screens/notice_of_event/create_return_page.dart';
 import '../screens/notice_of_event/history_page.dart';
 import '../screens/notice_of_event/notice_of_event_summary_page.dart';
-import '../screens/notice_of_event/return_visits.dart';
+
 import '../screens/report/edit_report_page.dart';
 import '../screens/report/reports_page.dart';
 import '../screens/report/share_report_page.dart';
+import '../screens/return_visits/return_visits.dart';
 import '../screens/scan_qr_page/scan_qr_page.dart';
 import '../screens/splash/splash_binding.dart';
 import '../screens/splash/splash_screen.dart';

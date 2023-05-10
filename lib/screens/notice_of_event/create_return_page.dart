@@ -44,7 +44,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Save',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     height: 30.h,
                     sodiumShapeBorder: true,

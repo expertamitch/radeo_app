@@ -107,6 +107,9 @@ class _AttendantsPageState extends State<AttendantsPage> {
                       overflow: TextOverflow.ellipsis,
                       style: w300_14(),
                     ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
                     Text(
                       subtitle,
                       style: w300_12(color: Colors.grey),

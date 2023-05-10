@@ -111,15 +111,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: helvetica_neue
-      fonts:
-        - asset: assets/fonts/regular.otf
-          weight: 300
-        - asset: assets/fonts/medium.otf
-          weight: 600
-        - asset: assets/fonts/bold.ttf
-          weight: 900
+  # fonts:
+  #   - family: helvetica_neue
+  #     fonts:
+  #       - asset: assets/fonts/regular.otf
+  #         weight: 300
+  #       - asset: assets/fonts/medium.otf
+  #         weight: 600
+  #       - asset: assets/fonts/bold.ttf
+  #         weight: 900
 
   #
   # For details regarding fonts from package dependencies,

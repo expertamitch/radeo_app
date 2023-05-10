@@ -85,7 +85,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     Text(
                         DateFormat('h:mm a | EEEE, MMM d, yyyy')
                             .format(dateTime),
-                        style: w300_13()),
+                        style: w600_14()),
                     Text(subTitle,
                         style: w300_13(
                           color: Colors.grey,

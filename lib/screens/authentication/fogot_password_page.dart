@@ -51,7 +51,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.0),
                     child: Text('Please enter your register email address',
-                        style: w600_14(color: Colors.white)),
+                        style: w300_14(color: Colors.white)),
                   ),
                   SizedBox(
                     height: 20.h,

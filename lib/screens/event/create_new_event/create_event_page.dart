@@ -38,7 +38,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Submit',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     sodiumShapeBorder: true,
                     width: null,
@@ -379,6 +379,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                                   BorderRadius.circular(8)),
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 8),
+                                          alignment: Alignment.center,
                                           child: Text(
                                             'Once a Week',
                                             style: w300_13(
@@ -408,6 +409,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                                   BorderRadius.circular(8)),
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 8),
+                                          alignment: Alignment.center,
                                           child: Text(
                                             'Once a Month',
                                             style: w300_13(
@@ -437,6 +439,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                                   BorderRadius.circular(8)),
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 8),
+                                          alignment: Alignment.center,
                                           child: Text(
                                             'Once a Year',
                                             style: w300_13(
