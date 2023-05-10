@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
- 
 
 import '../../../widgets/image_view.dart';
 
@@ -44,7 +43,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                   backIconColor: Colors.black,
                   centerTitle: 'Select Audio',
                   textStyle: w600_14(),
-                  centerTitleStyle: w600_16(),
+                  centerTitleStyle: w900_16(),
                   backIcon:
                       Platform.isAndroid ? Icons.arrow_back_outlined : null,
                   onChanged: (text) {
@@ -129,12 +128,15 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                 children: [
                   Text(
                     title,
-                    style: w300_14(),
+                    style: w300_13(),
                     overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    height: 3.h,
                   ),
                   Text(
                     duration + '  ' + size,
-                    style: w300_12(color: AppColors.dark2GreyColor),
+                    style: w300_13(color: AppColors.dark2GreyColor),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

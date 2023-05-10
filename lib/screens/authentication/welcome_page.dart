@@ -56,7 +56,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 },
                 child: Text(
                   'Login Now',
-                  style: w600_14(color: Colors.white),
+                  style: w900_15(color: Colors.white),
                 ),
                 height: 50.h,
                 buttonColor: AppColors.purpleColor),
@@ -69,7 +69,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 },
                 child: Text(
                   'Register Now',
-                  style: w600_14(color: Colors.white),
+                  style: w900_15(color: Colors.white),
                 ),
                 height: 50.h,
                 buttonColor: AppColors.blueColor),
@@ -86,7 +86,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 Text(
                   'Or login with',
-                  style: w300_12(),
+                  style: w600_12(),
                 ),
                 SizedBox(
                   width: 10.w,
@@ -119,7 +119,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                         Text(
                           'Google',
-                          style: w300_12(),
+                          style: w600_12(),
                         )
                       ],
                     ),
@@ -146,7 +146,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                         Text(
                           'Facebook',
-                          style: w300_12(),
+                          style: w600_12(),
                         )
                       ],
                     ),

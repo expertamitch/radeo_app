@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
- 
+
 import '../../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -82,7 +82,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                         'Event Name',
-                        style: w600_20(
+                        style: w900_18(
                           color: Colors.white,
                         ),
                       ),
@@ -91,7 +91,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                         '27 Apr 2023, 3:17 PM',
-                        style: w300_14(
+                        style: w300_13(
                           color: Colors.white,
                         ),
                       ),
@@ -100,7 +100,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                       ),
                       Text(
                         '2006 Chapmans Lane, San Francisco, California',
-                        style: w300_14(
+                        style: w300_13(
                           color: Colors.white,
                         ),
                       ),
@@ -143,7 +143,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                 Center(
                   child: Text(
                     'Requested by John Doe',
-                    style: w300_13(
+                    style: w600_12(
                       color: AppColors.blueColor,
                     ),
                   ),
@@ -160,7 +160,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                   child: Row(children: [
                     Text(
                       'RESERVE MY SPOT',
-                      style: w300_13(color: Colors.white),
+                      style: w600_12(color: Colors.white),
                     ),
                     Expanded(
                         child: SizedBox(
@@ -174,7 +174,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       child: Text(
                         'No',
-                        style: w300_13(color: Colors.white),
+                        style: w600_12(color: Colors.white),
                       ),
                     ),
                     SizedBox(
@@ -188,7 +188,7 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       child: Text(
                         'Yes',
-                        style: w300_13(color: Colors.white),
+                        style: w600_12(color: Colors.white),
                       ),
                     )
                   ]),
@@ -211,11 +211,9 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                               ),
                             ),
                             TextFormField(
-                              style: w300_14(),
+                              style: w300_13(),
                               decoration: InputDecoration(
-                                  hintStyle: w300_14(
-                                    color: AppColors.dark2GreyColor,
-                                  ),
+                                  hintStyle: w300_13(),
                                   border: InputBorder.none,
                                   hintText: 'Enter Name'),
                             ),
@@ -245,11 +243,9 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                         ),
                       ),
                       TextFormField(
-                        style: w300_14(),
+                        style: w300_13(),
                         decoration: InputDecoration(
-                            hintStyle: w300_14(
-                              color: AppColors.dark2GreyColor,
-                            ),
+                            hintStyle: w300_13(),
                             border: InputBorder.none,
                             hintText: '00'),
                       ),
@@ -275,10 +271,10 @@ class _EditEventDetailsPageState extends State<EditEventDetailsPage> {
                         height: 10.h,
                       ),
                       TextFormField(
-                        style: w300_14(),
+                        style: w300_13(),
                         maxLines: 4,
                         decoration: InputDecoration(
-                            hintStyle: w300_14(
+                            hintStyle: w300_13(
                               color: AppColors.dark2GreyColor,
                             ),
                             hintText: 'Enter Needs Here…',

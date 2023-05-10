@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
- 
+
 import '../../../../widgets/image_view.dart';
 
 class SelectVideoMessagePage extends StatefulWidget {
@@ -59,7 +59,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                 backIconColor: Colors.black,
                 centerTitle: 'Select Video',
                 textStyle: w600_14(),
-                centerTitleStyle: w600_16(),
+                centerTitleStyle: w900_16(),
                 backIcon: Platform.isAndroid ? Icons.arrow_back_outlined : null,
                 onChanged: (text) {
                   setState(() {});
@@ -214,7 +214,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                                             Text(
                                               allVideosData
                                                   .elementAt(index)['name'],
-                                              style: w600_14(),
+                                              style: w300_13(),
                                               overflow: TextOverflow.ellipsis,
                                             )
                                           ],

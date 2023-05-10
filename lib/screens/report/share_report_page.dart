@@ -39,7 +39,7 @@ class _ShareReportsPageState extends State<ShareReportsPage> {
                 onPressedFunction: () {},
                 child: Text(
                   'Send Event Invite',
-                  style: w600_14(color: Colors.white),
+                  style: w900_14(color: Colors.white),
                 ),
                 height: 50.h,
                 buttonColor: AppColors.purpleColor),
@@ -50,7 +50,7 @@ class _ShareReportsPageState extends State<ShareReportsPage> {
                 onPressedFunction: () {},
                 child: Text(
                   'Send Message',
-                  style: w600_14(color: Colors.white),
+                  style: w900_14(color: Colors.white),
                 ),
                 height: 50.h,
                 buttonColor: AppColors.blueColor),

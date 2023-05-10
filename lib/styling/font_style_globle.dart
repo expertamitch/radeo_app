@@ -52,6 +52,10 @@ TextStyle w600_12({Color? color = Colors.black}) {
   return TextStyle(fontSize: 12.sp, color: color, fontFamily: fontMedium);
 }
 
+TextStyle w600_13({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 13.sp, color: color, fontFamily: fontMedium);
+}
+
 TextStyle w600_16({Color? color = Colors.black}) {
   return TextStyle(fontSize: 16.sp, color: color, fontFamily: fontMedium);
 }
@@ -64,14 +68,38 @@ TextStyle w600_20({Color? color = Colors.black}) {
       fontFamily: fontBold);
 }
 
-TextStyle w900_16({Color? color = Colors.black}) {
-  return TextStyle(fontSize: 16.sp, color: color, fontFamily: fontBold);
+TextStyle w900_11({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 11.sp, color: color, fontFamily: fontBold);
+}
+
+TextStyle w900_12({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 12.sp, color: color, fontFamily: fontBold);
+}
+
+TextStyle w900_14({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 14.sp, color: color, fontFamily: fontBold);
 }
 
 TextStyle w900_15({Color? color = Colors.black}) {
   return TextStyle(fontSize: 15.sp, color: color, fontFamily: fontBold);
 }
 
+TextStyle w900_16({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 16.sp, color: color, fontFamily: fontBold);
+}
+
+TextStyle w900_18({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 18.sp, color: color, fontFamily: fontBold);
+}
+
+TextStyle w900_20({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 20.sp, color: color, fontFamily: fontBold);
+}
+
 TextStyle w900_30({Color? color = Colors.black}) {
   return TextStyle(fontSize: 30.sp, color: color, fontFamily: fontBold);
+}
+
+TextStyle w900_35({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 35.sp, color: color, fontFamily: fontBold);
 }

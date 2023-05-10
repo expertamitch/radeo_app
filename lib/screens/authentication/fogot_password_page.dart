@@ -43,7 +43,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.0),
                     child: Text('Forgot your Password',
-                        style: w600_35(color: Colors.white)),
+                        style: w900_35(color: Colors.white)),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -67,7 +67,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               child: Column(
                 children: [
                   TextFormField(
-                    style: w300_14(),
+                    style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     controller: usernameController,
                   ),
@@ -80,7 +80,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       onPressedFunction: () {},
                       child: Text(
                         'Submit Now',
-                        style: w600_14(color: Colors.white),
+                        style: w900_15(color: Colors.white),
                       )),
                   Expanded(
                     child: SizedBox(
@@ -98,7 +98,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           Get.toNamed(Routes.registerScreen);
                         },
                         child: Text('Register Now',
-                            style: w600_12(
+                            style: w900_12(
                               color: AppColors.purpleColor,
                             )),
                       ),

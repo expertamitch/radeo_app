@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
 import '../../route/routes.dart';
@@ -39,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
                   itemCount: 2,
                   itemBuilder: (context, index) {
                     return messageListTile(
-                      dateTime: DateTime.now(),
+                      isNewMsg: index == 0 ? true : false,
                       title: 'John Doe',
                       subtitle:
                           '2006 Chapmans Lane, San Francisc 2006 Chapmans Lane, San Franciscoo…',
@@ -51,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   messageListTile({
-    required DateTime dateTime,
+    required bool isNewMsg,
     required String title,
     required String subtitle,
     required String timeAgo,
@@ -67,7 +68,7 @@ class _ChatPageState extends State<ChatPage> {
           backgroundColor: AppColors.purpleColor,
           child: Text(
             getInitials(title),
-            style: w600_12(
+            style: w900_12(
               color: Colors.white,
             ),
           ),
@@ -80,22 +81,27 @@ class _ChatPageState extends State<ChatPage> {
               child: Text(
                 title,
                 overflow: TextOverflow.ellipsis,
-                style: w600_14(),
+                style: w900_14(),
               ),
             ),
             Text(
               timeAgo,
-              style: w300_12(),
+              style: isNewMsg ? w900_12() : w300_12(),
             ),
           ],
         ),
-        subtitle: Text(
-          subtitle,
-          style: w300_12(
-            color: Colors.grey,
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Text(
+            subtitle,
+            style: isNewMsg
+                ? w900_12()
+                : w300_12(
+                    color: Colors.grey,
+                  ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
         ),
       ),
     );

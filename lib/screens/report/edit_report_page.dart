@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../styling/font_style_globle.dart';
- 
+
 import 'package:redeo/widgets/app_button.dart';
 
 class EditReportsPage extends StatefulWidget {
@@ -86,8 +86,8 @@ class _EditReportsPageState extends State<EditReportsPage> {
                     outsideDaysVisible: false,
                     defaultTextStyle: w300_14(),
                     weekendTextStyle: w300_14(color: Colors.black),
-                    selectedTextStyle: w300_14(color: Colors.blue),
-                    todayTextStyle: w300_14(color: Colors.blue),
+                    selectedTextStyle: w600_16(color: Colors.blue),
+                    todayTextStyle: w600_16(color: Colors.blue),
                     todayDecoration: BoxDecoration(
                         color: AppColors.lightBlueColor,
                         shape: BoxShape.circle),
@@ -120,7 +120,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                         children: [
                           Text(
                             'Time',
-                            style: w600_14(),
+                            style: w600_13(),
                           ),
                           Text(
                             '24:30',
@@ -139,7 +139,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                         children: [
                           Text(
                             'Return Visits',
-                            style: w600_14(),
+                            style: w600_13(),
                           ),
                           Text(
                             '6',
@@ -158,7 +158,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                         children: [
                           Text(
                             'Bible Studies',
-                            style: w600_14(),
+                            style: w600_13(),
                           ),
                           Text(
                             '6',
@@ -177,7 +177,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                         children: [
                           Text(
                             'Return Visits',
-                            style: w600_14(),
+                            style: w600_13(),
                           ),
                           Text(
                             '2',
@@ -196,7 +196,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                         children: [
                           Text(
                             'Magazines',
-                            style: w600_14(),
+                            style: w600_13(),
                           ),
                           Text(
                             '10',
@@ -215,7 +215,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                         children: [
                           Text(
                             'Brochures',
-                            style: w600_14(),
+                            style: w600_13(),
                           ),
                           Text(
                             '15',
@@ -234,7 +234,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                         children: [
                           Text(
                             'Videos',
-                            style: w600_14(),
+                            style: w600_13(),
                           ),
                           Text(
                             '3',

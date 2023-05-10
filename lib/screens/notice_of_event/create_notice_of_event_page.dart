@@ -12,7 +12,7 @@ import '../../get_controller/notice_of_event_controller.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
+
 import '../../widgets/colors.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -143,11 +143,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       children: [
                         Flexible(
                           child: TextFormField(
-                            style: w300_14(),
+                            style: w300_13(),
                             decoration: InputDecoration(
-                                hintStyle: w300_14(
-                                  color: AppColors.dark2GreyColor,
-                                ),
+                                hintStyle: w300_13(),
                                 hintText: 'Name',
                                 contentPadding: EdgeInsets.zero,
                                 border: InputBorder.none),
@@ -206,11 +204,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     TextFormField(
-                      style: w300_14(),
+                      style: w300_13(),
                       decoration: InputDecoration(
-                          hintStyle: w300_14(
-                            color: AppColors.dark2GreyColor,
-                          ),
+                          hintStyle: w300_13(),
                           hintText: 'Location',
                           contentPadding: EdgeInsets.zero,
                           border: InputBorder.none),
@@ -238,11 +234,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     TextFormField(
-                      style: w300_14(),
+                      style: w300_13(),
                       decoration: InputDecoration(
-                          hintStyle: w300_14(
-                            color: AppColors.dark2GreyColor,
-                          ),
+                          hintStyle: w300_13(),
                           hintText: 'Email',
                           contentPadding: EdgeInsets.zero,
                           border: InputBorder.none),
@@ -270,11 +264,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     TextFormField(
-                      style: w300_14(),
+                      style: w300_13(),
                       decoration: InputDecoration(
-                          hintStyle: w300_14(
-                            color: AppColors.dark2GreyColor,
-                          ),
+                          hintStyle: w300_13(),
                           hintText: 'Telephone',
                           contentPadding: EdgeInsets.zero,
                           border: InputBorder.none),
@@ -363,16 +355,13 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(controller.selectedDate!),
-                            style: w300_14(
-                                color: controller.selectedDate == null
-                                    ? AppColors.dark2GreyColor
-                                    : Colors.black),
+                            style: w300_13(),
                           ),
                           if (controller.selectedDate != null)
                             Text(
                               DateFormat('h:mm a')
                                   .format(controller.selectedDate!),
-                              style: w300_14(),
+                              style: w300_13(),
                             ),
                         ],
                       ),
@@ -390,6 +379,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 10.h,
+              ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),
               SizedBox(
                 height: 10.h,
@@ -406,11 +398,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       ),
                     ),
                     TextFormField(
-                      style: w300_14(),
+                      style: w300_13(),
                       decoration: InputDecoration(
-                          hintStyle: w300_14(
-                            color: AppColors.dark2GreyColor,
-                          ),
+                          hintStyle: w300_13(),
                           hintText: 'Territory',
                           contentPadding: EdgeInsets.zero,
                           border: InputBorder.none),
@@ -452,7 +442,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                               ? AppColors.purpleColor
                                               : AppColors.greyColor),
                                   borderRadius: BorderRadius.circular(8)),
-                              width: 90,
+                              width: 75,
                               padding: EdgeInsets.symmetric(
                                 vertical: 8,
                               ),
@@ -461,7 +451,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Scripture',
-                                    style: w600_12(),
+                                    style: w300_10(
+                                        color: controller.noticeTypes ==
+                                                'Scripture'
+                                            ? AppColors.purpleColor
+                                            : Colors.black),
                                   ),
                                 ],
                               ),
@@ -482,7 +476,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                               ? AppColors.purpleColor
                                               : AppColors.greyColor),
                                   borderRadius: BorderRadius.circular(8)),
-                              width: 90,
+                              width: 75,
                               padding: EdgeInsets.symmetric(
                                 vertical: 8,
                               ),
@@ -491,7 +485,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Magazine',
-                                    style: w600_12(),
+                                    style: w300_10(
+                                        color:
+                                            controller.noticeTypes == 'Magazine'
+                                                ? AppColors.purpleColor
+                                                : Colors.black),
                                   ),
                                 ],
                               ),
@@ -511,7 +509,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                           ? AppColors.purpleColor
                                           : AppColors.greyColor),
                                   borderRadius: BorderRadius.circular(8)),
-                              width: 90,
+                              width: 75,
                               padding: EdgeInsets.symmetric(
                                 vertical: 8,
                               ),
@@ -520,7 +518,10 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Video',
-                                    style: w600_12(),
+                                    style: w300_10(
+                                        color: controller.noticeTypes == 'Video'
+                                            ? AppColors.purpleColor
+                                            : Colors.black),
                                   ),
                                 ],
                               ),
@@ -540,7 +541,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                           ? AppColors.purpleColor
                                           : AppColors.greyColor),
                                   borderRadius: BorderRadius.circular(8)),
-                              width: 90,
+                              width: 75,
                               padding: EdgeInsets.symmetric(
                                 vertical: 8,
                               ),
@@ -549,7 +550,10 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 children: [
                                   Text(
                                     'Other',
-                                    style: w600_12(),
+                                    style: w300_10(
+                                        color: controller.noticeTypes == 'Other'
+                                            ? AppColors.purpleColor
+                                            : Colors.black),
                                   ),
                                 ],
                               ),
@@ -573,14 +577,15 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                     ),
                     if (controller.noticeTypes.isNotEmpty)
                       TextFormField(
-                        style: w300_14(),
+                        style: w300_12(),
                         decoration: InputDecoration(
-                            hintStyle: w300_14(
+                            hintStyle: w300_12(
                               color: AppColors.dark2GreyColor,
                             ),
                             hintText: controller.noticeTypes + ' Name',
                             fillColor: AppColors.lightGreyColor,
                             filled: true,
+                            isDense: true,
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -665,7 +670,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   }),
                                   child: Text(
                                     'Single',
-                                    style: w300_14(),
+                                    style: w300_13(),
                                   ),
                                 ),
                                 Radio(
@@ -694,7 +699,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   }),
                                   child: Text(
                                     'Married',
-                                    style: w300_14(),
+                                    style: w300_13(),
                                   ),
                                 ),
                               ],
@@ -727,7 +732,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   }),
                                   child: Text(
                                     'Divorced',
-                                    style: w300_14(),
+                                    style: w300_13(),
                                   ),
                                 ),
                               ],
@@ -781,7 +786,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Text(
                                   'Boy',
-                                  style: w600_14(),
+                                  style: w300_13(),
                                 ),
                               ),
                               Expanded(
@@ -796,11 +801,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   controller: controller.boysController,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  style: w300_12(),
+                                  style: w300_13(),
                                   decoration: InputDecoration(
-                                      hintStyle: w300_14(
-                                        color: AppColors.dark2GreyColor,
-                                      ),
+                                      hintStyle: w300_13(),
                                       isDense: true,
                                       contentPadding: EdgeInsets.zero,
                                       labelText: '',
@@ -832,7 +835,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Text(
                                   'Girl',
-                                  style: w600_14(),
+                                  style: w300_13(),
                                 ),
                               ),
                               Expanded(
@@ -847,11 +850,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                   controller: controller.girlsController,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  style: w300_12(),
+                                  style: w300_13(),
                                   decoration: InputDecoration(
-                                      hintStyle: w300_14(
-                                        color: AppColors.dark2GreyColor,
-                                      ),
+                                      hintStyle: w300_13(),
                                       isDense: true,
                                       contentPadding: EdgeInsets.zero,
                                       labelText: '',
@@ -873,15 +874,16 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: SizedBox(
-                        width:
-                            (MediaQuery.of(context).size.width * 0.35 * 2 + 10)
-                                .w,
+                        width: ((MediaQuery.of(context).size.width * 0.35) * 2 -
+                                10)
+                            .w,
                         child: TextFormField(
                           maxLines: 4,
                           controller: controller.noteController,
-                          style: w300_14(),
+                          style: w300_13(),
                           decoration: inputDecoration.copyWith(
                               hintText: 'Notes',
+                              hintStyle: TextStyle(fontStyle: FontStyle.italic),
                               fillColor: AppColors.lightGreyColor,
                               filled: true,
                               enabledBorder: OutlineInputBorder(
@@ -1023,16 +1025,13 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(controller.setReturnVisitDate!),
-                            style: w300_14(
-                                color: controller.setReturnVisitDate == null
-                                    ? AppColors.dark2GreyColor
-                                    : Colors.black),
+                            style: w300_13(),
                           ),
                           if (controller.setReturnVisitDate != null)
                             Text(
                               DateFormat('h:mm a')
                                   .format(controller.setReturnVisitDate!),
-                              style: w300_14(),
+                              style: w300_13(),
                             ),
                         ],
                       ),
@@ -1065,7 +1064,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         ),
                         hint: Text(
                           'Select',
-                          style: w300_14(color: AppColors.dark2GreyColor),
+                          style: w300_13(),
                         ),
                         items: <String>[
                           'Everyday',
@@ -1077,7 +1076,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             value: value,
                             child: Text(
                               value,
-                              style: w300_15(),
+                              style: w300_13(),
                             ),
                           );
                         }).toList(),
@@ -1105,7 +1104,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                         value: controller.selectedNotifyMe,
                         hint: Text(
                           'Notify Me',
-                          style: w300_14(color: AppColors.dark2GreyColor),
+                          style: w300_13(),
                         ),
                         items: <String>[
                           'Everyday',
@@ -1117,7 +1116,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             value: value,
                             child: Text(
                               value,
-                              style: w300_15(),
+                              style: w300_13(),
                             ),
                           );
                         }).toList(),
@@ -1138,7 +1137,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
                             'Notify Joe',
-                            style: w300_14(),
+                            style: w300_13(),
                           ),
                         ),
                         Transform.scale(
@@ -1199,7 +1198,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           }),
                           child: Text(
                             'Open for encouragment',
-                            style: w300_14(),
+                            style: w300_13(),
                           ),
                         ),
                       ],
@@ -1224,7 +1223,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                           }),
                           child: Text(
                             'Don not contract',
-                            style: w300_14(),
+                            style: w300_13(),
                           ),
                         ),
                       ],

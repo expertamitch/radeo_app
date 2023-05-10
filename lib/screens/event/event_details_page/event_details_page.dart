@@ -7,7 +7,7 @@ import '../../../assets/images.dart';
 import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
- 
+
 import '../../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -19,8 +19,6 @@ class EventDetailsPage extends StatefulWidget {
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +93,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                           'Event Name',
-                          style: w600_20(
+                          style: w900_18(
                             color: Colors.white,
                           ),
                         ),
@@ -104,7 +102,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                           '27 Apr 2023, 3:17 PM',
-                          style: w300_14(
+                          style: w300_13(
                             color: Colors.white,
                           ),
                         ),
@@ -113,7 +111,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                         Text(
                           '2006 Chapmans Lane, San Francisco, California',
-                          style: w300_14(
+                          style: w300_13(
                             color: Colors.white,
                           ),
                         ),
@@ -157,7 +155,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     children: [
                       Text(
                         'Client List',
-                        style: w600_16(
+                        style: w900_16(
                           color: Colors.black,
                         ),
                       ),
@@ -192,13 +190,13 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         SizedBox(width: 15.w),
                         Flexible(
                             child: TextFormField(
-                          style: w300_14(),
+                          style: w300_13(),
                           decoration: InputDecoration(
-                              hintStyle: w300_14(
+                              hintStyle: w300_13(
                                 color: AppColors.dark2GreyColor,
                               ),
                               border: InputBorder.none,
-                              hintText: 'Serach Clients...',
+                              hintText: 'Search Clients...',
                               isDense: true),
                         ))
                       ],

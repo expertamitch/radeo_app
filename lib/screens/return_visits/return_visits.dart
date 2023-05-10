@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
 
 class ReturnVisitsPage extends StatefulWidget {
   const ReturnVisitsPage({Key? key}) : super(key: key);
@@ -68,7 +67,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
             children: [
               Text(
                 DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
-                style: w600_12(
+                style: w900_12(
                   color: AppColors.purpleColor,
                 ),
               ),
@@ -83,14 +82,14 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
           ),
           Text(
             name,
-            style: w600_14(),
+            style: w600_16(),
           ),
           SizedBox(
             height: 5.h,
           ),
           Text(
             location,
-            style: w300_12(color: AppColors.dark2GreyColor),
+            style: w300_13(color: AppColors.dark2GreyColor),
           ),
           SizedBox(
             height: 5.h,

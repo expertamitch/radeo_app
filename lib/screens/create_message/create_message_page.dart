@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/styling/app_colors.dart';
- 
+
 import 'package:redeo/widgets/image_view.dart';
 import '../../get_controller/create_messages_controller.dart';
 import 'package:redeo/widgets/app_button.dart';
@@ -39,7 +39,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   },
                   child: Text(
                     'Review',
-                    style: w300_12(color: Colors.white),
+                    style: w300_13(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   height: 30.h,
@@ -79,11 +79,9 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                     ),
                   ),
                   TextFormField(
-                    style: w300_14(),
+                    style: w300_13(),
                     decoration: InputDecoration(
-                        labelStyle: w300_14(
-                          color: AppColors.dark2GreyColor,
-                        ),
+                        hintStyle: w300_13(),
                         hintText: 'Select Location',
                         border: InputBorder.none,
                         prefixIconConstraints:
@@ -152,7 +150,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Text',
-                                style: w300_14(
+                                style: w300_13(
                                   color: getController.selectedMessageType ==
                                           'Text'
                                       ? AppColors.purpleColor
@@ -194,7 +192,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Audio',
-                                style: w300_14(
+                                style: w300_13(
                                   color: getController.selectedMessageType ==
                                           'Audio'
                                       ? AppColors.purpleColor
@@ -236,7 +234,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               ),
                               Text(
                                 'Video',
-                                style: w300_14(
+                                style: w300_13(
                                   color: getController.selectedMessageType ==
                                           'Video'
                                       ? AppColors.purpleColor
@@ -365,7 +363,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 alignment: Alignment.center,
                 child: Text(
                   'Open',
-                  style: w300_14(
+                  style: w300_13(
                     color: getController.selectedResponseType == 'Open'
                         ? AppColors.purpleColor
                         : Colors.black,
@@ -393,7 +391,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 alignment: Alignment.center,
                 child: Text(
                   'Custom',
-                  style: w300_14(
+                  style: w300_13(
                     color: getController.selectedResponseType == 'Custom'
                         ? AppColors.purpleColor
                         : Colors.black,
@@ -413,7 +411,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
               onPressed: () {},
               child: Text(
                 '+ Add New',
-                style: w600_12(
+                style: w900_12(
                   color: AppColors.purpleColor,
                 ),
               )),
@@ -446,7 +444,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         Flexible(
           child: Text(
             r['title'],
-            style: w300_14(),
+            style: w300_13(),
           ),
         )
       ],

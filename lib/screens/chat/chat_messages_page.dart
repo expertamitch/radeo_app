@@ -61,13 +61,13 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                        color: AppColors.lightGreyColor,
+                        color: AppColors.darkGreyColor,
                         borderRadius: BorderRadius.circular(22)),
                     padding: EdgeInsets.all(8),
                     child: Row(children: [
                       Flexible(
                           child: TextFormField(
-                        style: w300_12(),
+                        style: w300_14(),
                         decoration: InputDecoration(
                             hintStyle: w300_14(
                               color: AppColors.dark2GreyColor,
@@ -144,7 +144,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                 height: 10.h,
               ),
               Text(
-                DateFormat('MMM d, yyyy').format(dateTime),
+                DateFormat('h:mm a').format(dateTime).toLowerCase(),
                 style: w300_13(
                   color: user1Msg ? Colors.white : Colors.grey,
                 ),

@@ -65,7 +65,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.0),
                     child: Text('OTP Verification',
-                        style: w600_35(color: Colors.white)),
+                        style: w900_35(color: Colors.white)),
                   ),
                 ),
                 SizedBox(
@@ -119,11 +119,11 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                     Text('Send code in ', style: w300_14()),
                     sendOtpSecondsCountdown != 0
                         ? Text('00:${sendOtpSecondsCountdown}',
-                            style: w600_14())
+                            style: w900_14())
                         : GestureDetector(
                             onTap: () {},
                             child: Text('Get OTP',
-                                style: w600_14(color: AppColors.blueColor))),
+                                style: w900_14(color: AppColors.blueColor))),
                   ],
                 ),
                 SizedBox(
@@ -135,7 +135,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                     },
                     child: Text(
                       'Verfy OTP',
-                      style: w600_14(color: Colors.white),
+                      style: w900_15(color: Colors.white),
                     ),
                     height: 50.h,
                     buttonColor: AppColors.purpleColor),

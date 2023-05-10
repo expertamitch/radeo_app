@@ -6,7 +6,6 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
 
 class FieldServicePage extends StatefulWidget {
   const FieldServicePage({Key? key}) : super(key: key);
@@ -75,13 +74,13 @@ class _FieldServicePageState extends State<FieldServicePage> {
           minLeadingWidth: 10,
           title: Text(
             location,
-            style: w600_12(),
+            style: w300_12(),
           ),
           subtitle: Padding(
             padding: EdgeInsets.only(top: 5),
             child: Text(
               DateFormat('dd MMM yyyy').format(dateTime),
-              style: w300_12(color: AppColors.dark2GreyColor),
+              style: w300_10(color: AppColors.dark2GreyColor),
             ),
           ),
         ),

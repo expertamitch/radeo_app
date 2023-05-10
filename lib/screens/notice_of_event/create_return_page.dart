@@ -7,7 +7,7 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
+
 import 'package:redeo/widgets/app_button.dart';
 
 class CreateReturnPage extends StatefulWidget {
@@ -88,11 +88,9 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       ),
                     ),
                     TextFormField(
-                      style: w300_14(),
+                      style: w300_13(),
                       decoration: InputDecoration(
-                          hintStyle: w300_14(
-                            color: AppColors.dark2GreyColor,
-                          ),
+                          hintStyle: w300_13(),
                           hintText: 'Enter Details',
                           contentPadding: EdgeInsets.zero,
                           border: InputBorder.none),
@@ -180,15 +178,12 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                                 ? 'Select date'
                                 : DateFormat('EEEE, MMM d, yyyy')
                                     .format(setReturnVisitDate!),
-                            style: w300_14(
-                                color: setReturnVisitDate == null
-                                    ? AppColors.dark2GreyColor
-                                    : Colors.black),
+                            style: w300_13(),
                           ),
                           if (setReturnVisitDate != null)
                             Text(
                               DateFormat('h:mm a').format(setReturnVisitDate!),
-                              style: w300_14(color: Colors.black),
+                              style: w300_13(),
                             ),
                         ],
                       ),
@@ -221,7 +216,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         value: selectedTimePeroid,
                         hint: Text(
                           'Select',
-                          style: w300_14(color: AppColors.dark2GreyColor),
+                          style: w300_13(),
                         ),
                         items: <String>[
                           'Everyday',
@@ -233,7 +228,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                             value: value,
                             child: Text(
                               value,
-                              style: w300_15(),
+                              style: w300_13(),
                             ),
                           );
                         }).toList(),
@@ -261,7 +256,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         value: selectedNotifyMe,
                         hint: Text(
                           'Notify Me',
-                          style: w300_14(color: AppColors.dark2GreyColor),
+                          style: w300_13(),
                         ),
                         items: <String>[
                           'Everyday',
@@ -273,7 +268,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                             value: value,
                             child: Text(
                               value,
-                              style: w300_15(),
+                              style: w300_13(),
                             ),
                           );
                         }).toList(),
@@ -294,7 +289,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
                             'Notify Joe',
-                            style: w300_14(),
+                            style: w300_13(),
                           ),
                         ),
                         Transform.scale(
@@ -331,7 +326,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                     ),
                     Text(
                       'Status',
-                      style: w600_14(),
+                      style: w600_13(),
                     ),
                     Row(
                       children: [
@@ -353,7 +348,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                           }),
                           child: Text(
                             'Open for encouragment',
-                            style: w300_14(),
+                            style: w300_13(),
                           ),
                         ),
                       ],
@@ -378,7 +373,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                           }),
                           child: Text(
                             'All Set',
-                            style: w300_14(),
+                            style: w300_13(),
                           ),
                         ),
                       ],

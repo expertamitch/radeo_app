@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
- 
 
 import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
@@ -84,11 +83,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     ),
                                   ),
                                   TextFormField(
-                                    style: w300_14(),
+                                    style: w300_13(),
                                     decoration: InputDecoration(
-                                        hintStyle: w300_14(
-                                          color: AppColors.dark2GreyColor,
-                                        ),
+                                        hintStyle: w300_13(),
                                         hintText: 'Event Name',
                                         contentPadding: EdgeInsets.zero,
                                         border: InputBorder.none),
@@ -190,15 +187,13 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               ? 'Select date'
                                               : DateFormat('EEEE, MMM d, yyyy')
                                                   .format(selectedDate!),
-                                          // textSize: 16,
-                                          style: w300_14(
-                                              color: AppColors.dark2GreyColor),
+                                          style: w300_13(),
                                         ),
                                         if (selectedDate != null)
                                           Text(
                                             DateFormat('h:mm a')
                                                 .format(selectedDate!),
-                                            style: w300_14(),
+                                            style: w300_13(),
                                           ),
                                       ],
                                     ),
@@ -226,11 +221,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     ),
                                   ),
                                   TextFormField(
-                                    style: w300_14(),
+                                    style: w300_13(),
                                     decoration: InputDecoration(
-                                        hintStyle: w300_14(
-                                          color: AppColors.dark2GreyColor,
-                                        ),
+                                        hintStyle: w300_13(),
                                         hintText: 'Enter Location',
                                         contentPadding: EdgeInsets.zero,
                                         border: InputBorder.none),
@@ -251,7 +244,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Description',
+                                    'Event Description',
                                     style: w300_13(
                                       color: AppColors.blueColor,
                                     ),
@@ -260,10 +253,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     height: 10.h,
                                   ),
                                   TextFormField(
-                                    style: w300_14(),
+                                    style: w300_13(),
                                     maxLines: 4,
                                     decoration: InputDecoration(
-                                        hintStyle: w300_14(
+                                        hintStyle: w300_13(
                                           color: AppColors.dark2GreyColor,
                                         ),
                                         hintText: 'Enter Description…',
@@ -325,8 +318,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     },
                                     child: Text(
                                       'Select Groups, Redeo Contacts, Contacts',
-                                      style: w300_14(
-                                          color: AppColors.dark2GreyColor),
+                                      style: w300_13(),
                                     ),
                                   ),
                                 ],

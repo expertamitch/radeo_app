@@ -6,7 +6,6 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
@@ -85,9 +84,12 @@ class _HistoryPageState extends State<HistoryPage> {
                     Text(
                         DateFormat('h:mm a | EEEE, MMM d, yyyy')
                             .format(dateTime),
-                        style: w600_14()),
+                        style: w300_13()),
+                    SizedBox(
+                      height: 4.h,
+                    ),
                     Text(subTitle,
-                        style: w300_13(
+                        style: w300_12(
                           color: Colors.grey,
                         )),
                   ],

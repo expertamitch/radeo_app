@@ -7,7 +7,7 @@ import 'package:redeo/styling/font_style_globle.dart';
 import '../../../assets/images.dart';
 import '../../../get_controller/create_messages_controller.dart';
 import '../../../styling/app_colors.dart';
- 
+
 import '../../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -34,7 +34,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                     onPressedFunction: () {},
                     child: Text(
                       'Submit',
-                      style: w600_12(color: Colors.white),
+                      style: w300_12(color: Colors.white),
                     ),
                     sodiumShapeBorder: true,
                     width: null,
@@ -79,7 +79,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
               child: PrettyQr(
                 // image: AssetImage('images/twitter.png'),
                 typeNumber: 3,
-                size: 100,
+                size: 120,
                 data: 'https://www.google.ru',
                 errorCorrectLevel: QrErrorCorrectLevel.M,
                 roundEdges: true,
@@ -91,6 +91,9 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
             Divider(
               color: AppColors.borderGreyColor,
               thickness: 1,
+            ),
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -130,7 +133,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                               style: w300_13(),
                             ),
                             SizedBox(
-                              height: 2.h,
+                              height: 5.h,
                             ),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +142,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                                 Text(
                                   '00:12',
                                   style:
-                                      w300_10(color: AppColors.dark2GreyColor),
+                                      w300_13(color: AppColors.dark2GreyColor),
                                 ),
                                 SizedBox(
                                   width: 10.w,
@@ -147,7 +150,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                                 Text(
                                   '12 KB',
                                   style:
-                                      w300_10(color: AppColors.dark2GreyColor),
+                                      w300_13(color: AppColors.dark2GreyColor),
                                 ),
                               ],
                             )
@@ -159,9 +162,15 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 10.h,
+            ),
             Divider(
               color: AppColors.borderGreyColor,
               thickness: 1,
+            ),
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -192,7 +201,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       Flexible(
                         child: Text(
                           '2006 Chapmans Lane, San Francisco, California',
-                          style: w300_14(),
+                          style: w300_13(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -208,6 +217,9 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
             Divider(
               color: AppColors.borderGreyColor,
               thickness: 1,
+            ),
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -227,7 +239,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                           width: 5.w,
                         ),
                         Text('Custom',
-                            style: w300_14(
+                            style: w300_13(
                               color: AppColors.purpleColor,
                             )),
                       ],
@@ -247,7 +259,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       ),
                       Text(
                         'The info was helpful, Thanks',
-                        style: w300_14(),
+                        style: w300_13(),
                       ),
                     ],
                   ),
@@ -265,7 +277,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       ),
                       Text(
                         'The info was helpful, Send more',
-                        style: w300_14(),
+                        style: w300_13(),
                       ),
                     ],
                   )

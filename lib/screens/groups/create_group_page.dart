@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
+
 import 'package:redeo/widgets/app_button.dart';
 
 class CreateGroupPage extends StatefulWidget {
@@ -67,16 +67,14 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             ),
           ),
           SizedBox(
-            height: 10.h,
+            height: 5.h,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: TextFormField(
-              style: w300_14(),
+              style: w300_13(),
               decoration: InputDecoration(
-                  hintStyle: w300_14(
-                    color: AppColors.dark2GreyColor,
-                  ),
+                  hintStyle: w300_13(),
                   hintText: 'Group Name',
                   contentPadding: EdgeInsets.zero,
                   border: InputBorder.none),
@@ -112,7 +110,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   },
                   child: Text(
                     'Select',
-                    style: w300_12(color: Colors.white),
+                    style: w300_13(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   width: null,
@@ -155,7 +153,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   },
                   child: Text(
                     'Select',
-                    style: w300_12(color: Colors.white),
+                    style: w300_13(color: Colors.white),
                   ),
                   sodiumShapeBorder: true,
                   width: null,

@@ -7,7 +7,7 @@ import 'package:redeo/styling/app_colors.dart';
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
- 
+
 import '../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -74,9 +74,9 @@ class _GroupsPageState extends State<GroupsPage> {
                 SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
-                  style: w300_14(),
+                  style: w300_12(),
                   decoration: InputDecoration(
-                      hintStyle: w300_14(
+                      hintStyle: w300_12(
                         color: AppColors.dark2GreyColor,
                       ),
                       border: InputBorder.none,
@@ -113,7 +113,7 @@ class _GroupsPageState extends State<GroupsPage> {
             children: [
               SvgPicture.asset(
                 Images.groupPeopleIcon,
-                height: 25,
+                height: 23.h,
               ),
               SizedBox(
                 width: 10.w,
@@ -124,14 +124,14 @@ class _GroupsPageState extends State<GroupsPage> {
                   Text(
                     title,
                     overflow: TextOverflow.ellipsis,
-                    style: w600_14(),
+                    style: w300_12(),
                   ),
                   SizedBox(
                     height: 5.h,
                   ),
                   Text(
                     subtitle,
-                    style: w300_12(color: Colors.grey),
+                    style: w300_10(color: Colors.grey),
                   ),
                 ],
               ),

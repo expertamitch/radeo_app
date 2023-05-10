@@ -8,7 +8,7 @@ import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
+
 import 'package:redeo/widgets/app_button.dart';
 
 class EventPage extends StatefulWidget {
@@ -76,9 +76,9 @@ class _EventPageState extends State<EventPage> {
                 SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
-                  style: w300_14(),
+                  style: w300_13(),
                   decoration: InputDecoration(
-                      hintStyle: w300_14(
+                      hintStyle: w300_13(
                         color: AppColors.dark2GreyColor,
                       ),
                       border: InputBorder.none,
@@ -124,7 +124,7 @@ class _EventPageState extends State<EventPage> {
             child: Text(
               name,
               overflow: TextOverflow.ellipsis,
-              style: w600_14(),
+              style: w300_14(),
             ),
           ),
           subtitle: Column(
@@ -135,14 +135,14 @@ class _EventPageState extends State<EventPage> {
               ),
               Text(
                 location,
-                style: w300_12(color: Colors.grey),
+                style: w300_12(color: AppColors.dark2GreyColor),
               ),
               SizedBox(
                 height: 5.h,
               ),
               Text(
                 DateFormat('dd MMM yyyy, h:mm a').format(dateTime),
-                style: w300_12(color: Colors.grey),
+                style: w300_12(color: AppColors.dark2GreyColor),
               ),
             ],
           ),

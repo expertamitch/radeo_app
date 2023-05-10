@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 21.0),
                       child: Text('Register your Account',
-                          style: w600_35(color: Colors.white)),
+                          style: w900_35(color: Colors.white)),
                     ),
                     SizedBox(
                       height: 20.h,
@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w300_14(),
+                    style: w600_14(),
                     decoration:
                         inputDecoration.copyWith(labelText: 'First Name'),
                     validator: (value) => value == null || value.isEmpty
@@ -84,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w300_14(),
+                    style: w600_14(),
                     decoration:
                         inputDecoration.copyWith(labelText: 'Last Name'),
                     validator: (value) => value == null || value.isEmpty
@@ -114,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       selectorTextStyle: TextStyle(color: Colors.black),
                       initialValue: number,
                       formatInput: true,
-                      textStyle: w300_14(),
+                      textStyle: w600_14(),
                       keyboardType: TextInputType.numberWithOptions(
                           signed: true, decimal: true),
                       inputDecoration: inputDecoration.copyWith(
@@ -136,7 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w300_14(),
+                    style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter email id'
@@ -150,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w300_14(),
+                    style: w600_14(),
                     obscureText: true,
                     decoration: inputDecoration.copyWith(
                       labelText: 'Password',
@@ -167,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w300_14(),
+                    style: w600_14(),
                     obscureText: true,
                     decoration:
                         inputDecoration.copyWith(labelText: 'Confirm Password'),
@@ -189,7 +189,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                       child: Text(
                         'Register Now',
-                        style: w600_14(color: Colors.white),
+                        style: w900_15(color: Colors.white),
                       ),
                       height: 50.h,
                       buttonColor: AppColors.purpleColor),
@@ -205,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Get.toNamed(Routes.loginScreen);
                         },
                         child: Text('Login here',
-                            style: w600_12(
+                            style: w900_12(
                               color: AppColors.purpleColor,
                             )),
                       ),

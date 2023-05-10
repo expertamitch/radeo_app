@@ -5,7 +5,6 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
- 
 
 class DoNotCallPage extends StatefulWidget {
   const DoNotCallPage({Key? key}) : super(key: key);
@@ -76,7 +75,7 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
               children: [
                 Text(
                   location,
-                  style: w600_14(),
+                  style: w300_13(),
                 ),
                 SizedBox(
                   height: 10.h,
@@ -86,11 +85,11 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
                   children: [
                     Text(
                       DateFormat('dd MMM yyyy').format(dateTime),
-                      style: w300_12(color: Colors.grey),
+                      style: w300_13(color: Colors.grey),
                     ),
                     Text(
                       'Do Not Call',
-                      style: w300_12(color: Colors.red),
+                      style: w300_13(color: Colors.red),
                     ),
                   ],
                 ),

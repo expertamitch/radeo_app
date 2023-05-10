@@ -9,7 +9,7 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
- 
+
 import '../../get_controller/notice_of_event_controller.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -96,7 +96,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       ),
                       Text(
                         controller.nameController.text,
-                        style: w600_12(),
+                        style: w600_14(),
                       )
                     ],
                   ),
@@ -119,7 +119,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                       ),
                       Text(
                         'Level',
-                        style: w600_12(),
+                        style: w600_14(),
                       )
                     ],
                   ),

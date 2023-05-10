@@ -66,14 +66,14 @@ class _HomepageState extends State<Homepage> {
                         ImageView(
                           path: Images.qrCodeScanIcon,
                           color: Colors.white,
-                          height: 25,
+                          height: 23,
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
                         Text(
                           'Scan QR code',
-                          style: w600_14(color: Colors.white),
+                          style: w900_14(color: Colors.white),
                         ),
                       ],
                     ))),
@@ -276,7 +276,7 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
-        SizedBox(height: (MediaQuery.of(context).size.height * 0.03).h),
+        SizedBox(height: (MediaQuery.of(context).size.height * 0.02).h),
         GestureDetector(
           onTap: () {},
           child: Container(

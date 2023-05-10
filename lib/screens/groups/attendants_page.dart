@@ -25,7 +25,7 @@ class _AttendantsPageState extends State<AttendantsPage> {
           centerTitle: true,
           title: Text(
             'Attendants',
-            style: w600_16(),
+            style: w900_18(),
           ),
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -36,7 +36,7 @@ class _AttendantsPageState extends State<AttendantsPage> {
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: Text(
               'Select Attendants',
-              style: w600_16(),
+              style: w900_18(),
             ),
           ),
           Container(
@@ -54,9 +54,9 @@ class _AttendantsPageState extends State<AttendantsPage> {
                 SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
-                  style: w300_14(),
+                  style: w300_12(),
                   decoration: InputDecoration(
-                      hintStyle: w300_14(
+                      hintStyle: w300_12(
                         color: AppColors.dark2GreyColor,
                       ),
                       border: InputBorder.none,
@@ -93,7 +93,7 @@ class _AttendantsPageState extends State<AttendantsPage> {
             children: [
               SvgPicture.asset(
                 Images.peopleIcon,
-                height: 25,
+                height: 23,
               ),
               SizedBox(
                 width: 10.w,
@@ -105,14 +105,14 @@ class _AttendantsPageState extends State<AttendantsPage> {
                     Text(
                       title,
                       overflow: TextOverflow.ellipsis,
-                      style: w300_14(),
+                      style: w300_13(),
                     ),
                     SizedBox(
                       height: 5.h,
                     ),
                     Text(
                       subtitle,
-                      style: w300_12(color: Colors.grey),
+                      style: w300_10(color: Colors.grey),
                     ),
                   ],
                 ),

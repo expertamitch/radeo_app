@@ -7,7 +7,6 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
- 
 
 class SelectTextMessagePage extends StatefulWidget {
   const SelectTextMessagePage({Key? key}) : super(key: key);
@@ -43,7 +42,7 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
                   backIconColor: Colors.black,
                   centerTitle: 'Select Text',
                   textStyle: w600_14(),
-                  centerTitleStyle: w600_16(),
+                  centerTitleStyle: w900_16(),
                   backIcon:
                       Platform.isAndroid ? Icons.arrow_back_outlined : null,
                   onChanged: (text) {
@@ -102,23 +101,26 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
-        padding: EdgeInsets.symmetric(vertical: 5),
-        child: ListTile(
-          leading: SvgPicture.asset(
-            Images.textFileIcon,
-            width: 20,
-          ),
-          minLeadingWidth: 10,
-          title: Text(
-            title,
-            overflow: TextOverflow.ellipsis,
-            style: w300_14(),
-          ),
-        ),
-      ),
+          decoration: BoxDecoration(
+              border:
+                  Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
+          child: Row(
+            children: [
+              SvgPicture.asset(
+                Images.textFileIcon,
+                width: 20,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                title,
+                overflow: TextOverflow.ellipsis,
+                style: w300_13(),
+              ),
+            ],
+          )),
     );
   }
 }

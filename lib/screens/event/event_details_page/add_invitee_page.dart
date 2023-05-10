@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
- 
+
 import 'package:redeo/widgets/app_button.dart';
 
 class AddInviteePage extends StatefulWidget {
@@ -28,7 +28,7 @@ class _AddInviteePageState extends State<AddInviteePage> {
         centerTitle: true,
         title: Text(
           'Add Invitee',
-          style: w600_16(color: Colors.black),
+          style: w900_18(color: Colors.black),
         ),
         actions: [
           Row(
@@ -69,11 +69,9 @@ class _AddInviteePageState extends State<AddInviteePage> {
                     ),
                   ),
                   TextFormField(
-                    style: w300_14(),
+                    style: w300_13(),
                     decoration: InputDecoration(
-                        hintStyle: w300_14(
-                          color: AppColors.dark2GreyColor,
-                        ),
+                        hintStyle: w300_13(),
                         border: InputBorder.none,
                         hintText: 'Enter Name'),
                   ),
@@ -101,8 +99,6 @@ class _AddInviteePageState extends State<AddInviteePage> {
                       },
                       child: Text(
                         'Select',
-                        // textSize: 12,
-                        // fontWeight: FontWeight.bold,
                         style: w300_12(color: Colors.white),
                       ),
                       sodiumShapeBorder: true,

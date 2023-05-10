@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 21.0),
                       child: Text('Sign in to your Account',
-                          style: w600_35(color: Colors.white)),
+                          style: w900_35(color: Colors.white)),
                     ),
                     SizedBox(
                       height: 20.h,
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w300_14(),
+                    style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Username'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter username'
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w300_14(),
+                    style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Password'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter password'
@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: Text(
                         'Login Now',
-                        style: w600_14(color: Colors.white),
+                        style: w900_15(color: Colors.white),
                       ),
                       height: 50.h,
                       buttonColor: AppColors.purpleColor),
@@ -161,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                           Get.toNamed(Routes.registerScreen);
                         },
                         child: Text('Register Now',
-                            style: w600_12(
+                            style: w900_12(
                               color: AppColors.purpleColor,
                             )),
                       ),

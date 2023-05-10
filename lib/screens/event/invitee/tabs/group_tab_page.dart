@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
 import '../../../../styling/font_style_globle.dart';
- 
+
 import '../../../../widgets/image_view.dart';
 
 class GroupTabPage extends StatefulWidget {
@@ -55,10 +55,10 @@ class _GroupTabPageState extends State<GroupTabPage> {
                 SizedBox(width: 15.w),
                 Flexible(
                     child: TextFormField(
-                  style: w300_14(),
+                  style: w300_12(),
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintStyle: w300_14(
+                      hintStyle: w300_12(
                         color: AppColors.dark2GreyColor,
                       ),
                       hintText: 'Serach Group...',
@@ -94,7 +94,7 @@ class _GroupTabPageState extends State<GroupTabPage> {
       child: Row(children: [
         SvgPicture.asset(
           Images.groupPeopleIcon,
-          height: 25,
+          height: 23,
         ),
         SizedBox(
           width: 15.w,
@@ -104,11 +104,14 @@ class _GroupTabPageState extends State<GroupTabPage> {
           children: [
             Text(
               title,
-              style: w300_15(),
+              style: w300_12(),
+            ),
+            SizedBox(
+              height: 4.h,
             ),
             Text(
               subTitle,
-              style: w300_12(
+              style: w300_10(
                 color: AppColors.dark2GreyColor,
               ),
             )
