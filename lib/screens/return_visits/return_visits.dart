@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import '../../widgets/common_app_bar.dart';
 
 class ReturnVisitsPage extends StatefulWidget {
   const ReturnVisitsPage({Key? key}) : super(key: key);
@@ -18,21 +19,12 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.darkGreyColor,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
+        appBar:CustomAppBar(
+          title: 'Return Visits',
+
         ),
         body: Column(children: [
-          Container(
-            width: double.maxFinite,
-            color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: Text(
-              'Return Visits',
-              style: w900_30(),
-            ),
-          ),
+
           Expanded(
               child: ListView.separated(
                   separatorBuilder: (context, index) =>

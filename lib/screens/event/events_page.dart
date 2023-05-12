@@ -11,6 +11,8 @@ import '../../styling/font_style_globle.dart';
 
 import 'package:redeo/widgets/app_button.dart';
 
+import '../../widgets/common_app_bar.dart';
+
 class EventPage extends StatefulWidget {
   const EventPage({Key? key}) : super(key: key);
 
@@ -25,43 +27,15 @@ class _EventPageState extends State<EventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.darkGreyColor,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          actions: [
-            Row(
-              children: [
-                AppButton(
-                    onPressedFunction: () {
-                      Get.toNamed(Routes.createEventScreen);
-                    },
-                    child: Text(
-                      'Add Event',
-                      style: w300_12(color: Colors.white),
-                    ),
-                    height: 30.h,
-                    sodiumShapeBorder: true,
-                    width: null,
-                    buttonColor: AppColors.purpleColor)
-              ],
-            ),
-            SizedBox(
-              width: 10.w,
-            )
-          ],
-        ),
-        body: Column(children: [
-          Container(
-            width: double.maxFinite,
-            color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: Text(
-              'Events',
-              style: w900_30(),
-            ),
-          ),
-          Container(
+        appBar:CustomAppBar(
+          title: 'Events',
+          button1: 'Add Event',
+           buttonTap1: () {
+            Get.toNamed(Routes.createEventScreen);
+          },
+         ),
+         body: Column(children: [
+           Container(
             decoration: BoxDecoration(
                 color: AppColors.darkGreyColor,
                 borderRadius: BorderRadius.circular(8)),

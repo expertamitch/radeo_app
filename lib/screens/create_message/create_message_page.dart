@@ -11,6 +11,7 @@ import '../../get_controller/create_messages_controller.dart';
 import 'package:redeo/widgets/app_button.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
+import '../../widgets/common_app_bar.dart';
 
 class CreateMessagePage extends StatefulWidget {
   const CreateMessagePage({Key? key}) : super(key: key);
@@ -26,42 +27,17 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.darkGreyColor,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-        actions: [
-          Row(
-            children: [
-              AppButton(
-                  onPressedFunction: () {
-                    Get.toNamed(Routes.reviewMessageScreen);
-                  },
-                  child: Text(
-                    'Review',
-                    style: w300_13(color: Colors.white),
-                  ),
-                  sodiumShapeBorder: true,
-                  height: 30.h,
-                  width: null,
-                  buttonColor: AppColors.purpleColor)
-            ],
-          ),
-          SizedBox(
-            width: 10.w,
-          )
-        ],
-      ),
+      appBar:CustomAppBar(
+        title: 'Create Message',
+        button1: 'Review',
+         buttonTap1: () {
+           Get.toNamed(Routes.reviewMessageScreen);
+        },
+       ),
+
+
       body: Column(children: [
-        Container(
-          width: double.maxFinite,
-          color: AppColors.darkGreyColor,
-          padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-          child: Text(
-            'Create Message',
-            style: w900_30(),
-          ),
-        ),
+
         Expanded(
           child: SingleChildScrollView(
             child: Padding(

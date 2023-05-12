@@ -16,6 +16,7 @@ import '../../styling/font_style_globle.dart';
 import '../../widgets/colors.dart';
 import 'package:redeo/widgets/app_button.dart';
 
+import '../../widgets/common_app_bar.dart';
 import '../../widgets/show_toast.dart';
 
 class CreateNoticeOfEvent extends StatefulWidget {
@@ -41,83 +42,59 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.darkGreyColor,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          actions: [
-            Row(
-              children: [
-                AppButton(
-                    onPressedFunction: () {
-                      bool goToSummaryPage = true;
-                      if (_formKey.currentState!.validate() == false) {
-                        goToSummaryPage = false;
-                      }
-                      if (controller.uploadImg == null) {
-                        showToast('Please upload image', context);
-                        goToSummaryPage = false;
-                      }
-                      if (controller.selectedDate == null) {
-                        showDateTimeError = true;
-                        goToSummaryPage = false;
-                      }
-                      if (controller.noticeTypes.isEmpty) {
-                        noticeTypesError = true;
-                        goToSummaryPage = false;
-                      }
-                      if (controller.attributesStatus == null) {
-                        showAttributesStatusError = true;
-                        goToSummaryPage = false;
-                      }
-                      if (controller.setReturnVisitDate == null) {
-                        showSetReturnVisitDateTimeError = true;
-                        goToSummaryPage = false;
-                      }
-                      if (controller.indicatorStatus == null) {
-                        showIndicatorStatusError = true;
-                        goToSummaryPage = false;
-                      }
-                      // if (controller.attachment == null) {
-                      //   showAttachmentError = true;
-                      //   goToSummaryPage = false;
-                      // }
-                      if (controller.level == null) {
-                        showLevelError = true;
-                        goToSummaryPage = false;
-                      }
+        appBar:CustomAppBar(
+          title: 'Notice of Event',
+          button1: 'Save',
+           buttonTap1: () {
+            bool goToSummaryPage = true;
+            if (_formKey.currentState!.validate() == false) {
+              goToSummaryPage = false;
+            }
+            if (controller.uploadImg == null) {
+              showToast('Please upload image', context);
+              goToSummaryPage = false;
+            }
+            if (controller.selectedDate == null) {
+              showDateTimeError = true;
+              goToSummaryPage = false;
+            }
+            if (controller.noticeTypes.isEmpty) {
+              noticeTypesError = true;
+              goToSummaryPage = false;
+            }
+            if (controller.attributesStatus == null) {
+              showAttributesStatusError = true;
+              goToSummaryPage = false;
+            }
+            if (controller.setReturnVisitDate == null) {
+              showSetReturnVisitDateTimeError = true;
+              goToSummaryPage = false;
+            }
+            if (controller.indicatorStatus == null) {
+              showIndicatorStatusError = true;
+              goToSummaryPage = false;
+            }
+            // if (controller.attachment == null) {
+            //   showAttachmentError = true;
+            //   goToSummaryPage = false;
+            // }
+            if (controller.level == null) {
+              showLevelError = true;
+              goToSummaryPage = false;
+            }
 
-                      setState(() {});
+            setState(() {});
 
-                      if (goToSummaryPage) {
-                        Get.toNamed(Routes.noticeOfEventSummaryScreen);
-                      }
-                    },
-                    child: Text(
-                      'Save',
-                      style: w300_12(color: Colors.white),
-                    ),
-                    height: 30,
-                    sodiumShapeBorder: true,
-                    width: null,
-                    buttonColor: AppColors.purpleColor)
-              ],
-            ),
-            SizedBox(
-              width: 10.w,
-            )
-          ],
-        ),
+            if (goToSummaryPage) {
+              Get.toNamed(Routes.noticeOfEventSummaryScreen);
+            }
+          },
+         ),
+
+
+
         body: Column(children: [
-          Container(
-            width: double.maxFinite,
-            color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: Text(
-              'Notice of Event',
-              style: w900_30(),
-            ),
-          ),
+
           Expanded(
               child: SingleChildScrollView(
                   child: Form(

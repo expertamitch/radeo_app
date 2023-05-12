@@ -5,6 +5,7 @@ import 'package:redeo/assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import '../../widgets/common_app_bar.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -18,21 +19,12 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.darkGreyColor,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
+        appBar:CustomAppBar(
+          title: 'Chat',
+
         ),
         body: Column(children: [
-          Container(
-            width: double.maxFinite,
-            color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: Text(
-              'Chat',
-              style: w900_30(),
-            ),
-          ),
+
           Expanded(
               child: ListView.separated(
                   separatorBuilder: (context, index) =>

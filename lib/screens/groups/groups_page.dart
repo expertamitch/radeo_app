@@ -8,6 +8,7 @@ import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
 
+import '../../widgets/common_app_bar.dart';
 import '../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -23,43 +24,17 @@ class _GroupsPageState extends State<GroupsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.darkGreyColor,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          actions: [
-            Row(
-              children: [
-                AppButton(
-                    onPressedFunction: () {
-                      Get.toNamed(Routes.createGroupScreen);
-                    },
-                    child: Text(
-                      'Create Group',
-                      style: w300_12(color: Colors.white),
-                    ),
-                    height: 30.h,
-                    sodiumShapeBorder: true,
-                    width: null,
-                    buttonColor: AppColors.purpleColor)
-              ],
-            ),
-            SizedBox(
-              width: 10.w,
-            )
-          ],
+        appBar:CustomAppBar(
+          title: 'Groups',
+          button1: 'Create Group',
+           buttonTap1: () {
+             Get.toNamed(Routes.createGroupScreen);
+          },
+
         ),
-        body: Column(children: [
-          Container(
-            width: double.maxFinite,
-            color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: Text(
-              'Groups',
-              style: w900_30(),
-            ),
-          ),
-          Container(
+
+         body: Column(children: [
+           Container(
             decoration: BoxDecoration(
                 color: AppColors.darkGreyColor,
                 borderRadius: BorderRadius.circular(8)),

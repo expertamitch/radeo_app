@@ -6,12 +6,15 @@ class AppButton extends StatelessWidget {
   final Function onPressedFunction;
   final Widget child;
   final double height;
+  final EdgeInsets? margin;
   final Color buttonColor;
   final double? width;
   final bool sodiumShapeBorder;
 
   const AppButton(
       {Key? key,
+
+        this.margin,
       required this.onPressedFunction,
       required this.child,
       required this.height,
@@ -22,8 +25,9 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
         height: height,
+        margin: margin,
         width: width,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -31,7 +35,7 @@ class AppButton extends StatelessWidget {
                     ? StadiumBorder()
                     : RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
-                primary: buttonColor),
+                primary: buttonColor,),
             onPressed: () {
               onPressedFunction();
             },

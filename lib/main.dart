@@ -149,6 +149,8 @@ Future<void> main() async {
     statusBarIconBrightness: Brightness.dark,
   );
   SystemChrome.setSystemUIOverlayStyle(systemTheme);
+  await ScreenUtil.ensureScreenSize();
+
   runApp(MyApp());
 }
 
@@ -303,6 +305,7 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
+
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
