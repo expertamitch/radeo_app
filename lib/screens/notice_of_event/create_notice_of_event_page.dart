@@ -304,7 +304,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               return Theme(
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColors.purpleColor,
-                                  accentColor: AppColors.purpleColor,
+                                  hintColor: AppColors.purpleColor,
                                   colorScheme: ColorScheme.light(
                                       primary: AppColors.purpleColor),
                                   buttonTheme: ButtonThemeData(
@@ -323,7 +323,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               return Theme(
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColors.purpleColor,
-                                  accentColor: AppColors.purpleColor,
+                                  hintColor: AppColors.purpleColor,
                                   colorScheme: ColorScheme.light(
                                       primary: AppColors.purpleColor),
                                   buttonTheme: ButtonThemeData(
@@ -976,7 +976,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               return Theme(
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColors.purpleColor,
-                                  accentColor: AppColors.purpleColor,
+                                  hintColor: AppColors.purpleColor,
                                   colorScheme: ColorScheme.light(
                                       primary: AppColors.purpleColor),
                                   buttonTheme: ButtonThemeData(
@@ -993,7 +993,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                               return Theme(
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColors.purpleColor,
-                                  accentColor: AppColors.purpleColor,
+                                  hintColor: AppColors.purpleColor,
                                   colorScheme: ColorScheme.light(
                                       primary: AppColors.purpleColor),
                                   buttonTheme: ButtonThemeData(

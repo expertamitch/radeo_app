@@ -30,9 +30,10 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
+      // resizeToAvoidBottomInset: true,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
           child: Column(children: [
             Container(
                 decoration: BoxDecoration(
@@ -216,7 +217,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: MediaQuery.of(context).viewInsets.bottom)
           ]),
         ),
       ),

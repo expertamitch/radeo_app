@@ -127,7 +127,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                               return Theme(
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColors.purpleColor,
-                                  accentColor: AppColors.purpleColor,
+                                  hintColor: AppColors.purpleColor,
                                   colorScheme: ColorScheme.light(
                                       primary: AppColors.purpleColor),
                                   buttonTheme: ButtonThemeData(
@@ -146,7 +146,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                               return Theme(
                                 data: ThemeData.light().copyWith(
                                   primaryColor: AppColors.purpleColor,
-                                  accentColor: AppColors.purpleColor,
+                                  hintColor: AppColors.purpleColor,
                                   colorScheme: ColorScheme.light(
                                       primary: AppColors.purpleColor),
                                   buttonTheme: ButtonThemeData(

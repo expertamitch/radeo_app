@@ -86,7 +86,7 @@ class _ReportsPageState extends State<ReportsPage> {
                 availableCalendarFormats: {
                   CalendarFormat.month: 'Month',
                 },
-                availableGestures: AvailableGestures.none,
+                // availableGestures: AvailableGestures.none,
                 onDaySelected: (focusedDay, s) {
                   setState(() {
                     selectedDate = focusedDay;
