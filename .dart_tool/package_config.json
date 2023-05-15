@@ -21,7 +21,7 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/async-2.10.0",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -33,7 +33,7 @@
     },
     {
       "name": "characters",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/characters-1.2.1",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/characters-1.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -45,9 +45,9 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/collection-1.17.0",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/collection-1.17.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "cross_file",
@@ -137,7 +137,7 @@
       "name": "flutter",
       "rootUri": "file:///Users/ashishraturi/development/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_local_notifications",
@@ -191,13 +191,13 @@
       "name": "flutter_test",
       "rootUri": "file:///Users/ashishraturi/development/flutter/packages/flutter_test",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///Users/ashishraturi/development/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "fluttertoast",
@@ -273,9 +273,9 @@
     },
     {
       "name": "js",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/js-0.6.5",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.19"
     },
     {
       "name": "latlong2",
@@ -309,7 +309,7 @@
     },
     {
       "name": "matcher",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/matcher-0.12.13",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/matcher-0.12.15",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -321,7 +321,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/meta-1.8.0",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/meta-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -339,7 +339,7 @@
     },
     {
       "name": "path",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path-1.8.2",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path-1.8.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -455,7 +455,7 @@
       "name": "sky_engine",
       "rootUri": "file:///Users/ashishraturi/development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "source_span",
@@ -501,7 +501,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/test_api-0.4.16",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/test_api-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -566,7 +566,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-05-10T03:53:06.598928Z",
+  "generated": "2023-05-12T14:02:22.204606Z",
   "generator": "pub",
-  "generatorVersion": "2.19.2"
+  "generatorVersion": "3.0.0"
 }

@@ -94,12 +94,10 @@ class _EventPageState extends State<EventPage> {
         padding: EdgeInsets.symmetric(vertical: 10),
         child: ListTile(
           minLeadingWidth: 10,
-          title: Flexible(
-            child: Text(
-              name,
-              overflow: TextOverflow.ellipsis,
-              style: w300_14(),
-            ),
+          title: Text(
+            name,
+            overflow: TextOverflow.ellipsis,
+            style: w300_14(),
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

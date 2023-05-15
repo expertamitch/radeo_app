@@ -147,78 +147,73 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.27,
-                                      child: Flexible(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Stack(
-                                              children: [
-                                                ImageView(
-                                                  path: allVideosData.elementAt(
-                                                      index)['thumbnailPath'],
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Stack(
+                                            children: [
+                                              ImageView(
+                                                path: allVideosData.elementAt(
+                                                    index)['thumbnailPath'],
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.26,
+                                                fit: BoxFit.cover,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.27,
+                                              ),
+                                              if (selectedVideoIndex == index)
+                                                Container(
+                                                  color: AppColors.purpleColor
+                                                      .withOpacity(.38),
                                                   height: MediaQuery.of(context)
                                                           .size
                                                           .width *
                                                       0.26,
-                                                  fit: BoxFit.cover,
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width *
                                                       0.27,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      ImageView(
+                                                        path: Images.selectIcon,
+                                                        width: 25,
+                                                        height: 25,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                if (selectedVideoIndex == index)
-                                                  Container(
-                                                    color: AppColors.purpleColor
-                                                        .withOpacity(.38),
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.26,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.27,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        ImageView(
-                                                          path:
-                                                              Images.selectIcon,
-                                                          width: 25,
-                                                          height: 25,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                Positioned(
-                                                  bottom: 5,
-                                                  left: 10,
-                                                  child: ImageView(
-                                                    path: Images.videoIcon,
-                                                    color: Colors.white,
-                                                    width: 15,
-                                                    height: 15,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 10.h,
-                                            ),
-                                            Text(
-                                              allVideosData
-                                                  .elementAt(index)['name'],
-                                              style: w300_13(),
-                                              overflow: TextOverflow.ellipsis,
-                                            )
-                                          ],
-                                        ),
+                                              Positioned(
+                                                bottom: 5,
+                                                left: 10,
+                                                child: ImageView(
+                                                  path: Images.videoIcon,
+                                                  color: Colors.white,
+                                                  width: 15,
+                                                  height: 15,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                          Text(
+                                            allVideosData
+                                                .elementAt(index)['name'],
+                                            style: w300_13(),
+                                            overflow: TextOverflow.ellipsis,
+                                          )
+                                        ],
                                       ),
                                     ),
                                   ))),

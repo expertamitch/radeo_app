@@ -33,28 +33,26 @@ class _LoginPageState extends State<LoginPage> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(Images.authPageBg), fit: BoxFit.cover)),
-              child: Flexible(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppBar(
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 21.0),
-                      child: Text('Sign in to your Account',
-                          style: w900_35(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                  ],
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 21.0),
+                    child: Text('Sign in to your Account',
+                        style: w900_35(color: Colors.white)),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                ],
               )),
           SizedBox(
             height: 20.h,
@@ -137,8 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   AppButton(
                       onPressedFunction: () {
-                        print('username : $username');
-                        print('password : $password');
+                        // print('username : $username');
+                        // print('password : $password');
                         Get.toNamed(Routes.homepageScreen);
                       },
                       child: Text(

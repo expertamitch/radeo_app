@@ -127,7 +127,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               data: ThemeData.light().copyWith(
                                                 primaryColor:
                                                     AppColors.purpleColor,
-                                                accentColor:
+                                                hintColor:
                                                     AppColors.purpleColor,
                                                 colorScheme: ColorScheme.light(
                                                     primary:
@@ -151,7 +151,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                               data: ThemeData.light().copyWith(
                                                 primaryColor:
                                                     AppColors.purpleColor,
-                                                accentColor:
+                                                hintColor:
                                                     AppColors.purpleColor,
                                                 colorScheme: ColorScheme.light(
                                                     primary:
