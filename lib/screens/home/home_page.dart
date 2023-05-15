@@ -134,6 +134,7 @@ class _HomepageState extends State<Homepage> {
         Row(
           children: [
             Expanded(
+              flex: 4,
               child: GestureDetector(
                 onTap: () {},
                 child: Container(
@@ -147,8 +148,41 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
+            Expanded(
+                flex: 5,
+                child: SizedBox(
+                    height: 45.h,
+                    child: Obx(() => ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            primary:                              controller.timerStarted.value
+?                            AppColors.purpleColor:Colors.orangeAccent),
+                        onPressed: () {
+                          controller.timerStarted.value =
+                              !controller.timerStarted.value;
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              controller.timerStarted.value
+                                  ? '00:00:56'
+                                  : 'Start Timer',
+                              style: w900_14(color: Colors.white),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Icon(controller.timerStarted.value
+                                ? Icons.pause
+                                : Icons.play_arrow),
+                          ],
+                        ))))),
+            SizedBox(width: 10.w,)
           ],
         ),
+        SizedBox(height: (MediaQuery.of(context).size.height * 0.02).h),
       ],
     ));
   }

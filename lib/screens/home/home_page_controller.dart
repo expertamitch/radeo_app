@@ -5,6 +5,8 @@ class HomePageController extends GetxController {
 
   late GlobalKey<ScaffoldState> drawerKey;
 
+  RxBool timerStarted=false.obs;
+
 
   List<String> menuItems = [
     'Field Service',
