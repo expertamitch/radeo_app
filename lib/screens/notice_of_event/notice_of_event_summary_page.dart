@@ -136,11 +136,11 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Indicatores',
+                    'Indicators',
                     style: w600_12(),
                   ),
                   Text(
-                    'Open for encouragement',
+                    'Open for Encouragement',
                     style: w600_12(
                       color: AppColors.blueColor,
                     ),

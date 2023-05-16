@@ -317,7 +317,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Indicatores',
+                    Text('Indicators',
                         style: w300_13(
                           color: AppColors.blueColor,
                         )),
@@ -347,7 +347,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                             showIndicatorStatusError = false;
                           }),
                           child: Text(
-                            'Open for encouragment',
+                            'Open for Encouragement',
                             style: w300_13(),
                           ),
                         ),

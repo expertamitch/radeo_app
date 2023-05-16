@@ -356,6 +356,36 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                       GestureDetector(
                                         onTap: () {
                                           setState(() {
+                                            selectedRecurrence = 'Daily';
+                                          });
+                                        },
+                                        child: Container(
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: selectedRecurrence ==
+                                                      'Daily'
+                                                      ? AppColors.purpleColor
+                                                      : AppColors.greyColor),
+                                              borderRadius:
+                                              BorderRadius.circular(8)),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 18, vertical: 8),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            'Daily',
+                                            style: w300_13(
+                                              color: selectedRecurrence ==
+                                                  'Daily'
+                                                  ? AppColors.purpleColor
+                                                  : Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
                                             selectedRecurrence = 'Once a Week';
                                           });
                                         },

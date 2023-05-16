@@ -46,15 +46,15 @@ class _HomepageState extends State<Homepage> {
             index: controller.currentSelectedIndex.value,
             children: [
               FieldServicePage(),
-              ReturnVisitsPage(),
               CreateNoticeOfEvent(),
               CreateMessagePage(),
               ChatPage(),
-              EventPage(),
-              EventPage(),
+              ReturnVisitsPage(),
               GroupsPage(),
+              EventPage(),
+              DoNotCallPage(),
               ReportsPage(),
-              DoNotCallPage()
+              ReportsPage(),
             ],
           )),
     );

@@ -9,16 +9,17 @@ class HomePageController extends GetxController {
 
 
   List<String> menuItems = [
-    'Field Service',
-    'Return',
-    'NOE',
+    'Field Log',
+    'NOEs',
     'Message',
     'Chat',
-    'Notification',
-    'Event',
-    'Group',
-    'Report',
-    'DNC'
+    'Returns',
+    'Groups',
+    'Events',
+    'DNCs',
+
+    'Territory',
+    'Reports',
   ];
 
   RxInt currentSelectedIndex = 0.obs;

@@ -5,10 +5,9 @@ import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/styling/app_colors.dart';
-
 import 'package:redeo/widgets/image_view.dart';
+
 import '../../get_controller/create_messages_controller.dart';
-import 'package:redeo/widgets/app_button.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
@@ -24,20 +23,18 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
   bool response = false;
 
   CreateMessagesController getController = Get.put(CreateMessagesController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:CustomAppBar(
+      appBar: CustomAppBar(
         title: 'Create Message',
         button1: 'Review',
-         buttonTap1: () {
-           Get.toNamed(Routes.reviewMessageScreen);
+        buttonTap1: () {
+          Get.toNamed(Routes.reviewMessageScreen);
         },
-       ),
-
-
+      ),
       body: Column(children: [
-
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
@@ -417,11 +414,15 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             });
           },
         ),
-        Flexible(
+        Expanded(
           child: Text(
             r['title'],
             style: w300_13(),
           ),
+        ),
+        ImageView(
+          path: Images.closeIcon,
+          height: 15.h,
         )
       ],
     );

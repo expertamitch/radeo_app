@@ -6,6 +6,7 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import 'attachment_type_sheet.dart';
 
 class ChatMessagePage extends StatefulWidget {
   const ChatMessagePage({Key? key}) : super(key: key);
@@ -80,10 +81,15 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                       SizedBox(
                         width: 10.w,
                       ),
-                      ImageView(
-                        path: Images.attachIcon,
-                        color: Colors.grey,
-                        width: 20,
+                      GestureDetector(
+                        onTap: (){
+                          showIdTypeBottomSheet();
+                        },
+                        child: ImageView(
+                          path: Images.attachIcon,
+                          color: Colors.grey,
+                          width: 20,
+                        ),
                       ),
                       SizedBox(
                         width: 10.w,

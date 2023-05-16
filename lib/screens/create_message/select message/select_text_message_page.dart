@@ -40,7 +40,7 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
               child: AnimationSearchBar(
                   searchIconColor: AppColors.purpleColor,
                   backIconColor: Colors.black,
-                  centerTitle: 'Select Text',
+                  centerTitle: 'Select or Create New',
                   textStyle: w600_14(),
                   centerTitleStyle: w900_16(),
                   backIcon:
@@ -105,20 +105,35 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
               border:
                   Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
           padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset(
-                Images.textFileIcon,
-                width: 20,
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    Images.textFileIcon,
+                    width: 20.w,
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    style: w300_13(),
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 10,
+              SizedBox(height: 8.h,),
+              Padding(
+                padding:   EdgeInsets.only(left: 30.w),
+                child: Text(
+                  '20/02/2023,18:11',
+                  overflow: TextOverflow.ellipsis,
+                  style: w300_13(),
+                ),
               ),
-              Text(
-                title,
-                overflow: TextOverflow.ellipsis,
-                style: w300_13(),
-              ),
+
             ],
           )),
     );

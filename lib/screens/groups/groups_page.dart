@@ -124,9 +124,14 @@ class _GroupsPageState extends State<GroupsPage> {
                   SizedBox(
                     width: 20.w,
                   ),
-                  ImageView(
-                    path: Images.deleteIcon,
-                    height: 15,
+                  GestureDetector(
+                    onTap: (){
+                      showAlertDialog(context);
+                    },
+                    child: ImageView(
+                      path: Images.deleteIcon,
+                      height: 15.h,
+                    ),
                   ),
                   SizedBox(
                     width: 10.w,
@@ -137,4 +142,42 @@ class _GroupsPageState extends State<GroupsPage> {
           ),
         ));
   }
+
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("Yes"),
+      onPressed: () async {
+        Navigator.of(context).pop();
+
+
+      },
+    );
+
+    Widget noButton = TextButton(
+      child: Text("No"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(
+        "Confirm",
+        style: w900_16(),
+      ),
+      content: Text("Do you want to delete group?", style: w600_14()),
+      actions: [okButton, noButton],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }

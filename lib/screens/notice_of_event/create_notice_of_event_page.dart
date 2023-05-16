@@ -1143,7 +1143,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Indicatores',
+                      'Indicators',
                       style: w300_13(
                         color: AppColors.blueColor,
                       ),
@@ -1174,7 +1174,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             showIndicatorStatusError = false;
                           }),
                           child: Text(
-                            'Open for encouragment',
+                            'Open for Encouragement',
                             style: w300_13(),
                           ),
                         ),
@@ -1199,7 +1199,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                             showIndicatorStatusError = false;
                           }),
                           child: Text(
-                            'Don not contract',
+                            'Do Not Contact',
                             style: w300_13(),
                           ),
                         ),
