@@ -197,7 +197,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           border: Border(
                               bottom: BorderSide(
                                   color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -205,10 +205,19 @@ class _EditReportsPageState extends State<EditReportsPage> {
                             'Return Visits',
                             style: w600_13(),
                           ),
-                          Text(
-                            '6',
-                            style: w300_13(),
-                          )
+                          SizedBox(
+                            width: 20,
+                            child: TextFormField(
+                              initialValue: '6',
+                              style: w300_13(),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: InputBorder.none,
+                                prefixIconConstraints:
+                                    BoxConstraints(maxWidth: 20, minWidth: 20),
+                              ),
+                            ),
+                          ),
                         ],
                       )),
                   Container(
@@ -216,7 +225,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           border: Border(
                               bottom: BorderSide(
                                   color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -224,10 +233,19 @@ class _EditReportsPageState extends State<EditReportsPage> {
                             'Bible Studies',
                             style: w600_13(),
                           ),
-                          Text(
-                            '6',
-                            style: w300_13(),
-                          )
+                          SizedBox(
+                            width: 20,
+                            child: TextFormField(
+                              initialValue: '6',
+                              style: w300_13(),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: InputBorder.none,
+                                prefixIconConstraints:
+                                    BoxConstraints(maxWidth: 20, minWidth: 20),
+                              ),
+                            ),
+                          ),
                         ],
                       )),
                   Container(
@@ -235,7 +253,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           border: Border(
                               bottom: BorderSide(
                                   color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -243,10 +261,19 @@ class _EditReportsPageState extends State<EditReportsPage> {
                             'Return Visits',
                             style: w600_13(),
                           ),
-                          Text(
-                            '2',
-                            style: w300_13(),
-                          )
+                          SizedBox(
+                            width: 20,
+                            child: TextFormField(
+                              initialValue: '2',
+                              style: w300_13(),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: InputBorder.none,
+                                prefixIconConstraints:
+                                    BoxConstraints(maxWidth: 20, minWidth: 20),
+                              ),
+                            ),
+                          ),
                         ],
                       )),
                   Container(
@@ -254,7 +281,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           border: Border(
                               bottom: BorderSide(
                                   color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -262,10 +289,19 @@ class _EditReportsPageState extends State<EditReportsPage> {
                             'Magazines',
                             style: w600_13(),
                           ),
-                          Text(
-                            '10',
-                            style: w300_13(),
-                          )
+                          SizedBox(
+                            width: 20,
+                            child: TextFormField(
+                              initialValue: '10',
+                              style: w300_13(),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: InputBorder.none,
+                                prefixIconConstraints:
+                                    BoxConstraints(maxWidth: 20, minWidth: 20),
+                              ),
+                            ),
+                          ),
                         ],
                       )),
                   Container(
@@ -273,7 +309,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           border: Border(
                               bottom: BorderSide(
                                   color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -281,10 +317,19 @@ class _EditReportsPageState extends State<EditReportsPage> {
                             'Brochures',
                             style: w600_13(),
                           ),
-                          Text(
-                            '15',
-                            style: w300_13(),
-                          )
+                          SizedBox(
+                            width: 20,
+                            child: TextFormField(
+                              initialValue: '15',
+                              style: w300_13(),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: InputBorder.none,
+                                prefixIconConstraints:
+                                    BoxConstraints(maxWidth: 20, minWidth: 20),
+                              ),
+                            ),
+                          ),
                         ],
                       )),
                   Container(
@@ -292,7 +337,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           border: Border(
                               bottom: BorderSide(
                                   color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -300,10 +345,19 @@ class _EditReportsPageState extends State<EditReportsPage> {
                             'Videos',
                             style: w600_13(),
                           ),
-                          Text(
-                            '3',
-                            style: w300_13(),
-                          )
+                          SizedBox(
+                            width: 20,
+                            child: TextFormField(
+                              initialValue: '3',
+                              style: w300_13(),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: InputBorder.none,
+                                prefixIconConstraints:
+                                    BoxConstraints(maxWidth: 20, minWidth: 20),
+                              ),
+                            ),
+                          ),
                         ],
                       )),
                   SizedBox(
