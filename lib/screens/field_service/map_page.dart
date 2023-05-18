@@ -73,7 +73,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.createNoticeOfEventScreen);
+                      Get.toNamed(Routes.createNoticeOfEventScreen, arguments: true);
                     },
                     child: Text(
                       'NOE',
@@ -89,7 +89,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.chatScreen);
+                      Get.toNamed(Routes.chatScreen, arguments: true);
                     },
                     child: Text(
                       'Message',
@@ -105,7 +105,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.doNotCallScreen);
+                      Get.toNamed(Routes.doNotCallScreen,arguments: true);
                     },
                     child: Text(
                       'DNC',

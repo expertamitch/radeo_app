@@ -10,6 +10,7 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../get_controller/create_messages_controller.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
+import '../../utils/common_dialogs.dart';
 import '../../widgets/common_app_bar.dart';
 
 class CreateMessagePage extends StatefulWidget {
@@ -420,9 +421,15 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             style: w300_13(),
           ),
         ),
-        ImageView(
-          path: Images.closeIcon,
-          height: 15.h,
+        GestureDetector(
+          onTap: () {
+            showDeleteConfirmation(
+                context, "Do you want to delete custom message?");
+          },
+          child: ImageView(
+            path: Images.closeIcon,
+            height: 15.h,
+          ),
         )
       ],
     );

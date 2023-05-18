@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/widgets/common_app_bar.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../route/routes.dart';
@@ -28,10 +29,14 @@ class _ReportsPageState extends State<ReportsPage> {
           button1: 'Edit',
           button2: 'Share',
           buttonTap1: () {
+
+
             Get.toNamed(Routes.editReportsScreen);
           },
           buttonTap2: () {
-            Get.toNamed(Routes.shareReportsScreen);
+            Share.share('Share example');
+
+            // Get.toNamed(Routes.shareReportsScreen);
           },
         ),
         body: SingleChildScrollView(

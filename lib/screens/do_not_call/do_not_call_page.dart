@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
+
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
@@ -21,12 +23,9 @@ class _DoNotCallPageState extends State<DoNotCallPage> {
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
           title: 'Do Not Call',
-
+          isBack: Get.arguments != null,
         ),
-
-
         body: Column(children: [
-
           Expanded(
               child: ListView.builder(
                   itemCount: 2,

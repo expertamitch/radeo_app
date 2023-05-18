@@ -8,19 +8,18 @@ import '../styling/font_style_globle.dart';
 import 'app_button.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-
-
-
-
   String title;
+  bool isBack;
 
   String? button1, button2;
-  VoidCallback? buttonTap1, buttonTap2;
+  VoidCallback? buttonTap1, buttonTap2, backPress;
 
   CustomAppBar(
       {Key? key,
       required this.title,
+      this.isBack = false,
       this.button1,
+      this.backPress,
       this.button2,
       this.buttonTap1,
       this.buttonTap2})
@@ -35,11 +34,10 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  HomePageController homePageController=Get.find();
+  HomePageController homePageController = Get.find();
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -57,9 +55,18 @@ class _CustomAppBarState extends State<CustomAppBar> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {
-                homePageController.openDrawer();
-              }, icon: Icon(Icons.menu)),
+              widget.isBack
+                  ? IconButton(
+                      onPressed: widget.backPress ??
+                          () {
+                            Get.back();
+                          },
+                      icon: Icon(Icons.keyboard_backspace))
+                  : IconButton(
+                      onPressed: () {
+                        homePageController.openDrawer();
+                      },
+                      icon: Icon(Icons.menu)),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

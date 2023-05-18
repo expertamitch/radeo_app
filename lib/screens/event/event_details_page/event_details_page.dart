@@ -8,6 +8,7 @@ import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 
+import '../../../utils/common_dialogs.dart';
 import '../../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
 
@@ -30,7 +31,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           actions: [
             GestureDetector(
                 onTap: () {
-                  Get.toNamed(Routes.editEventDetailsScreen);
                 },
                 child: ImageView(
                   path: Images.editIcon,
@@ -41,7 +41,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             ),
             GestureDetector(
               onTap: () {
-                //delete
+                showDeleteConfirmation(context, "Do you want to delete event?");
               },
               child: ImageView(
                 path: Images.deleteIcon,

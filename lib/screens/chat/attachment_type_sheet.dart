@@ -15,7 +15,7 @@ showIdTypeBottomSheet() {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Select ID type',
+              'Select attachment type',
               style: w900_15(color: AppColors.dark2GreyColor),
             ),
             SizedBox(

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:redeo/styling/app_colors.dart';
+import 'package:redeo/utils/common_dialogs.dart';
 
 import '../../assets/images.dart';
 import '../../route/routes.dart';
@@ -126,7 +127,7 @@ class _GroupsPageState extends State<GroupsPage> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      showAlertDialog(context);
+                      showDeleteConfirmation(context,"Do you want to delete group?");
                     },
                     child: ImageView(
                       path: Images.deleteIcon,
@@ -143,41 +144,6 @@ class _GroupsPageState extends State<GroupsPage> {
         ));
   }
 
-  showAlertDialog(BuildContext context) {
-    // set up the button
-    Widget okButton = TextButton(
-      child: Text("Yes"),
-      onPressed: () async {
-        Navigator.of(context).pop();
 
-
-      },
-    );
-
-    Widget noButton = TextButton(
-      child: Text("No"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text(
-        "Confirm",
-        style: w900_16(),
-      ),
-      content: Text("Do you want to delete group?", style: w600_14()),
-      actions: [okButton, noButton],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
 
 }

@@ -74,11 +74,7 @@ class AppPages {
     ),
 
     //create messages
-    GetPage(
-      name: Routes.createMessageScreen,
-      transition: Transition.cupertino,
-      page: () => CreateMessagePage(),
-    ),
+
     GetPage(
       name: Routes.reviewMessageScreen,
       transition: Transition.cupertino,
@@ -104,15 +100,11 @@ class AppPages {
     GetPage(
       name: Routes.doNotCallScreen,
       transition: Transition.cupertino,
-      page: () => DoNotCallPage(),
+      page: () => DoNotCallPage(),arguments: Get.arguments
     ),
 
     //event
-    GetPage(
-      name: Routes.eventScreen,
-      transition: Transition.cupertino,
-      page: () => EventPage(),
-    ),
+
     GetPage(
       name: Routes.createEventScreen,
       transition: Transition.cupertino,
@@ -139,12 +131,7 @@ class AppPages {
       page: () => EditEventDetailsPage(),
     ),
 
-    //field service
-    GetPage(
-      name: Routes.fieldServiceScreen,
-      transition: Transition.cupertino,
-      page: () => FieldServicePage(),
-    ),
+
     GetPage(
       name: Routes.filedServiceMapPageScreen,
       transition: Transition.cupertino,
@@ -152,11 +139,7 @@ class AppPages {
     ),
 
     //groups
-    GetPage(
-      name: Routes.groupsPageScreen,
-      transition: Transition.cupertino,
-      page: () => GroupsPage(),
-    ),
+
     GetPage(
       name: Routes.createGroupScreen,
       transition: Transition.cupertino,
@@ -173,6 +156,7 @@ class AppPages {
       name: Routes.chatScreen,
       transition: Transition.cupertino,
       page: () => ChatPage(),
+      arguments: Get.arguments
     ),
     GetPage(
       name: Routes.chatMessageScreen,
@@ -185,6 +169,7 @@ class AppPages {
       name: Routes.createNoticeOfEventScreen,
       transition: Transition.cupertino,
       page: () => CreateNoticeOfEvent(),
+      arguments: Get.arguments
     ),
     GetPage(
       name: Routes.createReturnPageScreen,
@@ -201,11 +186,6 @@ class AppPages {
       transition: Transition.cupertino,
       page: () => NoticeOfEventSummaryPage(),
     ),
-    GetPage(
-      name: Routes.returnVisitsScreen,
-      transition: Transition.cupertino,
-      page: () => ReturnVisitsPage(),
-    ),
 
     //scan qr page
     GetPage(
@@ -215,11 +195,7 @@ class AppPages {
     ),
 
     //Reports page
-    GetPage(
-      name: Routes.reportsScreen,
-      transition: Transition.cupertino,
-      page: () => ReportsPage(),
-    ),
+
     GetPage(
       name: Routes.editReportsScreen,
       transition: Transition.cupertino,

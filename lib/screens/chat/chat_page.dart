@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
+
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
@@ -19,12 +19,11 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar:CustomAppBar(
+        appBar: CustomAppBar(
+          isBack: Get.arguments != null,
           title: 'Chat',
-
         ),
         body: Column(children: [
-
           Expanded(
               child: ListView.separated(
                   separatorBuilder: (context, index) =>

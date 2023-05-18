@@ -1,21 +1,20 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/widgets/image_view.dart';
+
 import '../../get_controller/notice_of_event_controller.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-
 import '../../widgets/colors.dart';
-import 'package:redeo/widgets/app_button.dart';
-
 import '../../widgets/common_app_bar.dart';
 import '../../widgets/show_toast.dart';
 
@@ -42,10 +41,11 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar:CustomAppBar(
+        appBar: CustomAppBar(
           title: 'Notice of Event',
+          isBack: Get.arguments != null,
           button1: 'Save',
-           buttonTap1: () {
+          buttonTap1: () {
             bool goToSummaryPage = true;
             if (_formKey.currentState!.validate() == false) {
               goToSummaryPage = false;
@@ -89,12 +89,8 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               Get.toNamed(Routes.noticeOfEventSummaryScreen);
             }
           },
-         ),
-
-
-
+        ),
         body: Column(children: [
-
           Expanded(
               child: SingleChildScrollView(
                   child: Form(
