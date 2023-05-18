@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
@@ -48,56 +50,62 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
       required String location,
       required String trailingLevelPath,
       required String noteString}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
-                style: w900_12(
-                  color: AppColors.purpleColor,
+    return GestureDetector(
+      onTap: (){
+        Get.toNamed(Routes.noticeOfEventSummaryScreen);
+
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
+                  style: w900_12(
+                    color: AppColors.purpleColor,
+                  ),
                 ),
-              ),
-              SvgPicture.asset(
-                trailingLevelPath,
-                height: 30,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            name,
-            style: w600_16(),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Text(
-            location,
-            style: w300_13(color: AppColors.dark2GreyColor),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: AppColors.lightGreyColor,
-                borderRadius: BorderRadius.circular(4)),
-            padding: EdgeInsets.all(10),
-            child: Text(
-              noteString,
-              style: w300_12(color: AppColors.dark2GreyColor),
+                SvgPicture.asset(
+                  trailingLevelPath,
+                  height: 30,
+                ),
+              ],
             ),
-          ),
-        ],
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              name,
+              style: w600_16(),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Text(
+              location,
+              style: w300_13(color: AppColors.dark2GreyColor),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: AppColors.lightGreyColor,
+                  borderRadius: BorderRadius.circular(4)),
+              padding: EdgeInsets.all(10),
+              child: Text(
+                noteString,
+                style: w300_12(color: AppColors.dark2GreyColor),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
