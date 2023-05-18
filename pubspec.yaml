@@ -54,6 +54,7 @@ dependencies:
   latlong2: ^0.8.1
   fluttertoast: ^8.2.1
   share_plus: ^7.0.0
+  dotted_border: ^2.0.0+3
 
 
 

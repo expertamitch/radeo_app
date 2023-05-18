@@ -1,6 +1,8 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
@@ -25,6 +27,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
 
   CreateMessagesController getController = Get.put(CreateMessagesController());
 
+
+  bool selectedFiles = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,271 +42,466 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
       body: Column(children: [
         Expanded(
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  Text(
-                    'Location',
-                    style: w300_13(
-                      color: AppColors.blueColor,
-                    ),
-                  ),
-                  TextFormField(
-                    style: w300_13(),
-                    decoration: InputDecoration(
-                        hintStyle: w300_13(),
-                        hintText: 'Select Location',
-                        border: InputBorder.none,
-                        prefixIconConstraints:
-                            BoxConstraints(maxWidth: 20, minWidth: 20),
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ImageView(
-                                path: Images.locationIcon,
-                                color: AppColors.purpleColor,
-                                height: 18,
-                              ),
-                            ],
-                          ),
-                        )),
-                  ),
-                  Divider(
-                    color: AppColors.greyColor,
-                    thickness: 1,
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  Text(
-                    'Select Message',
-                    style: w300_13(
-                      color: AppColors.blueColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            getController.selectedMessageType = 'Text';
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: getController.selectedMessageType ==
-                                          'Text'
-                                      ? AppColors.purpleColor
-                                      : AppColors.greyColor),
-                              borderRadius: BorderRadius.circular(8)),
-                          width: MediaQuery.of(context).size.width * 0.28,
-                          padding: EdgeInsets.symmetric(
-                            vertical: 8,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ImageView(
-                                path: Images.textFileIcon,
-                                height: 16,
-                                color: AppColors.purpleColor,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Text(
-                                'Text',
-                                style: w300_13(
-                                  color: getController.selectedMessageType ==
-                                          'Text'
-                                      ? AppColors.purpleColor
-                                      : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            getController.selectedMessageType = 'Audio';
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: getController.selectedMessageType ==
-                                          'Audio'
-                                      ? AppColors.purpleColor
-                                      : AppColors.greyColor),
-                              borderRadius: BorderRadius.circular(8)),
-                          width: MediaQuery.of(context).size.width * 0.28,
-                          padding: EdgeInsets.symmetric(
-                            vertical: 8,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ImageView(
-                                path: Images.audioIcon,
-                                height: 16,
-                                color: AppColors.purpleColor,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Text(
-                                'Audio',
-                                style: w300_13(
-                                  color: getController.selectedMessageType ==
-                                          'Audio'
-                                      ? AppColors.purpleColor
-                                      : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            getController.selectedMessageType = 'Video';
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: getController.selectedMessageType ==
-                                          'Video'
-                                      ? AppColors.purpleColor
-                                      : AppColors.greyColor),
-                              borderRadius: BorderRadius.circular(8)),
-                          width: MediaQuery.of(context).size.width * 0.28,
-                          padding: EdgeInsets.symmetric(
-                            vertical: 8,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ImageView(
-                                path: Images.videoIcon,
-                                height: 16,
-                                color: AppColors.purpleColor,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Text(
-                                'Video',
-                                style: w300_13(
-                                  color: getController.selectedMessageType ==
-                                          'Video'
-                                      ? AppColors.purpleColor
-                                      : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Divider(
-                    color: AppColors.greyColor,
-                    thickness: 1,
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  Text(
-                    'Attachment',
-                    style: w300_13(
-                      color: AppColors.blueColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  getAttachment(),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Divider(
-                    color: AppColors.greyColor,
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 15.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Response',
+                        'Location',
                         style: w300_13(
                           color: AppColors.blueColor,
                         ),
                       ),
-                      Transform.scale(
-                        scale: 0.6,
-                        child: CupertinoSwitch(
-                          activeColor: AppColors.purpleColor,
-                          value: response,
-                          onChanged: (value) {
-                            setState(() {
-                              response = value;
-                            });
-                          },
-                        ),
-                      )
+                      TextFormField(
+                        style: w300_13(),
+                        decoration: InputDecoration(
+                            hintStyle: w300_13(),
+                            hintText: 'Select Location',
+                            border: InputBorder.none,
+                            prefixIconConstraints:
+                                BoxConstraints(maxWidth: 20, minWidth: 20),
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ImageView(
+                                    path: Images.locationIcon,
+                                    color: AppColors.purpleColor,
+                                    height: 18,
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ),
                     ],
                   ),
-                  if (response) getResponseWidget(),
-                  Divider(
-                    color: AppColors.greyColor,
-                    thickness: 1,
+                ),
+                Divider(
+                  color: AppColors.greyColor,
+                  thickness: 1,
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Select Message',
+                        style: w300_13(
+                          color: AppColors.blueColor,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                getController.selectedMessageType = 'Text';
+                              });
+                              Get.toNamed(Routes.selectTextMessageScreen);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color:
+                                          getController.selectedMessageType ==
+                                                  'Text'
+                                              ? AppColors.purpleColor
+                                              : AppColors.greyColor),
+                                  borderRadius: BorderRadius.circular(8)),
+                              width: MediaQuery.of(context).size.width * 0.28,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 8,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ImageView(
+                                    path: Images.textFileIcon,
+                                    height: 13,
+                                    color: AppColors.purpleColor,
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  Text(
+                                    'Text',
+                                    style: w300_13(
+                                      color:
+                                          getController.selectedMessageType ==
+                                                  'Text'
+                                              ? AppColors.purpleColor
+                                              : Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                getController.selectedMessageType = 'Audio';
+                              });
+
+                              Get.toNamed(Routes.selectAudioMessageScreen);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color:
+                                          getController.selectedMessageType ==
+                                                  'Audio'
+                                              ? AppColors.purpleColor
+                                              : AppColors.greyColor),
+                                  borderRadius: BorderRadius.circular(8)),
+                              width: MediaQuery.of(context).size.width * 0.28,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 8,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ImageView(
+                                    path: Images.audioIcon,
+                                    height: 13,
+                                    color: AppColors.purpleColor,
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  Text(
+                                    'Audio',
+                                    style: w300_13(
+                                      color:
+                                          getController.selectedMessageType ==
+                                                  'Audio'
+                                              ? AppColors.purpleColor
+                                              : Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                getController.selectedMessageType = 'Video';
+                              });
+
+                              Get.toNamed(Routes.selectVideoMessageScreen);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color:
+                                          getController.selectedMessageType ==
+                                                  'Video'
+                                              ? AppColors.purpleColor
+                                              : AppColors.greyColor),
+                                  borderRadius: BorderRadius.circular(8)),
+                              width: MediaQuery.of(context).size.width * 0.28,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 8,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ImageView(
+                                    path: Images.videoIcon,
+                                    height: 13,
+                                    color: AppColors.purpleColor,
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  Text(
+                                    'Video',
+                                    style: w300_13(
+                                      color:
+                                          getController.selectedMessageType ==
+                                                  'Video'
+                                              ? AppColors.purpleColor
+                                              : Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      if (getController.selectedMessageType == 'Text')
+                        Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: AppColors.lightGreyColor),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            child: Text(
+                              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna',
+                              style: w300_13(color: AppColors.dark2GreyColor),
+                            )),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      if (getController.selectedMessageType == 'Audio')
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: AppColors.lightGreyColor),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 15),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                Images.audiFileIcon,
+                                width: 30,
+                              ),
+                              SizedBox(
+                                width: 15.w,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Audiofile_23052023',
+                                    style: w300_13(),
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '00:12',
+                                        style: w300_10(
+                                            color: AppColors.dark2GreyColor),
+                                      ),
+                                      SizedBox(
+                                        width: 10.w,
+                                      ),
+                                      Text(
+                                        '12 KB',
+                                        style: w300_10(
+                                            color: AppColors.dark2GreyColor),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Expanded(
+                                  child: SizedBox(
+                                width: 5,
+                              )),
+                              GestureDetector(
+                                onTap: () {
+                                  getController.selectedMessageType = null;
+                                  setState(() {});
+                                },
+                                child: ImageView(
+                                  path: Images.closeIcon,
+                                  width: 15,
+                                  color: AppColors.purpleColor,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      if (getController.selectedMessageType == 'Video')
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: AppColors.lightGreyColor),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
+                          child: Row(
+                            children: [
+                              ImageView(
+                                path: 'assets/dummy_data/video 02.png',
+                                height: 50,
+                              ),
+                              SizedBox(
+                                width: 15.w,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'vidofile_23052023',
+                                    style: w300_13(),
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '00:12',
+                                        style: w300_10(
+                                            color: AppColors.dark2GreyColor),
+                                      ),
+                                      SizedBox(
+                                        width: 10.w,
+                                      ),
+                                      Text(
+                                        '12 KB',
+                                        style: w300_10(
+                                            color: AppColors.dark2GreyColor),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Expanded(
+                                  child: SizedBox(
+                                width: 5,
+                              )),
+                              GestureDetector(
+                                onTap: () {
+                                  getController.selectedMessageType = null;
+                                  setState(() {});
+                                },
+                                child: ImageView(
+                                  path: Images.closeIcon,
+                                  width: 15,
+                                  color: AppColors.purpleColor,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 15.h,
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(
+                  color: AppColors.greyColor,
+                  thickness: 1,
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Attachment',
+                        style: w300_13(
+                          color: AppColors.blueColor,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      getAttachment(),
+                    ],
                   ),
-                  Text(
-                    'Associating QR Code',
-                    style: w300_13(
-                      color: AppColors.blueColor,
-                    ),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(
+                  color: AppColors.greyColor,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Response',
+                            style: w300_13(
+                              color: AppColors.blueColor,
+                            ),
+                          ),
+                          Transform.scale(
+                            scale: 0.6,
+                            child: CupertinoSwitch(
+                              activeColor: AppColors.purpleColor,
+                              value: response,
+                              onChanged: (value) {
+                                setState(() {
+                                  response = value;
+                                });
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                      if (response) getResponseWidget(),
+                    ],
                   ),
-                  SizedBox(
-                    height: 25.h,
-                  ),
-                  Center(
-                    child: PrettyQr(
-                      // image: AssetImage('images/twitter.png'),
-                      typeNumber: 3,
-                      size: 130,
-                      data: 'https://www.google.ru',
-                      errorCorrectLevel: QrErrorCorrectLevel.M,
-                      roundEdges: true,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                ],
-              ),
+                ),
+                Divider(
+                  color: AppColors.greyColor,
+                  thickness: 1,
+                ),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          Text(
+                            'Associating QR Code',
+                            style: w300_13(
+                              color: AppColors.blueColor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25.h,
+                          ),
+                          Center(
+                            child: PrettyQr(
+                              // image: AssetImage('images/twitter.png'),
+                              typeNumber: 3,
+                              size: 130,
+                              data: 'https://www.google.ru',
+                              errorCorrectLevel: QrErrorCorrectLevel.M,
+                              roundEdges: true,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                        ]))
+              ],
             ),
           ),
         ),
@@ -436,20 +635,70 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
   }
 
   getAttachment() {
+    if (selectedFiles)
+      return Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: AppColors.greyColor),
+                borderRadius: BorderRadius.circular(8)),
+            padding: EdgeInsets.all(8),
+            child: Row(
+              children: [
+                Text(
+                  'Filename_23052023',
+                  style: w300_13(),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedFiles = false;
+                    });
+                  },
+                  child: ImageView(
+                    path: Images.closeIcon,
+                    width: 10,
+                    color: AppColors.purpleColor,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      );
     return GestureDetector(
-      onTap: () {
-        if (getController.selectedMessageType == 'Text') {
-          Get.toNamed(Routes.selectTextMessageScreen);
-        } else if (getController.selectedMessageType == 'Audio') {
-          Get.toNamed(Routes.selectAudioMessageScreen);
-        } else {
-          Get.toNamed(Routes.selectVideoMessageScreen);
-        }
-      },
-      child: SizedBox(
-          height: 40.h,
-          width: MediaQuery.of(context).size.width,
-          child: ImageView(path: Images.selectFiles)),
-    );
+        onTap: () {
+          setState(() {
+            selectedFiles = true;
+          });
+        },
+        child: DottedBorder(
+          color: AppColors.greyColor,
+          strokeWidth: 1,
+          dashPattern: [5, 5],
+          borderType: BorderType.RRect,
+          radius: Radius.circular(8),
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ImageView(
+                path: Images.attachIcon,
+                color: AppColors.purpleColor,
+                height: 15,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Select Files',
+                style: w300_13(),
+              )
+            ],
+          ),
+        ));
   }
 }

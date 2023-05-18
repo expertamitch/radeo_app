@@ -131,7 +131,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                 ),
                 AppButton(
                     onPressedFunction: () {
-                      Get.toNamed(Routes.homepageScreen);
+                      Navigator.pop(context);
                     },
                     child: Text(
                       'Verfy OTP',

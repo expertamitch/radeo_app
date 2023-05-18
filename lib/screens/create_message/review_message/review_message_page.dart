@@ -142,7 +142,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                                 Text(
                                   '00:12',
                                   style:
-                                      w300_13(color: AppColors.dark2GreyColor),
+                                      w300_10(color: AppColors.dark2GreyColor),
                                 ),
                                 SizedBox(
                                   width: 10.w,
@@ -150,7 +150,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                                 Text(
                                   '12 KB',
                                   style:
-                                      w300_13(color: AppColors.dark2GreyColor),
+                                      w300_10(color: AppColors.dark2GreyColor),
                                 ),
                               ],
                             )

@@ -136,7 +136,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                   ),
                   Text(
                     duration + '  ' + size,
-                    style: w300_13(color: AppColors.dark2GreyColor),
+                    style: w300_10(color: AppColors.dark2GreyColor),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

@@ -26,34 +26,39 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        toolbarHeight: 190,
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(Images.authPageBg), fit: BoxFit.cover)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 21.0),
+                  child: Text('Sign in to your Account',
+                      style: w900_35(color: Colors.white)),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+              ],
+            )),
+        elevation: 0,
+      ),
       body: Form(
         key: _formKey,
         child: Column(children: [
-          Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(Images.authPageBg), fit: BoxFit.cover)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 21.0),
-                    child: Text('Sign in to your Account',
-                        style: w900_35(color: Colors.white)),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                ],
-              )),
           SizedBox(
             height: 20.h,
           ),
@@ -77,6 +82,8 @@ class _LoginPageState extends State<LoginPage> {
                     height: 10.h,
                   ),
                   TextFormField(
+                    obscuringCharacter: '✱',
+                    obscureText: true,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Password'),
