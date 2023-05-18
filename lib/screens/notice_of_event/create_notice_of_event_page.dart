@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:io';
@@ -940,8 +941,32 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       height: 10.h,
                     ),
                     GestureDetector(
-                      child: ImageView(path: Images.selectFiles),
-                    ),
+                        onTap: () {},
+                        child: DottedBorder(
+                          color: AppColors.greyColor,
+                          strokeWidth: 1,
+                          dashPattern: [5, 5],
+                          borderType: BorderType.RRect,
+                          radius: Radius.circular(8),
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ImageView(
+                                path: Images.attachIcon,
+                                color: AppColors.purpleColor,
+                                height: 15,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Select Files',
+                                style: w300_13(),
+                              )
+                            ],
+                          ),
+                        )),
                     SizedBox(
                       height: 10.h,
                     ),

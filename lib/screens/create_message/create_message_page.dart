@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -142,7 +143,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                             children: [
                               ImageView(
                                 path: Images.textFileIcon,
-                                height: 16,
+                                height: 13,
                                 color: AppColors.purpleColor,
                               ),
                               SizedBox(
@@ -184,7 +185,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                             children: [
                               ImageView(
                                 path: Images.audioIcon,
-                                height: 16,
+                                height: 13,
                                 color: AppColors.purpleColor,
                               ),
                               SizedBox(
@@ -226,7 +227,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                             children: [
                               ImageView(
                                 path: Images.videoIcon,
-                                height: 16,
+                                height: 13,
                                 color: AppColors.purpleColor,
                               ),
                               SizedBox(
@@ -453,19 +454,39 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
 
   getAttachment() {
     return GestureDetector(
-      onTap: () {
-        if (getController.selectedMessageType == 'Text') {
-          Get.toNamed(Routes.selectTextMessageScreen);
-        } else if (getController.selectedMessageType == 'Audio') {
-          Get.toNamed(Routes.selectAudioMessageScreen);
-        } else {
-          Get.toNamed(Routes.selectVideoMessageScreen);
-        }
-      },
-      child: SizedBox(
-          height: 40.h,
-          width: MediaQuery.of(context).size.width,
-          child: ImageView(path: Images.selectFiles)),
-    );
+        onTap: () {
+          if (getController.selectedMessageType == 'Text') {
+            Get.toNamed(Routes.selectTextMessageScreen);
+          } else if (getController.selectedMessageType == 'Audio') {
+            Get.toNamed(Routes.selectAudioMessageScreen);
+          } else {
+            Get.toNamed(Routes.selectVideoMessageScreen);
+          }
+        },
+        child: DottedBorder(
+          color: AppColors.greyColor,
+          strokeWidth: 1,
+          dashPattern: [5, 5],
+          borderType: BorderType.RRect,
+          radius: Radius.circular(8),
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ImageView(
+                path: Images.attachIcon,
+                color: AppColors.purpleColor,
+                height: 15,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Select Files',
+                style: w300_13(),
+              )
+            ],
+          ),
+        ));
   }
 }

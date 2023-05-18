@@ -74,6 +74,12 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "dotted_border",
+      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/dotted_border-2.0.0+3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
@@ -566,7 +572,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-05-12T14:02:22.204606Z",
+  "generated": "2023-05-17T14:55:54.624698Z",
   "generator": "pub",
   "generatorVersion": "3.0.0"
 }

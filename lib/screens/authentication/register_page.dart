@@ -31,36 +31,41 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: true,
+
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        toolbarHeight: 190,
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(Images.authPageBg), fit: BoxFit.cover)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 21.0),
+                  child: Text('Register your Account',
+                      style: w900_35(color: Colors.white)),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+              ],
+            )),
+        elevation: 0,
+      ),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
           child: Column(children: [
-            Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(Images.authPageBg),
-                        fit: BoxFit.cover)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppBar(
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 21.0),
-                      child: Text('Register your Account',
-                          style: w900_35(color: Colors.white)),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                  ],
-                )),
             SizedBox(
               height: 20.h,
             ),
@@ -121,7 +126,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       inputDecoration: inputDecoration.copyWith(
                           labelText: 'Mobile',
                           suffix: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.otpVerficationScreen);
+                            },
                             child: Text(
                               'GET OTP',
                               style: w600_12(color: AppColors.purpleColor),
@@ -150,6 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 10.h,
                   ),
                   TextFormField(
+                    obscuringCharacter: '✱',
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
                     obscureText: true,
@@ -170,6 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
                     obscureText: true,
+                    obscuringCharacter: '✱',
                     decoration:
                         inputDecoration.copyWith(labelText: 'Confirm Password'),
                     validator: (value) => value == null || value.isEmpty
@@ -185,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   AppButton(
                       onPressedFunction: () {
                         // if (_formKey.currentState!.validate()) {
-                        Get.toNamed(Routes.otpVerficationScreen);
+                        Get.toNamed(Routes.homepageScreen);
                         // }
                       },
                       child: Text(
@@ -205,7 +214,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         onTap: () {
                           Get.toNamed(Routes.loginScreen);
                         },
-                        child: Text('Login here',
+                        child: Text('Sign In Now',
                             style: w900_12(
                               color: AppColors.purpleColor,
                             )),

@@ -303,10 +303,10 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
-      useInheritedMediaQuery: false,
+      useInheritedMediaQuery: true,
       builder: (context, child) {
         return GetMaterialApp(
-          useInheritedMediaQuery: false,
+          // useInheritedMediaQuery: false,
           debugShowCheckedModeBanner: false,
           builder: (context, child) => child ?? Scaffold(),
 

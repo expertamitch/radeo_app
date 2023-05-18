@@ -16,6 +16,9 @@ class EditReportsPage extends StatefulWidget {
 
 class _EditReportsPageState extends State<EditReportsPage> {
   DateTime selectedDate = DateTime.now();
+
+  String hoursDropDownValue = "24";
+  String minDropDownValue = "30";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,7 +117,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           border: Border(
                               bottom: BorderSide(
                                   color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -122,10 +125,71 @@ class _EditReportsPageState extends State<EditReportsPage> {
                             'Time',
                             style: w600_13(),
                           ),
-                          Text(
-                            '24:30',
-                            style: w300_13(),
-                          )
+                          Expanded(
+                              child: SizedBox(
+                            width: 2,
+                          )),
+                          Container(
+                            width: 55,
+                            decoration: BoxDecoration(
+                                color: AppColors.darkGreyColor,
+                                borderRadius: BorderRadius.circular(2)),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 3, horizontal: 5),
+                            child: DropdownButton<String>(
+                              underline: SizedBox(),
+                              isDense: true,
+                              isExpanded: true,
+                              value: hoursDropDownValue,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp,
+                                  weight: .5, size: 20),
+                              items: List.generate(
+                                      24, (index) => (index + 1).toString())
+                                  .toList()
+                                  .map((String value) {
+                                return DropdownMenuItem(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: w300_13(),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (_) {},
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 55,
+                            decoration: BoxDecoration(
+                                color: AppColors.darkGreyColor,
+                                borderRadius: BorderRadius.circular(2)),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 3, horizontal: 5),
+                            child: DropdownButton<String>(
+                              underline: SizedBox(),
+                              isDense: true,
+                              isExpanded: true,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp,
+                                  weight: .5, size: 20),
+                              value: minDropDownValue,
+                              items: List.generate(
+                                      60, (index) => (index + 1).toString())
+                                  .toList()
+                                  .map((String value) {
+                                return DropdownMenuItem(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: w300_13(),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (_) {},
+                            ),
+                          ),
                         ],
                       )),
                   Container(

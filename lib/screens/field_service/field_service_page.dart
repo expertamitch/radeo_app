@@ -59,32 +59,41 @@ class _FieldServicePageState extends State<FieldServicePage> {
         // FiledServiceMapPage
       },
       child: Container(
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
-        child: ListTile(
-          leading: Container(
-            height: 18,
-            child: ImageView(
-              path: leadingIconPath,
-              height: 30,
-              color: AppColors.purpleColor,
-            ),
-          ),
-          minLeadingWidth: 10,
-          title: Text(
-            location,
-            style: w300_12(),
-          ),
-          subtitle: Padding(
-            padding: EdgeInsets.only(top: 5),
-            child: Text(
-              DateFormat('dd MMM yyyy').format(dateTime),
-              style: w300_10(color: AppColors.dark2GreyColor),
-            ),
-          ),
-        ),
-      ),
+          decoration: BoxDecoration(
+              border:
+                  Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    height: 15,
+                    width: 30,
+                    alignment: Alignment.centerLeft,
+                    child: ImageView(
+                      path: leadingIconPath,
+                      color: AppColors.purpleColor,
+                    ),
+                  ),
+                  Flexible(
+                    child: Text(
+                      location,
+                      style: w300_12(),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 30, top: 5),
+                child: Text(
+                  DateFormat('dd MMM yyyy').format(dateTime),
+                  style: w300_10(color: AppColors.dark2GreyColor),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }

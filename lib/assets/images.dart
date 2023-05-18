@@ -60,7 +60,7 @@ class Images {
       "assets/icons/screen 18/Select_Radio.svg";
   static const String unselectRadioIcon =
       "assets/icons/screen 18/unselect_radio.svg";
-  static const String selectFiles = "assets/icons/screen 18/select_files.png";
+  // static const String selectFiles = "assets/icons/screen 18/select_files.png";
 
   //screen 19
   static const String history1Icon = "assets/icons/screen 19/Hisotory1.svg";
