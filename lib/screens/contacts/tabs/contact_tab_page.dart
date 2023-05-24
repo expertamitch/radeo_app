@@ -29,10 +29,7 @@ class _ContactTabPageState extends State<ContactTabPage> {
                   '23 Contacts',
                   style: w900_15(),
                 ),
-                Text(
-                  'Select All',
-                  style: w600_14(color: AppColors.purpleColor),
-                ),
+
               ],
             ),
           ),

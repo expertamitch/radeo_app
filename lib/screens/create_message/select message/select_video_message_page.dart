@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
@@ -78,7 +79,9 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                   height: 15.h,
                 ),
                 GestureDetector(
-                  onTap: () async {},
+                  onTap: () async {
+
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -143,6 +146,9 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                                           selectedVideoIndex = index;
                                         }
                                       });
+
+                                      Get.back();
+
                                     },
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *

@@ -105,7 +105,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.doNotCallScreen,arguments: true);
+                      Get.toNamed(Routes.listOfAddressScreen, );
                     },
                     child: Text(
                       'DNC',

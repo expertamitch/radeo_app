@@ -53,7 +53,7 @@ class _EventPageState extends State<EventPage> {
                         color: AppColors.dark2GreyColor,
                       ),
                       border: InputBorder.none,
-                      hintText: 'Serach Event...',
+                      hintText: 'Search Event...',
                       isDense: true),
                 ))
               ],

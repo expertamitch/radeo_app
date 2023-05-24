@@ -13,6 +13,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   String? button1, button2;
   VoidCallback? buttonTap1, buttonTap2, backPress;
+  Widget? button1Widget;
 
   CustomAppBar(
       {Key? key,
@@ -20,6 +21,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
       this.isBack = false,
       this.button1,
       this.backPress,
+        this.button1Widget,
       this.button2,
       this.buttonTap1,
       this.buttonTap2})
@@ -70,10 +72,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (widget.button1 != null)
+                  if ((widget.button1 != null && widget.button1!.isNotEmpty) || widget.button1Widget!=null)
                     AppButton(
                         onPressedFunction: widget.buttonTap1!,
-                        child: Text(
+                        child: widget.button1Widget??Text(
                           widget.button1!,
                           style: w300_12(color: Colors.white),
                         ),
@@ -82,7 +84,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         width: null,
                         margin: EdgeInsets.only(right: 10.w),
                         buttonColor: AppColors.purpleColor),
-                  if (widget.button2 != null)
+                  if (widget.button2 != null && widget.button2!.isNotEmpty)
                     AppButton(
                         onPressedFunction: widget.buttonTap2!,
                         child: Text(

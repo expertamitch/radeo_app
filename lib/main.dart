@@ -305,7 +305,6 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
-      useInheritedMediaQuery: false,
 
       useInheritedMediaQuery: true,
       builder: (context, child) {

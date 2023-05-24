@@ -3,6 +3,7 @@ import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import '../../../assets/images.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
@@ -103,7 +104,9 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
     required String size,
   }) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.back();
+      },
       child: Container(
         decoration: BoxDecoration(
             border:

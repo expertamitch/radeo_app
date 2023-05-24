@@ -15,7 +15,8 @@ abstract class Routes {
   static const selectVideoMessageScreen = '/selectVideoMessageScreen';
 
   //do not call
-  static const doNotCallScreen = '/doNotCallScreen';
+  static const listOfAddressScreen = '/doNotCallScreen';
+  static const addDncScreen = '/addDncScreen';
 
   //event page
    static const createEventScreen = '/createEventScreen';
@@ -49,4 +50,8 @@ abstract class Routes {
 
   //homepage
   static const homepageScreen = '/homepageScreen';
+
+//  territory
+  static const territoryHistoryListScreen= '/territoryHistoryListScreen';
+  static const contactPage= '/contactPage';
 }

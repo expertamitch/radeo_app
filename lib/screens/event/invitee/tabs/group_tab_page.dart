@@ -61,7 +61,7 @@ class _GroupTabPageState extends State<GroupTabPage> {
                       hintStyle: w300_12(
                         color: AppColors.dark2GreyColor,
                       ),
-                      hintText: 'Serach Group...',
+                      hintText: 'Search Group...',
                       isDense: true),
                 ))
               ],

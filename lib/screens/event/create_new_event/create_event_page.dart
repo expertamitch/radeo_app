@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
-import 'package:redeo/widgets/app_button.dart';
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({Key? key}) : super(key: key);
@@ -19,6 +19,8 @@ class _CreateEventPageState extends State<CreateEventPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   DateTime? selectedDate;
+
+  bool openEvent = true;
 
   String? selectedRecurrence; //Once a Week, Once a Month, Once a Year
 
@@ -364,21 +366,21 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   color: selectedRecurrence ==
-                                                      'Daily'
+                                                          'Daily'
                                                       ? AppColors.purpleColor
                                                       : AppColors.greyColor),
                                               borderRadius:
-                                              BorderRadius.circular(8)),
+                                                  BorderRadius.circular(8)),
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 8),
                                           alignment: Alignment.center,
                                           child: Text(
                                             'Daily',
                                             style: w300_13(
-                                              color: selectedRecurrence ==
-                                                  'Daily'
-                                                  ? AppColors.purpleColor
-                                                  : Colors.black,
+                                              color:
+                                                  selectedRecurrence == 'Daily'
+                                                      ? AppColors.purpleColor
+                                                      : Colors.black,
                                             ),
                                           ),
                                         ),
@@ -475,6 +477,57 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                       ),
                                     ],
                                   ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: AppColors.greyColor,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Event type',
+                                    style: w300_13(
+                                      color: AppColors.blueColor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Row(
+                                    children: [
+                                      AppButton(
+                                          onPressedFunction: () {
+                                            openEvent=true;
+                                            setState(() {});
+                                          },
+                                          child: Text('Open',style: w300_13(color: Colors.white)),
+                                          height: 30.h,
+                                          sodiumShapeBorder: true,
+                                          width: 80.w,
+                                          buttonColor: openEvent?AppColors.purpleColor:AppColors.dark2GreyColor),
+SizedBox(width: 10.w,),
+                                      AppButton(
+                                          onPressedFunction: () {
+                                            openEvent=false;
+                                            setState(() {});
+                                          },
+                                          child: Text('Closed',style: w300_13(color: Colors.white)),
+                                          height: 30.h,
+
+                                          sodiumShapeBorder: true,
+                                          width: 80.w,
+                                          buttonColor: !openEvent?AppColors.purpleColor:AppColors.dark2GreyColor)
+                                    ],
+                                  )
                                 ],
                               ),
                             ),

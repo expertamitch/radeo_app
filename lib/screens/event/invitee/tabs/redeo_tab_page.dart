@@ -57,7 +57,7 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
                   style: w300_12(),
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Serach Redeo Contact',
+                      hintText: 'Search Redeo Contact',
                       hintStyle: w300_12(
                         color: AppColors.dark2GreyColor,
                       ),
@@ -73,7 +73,7 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
             child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
-                return groupsTile('Group Name A', '34 Members');
+                return groupsTile('Redeo Name A', '34 Members');
               },
             ),
           )

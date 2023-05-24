@@ -5,7 +5,7 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
 import 'package:redeo/screens/create_message/create_message_page.dart';
-import 'package:redeo/screens/do_not_call/do_not_call_page.dart';
+import 'package:redeo/screens/do_not_call/addresses_list_screen.dart';
 import 'package:redeo/screens/event/events_page.dart';
 import 'package:redeo/screens/field_service/field_service_page.dart';
 import 'package:redeo/screens/groups/groups_page.dart';
@@ -16,6 +16,9 @@ import 'package:redeo/screens/return_visits/return_visits.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/image_view.dart';
+
+import '../do_not_call/dnc_territory_screen.dart';
+import '../territory/territory_list_screen.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -52,8 +55,8 @@ class _HomepageState extends State<Homepage> {
               ReturnVisitsPage(),
               GroupsPage(),
               EventPage(),
-              DoNotCallPage(),
-              ReportsPage(),
+              DNCTerritoryScreen(),
+              TerritoryListScreen(),
               ReportsPage(),
             ],
           )),

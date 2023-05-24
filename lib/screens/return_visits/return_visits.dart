@@ -34,6 +34,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
                   itemCount: 3,
                   itemBuilder: (context, index) {
                     return historyListTile(
+                      index: index,
                         noteString:
                             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et',
                         dateTime: DateTime.now(),
@@ -46,6 +47,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
 
   historyListTile(
       {required DateTime dateTime,
+        required int index,
       required String name,
       required String location,
       required String trailingLevelPath,
@@ -102,6 +104,17 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
               child: Text(
                 noteString,
                 style: w300_12(color: AppColors.dark2GreyColor),
+              ),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            if(index==1)
+            Align(
+              alignment: Alignment.topRight,
+              child: Text(
+                'Incomplete',
+                style: w300_13(color: AppColors.redColor),
               ),
             ),
           ],

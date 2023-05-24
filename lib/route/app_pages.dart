@@ -10,12 +10,14 @@ import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
 import '../screens/authentication/login_page.dart';
 import '../screens/chat/chat_messages_page.dart';
 import '../screens/chat/chat_page.dart';
+import '../screens/contacts/contacts_page.dart';
 import '../screens/create_message/create_message_page.dart';
 import '../screens/create_message/review_message/review_message_page.dart';
 import '../screens/create_message/select message/select_audio_message_page.dart';
 import '../screens/create_message/select message/select_text_message_page.dart';
 import '../screens/create_message/select message/select_video_message_page.dart';
-import '../screens/do_not_call/do_not_call_page.dart';
+import '../screens/do_not_call/add_dnc_screen.dart';
+import '../screens/do_not_call/addresses_list_screen.dart';
 import '../screens/event/create_new_event/create_event_page.dart';
 import '../screens/event/event_details_page/add_invitee_page.dart';
 import '../screens/event/event_details_page/edit_event_details_page.dart';
@@ -37,6 +39,7 @@ import '../screens/return_visits/return_visits.dart';
 import '../screens/scan_qr_page/scan_qr_page.dart';
 import '../screens/splash/splash_binding.dart';
 import '../screens/splash/splash_screen.dart';
+import '../screens/territory/territory_history_list_screen.dart';
 
 class AppPages {
   static final pages = [
@@ -98,9 +101,15 @@ class AppPages {
 
     //do not call
     GetPage(
-      name: Routes.doNotCallScreen,
+      name: Routes.listOfAddressScreen,
       transition: Transition.cupertino,
-      page: () => DoNotCallPage(),arguments: Get.arguments
+      page: () => AddressesListScreen(),arguments: Get.arguments
+    ),
+
+ GetPage(
+      name: Routes.addDncScreen,
+      transition: Transition.cupertino,
+      page: () => AddDncScreen(),arguments: Get.arguments
     ),
 
     //event
@@ -212,6 +221,19 @@ class AppPages {
       name: Routes.homepageScreen,
       transition: Transition.cupertino,
       page: () => Homepage(),
+    ),
+
+    GetPage(
+      name: Routes.territoryHistoryListScreen,
+      transition: Transition.cupertino,
+      page: () => TerritoryHistoryListScreen(),
+    ),
+
+
+    GetPage(
+      name: Routes.contactPage,
+      transition: Transition.cupertino,
+      page: () => ContactPage(),
     ),
   ];
 }
