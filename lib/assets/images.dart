@@ -10,6 +10,7 @@ class Images {
   //screen 6
   static const String closeIcon = "assets/icons/screen 6/Close.svg";
   static const String scanQrBgImg = "assets/images/scan_qr_bg_img.png";
+  static const String dangerTtriangle = "assets/icons/ic_danger.png";
 
   //screen 7
   static const String attachIcon = "assets/icons/screen 7/Attach.svg";
