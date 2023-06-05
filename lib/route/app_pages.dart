@@ -11,7 +11,6 @@ import '../screens/authentication/login_page.dart';
 import '../screens/chat/chat_messages_page.dart';
 import '../screens/chat/chat_page.dart';
 import '../screens/contacts/contacts_page.dart';
-import '../screens/create_message/create_message_page.dart';
 import '../screens/create_message/review_message/review_message_page.dart';
 import '../screens/create_message/select message/select_audio_message_page.dart';
 import '../screens/create_message/select message/select_text_message_page.dart';
@@ -22,20 +21,15 @@ import '../screens/event/create_new_event/create_event_page.dart';
 import '../screens/event/event_details_page/add_invitee_page.dart';
 import '../screens/event/event_details_page/edit_event_details_page.dart';
 import '../screens/event/event_details_page/event_details_page.dart';
-import '../screens/event/events_page.dart';
 import '../screens/event/invitee/invitee_page.dart';
-import '../screens/field_service/field_service_page.dart';
 import '../screens/field_service/map_page.dart';
 import '../screens/groups/attendants_page.dart';
 import '../screens/groups/create_group_page.dart';
-import '../screens/groups/groups_page.dart';
 import '../screens/notice_of_event/create_return_page.dart';
 import '../screens/notice_of_event/history_page.dart';
 import '../screens/notice_of_event/notice_of_event_summary_page.dart';
 import '../screens/report/edit_report_page.dart';
-import '../screens/report/reports_page.dart';
 import '../screens/report/share_report_page.dart';
-import '../screens/return_visits/return_visits.dart';
 import '../screens/scan_qr_page/scan_qr_page.dart';
 import '../screens/splash/splash_binding.dart';
 import '../screens/splash/splash_screen.dart';
@@ -54,12 +48,13 @@ class AppPages {
       name: Routes.mainScreen,
       transition: Transition.cupertino,
       page: () => WelcomePage(),
+        binding: SplashBinding()
     ),
     GetPage(
-        name: Routes.loginScreen,
-        transition: Transition.cupertino,
-        page: () => LoginPage(),
-        binding: SplashBinding()),
+      name: Routes.loginScreen,
+      transition: Transition.cupertino,
+      page: () => LoginPage(),
+    ),
     GetPage(
       name: Routes.registerScreen,
       transition: Transition.cupertino,
@@ -101,16 +96,16 @@ class AppPages {
 
     //do not call
     GetPage(
-      name: Routes.listOfAddressScreen,
-      transition: Transition.cupertino,
-      page: () => AddressesListScreen(),arguments: Get.arguments
-    ),
+        name: Routes.listOfAddressScreen,
+        transition: Transition.cupertino,
+        page: () => AddressesListScreen(),
+        arguments: Get.arguments),
 
- GetPage(
-      name: Routes.addDncScreen,
-      transition: Transition.cupertino,
-      page: () => AddDncScreen(),arguments: Get.arguments
-    ),
+    GetPage(
+        name: Routes.addDncScreen,
+        transition: Transition.cupertino,
+        page: () => AddDncScreen(),
+        arguments: Get.arguments),
 
     //event
 
@@ -140,7 +135,6 @@ class AppPages {
       page: () => EditEventDetailsPage(),
     ),
 
-
     GetPage(
       name: Routes.filedServiceMapPageScreen,
       transition: Transition.cupertino,
@@ -162,11 +156,10 @@ class AppPages {
 
     //message
     GetPage(
-      name: Routes.chatScreen,
-      transition: Transition.cupertino,
-      page: () => ChatPage(),
-      arguments: Get.arguments
-    ),
+        name: Routes.chatScreen,
+        transition: Transition.cupertino,
+        page: () => ChatPage(),
+        arguments: Get.arguments),
     GetPage(
       name: Routes.chatMessageScreen,
       transition: Transition.cupertino,
@@ -175,11 +168,10 @@ class AppPages {
 
     //notice of event
     GetPage(
-      name: Routes.createNoticeOfEventScreen,
-      transition: Transition.cupertino,
-      page: () => CreateNoticeOfEvent(),
-      arguments: Get.arguments
-    ),
+        name: Routes.createNoticeOfEventScreen,
+        transition: Transition.cupertino,
+        page: () => CreateNoticeOfEvent(),
+        arguments: Get.arguments),
     GetPage(
       name: Routes.createReturnPageScreen,
       transition: Transition.cupertino,
@@ -228,7 +220,6 @@ class AppPages {
       transition: Transition.cupertino,
       page: () => TerritoryHistoryListScreen(),
     ),
-
 
     GetPage(
       name: Routes.contactPage,

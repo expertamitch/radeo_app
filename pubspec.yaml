@@ -55,6 +55,7 @@ dependencies:
   fluttertoast: ^8.2.1
   share_plus: ^7.0.0
   dotted_border: ^2.0.0+3
+  lottie: ^2.3.2
 
 
 

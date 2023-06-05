@@ -27,10 +27,14 @@ class _AddressesListScreenState extends State<AddressesListScreen> {
         appBar: CustomAppBar(
           title: 'Do Not Call',
           isBack: true,
-          button1: arguments != null && arguments['showReassign'] != null
+          button1: 'Add DNC',
+          buttonTap1: (){
+            Get.toNamed(Routes.addDncScreen);
+          },
+          button2: arguments != null && arguments['showReassign'] != null
               ? "Re-Assign"
               : "",
-          buttonTap1: arguments != null && arguments['showReassign'] != null
+          buttonTap2: arguments != null && arguments['showReassign'] != null
               ? () {
                   //  open contact screen
                   Get.toNamed(Routes.contactPage);

@@ -5,9 +5,9 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
 import 'package:redeo/screens/create_message/create_message_page.dart';
-import 'package:redeo/screens/do_not_call/addresses_list_screen.dart';
 import 'package:redeo/screens/event/events_page.dart';
 import 'package:redeo/screens/field_service/field_service_page.dart';
+import 'package:redeo/screens/groups/controller/groups_controller.dart';
 import 'package:redeo/screens/groups/groups_page.dart';
 import 'package:redeo/screens/home/home_page_controller.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
@@ -31,6 +31,10 @@ class _HomepageState extends State<Homepage> {
   final HomePageController controller = Get.isRegistered<HomePageController>()
       ? Get.find<HomePageController>()
       : Get.put(HomePageController());
+
+  final GroupsController groupsController = Get.isRegistered<GroupsController>()
+      ? Get.find<GroupsController>()
+      : Get.put(GroupsController());
 
   final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a k
 
@@ -130,7 +134,17 @@ class _HomepageState extends State<Homepage> {
                     controller.closeDrawer();
 
                     Future.delayed(Duration(milliseconds: 0)).then(
-                        (value) => controller.currentSelectedIndex.value = i);
+                        (value) {
+                          controller.currentSelectedIndex.value = i;
+                          if (controller.currentSelectedIndex.value == 5) {
+                            //  groups
+                            GroupsController controller = Get.find();
+                            controller.getGroupsList();
+                          }
+                        });
+
+
+
                   });
             }),
         SizedBox(height: (MediaQuery.of(context).size.height * 0.02).h),
@@ -159,8 +173,9 @@ class _HomepageState extends State<Homepage> {
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            primary:                              controller.timerStarted.value
-?                            AppColors.purpleColor:Colors.orangeAccent),
+                            primary: controller.timerStarted.value
+                                ? AppColors.purpleColor
+                                : Colors.orangeAccent),
                         onPressed: () {
                           controller.timerStarted.value =
                               !controller.timerStarted.value;
@@ -182,7 +197,9 @@ class _HomepageState extends State<Homepage> {
                                 : Icons.play_arrow),
                           ],
                         ))))),
-            SizedBox(width: 10.w,)
+            SizedBox(
+              width: 10.w,
+            )
           ],
         ),
         SizedBox(height: (MediaQuery.of(context).size.height * 0.02).h),

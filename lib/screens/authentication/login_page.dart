@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/screens/authentication/controller/auth_controller.dart';
+import 'package:redeo/utils/validators.dart';
+import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/colors.dart';
 
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import 'package:redeo/widgets/app_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -22,13 +24,22 @@ class _LoginPageState extends State<LoginPage> {
   String password = '';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+
+  final AuthController authController =
+  Get.isRegistered<AuthController>()
+      ? Get.find<AuthController>()
+      : Get.put(AuthController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 190,
+        toolbarHeight: 170.h,
         flexibleSpace: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -70,10 +81,10 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
-                    decoration: inputDecoration.copyWith(labelText: 'Username'),
-                    validator: (value) => value == null || value.isEmpty
-                        ? 'Please enter username'
-                        : null,
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: inputDecoration.copyWith(labelText: 'Email'),
+                    validator: (value) => Validators.validateEmail(value),
                     onChanged: (value) => setState(() {
                       username = value;
                     }),
@@ -84,12 +95,11 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     obscuringCharacter: '✱',
                     obscureText: true,
+                    controller: passwordController,
+                    validator: (value)=>Validators.validatePassword(value),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Password'),
-                    validator: (value) => value == null || value.isEmpty
-                        ? 'Please enter password'
-                        : null,
                     onChanged: (value) => setState(() {
                       password = value;
                     }),
@@ -141,10 +151,14 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20.h,
                   ),
                   AppButton(
-                      onPressedFunction: () {
-                        // print('username : $username');
-                        // print('password : $password');
-                        Get.toNamed(Routes.homepageScreen);
+                      onPressedFunction: () async {
+                        if (_formKey.currentState!.validate()) {
+                          bool success = await authController.login(
+                              email: emailController.text,
+                              password: passwordController.text);
+
+                          if (success) Get.toNamed(Routes.homepageScreen);
+                        }
                       },
                       child: Text(
                         'Login Now',

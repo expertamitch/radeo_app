@@ -24,10 +24,7 @@ class _DNCTerritoryScreenState extends State<DNCTerritoryScreen> {
         appBar: CustomAppBar(
           title: 'Do Not Call',
           isBack: Get.arguments != null,
-          button1: 'Add DNC',
-          buttonTap1: (){
-            Get.toNamed(Routes.addDncScreen);
-          },
+
         ),
         body: Column(children: [
           Expanded(

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:redeo/network/storage_utils.dart';
+import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/image_view.dart';
+
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import 'package:redeo/widgets/app_button.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -17,6 +19,15 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 1)).then((value) {
+      if (StorageUtils.getToken().isNotEmpty)
+        Get.toNamed(Routes.homepageScreen);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
