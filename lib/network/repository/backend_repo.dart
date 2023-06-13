@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:redeo/models/all_group_list_response_model.dart';
+import 'package:redeo/models/message_only_model.dart';
 import 'package:redeo/models/dnc_list_response_model.dart';
  import 'package:redeo/models/register_model.dart';
 
+import '../../models/territory_detail_model.dart';
+import '../../models/territory_list_model.dart';
 import '../api_exception.dart';
 import '../api_utils.dart';
 import '../internet_exception.dart';
@@ -66,6 +69,25 @@ class BackendRepo {
   }
 
 
+  Future<AllGroupListResponseModel> getAllGroupList(
+      ) async {
+    String url = "${baseUrl}user/groups-members";
+    try {
+      final response = await apiUtils.get(
+          url: url,options: getOptions()
+      );
+      var model = AllGroupListResponseModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
   Future<DNCListResponseModel> getDNCList(
       ) async {
     String url = "${baseUrl}user/do-not-call";
@@ -82,6 +104,82 @@ class BackendRepo {
       throw ApiException(apiUtils.handleError(e));
     }
   }
+
+
+  Future<MessageOnlyModel> createGroup(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/group";
+    try {
+      final response = await apiUtils.post(
+        url: url,
+        data: data,options: getOptions()
+      );
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<MessageOnlyModel> deleteGroup(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/group";
+    try {
+      final response = await apiUtils.delete(
+          api: url,
+          data: data,
+          options: getOptions()
+      );
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+  Future<TerritoryListModel> getTerritoryList(
+      ) async {
+    String url = "${baseUrl}user/territory";
+    try {
+      final response = await apiUtils.get(
+          url: url,options: getOptions()
+      );
+      var model = TerritoryListModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+  Future<TerritoryDetailModel> getTerritoryDetail(String id
+      ) async {
+    String url = "${baseUrl}user/territory/$id";
+    try {
+      final response = await apiUtils.get(
+          url: url,options: getOptions()
+      );
+      var model = TerritoryDetailModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
 
 
 

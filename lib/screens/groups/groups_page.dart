@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:redeo/screens/groups/controller/groups_controller.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/widgets/not_found_widget.dart';
@@ -13,6 +12,7 @@ import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
 import '../../widgets/image_view.dart';
+import '../invite/controller/invite_controller.dart';
 
 class GroupsPage extends StatefulWidget {
   const GroupsPage({Key? key}) : super(key: key);
@@ -71,13 +71,19 @@ class _GroupsPageState extends State<GroupsPage> {
           ),
           Expanded(
             child: Obx(() => controller.groupsListLoading.value
-                ? OnScreenLoader(): controller.groupsList.value.isEmpty?NotFoundWidget(title: 'No groups found',)
-                : ListView.builder(
-                    itemCount: controller.groupsList.value.length,
-                    itemBuilder: (context, index) {
-                      return GroupTile(
-                          groupModel: controller.groupsList.value[index]);
-                    })),
+                ? OnScreenLoader()
+                : controller.groupsList.value.isEmpty
+                    ? NotFoundWidget(
+                        title: 'No groups found',
+                      )
+                    : ListView.builder(
+                        itemCount: controller.groupsList.value.length,
+                        itemBuilder: (context, index) {
+                          return GroupTile(
+                            groupModel: controller.groupsList.value[index],
+                            isList: true,
+                          );
+                        })),
           )
         ]));
   }

@@ -71,6 +71,7 @@ class Images {
   // static const String attachIcon = "assets/icons/screen 19/Hisotory1.svg";
   static const String cameraIcon = "assets/icons/screen 25/Camera.svg";
   static const String sendIcon = "assets/icons/screen 25/Send.svg";
+  static const String loading = "assets/icons/loading.png";
 
   static const String barcodeImg = "assets/icons/barcode_img.png";
   static const String deleteIcon = "assets/icons/delete_icon.svg";

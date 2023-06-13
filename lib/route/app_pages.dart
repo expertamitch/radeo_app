@@ -6,6 +6,7 @@ import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
+import 'package:redeo/screens/territory/territory_details_screen.dart';
 
 import '../screens/authentication/login_page.dart';
 import '../screens/chat/chat_messages_page.dart';
@@ -21,10 +22,10 @@ import '../screens/event/create_new_event/create_event_page.dart';
 import '../screens/event/event_details_page/add_invitee_page.dart';
 import '../screens/event/event_details_page/edit_event_details_page.dart';
 import '../screens/event/event_details_page/event_details_page.dart';
-import '../screens/event/invitee/invitee_page.dart';
 import '../screens/field_service/map_page.dart';
 import '../screens/groups/attendants_page.dart';
 import '../screens/groups/create_group_page.dart';
+import '../screens/invite/invitee_page.dart';
 import '../screens/notice_of_event/create_return_page.dart';
 import '../screens/notice_of_event/history_page.dart';
 import '../screens/notice_of_event/notice_of_event_summary_page.dart';
@@ -45,11 +46,10 @@ class AppPages {
 
     //authentication
     GetPage(
-      name: Routes.mainScreen,
-      transition: Transition.cupertino,
-      page: () => WelcomePage(),
-        binding: SplashBinding()
-    ),
+        name: Routes.mainScreen,
+        transition: Transition.cupertino,
+        page: () => WelcomePage(),
+        binding: SplashBinding()),
     GetPage(
       name: Routes.loginScreen,
       transition: Transition.cupertino,
@@ -66,10 +66,10 @@ class AppPages {
       page: () => ForgotPasswordPage(),
     ),
     GetPage(
-      name: Routes.otpVerficationScreen,
-      transition: Transition.cupertino,
-      page: () => OtpVerficationPage(),
-    ),
+        name: Routes.otpVerficationScreen,
+        transition: Transition.cupertino,
+        page: () => OtpVerficationPage(),
+        arguments: Get.arguments),
 
     //create messages
 
@@ -225,6 +225,13 @@ class AppPages {
       name: Routes.contactPage,
       transition: Transition.cupertino,
       page: () => ContactPage(),
+    ),
+
+    GetPage(
+      name: Routes.territoryDetailsScreen,
+      transition: Transition.cupertino,
+      page: () => TerritoryDetailsScreen(),
+      arguments: Get.arguments
     ),
   ];
 }

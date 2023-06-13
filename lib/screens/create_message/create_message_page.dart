@@ -623,7 +623,9 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         GestureDetector(
           onTap: () {
             showDeleteConfirmation(
-                context, "Do you want to delete custom message?");
+                context, "Do you want to delete custom message?",yesCallback: (){
+
+            });
           },
           child: ImageView(
             path: Images.closeIcon,

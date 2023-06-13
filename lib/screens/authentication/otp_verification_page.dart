@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:redeo/screens/authentication/controller/auth_controller.dart';
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
@@ -18,6 +19,7 @@ class OtpVerficationPage extends StatefulWidget {
 }
 
 class _OtpVerficationPageState extends State<OtpVerficationPage> {
+  AuthController controller =Get.find();
   late Timer timer;
   int sendOtpSecondsCountdown = 60;
   @override
@@ -107,6 +109,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   style: w300_14(),
                   textFieldAlignment: MainAxisAlignment.spaceAround,
                   fieldStyle: FieldStyle.box,
+
                   onCompleted: (pin) {
                     print("Completed: " + pin);
                   },

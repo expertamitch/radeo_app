@@ -53,5 +53,6 @@ abstract class Routes {
 
 //  territory
   static const territoryHistoryListScreen= '/territoryHistoryListScreen';
+  static const territoryDetailsScreen= '/territoryDetailsScreen';
   static const contactPage= '/contactPage';
 }

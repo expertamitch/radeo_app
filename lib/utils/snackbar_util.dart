@@ -24,7 +24,7 @@ showErrorSnackBar(String message) {
         Expanded(
             child: Text(
           message,
-          style: w300_12(color: AppColors.greyColor),
+          style: w300_12(color: AppColors.dark2GreyColor),
         )),
       ],
     ),

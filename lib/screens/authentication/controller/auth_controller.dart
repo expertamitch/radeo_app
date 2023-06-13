@@ -24,12 +24,7 @@ class AuthController extends GetxController {
 
       showLoader();
       final result = await BackendRepo().createAccount(data: data);
-      StorageUtils.saveToken(result.token??'');
-      StorageUtils.saveUserId(result.info?.id.toString()??'');
-      StorageUtils.saveFName(result.info?.firstName??'');
-      StorageUtils.saveLName(result.info?.lastName??'');
-      StorageUtils.saveEmail(result.info?.email??'');
-      StorageUtils.saveMobile(result.info?.mobile??'');
+
 
       hideLoader();
 

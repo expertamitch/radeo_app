@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:redeo/screens/event/invitee/tabs/contact_tab_page.dart';
-import 'package:redeo/screens/event/invitee/tabs/redeo_tab_page.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/common_app_bar.dart';
-import '../../../styling/app_colors.dart';
 
+import '../../../styling/app_colors.dart';
+ import '../contacts/tabs/redeo_tab_page.dart';
+import 'controller/invite_controller.dart';
 import 'tabs/group_tab_page.dart';
+import 'tabs/contact_tab_page.dart';
 
 class InviteePage extends StatefulWidget {
   const InviteePage({Key? key}) : super(key: key);
@@ -17,12 +18,26 @@ class InviteePage extends StatefulWidget {
 }
 
 class _InviteePageState extends State<InviteePage> {
+  InviteController inviteController = Get.find();
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
+
   String contactType = 'Group'; //Group, Contact, Redeo
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: CustomAppBar(title: 'Invitee',isBack: true,button1: 'Done',buttonTap1: (){Get.back();}),
+        appBar: CustomAppBar(
+            title: 'Invitee',
+            isBack: true,
+            button1: 'Done',
+            buttonTap1: () {
+              Get.back();
+            }),
         body: Column(children: [
           SizedBox(
             height: 10.h,

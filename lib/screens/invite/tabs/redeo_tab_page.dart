@@ -6,15 +6,16 @@ import '../../../../styling/app_colors.dart';
 import '../../../../styling/font_style_globle.dart';
 
 import '../../../../widgets/image_view.dart';
+import '../../../widgets/tiles/redeo_contact_tile.dart';
 
-class ContactTabPage extends StatefulWidget {
-  const ContactTabPage({Key? key}) : super(key: key);
+class RedeoTabPage extends StatefulWidget {
+  const RedeoTabPage({Key? key}) : super(key: key);
 
   @override
-  State<ContactTabPage> createState() => _ContactTabPageState();
+  State<RedeoTabPage> createState() => _RedeoTabPageState();
 }
 
-class _ContactTabPageState extends State<ContactTabPage> {
+class _RedeoTabPageState extends State<RedeoTabPage> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -26,7 +27,7 @@ class _ContactTabPageState extends State<ContactTabPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '23 Contacts',
+                  '23 Redeo Contact',
                   style: w900_15(),
                 ),
                 Text(
@@ -57,7 +58,7 @@ class _ContactTabPageState extends State<ContactTabPage> {
                   style: w300_12(),
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Search Contact...',
+                      hintText: 'Search Redeo Contact',
                       hintStyle: w300_12(
                         color: AppColors.dark2GreyColor,
                       ),
@@ -73,8 +74,8 @@ class _ContactTabPageState extends State<ContactTabPage> {
             child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
-                return groupsTile('Contact Name A', '+1 12345 67890');
-              },
+                return RedeoContactTile();
+               },
             ),
           )
         ],
@@ -82,51 +83,5 @@ class _ContactTabPageState extends State<ContactTabPage> {
     );
   }
 
-  groupsTile(String title, String subTitle) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 20,
-      ),
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: AppColors.greyColor))),
-      child: Row(children: [
-        SvgPicture.asset(
-          Images.peopleIcon,
-          height: 23,
-        ),
-        SizedBox(
-          width: 15.w,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: w300_12(),
-            ),
-            SizedBox(
-              height: 4.h,
-            ),
-            Text(
-              subTitle,
-              style: w300_10(
-                color: AppColors.dark2GreyColor,
-              ),
-            )
-          ],
-        ),
-        Expanded(
-          child: SizedBox(
-            width: 15.w,
-          ),
-        ),
-        Radio(
-          value: false,
-          groupValue: 'groupValue',
-          onChanged: (value) {},
-        )
-      ]),
-    );
-  }
+
 }

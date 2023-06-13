@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:redeo/screens/invite/controller/invite_controller.dart';
 import 'package:redeo/styling/app_colors.dart';
+import 'package:redeo/widgets/tiles/attendant_tile.dart';
+
 import '../../assets/images.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/image_view.dart';
@@ -14,6 +17,15 @@ class AttendantsPage extends StatefulWidget {
 }
 
 class _AttendantsPageState extends State<AttendantsPage> {
+  InviteController controller = Get.find();
+
+  @override
+  void initState() {
+    Future.delayed(Duration(milliseconds: 100))
+        .then((value) => controller.createAttendantList());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,63 +79,22 @@ class _AttendantsPageState extends State<AttendantsPage> {
             ),
           ),
           Expanded(
-              child: ListView.builder(
-                  itemCount: 2,
+              child: Obx(() => ListView.builder(
+                  itemCount: controller.attendants.value.length,
                   itemBuilder: (context, index) {
-                    return groupListTile(
-                      title: 'John Doe',
-                      subtitle: '2006 Chapmans Lane, San Francisco,',
+                    return AttendantTile(
+                      model: controller.attendants.value[index],
+                      onTap: () {
+                        if (!controller.attendants.value[index].selected) {
+                          controller.attendants.value.forEach((element) {
+                            element.selected = false;
+                          });
+                          controller.attendants.value[index].selected = true;
+                          setState(() {});
+                        }
+                      },
                     );
-                  }))
+                  })))
         ]));
-  }
-
-  groupListTile({
-    required String title,
-    required String subtitle,
-  }) {
-    return GestureDetector(
-        onTap: () {},
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          decoration: BoxDecoration(
-              border:
-                  Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
-          child: Row(
-            children: [
-              SvgPicture.asset(
-                Images.peopleIcon,
-                height: 23,
-              ),
-              SizedBox(
-                width: 10.w,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      overflow: TextOverflow.ellipsis,
-                      style: w300_13(),
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    Text(
-                      subtitle,
-                      style: w300_10(color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ),
-              Radio(
-                value: false,
-                groupValue: 'groupValue',
-                onChanged: (value) {},
-              )
-            ],
-          ),
-        ));
   }
 }

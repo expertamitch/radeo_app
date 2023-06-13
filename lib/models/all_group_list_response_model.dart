@@ -1,15 +1,15 @@
 class AllGroupListResponseModel {
   String? message;
-  List<Group>? info;
+  List<GroupModel>? info;
 
   AllGroupListResponseModel({this.message, this.info});
 
   AllGroupListResponseModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     if (json['info'] != null) {
-      info = <Group>[];
+      info = <GroupModel>[];
       json['info'].forEach((v) {
-        info!.add(new Group.fromJson(v));
+        info!.add(new GroupModel.fromJson(v));
       });
     }
   }
@@ -24,16 +24,17 @@ class AllGroupListResponseModel {
   }
 }
 
-class Group {
+class GroupModel {
   int? id;
   int? userId;
+  bool selected=false;
   String? groupName;
   DateTime? createdAt;
   DateTime? updatedAt;
   List<Users>? users;
   int? groupUsersCount;
 
-  Group(
+  GroupModel(
       {this.id,
         this.userId,
         this.groupName,
@@ -42,7 +43,7 @@ class Group {
         this.users,
         this.groupUsersCount});
 
-  Group.fromJson(Map<String, dynamic> json) {
+  GroupModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     groupName = json['group_name'];

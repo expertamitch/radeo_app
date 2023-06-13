@@ -48,7 +48,7 @@ class _TerritoryHistoryListScreenState
           Get.toNamed(Routes.listOfAddressScreen,
               arguments: {'showReassign': true});
       },
-      child: Container(
+      child: Container (
         decoration: BoxDecoration(
             border:
                 Border(bottom: BorderSide(color: AppColors.borderGreyColor))),

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:redeo/models/local_attendant_model.dart';
+import 'package:redeo/screens/groups/controller/groups_controller.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-
-import 'package:redeo/widgets/app_button.dart';
+import '../../utils/validators.dart';
+import '../invite/controller/invite_controller.dart';
 
 class CreateGroupPage extends StatefulWidget {
   const CreateGroupPage({Key? key}) : super(key: key);
@@ -16,6 +19,32 @@ class CreateGroupPage extends StatefulWidget {
 }
 
 class _CreateGroupPageState extends State<CreateGroupPage> {
+  InviteController inviteController = Get.put(
+    InviteController(),
+    permanent: false,
+  );
+  GroupsController groupsController = Get.find();
+  TextEditingController groupNameController = TextEditingController();
+
+  check() {
+    if (keepChecking) {
+      LocalAttendantModel? model =
+          inviteController.attendants.value.firstWhereOrNull((a) => a.selected);
+
+      Future.delayed(const Duration(milliseconds: 300)).then((value) {
+        isValid.value =
+            (Validators.validateName(groupNameController.text) == null &&
+                inviteController.selectedMembersCount.value > 0 &&
+                model != null);
+        setState(() {});
+        check();
+      });
+    }
+  }
+
+  RxBool isValid = false.obs;
+  bool keepChecking = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +56,50 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           actions: [
             Row(
               children: [
-                AppButton(
-                    onPressedFunction: () {},
+                Obx(() => AppButton(
+                    onPressedFunction: () async {
+                      if (isValid.value) {
+                        Map<String, dynamic> data = {};
+                        data['group_name'] = groupNameController.text;
+                        List<Map<String, dynamic>> usersArray = [];
+                        inviteController.groupsList.forEach((element) {
+                          if (element.selected)
+                            element.users?.forEach((element) {
+                              usersArray.add({
+                                'name':
+                                    "${element.firstName ?? ''} ${element.lastName ?? ''}",
+                                'mobile': element.mobile ?? ''
+                              });
+                            });
+                        });
+
+                        inviteController.contacts.forEach((element) {
+                          if (element.selected)
+                            usersArray.add({
+                              'name':
+                                  "${element.phoneContact.name.first ?? ''} ${element.phoneContact.name.last ?? ''}",
+                              'mobile': element.phoneContact.phones[0] ?? ''
+                            });
+                        });
+
+                        inviteController.attendants.forEach((element) {
+                          if (element.selected)
+                            usersArray.add({
+                              'name': "${element.name}",
+                              'mobile': element.phone,
+                              'is_attendent': true
+                            });
+                        });
+
+                        data['group_users'] = usersArray;
+
+                        var success = await groupsController.createGroup(data);
+                        if (success) {
+                          groupsController.getGroupsList();
+                          Get.back();
+                        }
+                      }
+                    },
                     child: Text(
                       'Save',
                       style: w300_12(color: Colors.white),
@@ -36,7 +107,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     height: 30.h,
                     sodiumShapeBorder: true,
                     width: null,
-                    buttonColor: AppColors.purpleColor)
+                    buttonColor:
+                        isValid.value ? AppColors.purpleColor : Colors.black26))
               ],
             ),
             SizedBox(
@@ -73,6 +145,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: TextFormField(
               style: w300_13(),
+              controller: groupNameController,
               decoration: InputDecoration(
                   hintStyle: w300_13(),
                   hintText: 'Group Name',
@@ -92,11 +165,27 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 18),
-                child: Text(
-                  'Select Member',
-                  style: w300_13(
-                    color: AppColors.blueColor,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Select Member',
+                      style: w300_13(
+                        color: AppColors.blueColor,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Obx(
+                      () => Text(
+                        '${inviteController.selectedMembersCount.value} Members selected',
+                        style: w600_13(
+                          color: AppColors.blueColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -135,11 +224,33 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 18),
-                child: Text(
-                  'Select Attendants',
-                  style: w300_13(
-                    color: AppColors.blueColor,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Select Attendants',
+                      style: w300_13(
+                        color: AppColors.blueColor,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Obx(
+                      () {
+                        LocalAttendantModel? model = inviteController
+                            .attendants.value
+                            .firstWhereOrNull((a) => a.selected);
+
+                        return Text(
+                          model == null ? '' : model.name,
+                          style: w600_13(
+                            color: AppColors.blueColor,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -165,5 +276,17 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             ],
           )
         ]));
+  }
+
+  @override
+  void initState() {
+    check();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    keepChecking = false;
+    super.dispose();
   }
 }

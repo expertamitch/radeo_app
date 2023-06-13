@@ -68,7 +68,7 @@ class ImageView extends StatelessWidget {
             height: height,
             fadeInDuration: const Duration(milliseconds: 1),
             fit: fit,
-            placeholder: Images.icLoading);
+            placeholder: Images.loading);
     } else if (path?.startsWith('assets/') ?? false) {
       imageWidget = path!.contains(".svg")
           ? SvgPicture.asset(
