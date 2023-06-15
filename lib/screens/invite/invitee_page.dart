@@ -5,10 +5,10 @@ import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/common_app_bar.dart';
 
 import '../../../styling/app_colors.dart';
- import '../contacts/tabs/redeo_tab_page.dart';
 import 'controller/invite_controller.dart';
 import 'tabs/group_tab_page.dart';
 import 'tabs/contact_tab_page.dart';
+import 'tabs/redeo_tab_page.dart';
 
 class InviteePage extends StatefulWidget {
   const InviteePage({Key? key}) : super(key: key);

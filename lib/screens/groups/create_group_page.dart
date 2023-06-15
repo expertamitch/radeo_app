@@ -68,8 +68,20 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                               usersArray.add({
                                 'name':
                                     "${element.firstName ?? ''} ${element.lastName ?? ''}",
-                                'mobile': element.mobile ?? ''
+                                'mobile': element.mobile ?? '',
+                                'contact_type': 'group',
                               });
+                            });
+                        });
+
+                        inviteController.redeoList.forEach((element) {
+                          if (element.selected)
+                            usersArray.add({
+                              'name':
+                                  "${element.firstName ?? ''} ${element.lastName ?? ''}",
+                              'mobile': element.mobile ?? '',
+                              'contact_type': 'redeo',
+
                             });
                         });
 
@@ -78,7 +90,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                             usersArray.add({
                               'name':
                                   "${element.phoneContact.name.first ?? ''} ${element.phoneContact.name.last ?? ''}",
-                              'mobile': element.phoneContact.phones[0] ?? ''
+                              'mobile': element.phoneContact.phones[0].number ?? '',
+                              'contact_type': 'phone',
                             });
                         });
 

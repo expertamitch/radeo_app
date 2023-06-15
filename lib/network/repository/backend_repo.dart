@@ -4,6 +4,7 @@ import 'package:redeo/models/message_only_model.dart';
 import 'package:redeo/models/dnc_list_response_model.dart';
  import 'package:redeo/models/register_model.dart';
 
+import '../../models/all_redeo_member_list_response_model.dart';
 import '../../models/territory_detail_model.dart';
 import '../../models/territory_list_model.dart';
 import '../api_exception.dart';
@@ -131,6 +132,24 @@ class BackendRepo {
         url: url,options: getOptions()
        );
       var model = AllGroupListResponseModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+  Future<AllRedeoMemberListResponseModel> getRedeoMemberList(
+      ) async {
+    String url = "${baseUrl}user/redeo-members";
+    try {
+      final response = await apiUtils.get(
+        url: url,options: getOptions()
+       );
+      var model = AllRedeoMemberListResponseModel.fromJson(response.data);
       return model;
     } catch (e) {
       if (e is DioError && e.type == DioErrorType.unknown) {

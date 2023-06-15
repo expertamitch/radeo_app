@@ -5,37 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1776ce79-a5da-4033-b17d-32d4dfbbe643" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/radeo_app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/debug/debug.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/profile/profile.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/radeo_app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/dart_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/dart_plugin_registrant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/88fe0f60a6af31ca841a0d74d4ee9642f8d32eb2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e8e045469170189f1d6ef12576bd01af132b1018" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/2a122fd635ebb15f8b5069f1664d6d41.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/2a122fd635ebb15f8b5069f1664d6d41.cache.dill.track.dill" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/network/repository/backend_repo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/network/repository/backend_repo.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/route/app_pages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/route/app_pages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/route/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/route/routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/authentication/controller/auth_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/authentication/controller/auth_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/authentication/fogot_password_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/authentication/fogot_password_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/authentication/otp_verification_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/authentication/otp_verification_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/authentication/register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/authentication/register_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/groups/create_group_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/groups/create_group_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/invite/controller/invite_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/invite/controller/invite_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/invite/invitee_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/invite/invitee_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/invite/tabs/redeo_tab_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/invite/tabs/redeo_tab_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,22 +35,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/varinder/AndroidStudioProjects/radeo_app/lib/screens/authentication&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "/home/varinder/AndroidStudioProjects/radeo_app/lib/widgets/tiles",
+    "settings.editor.selected.configurable": "dart.settings",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/widgets/tiles" />
       <recent name="$PROJECT_DIR$/lib/screens/authentication" />
     </key>
   </component>
@@ -157,6 +135,46 @@
           <url>file://$PROJECT_DIR$/lib/screens/authentication/controller/auth_controller.dart</url>
           <line>55</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/contacts/tabs/redeo_tab_page.dart</url>
+          <line>22</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/invite/tabs/redeo_tab_page.dart</url>
+          <line>22</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/groups/create_group_page.dart</url>
+          <line>106</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/groups/create_group_page.dart</url>
+          <line>108</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/groups/create_group_page.dart</url>
+          <line>76</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/groups/create_group_page.dart</url>
+          <line>63</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/groups/create_group_page.dart</url>
+          <line>89</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/groups/create_group_page.dart</url>
+          <line>78</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
