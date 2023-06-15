@@ -6,6 +6,8 @@ abstract class Routes {
   static const loginScreen = '/loginScreen';
   static const registerScreen = '/registerScreen';
   static const forgotPasswordScreen = '/forgotPasswordScreen';
+  static const forgotPasswordOtpScreen = '/forgotPasswordOtpScreen';
+  static const resetPasswordScreen = '/resetPasswordScreen';
   static const otpVerficationScreen = '/otpVerficationScreen';
 
   //create messages

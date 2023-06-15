@@ -31,7 +31,8 @@ class _RegisterPageState extends State<RegisterPage> {
   String initialCountry = 'IN';
   PhoneNumber number = PhoneNumber(isoCode: 'IN');
 
-  AuthController controller = Get.find();
+  // AuthController controller = Get.find();
+  AuthController controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 190,
+        toolbarHeight: 212,
         flexibleSpace: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -113,6 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     padding: EdgeInsets.only(left: 5),
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber number) {
+                        mobileNo=number.phoneNumber.toString().replaceAll(number.dialCode.toString(), "");
                         print(number.phoneNumber);
                       },
                       onInputValidated: (bool value) {
@@ -181,9 +183,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscuringCharacter: '✱',
                     decoration:
                         inputDecoration.copyWith(labelText: 'Confirm Password'),
-                    validator: (value) => value == null || value.isEmpty
-                        ? 'Please re enter password'
-                        : null,
+                    validator: (value) => Validators.validateConfirmPassword(password,value),
                     onChanged: (value) => setState(() {
                       confirmPassword = value;
                     }),

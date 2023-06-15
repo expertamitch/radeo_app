@@ -32,6 +32,78 @@ class BackendRepo {
     }
   }
 
+  Future<RegisterModel> verifyMobileNumber(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}verify-user";
+    try {
+      final response = await apiUtils.post(
+        url: url,
+        data: data,
+      );
+      var model = RegisterModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<RegisterModel> resendOTP(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}resend-otp";
+    try {
+      final response = await apiUtils.post(
+        url: url,
+        data: data,
+      );
+      var model = RegisterModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<RegisterModel> forgotPassword(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}forgot-password-request";
+    try {
+      final response = await apiUtils.post(
+        url: url,
+        data: data,
+      );
+      var model = RegisterModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<RegisterModel> resetPassword(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}forgot-password-update";
+    try {
+      final response = await apiUtils.post(
+        url: url,
+        data: data,
+      );
+      var model = RegisterModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
   Future<RegisterModel> login(
       {required Map<String, dynamic> data}) async {
     String url = "${baseUrl}login";

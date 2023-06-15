@@ -11,6 +11,8 @@ import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import 'package:redeo/widgets/app_button.dart';
 
+import '../../utils/snackbar_util.dart';
+
 class OtpVerficationPage extends StatefulWidget {
   const OtpVerficationPage({Key? key}) : super(key: key);
 
@@ -19,9 +21,12 @@ class OtpVerficationPage extends StatefulWidget {
 }
 
 class _OtpVerficationPageState extends State<OtpVerficationPage> {
-  AuthController controller =Get.find();
+  String otp = '';
+  String mobileNo = '';
+  AuthController controller = Get.find();
   late Timer timer;
   int sendOtpSecondsCountdown = 60;
+
   @override
   void initState() {
     super.initState();
@@ -103,14 +108,14 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   height: 20.h,
                 ),
                 OTPTextField(
-                  length: 4,
+                  length: 6,
                   width: MediaQuery.of(context).size.width,
-                  fieldWidth: MediaQuery.of(context).size.width / 5.6,
+                  fieldWidth: MediaQuery.of(context).size.width / 7,
                   style: w300_14(),
                   textFieldAlignment: MainAxisAlignment.spaceAround,
                   fieldStyle: FieldStyle.box,
-
                   onCompleted: (pin) {
+                    otp = pin;
                     print("Completed: " + pin);
                   },
                 ),
@@ -124,7 +129,23 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                         ? Text('00:${sendOtpSecondsCountdown}',
                             style: w900_14())
                         : GestureDetector(
-                            onTap: () {},
+                            onTap: () async {
+                              mobileNo = Get.arguments;
+                              var success = await controller.resendOTP(
+                                  mobileNo: mobileNo);
+                              if (success) {
+                                sendOtpSecondsCountdown = 60;
+                                timer = Timer.periodic(Duration(seconds: 1),
+                                    (timer) {
+                                  if (sendOtpSecondsCountdown == 0) {
+                                    timer.cancel();
+                                  } else {
+                                    sendOtpSecondsCountdown--;
+                                  }
+                                  setState(() {});
+                                });
+                              }
+                            },
                             child: Text('Get OTP',
                                 style: w900_14(color: AppColors.blueColor))),
                   ],
@@ -133,8 +154,19 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                   height: 40.h,
                 ),
                 AppButton(
-                    onPressedFunction: () {
-                      Navigator.pop(context);
+                    onPressedFunction: () async {
+                      mobileNo = Get.arguments;
+                      if (otp.length == 6) {
+                        var success = await controller.verifyMobile(
+                            mobileNo: mobileNo, otp: otp);
+                        if (success) {
+                          Get.offAllNamed(Routes.homepageScreen);
+                        }
+                      } else {
+                        showErrorSnackBar('Please enter valid OTP');
+                      }
+
+                      // Navigator.pop(context);
                     },
                     child: Text(
                       'Verfy OTP',

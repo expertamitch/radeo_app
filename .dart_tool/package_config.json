@@ -3,567 +3,693 @@
   "packages": [
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.1.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "animation_search_bar",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/animation_search_bar-0.0.10",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/animation_search_bar-0.0.10",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
     {
-      "name": "args",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/args-2.4.0",
+      "name": "archive",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/archive-3.3.7",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/args-2.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/async-2.11.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "boolean_selector",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "characters",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/characters-1.3.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/characters-1.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "clock",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/clock-1.1.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/clock-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/collection-1.17.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/collection-1.17.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "convert",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/convert-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cross_file",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/cross_file-0.3.3+4",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/cross_file-0.3.3+4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
+      "name": "crypto",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/crypto-3.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "cupertino_icons",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "dbus",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/dbus-0.7.8",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/dbus-0.7.8",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "dio",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/dio-5.1.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/dio-5.2.1+1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "dotted_border",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/dotted_border-2.0.0+3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/dotted_border-2.0.0+3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "equatable",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/equatable-2.0.5",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "fake_async",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/fake_async-1.3.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "ffi",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/ffi-2.0.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/ffi-2.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "file",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/file-6.1.4",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/file-6.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
+      "name": "file_selector_linux",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.1+3",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "file_selector_macos",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "file_selector_platform_interface",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/file_selector_platform_interface-2.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "file_selector_windows",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "firebase_core",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/firebase_core-2.10.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/firebase_core-2.13.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core_platform_interface",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-4.6.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-4.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/firebase_core_web-2.3.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/firebase_core_web-2.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_messaging",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/firebase_messaging-14.4.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/firebase_messaging-14.6.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_messaging_platform_interface",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.3.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_messaging_web",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.3.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.5.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "flutter",
-      "rootUri": "file:///Users/ashishraturi/development/flutter/packages/flutter",
+      "rootUri": "file:///home/varinder/snap/flutter/common/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
+      "name": "flutter_contacts",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_contacts-1.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_local_notifications",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_local_notifications-13.0.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_local_notifications-13.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "flutter_local_notifications_linux",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-3.0.0+1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-3.0.0+1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_local_notifications_platform_interface",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_local_notifications_platform_interface-6.0.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_local_notifications_platform_interface-6.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_map",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_map-4.0.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_map-4.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.9",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "flutter_riverpod",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_riverpod-2.3.6",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_riverpod-2.3.6",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_screenutil",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_screenutil-5.7.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_screenutil-5.8.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_svg",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/flutter_svg-1.1.6",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/flutter_svg-1.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///Users/ashishraturi/development/flutter/packages/flutter_test",
+      "rootUri": "file:///home/varinder/snap/flutter/common/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///Users/ashishraturi/development/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///home/varinder/snap/flutter/common/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "fluttertoast",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/fluttertoast-8.2.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/fluttertoast-8.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "get",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/get-4.6.5",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/get-4.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "get_storage",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/get_storage-2.1.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/get_storage-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
     {
       "name": "http",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/http-0.13.5",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/http-0.13.6",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.19"
     },
     {
       "name": "http_parser",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/image_picker-0.8.7+3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker-0.8.8",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/image_picker_android-0.8.6+7",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker_android-0.8.6+20",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "image_picker_for_web",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/image_picker_for_web-2.1.12",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker_for_web-2.1.12",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.7+3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.7+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_linux",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_macos",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "image_picker_platform_interface",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.6.3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.8.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_windows",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "intl",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/intl-0.17.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/intl-0.17.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "intl_phone_number_input",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/intl_phone_number_input-0.7.3+1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/intl_phone_number_input-0.7.3+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "js",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/js-0.6.7",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "latlong2",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/latlong2-0.8.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/latlong2-0.8.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "libphonenumber_platform_interface",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/libphonenumber_platform_interface-0.4.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/libphonenumber_platform_interface-0.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "libphonenumber_plugin",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/libphonenumber_plugin-0.3.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/libphonenumber_plugin-0.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "libphonenumber_web",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/libphonenumber_web-0.3.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/libphonenumber_web-0.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "lists",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/lists-1.0.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/lists-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
+      "name": "lottie",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/lottie-2.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "matcher",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/matcher-0.12.15",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/matcher-0.12.15",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/material_color_utilities-0.2.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/material_color_utilities-0.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.13"
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/meta-1.9.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/meta-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "mgrs_dart",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/mgrs_dart-2.0.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/mgrs_dart-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
+      "name": "mime",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/mime-1.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "otp_text_field",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/otp_text_field-1.1.3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/otp_text_field-1.1.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path-1.8.3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path-1.8.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_drawing",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_drawing-1.0.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_drawing-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_parsing",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_parsing-1.0.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_parsing-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_provider-2.0.14",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_provider-2.0.15",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_provider_android-2.0.25",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_provider_android-2.0.27",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "path_provider_foundation",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.2",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "path_provider_linux",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.11",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_platform_interface",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_provider_windows",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.5",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "petitparser",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/petitparser-5.1.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.7",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
+      "name": "petitparser",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/petitparser-5.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "platform",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/platform-3.1.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/platform-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.4",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
+      "name": "pointycastle",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/pointycastle-3.7.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "polylabel",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/polylabel-1.0.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/polylabel-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.13"
     },
     {
       "name": "pretty_qr_code",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/pretty_qr_code-2.0.3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/pretty_qr_code-2.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.13"
     },
     {
       "name": "process",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/process-4.2.4",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/process-4.2.4",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "proj4dart",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/proj4dart-2.1.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/proj4dart-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "qr",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/qr-3.0.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/qr-3.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
     {
       "name": "riverpod",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/riverpod-2.3.6",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/riverpod-2.3.6",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
+      "name": "share_plus",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/share_plus-7.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "share_plus_platform_interface",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/share_plus_platform_interface-3.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "simple_gesture_detector",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///Users/ashishraturi/development/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/varinder/snap/flutter/common/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "source_span",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/source_span-1.9.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/source_span-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "stack_trace",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/stack_trace-1.11.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/stack_trace-1.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "state_notifier",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/state_notifier-0.7.2+1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/state_notifier-0.7.2+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "stream_channel",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/stream_channel-2.1.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/stream_channel-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "string_scanner",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "table_calendar",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/table_calendar-3.0.8",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/table_calendar-3.0.8",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "term_glyph",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/term_glyph-1.2.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/term_glyph-1.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "test_api",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/test_api-0.5.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/test_api-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "timezone",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/timezone-0.9.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/timezone-0.9.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "tuple",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/tuple-2.0.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/tuple-2.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.17"
     },
     {
       "name": "typed_data",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/typed_data-1.3.1",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/typed_data-1.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "unicode",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/unicode-0.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "unicode",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/unicode-0.3.1",
+      "name": "url_launcher_linux",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_web",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.17",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "url_launcher_windows",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "uuid",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/uuid-3.0.7",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "vector_math",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/vector_math-2.1.4",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "win32",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/win32-3.1.4",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/win32-5.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "wkt_parser",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/wkt_parser-2.0.0",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/wkt_parser-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "xdg_directories",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/xdg_directories-0.2.0+3",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/xdg_directories-0.2.0+3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "xml",
-      "rootUri": "file:///Users/ashishraturi/.pub-cache/hosted/pub.dev/xml-6.2.2",
+      "rootUri": "file:///home/varinder/.pub-cache/hosted/pub.dev/xml-6.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "redeo",
@@ -572,7 +698,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-05-17T14:55:54.624698Z",
+  "generated": "2023-06-13T11:31:28.781556Z",
   "generator": "pub",
-  "generatorVersion": "3.0.0"
+  "generatorVersion": "3.0.3"
 }

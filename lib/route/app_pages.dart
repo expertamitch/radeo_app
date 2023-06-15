@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:redeo/route/routes.dart';
 import 'package:redeo/screens/authentication/fogot_password_page.dart';
+import 'package:redeo/screens/authentication/forgot_password_otp_page.dart';
 import 'package:redeo/screens/authentication/otp_verification_page.dart';
 import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
@@ -9,6 +10,7 @@ import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
 import 'package:redeo/screens/territory/territory_details_screen.dart';
 
 import '../screens/authentication/login_page.dart';
+import '../screens/authentication/reset_password_page.dart';
 import '../screens/chat/chat_messages_page.dart';
 import '../screens/chat/chat_page.dart';
 import '../screens/contacts/contacts_page.dart';
@@ -64,6 +66,16 @@ class AppPages {
       name: Routes.forgotPasswordScreen,
       transition: Transition.cupertino,
       page: () => ForgotPasswordPage(),
+    ),
+    GetPage(
+      name: Routes.forgotPasswordOtpScreen,
+      transition: Transition.cupertino,
+      page: () => ForgotPasswordOtp(),
+    ),
+    GetPage(
+      name: Routes.resetPasswordScreen,
+      transition: Transition.cupertino,
+      page: () => ResetPassword(),
     ),
     GetPage(
         name: Routes.otpVerficationScreen,
