@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:redeo/models/territory_list_model.dart';
+import 'package:redeo/network/storage_utils.dart';
 import 'package:redeo/route/routes.dart';
-
-import '../../assets/images.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../app_button.dart';
@@ -86,6 +85,7 @@ class TerritoryTile extends StatelessWidget {
                 ],
               ),
             ),
+            if(info.id==int.parse(StorageUtils.getUid()!))
             Text(
               'My Territory',
               style: w300_10(color: AppColors.redColor),

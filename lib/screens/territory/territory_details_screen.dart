@@ -10,6 +10,7 @@ import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
 import '../../widgets/not_found_widget.dart';
 import '../../widgets/on_screen_loader.dart';
+import '../../widgets/search_widget.dart';
 import '../../widgets/tiles/territory_address_tile.dart';
 
 class TerritoryDetailsScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _TerritoryDetailsScreenState extends State<TerritoryDetailsScreen> {
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 100))
-        .then((value) => controller.getTerritoryDetail("2"));
+        .then((value) => controller.getTerritoryDetail(id.toString()));
     super.initState();
   }
 
@@ -55,37 +56,11 @@ class _TerritoryDetailsScreenState extends State<TerritoryDetailsScreen> {
           SizedBox(
             height: 10.h,
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: AppColors.darkGreyColor,
-                borderRadius: BorderRadius.circular(8)),
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Row(
-              children: [
-                ImageView(
-                  path: Images.searchIcon,
-                  color: Colors.purple,
-                ),
-                SizedBox(width: 15.w),
-                Flexible(
-                    child: TextFormField(
-                  style: w300_13(),
-                  decoration: InputDecoration(
-                      hintStyle: w300_13(
-                        color: AppColors.dark2GreyColor,
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Search Address...',
-                      isDense: true),
-                ))
-              ],
-            ),
-          ),
+SearchWidget(hint: 'Search Address...'),
           Expanded(
               child: Obx(() => controller.territoryDetailLoading.value
                   ? OnScreenLoader()
-                  : controller.territoryList.value.isEmpty
+                  : controller.addresses.value.isEmpty
                       ? NotFoundWidget(
                           title: 'No addresses found',
                         )
