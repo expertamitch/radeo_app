@@ -57,6 +57,11 @@ dependencies:
   dotted_border: ^2.0.0+3
   lottie: ^2.3.2
   flutter_contacts: ^1.1.6
+  flutter_sound: ^9.2.13
+  audio_session: ^0.1.6
+  camera: ^0.9.4+3
+  video_player: ^2.2.6
+  permission_handler: ^10.3.0
 
 
 

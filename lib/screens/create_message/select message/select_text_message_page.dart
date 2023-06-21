@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:redeo/widgets/image_view.dart';
 import '../../../assets/images.dart';
+import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 
@@ -69,12 +70,17 @@ class _SelectTextMessagePageState extends State<SelectTextMessagePage> {
                 SizedBox(
                   width: 10.w,
                 ),
-                Text(
-                  'Create Message',
-                  style: w600_14(
-                    color: AppColors.purpleColor,
-                  ),
-                ),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.enterTextMessageScreen);
+                    },
+                    child: Text(
+                      'Create Message',
+                      style: w600_14(
+                        color: AppColors.purpleColor,
+                      ),
+                    ),),
+
               ],
             ),
             SizedBox(

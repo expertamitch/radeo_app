@@ -8,6 +8,7 @@ import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
 
 import '../../../../widgets/image_view.dart';
+import '../../../route/routes.dart';
 
 class SelectVideoMessagePage extends StatefulWidget {
   const SelectVideoMessagePage({Key? key}) : super(key: key);
@@ -79,9 +80,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                   height: 15.h,
                 ),
                 GestureDetector(
-                  onTap: () async {
-
-                  },
+                  onTap: () async {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -93,12 +92,16 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                       SizedBox(
                         width: 10.w,
                       ),
-                      Text(
-                        'Create New Video',
-                        style: w600_14(
-                          color: AppColors.purpleColor,
-                        ),
-                      ),
+                      GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.recordVideoMessageScreen);
+                          },
+                          child: Text(
+                            'Create New Video',
+                            style: w600_14(
+                              color: AppColors.purpleColor,
+                            ),
+                          )),
                     ],
                   ),
                 ),
@@ -148,7 +151,6 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                                       });
 
                                       Get.back();
-
                                     },
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *
