@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:redeo/widgets/loader.dart';
 
 import '../../../models/territory_detail_model.dart';
 import '../../../models/territory_list_model.dart';
@@ -8,11 +9,12 @@ import '../../../utils/snackbar_util.dart';
 
 class TerritoryController extends GetxController {
   RxBool territoryListLoading = false.obs;
+  RxBool territoryHistoryLoading = false.obs;
   RxBool territoryDetailLoading = false.obs;
   RxList<TerritoryInfo> territoryList = RxList();
-  RxList<Addresses> addresses=RxList();
-
-
+  RxList<TerritoryInfo> territoryHistoryList = RxList();
+  RxList<Addresses> addresses = RxList();
+  TerritoryDetailModel? detailModel;
 
   Future<bool> getTerritoryList() async {
     try {
@@ -37,26 +39,91 @@ class TerritoryController extends GetxController {
   Future<bool> getTerritoryDetail(String id) async {
     try {
       addresses.value.clear();
-      territoryDetailLoading.value=true;
+      territoryDetailLoading.value = true;
       var result = await BackendRepo().getTerritoryDetail(id);
-      addresses.value=result.info?.addresses??[];
-      territoryDetailLoading.value=false;
+      detailModel = result;
+
+      addresses.value = result.info?.addresses ?? [];
+      territoryDetailLoading.value = false;
 
       return true;
     } on InternetException {
-      territoryDetailLoading.value=false;
+      territoryDetailLoading.value = false;
       return false;
     } catch (e) {
-      territoryDetailLoading.value=false;
+      territoryDetailLoading.value = false;
       showErrorSnackBar(e.toString());
 
       return false;
     }
   }
 
-  @override
-  void onInit() {
-    getTerritoryList();
-    super.onInit();
+  Future<bool> assignTerritory(
+      {required String id, required String assigned_to}) async {
+    try {
+      addresses.value.clear();
+      showLoader();
+      var result =
+      await BackendRepo().assignTerritory(id: id, assigned_to: assigned_to);
+
+      hideLoader();
+
+      getTerritoryList();
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
   }
+
+  Future<bool> updateTerritory(
+      {required String id, required String status}) async {
+    try {
+      addresses.value.clear();
+      showLoader();
+      var result =
+      await BackendRepo().updateTerritory(id: id, status: status);
+
+      hideLoader();
+
+      getTerritoryList();
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
+  }
+
+  Future<bool> getTerritoryHistory() async {
+    try {
+      territoryHistoryList.clear();
+      territoryHistoryLoading.value = true;
+      var result = await BackendRepo().getTerritoryHistory();
+      territoryHistoryList.value = result.info ?? [];
+      territoryHistoryLoading.value = false;
+
+      return true;
+    } on InternetException {
+      territoryHistoryLoading.value = false;
+      return false;
+    } catch (e) {
+      territoryHistoryLoading.value = false;
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
+  }
+
+
+
 }

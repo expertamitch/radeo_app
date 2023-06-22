@@ -13,8 +13,10 @@ import 'package:redeo/screens/home/home_page_controller.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
 import 'package:redeo/screens/report/reports_page.dart';
 import 'package:redeo/screens/return_visits/return_visits.dart';
+import 'package:redeo/screens/territory/controller/territory_controller.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/styling/font_style_globle.dart';
+import 'package:redeo/utils/common_dialogs.dart';
 import 'package:redeo/widgets/image_view.dart';
 
 import '../do_not_call/dnc_territory_screen.dart';
@@ -133,18 +135,18 @@ class _HomepageState extends State<Homepage> {
                   onTap: () {
                     controller.closeDrawer();
 
-                    Future.delayed(Duration(milliseconds: 0)).then(
-                        (value) {
-                          controller.currentSelectedIndex.value = i;
-                          if (controller.currentSelectedIndex.value == 5) {
-                            //  groups
-                            GroupsController controller = Get.find();
-                            controller.getGroupsList();
-                          }
-                        });
-
-
-
+                    Future.delayed(Duration(milliseconds: 0)).then((value) {
+                      controller.currentSelectedIndex.value = i;
+                      if (controller.currentSelectedIndex.value == 5) {
+                        //  groups
+                        GroupsController controller = Get.find();
+                        controller.getGroupsList();
+                      }
+                      else if(controller.currentSelectedIndex.value==8){
+                        TerritoryController controller = Get.find();
+                        controller.getTerritoryList();
+                      }
+                    });
                   });
             }),
         SizedBox(height: (MediaQuery.of(context).size.height * 0.02).h),
@@ -153,7 +155,11 @@ class _HomepageState extends State<Homepage> {
             Expanded(
               flex: 4,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  showLogoutConfirmation(
+                    context,
+                  );
+                },
                 child: Container(
                   height: 45.h,
                   alignment: Alignment.centerLeft,

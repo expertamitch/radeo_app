@@ -272,7 +272,61 @@ class BackendRepo {
   }
 
 
+  Future<MessageOnlyModel> assignTerritory(
+      {required String id, required String assigned_to}) async {
+    String url = "${baseUrl}user/territory/assign?id=$id&assigned_to=$assigned_to";
+    try {
+      final response = await apiUtils.put(
+          url: url,
+           options: getOptions()
+      );
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
+
+  Future<MessageOnlyModel> updateTerritory(
+      {required String id, required String status}) async {
+    String url = "${baseUrl}user/territory/status?id=$id&status=$status";
+    try {
+      final response = await apiUtils.put(
+          url: url,
+           options: getOptions()
+      );
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+  Future<TerritoryListModel> getTerritoryHistory(
+      ) async {
+    String url = "${baseUrl}user/territory/history";
+    try {
+      final response = await apiUtils.get(
+          url: url,options: getOptions()
+      );
+      var model = TerritoryListModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
 
 

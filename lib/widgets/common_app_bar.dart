@@ -14,12 +14,14 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   String? button1, button2;
   VoidCallback? buttonTap1, buttonTap2, backPress;
   Widget? button1Widget;
+  bool button1Disabled;
 
   CustomAppBar(
       {Key? key,
       required this.title,
       this.isBack = false,
       this.button1,
+      this.button1Disabled=false,
       this.backPress,
         this.button1Widget,
       this.button2,
@@ -83,7 +85,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         sodiumShapeBorder: true,
                         width: null,
                         margin: EdgeInsets.only(right: 10.w),
-                        buttonColor: AppColors.purpleColor),
+                        buttonColor:
+                        widget.button1Disabled ? Colors.black26:AppColors.purpleColor),
                   if (widget.button2 != null && widget.button2!.isNotEmpty)
                     AppButton(
                         onPressedFunction: widget.buttonTap2!,

@@ -167,16 +167,20 @@ class AuthController extends GetxController {
 
       showLoader();
       final result = await BackendRepo().login(data: data);
-      StorageUtils.saveToken(result.token ?? '');
-      StorageUtils.saveUserId(result.info?.id.toString() ?? '');
-      StorageUtils.saveFName(result.info?.firstName ?? '');
-      StorageUtils.saveLName(result.info?.lastName ?? '');
-      StorageUtils.saveEmail(result.info?.email ?? '');
-      StorageUtils.saveMobile(result.info?.mobile ?? '');
-
       hideLoader();
-
-      return true;
+      if (result.info != null) {
+        StorageUtils.saveToken(result.token ?? '');
+        StorageUtils.saveUserId(result.info?.id.toString() ?? '');
+        StorageUtils.saveFName(result.info?.firstName ?? '');
+        StorageUtils.saveLName(result.info?.lastName ?? '');
+        StorageUtils.saveEmail(result.info?.email ?? '');
+        StorageUtils.saveMobile(result.info?.mobile ?? '');
+        return true;
+      } else {
+        hideLoader();
+        showErrorSnackBar('Invalid email or password');
+        return false;
+      }
     } on InternetException {
       hideLoader();
       return false;

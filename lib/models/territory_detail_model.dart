@@ -25,10 +25,11 @@ class TerritoryDetailInfo {
   int? userId;
   String? name;
   String? image;
-  Null? assignedTo;
+  int? assignedTo;
   String? status;
-  Null? assignedOn;
+  DateTime? assignedOn;
   String? createdAt;
+  AssignedUser? assignedUser;
   String? updatedAt;
   List<Addresses>? addresses;
 
@@ -37,6 +38,7 @@ class TerritoryDetailInfo {
         this.userId,
         this.name,
         this.image,
+        this.assignedUser,
         this.assignedTo,
         this.status,
         this.assignedOn,
@@ -50,8 +52,9 @@ class TerritoryDetailInfo {
     name = json['name'];
     image = json['image'];
     assignedTo = json['assigned_to'];
+    assignedUser = json['assigned_user']!=null?AssignedUser.fromJson(json['assigned_user']):null;
     status = json['status'];
-    assignedOn = json['assigned_on'];
+    assignedOn =json['assigned_on']!=null? DateTime.parse(json['assigned_on']):null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['addresses'] != null) {
@@ -79,6 +82,52 @@ class TerritoryDetailInfo {
     return data;
   }
 }
+
+class AssignedUser {
+  int? id;
+  String? firstName;
+  String? lastName;
+  String? email;
+  String? mobile;
+  int? addedBy;
+  String? createdAt;
+  String? updatedAt;
+
+  AssignedUser(
+      {this.id,
+        this.firstName,
+        this.lastName,
+        this.email,
+        this.mobile,
+        this.addedBy,
+        this.createdAt,
+        this.updatedAt});
+
+  AssignedUser.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
+    email = json['email'];
+    mobile = json['mobile'];
+    addedBy = json['added_by'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['first_name'] = this.firstName;
+    data['last_name'] = this.lastName;
+    data['email'] = this.email;
+    data['mobile'] = this.mobile;
+    data['added_by'] = this.addedBy;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
+  }
+}
+
 
 class Addresses {
   int? id;

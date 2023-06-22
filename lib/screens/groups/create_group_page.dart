@@ -46,6 +46,13 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
   bool keepChecking = true;
 
   @override
+  void initState() {
+    check();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -81,7 +88,6 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                                   "${element.firstName ?? ''} ${element.lastName ?? ''}",
                               'mobile': element.mobile ?? '',
                               'contact_type': 'redeo',
-
                             });
                         });
 
@@ -90,7 +96,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                             usersArray.add({
                               'name':
                                   "${element.phoneContact.name.first ?? ''} ${element.phoneContact.name.last ?? ''}",
-                              'mobile': element.phoneContact.phones[0].number ?? '',
+                              'mobile':
+                                  element.phoneContact.phones[0].number ?? '',
                               'contact_type': 'phone',
                             });
                         });
@@ -291,11 +298,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         ]));
   }
 
-  @override
-  void initState() {
-    check();
-    super.initState();
-  }
+
 
   @override
   void dispose() {

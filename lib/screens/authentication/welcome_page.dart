@@ -23,7 +23,7 @@ class _WelcomePageState extends State<WelcomePage> {
   void initState() {
     Future.delayed(Duration(seconds: 1)).then((value) {
       if (StorageUtils.getToken().isNotEmpty)
-        Get.toNamed(Routes.homepageScreen);
+        Get.offAllNamed(Routes.homepageScreen);
     });
     super.initState();
   }
