@@ -5,6 +5,7 @@ import 'package:redeo/screens/authentication/forgot_password_otp_page.dart';
 import 'package:redeo/screens/authentication/otp_verification_page.dart';
 import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
+import 'package:redeo/screens/create_message/text_message/enter_text_message_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
 import 'package:redeo/screens/territory/territory_assign_contacts/contacts_page.dart';
@@ -14,6 +15,10 @@ import '../screens/authentication/login_page.dart';
 import '../screens/authentication/reset_password_page.dart';
 import '../screens/chat/chat_messages_page.dart';
 import '../screens/chat/chat_page.dart';
+import '../screens/contacts/contacts_page.dart';
+import '../screens/create_message/record_voice_message_page.dart';
+import '../screens/create_message/video_message/record_video_message_page.dart';
+import '../screens/create_message/review_message/review_message_page.dart';
  import '../screens/create_message/review_message/review_message_page.dart';
 import '../screens/create_message/select message/select_audio_message_page.dart';
 import '../screens/create_message/select message/select_text_message_page.dart';
@@ -104,6 +109,21 @@ class AppPages {
       name: Routes.selectVideoMessageScreen,
       transition: Transition.cupertino,
       page: () => SelectVideoMessagePage(),
+    ),
+    GetPage(
+      name: Routes.enterTextMessageScreen,
+      transition: Transition.cupertino,
+      page: () => EnterTextMessagePage(),
+    ),
+    GetPage(
+      name: Routes.recordVoiceMessageScreen,
+      transition: Transition.cupertino,
+      page: () => RecordVoiceMessagePage(),
+    ),
+    GetPage(
+      name: Routes.recordVideoMessageScreen,
+      transition: Transition.cupertino,
+      page: () => RecordVideoMessagePage(),
     ),
 
     //do not call
