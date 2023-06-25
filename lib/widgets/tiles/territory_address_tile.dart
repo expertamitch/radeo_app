@@ -57,10 +57,7 @@ return GestureDetector(
                     DateFormat('dd MMM yyyy').format(address.createdAt! ),
                     style: w300_13(color: Colors.grey),
                   ),
-                  Text(
-                    'Do Not Call',
-                    style: w300_13(color: Colors.red),
-                  ),
+
                 ],
               ),
             ],

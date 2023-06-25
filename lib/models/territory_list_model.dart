@@ -14,24 +14,17 @@ class TerritoryListModel {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.info != null) {
-      data['info'] = this.info!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
+ }
+
 
 class TerritoryInfo {
   int? id;
   int? userId;
   String? name;
   String? image;
-  Null? assignedTo;
+  int? assignedTo;
   String? status;
-  Null? assignedOn;
+  String? assignedOn;
   String? createdAt;
   String? updatedAt;
 
@@ -58,17 +51,9 @@ class TerritoryInfo {
     updatedAt = json['updated_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['assigned_to'] = this.assignedTo;
-    data['status'] = this.status;
-    data['assigned_on'] = this.assignedOn;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    return data;
-  }
-}
+ }
+
+
+
+
+

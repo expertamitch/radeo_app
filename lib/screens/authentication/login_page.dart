@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                               email: emailController.text,
                               password: passwordController.text);
 
-                          if (success) Get.toNamed(Routes.homepageScreen);
+                          if (success) Get.offAllNamed(Routes.homepageScreen);
                         }
                       },
                       child: Text(

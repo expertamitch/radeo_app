@@ -5,28 +5,77 @@ import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/common_app_bar.dart';
 
 import '../../../styling/app_colors.dart';
-import 'tabs/contact_tab_page.dart';
-import 'tabs/redeo_tab_page.dart';
+import '../controller/contacts_controller.dart';
+import 'tabs/assign_contact_tab_page.dart';
+import 'tabs/assign_redeo_tab_page.dart';
 
-class ContactPage extends StatefulWidget {
-  const ContactPage({Key? key}) : super(key: key);
+class ContactsPage extends StatefulWidget {
+  const ContactsPage({Key? key}) : super(key: key);
 
   @override
-  State<ContactPage> createState() => _ContactPageState();
+  State<ContactsPage> createState() => _ContactsPageState();
 }
 
-class _ContactPageState extends State<ContactPage> {
-  String contactType = 'Contact'; // Contact, Redeo
+class _ContactsPageState extends State<ContactsPage> {
+  ContactsController controller = Get.put(ContactsController());
+
+  check() {
+    if (keepChecking) {
+      bool selected = false;
+
+      controller.redeoList.forEach((element) {
+        if (element.selected) {
+          selected = true;
+        }
+      });
+
+      controller.contacts.forEach((element) {
+        if (element.selected) {
+          selected = true;
+        }
+      });
+
+      Future.delayed(const Duration(milliseconds: 300)).then((value) {
+        isValid.value = (selected);
+        setState(() {});
+        check();
+      });
+    }
+  }
+
+  RxBool isValid = false.obs;
+  bool keepChecking = true;
+
+  @override
+  void initState() {
+    check();
+    super.initState();
+  }
+
+  String contactType = 'Contact'; //Group, Contact, Redeo
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-            title: 'Contacts',
+            title: 'Assign territory',
             isBack: true,
             button1: 'Done',
+            button1Disabled: !isValid.value,
             buttonTap1: () {
-              Get.back();
+              if (isValid.value) {
+                String id='';
+                controller.redeoList.forEach((element) {
+                  if (element.selected) {
+                    id= element.id.toString();
+                  }
+                });
+
+
+
+                Get.back( result: id);
+              }
+
             }),
         body: Column(children: [
           SizedBox(
@@ -99,11 +148,17 @@ class _ContactPageState extends State<ContactPage> {
           SizedBox(
             height: 10.h,
           ),
-          if (contactType == 'Contact') ContactTabPage(),
-          if (contactType == 'Redeo') RedeoTabPage(),
+          if (contactType == 'Contact') AssignContactTabPage(),
+          if (contactType == 'Redeo') AssignRedeoTabPage(),
           SizedBox(
             height: 10.h,
           ),
-        ]));
+        ])));
+  }
+
+  @override
+  void dispose() {
+    keepChecking = false;
+    super.dispose();
   }
 }

@@ -46,6 +46,13 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
   bool keepChecking = true;
 
   @override
+  void initState() {
+    check();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -291,11 +298,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         ]));
   }
 
-  @override
-  void initState() {
-    check();
-    super.initState();
-  }
+
 
   @override
   void dispose() {

@@ -8,6 +8,7 @@ import 'package:redeo/screens/authentication/welcome_page.dart';
 import 'package:redeo/screens/create_message/text_message/enter_text_message_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
+import 'package:redeo/screens/territory/territory_assign_contacts/contacts_page.dart';
 import 'package:redeo/screens/territory/territory_details_screen.dart';
 
 import '../screens/authentication/login_page.dart';
@@ -18,6 +19,7 @@ import '../screens/contacts/contacts_page.dart';
 import '../screens/create_message/record_voice_message_page.dart';
 import '../screens/create_message/video_message/record_video_message_page.dart';
 import '../screens/create_message/review_message/review_message_page.dart';
+ import '../screens/create_message/review_message/review_message_page.dart';
 import '../screens/create_message/select message/select_audio_message_page.dart';
 import '../screens/create_message/select message/select_text_message_page.dart';
 import '../screens/create_message/select message/select_video_message_page.dart';
@@ -254,7 +256,7 @@ class AppPages {
     GetPage(
       name: Routes.contactPage,
       transition: Transition.cupertino,
-      page: () => ContactPage(),
+      page: () => ContactsPage(),
     ),
 
     GetPage(

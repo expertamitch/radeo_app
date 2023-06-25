@@ -84,6 +84,7 @@ class Images {
   static const String shareImageImg = "assets/icons/share_image.png";
   static const String qrCodeScanIcon = "assets/icons/qr-code-scan.svg";
   static const String mapImage = "assets/images/map.png";
+  static const String icErrorImage = "assets/images/ic_error_image.png";
 
   static const loader = "assets/images/loader.json";
   static const notFound = "assets/images/not_found.json";

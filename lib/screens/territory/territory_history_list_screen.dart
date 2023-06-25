@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:redeo/assets/images.dart';
-import 'package:redeo/styling/app_colors.dart';
+import 'package:redeo/screens/territory/controller/territory_controller.dart';
 import 'package:redeo/widgets/common_app_bar.dart';
-import 'package:redeo/widgets/image_view.dart';
+import 'package:redeo/widgets/tiles/territory_history_tile.dart';
 
-import '../../route/routes.dart';
-import '../../styling/font_style_globle.dart';
+import '../../widgets/not_found_widget.dart';
+import '../../widgets/on_screen_loader.dart';
 
 class TerritoryHistoryListScreen extends StatefulWidget {
   @override
@@ -19,6 +17,16 @@ class _TerritoryHistoryListScreenState
     extends State<TerritoryHistoryListScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  TerritoryController controller = Get.find();
+
+  @override
+  void initState() {
+    Future.delayed(Duration(milliseconds: 100)).then((value) {
+      controller.getTerritoryHistory();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,79 +35,26 @@ class _TerritoryHistoryListScreenState
           title: 'History',
           isBack: true,
         ),
-        body: Column(children: [
-          Expanded(
-              child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return territoryTile(
-                      index: index,
-                    );
-                  }))
-        ]));
-  }
-
-  territoryTile({
-    required int index,
-  }) {
-    return GestureDetector(
-      onTap: () {
-        if (index == 0)
-          Get.toNamed(Routes.listOfAddressScreen,
-              arguments: {'showReassign': true});
-      },
-      child: Container (
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
-        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(
           children: [
-            ImageView(
-              path: Images.mapImage,
-              height: 30.sp,
-              width: 30.sp,
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Territory ${index + 1}',
-                    style: w600_14(),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text(
-                    'Assigned at : 05 Jan 2022, 05:10 am',
-                    style: w300_13(),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text(
-                    'Completed at : 06 Jan 2022, 05:10 am',
-                    style: w300_13(),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text(
-                    'Completed by : Amit Kumar',
-                    style: w300_13(),
-                  ),
-                ],
-              ),
+              child: Obx(() => controller.territoryHistoryLoading.value
+                  ? OnScreenLoader()
+                  : controller.territoryHistoryList.value.isEmpty
+                      ? NotFoundWidget(
+                          title: 'No territory history found',
+                        )
+                      : ListView.builder(
+                          itemCount:
+                              controller.territoryHistoryList.value.length,
+                          itemBuilder: (context, index) {
+                            return TerritoryHistoryTile(
+                              info:
+                                  controller.territoryHistoryList.value[index],
+                            );
+                          })),
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
