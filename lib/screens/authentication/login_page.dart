@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/screens/authentication/controller/auth_controller.dart';
+import 'package:redeo/utils/validators.dart';
+import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/colors.dart';
 
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import 'package:redeo/widgets/app_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,9 +21,23 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool rememberPassword = false;
-  String username = '';
   String password = '';
+  String mobileNo = '';
+
+  String initialCountry = 'IN';
+  PhoneNumber number = PhoneNumber(isoCode: 'IN');
+
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+
+  final AuthController authController =
+  Get.isRegistered<AuthController>()
+      ? Get.find<AuthController>()
+      : Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 190,
+        toolbarHeight: 172.h,
         flexibleSpace: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -67,16 +84,40 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Column(
                 children: [
-                  TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: w600_14(),
-                    decoration: inputDecoration.copyWith(labelText: 'Username'),
-                    validator: (value) => value == null || value.isEmpty
-                        ? 'Please enter username'
-                        : null,
-                    onChanged: (value) => setState(() {
-                      username = value;
-                    }),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: InternationalPhoneNumberInput(
+                      onInputChanged: (PhoneNumber number) {
+                        mobileNo = number.phoneNumber
+                            .toString();
+                        // .replaceAll(number.dialCode.toString(), "");
+                        print(number.phoneNumber);
+                      },
+                      onInputValidated: (bool value) {
+                        print(value);
+                      },
+                      validator: (value) {
+                        return Validators.validateMobile(value);
+                      },
+                      selectorConfig: SelectorConfig(
+                        selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                      ),
+                      ignoreBlank: false,
+                      spaceBetweenSelectorAndTextField: 0,
+                      selectorTextStyle: TextStyle(color: Colors.black),
+                      initialValue: number,
+                      maxLength: 10,
+                      formatInput: false,
+                      textStyle: w600_14(),
+                      keyboardType: TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      inputDecoration: inputDecoration.copyWith(
+                        labelText: 'Mobile',
+                      ),
+                      onSaved: (PhoneNumber number) {
+                        print('On Saved: $number');
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -84,12 +125,11 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     obscuringCharacter: '✱',
                     obscureText: true,
+                    controller: passwordController,
+                    validator: (value)=>Validators.validatePassword(value),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Password'),
-                    validator: (value) => value == null || value.isEmpty
-                        ? 'Please enter password'
-                        : null,
                     onChanged: (value) => setState(() {
                       password = value;
                     }),
@@ -101,32 +141,32 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Flexible(
                           child: Row(
-                        children: [
-                          Checkbox(
-                            value: rememberPassword,
-                            fillColor: MaterialStateProperty.resolveWith<Color>(
-                                (Set<MaterialState> states) {
-                              if (!states.contains(MaterialState.selected)) {
-                                return AppColors.dark2GreyColor;
-                              }
-                              return AppColors.blueColor;
-                            }),
-                            onChanged: (value) {
-                              setState(() {
-                                rememberPassword = value ?? false;
-                              });
-                            },
-                          ),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  rememberPassword = !rememberPassword;
-                                });
-                              },
-                              child:
+                            children: [
+                              Checkbox(
+                                value: rememberPassword,
+                                fillColor: MaterialStateProperty.resolveWith<Color>(
+                                        (Set<MaterialState> states) {
+                                      if (!states.contains(MaterialState.selected)) {
+                                        return AppColors.dark2GreyColor;
+                                      }
+                                      return AppColors.blueColor;
+                                    }),
+                                onChanged: (value) {
+                                  setState(() {
+                                    rememberPassword = value ?? false;
+                                  });
+                                },
+                              ),
+                              GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      rememberPassword = !rememberPassword;
+                                    });
+                                  },
+                                  child:
                                   Text('Remember Password', style: w300_12())),
-                        ],
-                      )),
+                            ],
+                          )),
                       TextButton(
                           onPressed: () {
                             Get.toNamed(Routes.forgotPasswordScreen);
@@ -141,10 +181,14 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20.h,
                   ),
                   AppButton(
-                      onPressedFunction: () {
-                        // print('username : $username');
-                        // print('password : $password');
-                        Get.toNamed(Routes.homepageScreen);
+                      onPressedFunction: () async {
+                        if (_formKey.currentState!.validate()) {
+                          bool success = await authController.login(
+                              mobile: mobileNo,
+                              password: passwordController.text);
+
+                          if (success) Get.offAllNamed(Routes.homepageScreen);
+                        }
                       },
                       child: Text(
                         'Login Now',

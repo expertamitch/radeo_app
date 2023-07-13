@@ -84,12 +84,13 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.file(
+                        child: controller.uploadImg!=null?Image.file(
                           controller.uploadImg!,
                           width: 100,
                           fit: BoxFit.cover,
                           height: 60,
-                        ),
+                        ):ImageView(path: Images.attachIcon,width: 100,fit: BoxFit.cover,
+                          height: 60,),
                       ),
                       SizedBox(
                         height: 10.h,
@@ -136,11 +137,11 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Indicatores',
+                    'Indicators',
                     style: w600_12(),
                   ),
                   Text(
-                    'Open for encouragement',
+                    'Open for Encouragement',
                     style: w600_12(
                       color: AppColors.blueColor,
                     ),
@@ -237,8 +238,8 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
-                        DateFormat('EEEE, MMM d, yyyy | h:mm a')
-                            .format(controller.selectedDate!),
+                          controller.selectedDate!=null?DateFormat('EEEE, MMM d, yyyy | h:mm a')
+                            .format(controller.selectedDate!):"Sunday, January 5, 2021 | 12:05 pm",
                         textAlign: TextAlign.right,
                         style: w300_13(),
                       ))

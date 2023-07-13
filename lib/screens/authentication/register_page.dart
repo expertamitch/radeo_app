@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:redeo/screens/authentication/controller/auth_controller.dart';
+import 'package:redeo/utils/validators.dart';
+import 'package:redeo/widgets/app_button.dart';
+
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/colors.dart';
-import 'package:redeo/widgets/app_button.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -27,6 +30,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
   String initialCountry = 'IN';
   PhoneNumber number = PhoneNumber(isoCode: 'IN');
+
+  // AuthController controller = Get.find();
+  AuthController controller = Get.put(AuthController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 190,
+        toolbarHeight: 212,
         flexibleSpace: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -107,11 +114,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     padding: EdgeInsets.only(left: 5),
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber number) {
+                        mobileNo=number.phoneNumber.toString();
                         print(number.phoneNumber);
                       },
                       onInputValidated: (bool value) {
                         print(value);
-                      },
+                      },validator: (value){
+                        return Validators.validateMobile(value);
+                    },
                       selectorConfig: SelectorConfig(
                         selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                       ),
@@ -124,16 +134,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       keyboardType: TextInputType.numberWithOptions(
                           signed: true, decimal: true),
                       inputDecoration: inputDecoration.copyWith(
-                          labelText: 'Mobile',
-                          suffix: GestureDetector(
-                            onTap: () {
-                              Get.toNamed(Routes.otpVerficationScreen);
-                            },
-                            child: Text(
-                              'GET OTP',
-                              style: w600_12(color: AppColors.purpleColor),
-                            ),
-                          )),
+                        labelText: 'Mobile',
+                      ),
                       onSaved: (PhoneNumber number) {
                         print('On Saved: $number');
                       },
@@ -145,6 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
+                    keyboardType: TextInputType.emailAddress,
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter email id'
@@ -181,9 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscuringCharacter: '✱',
                     decoration:
                         inputDecoration.copyWith(labelText: 'Confirm Password'),
-                    validator: (value) => value == null || value.isEmpty
-                        ? 'Please re enter password'
-                        : null,
+                    validator: (value) => Validators.validateConfirmPassword(password,value),
                     onChanged: (value) => setState(() {
                       confirmPassword = value;
                     }),
@@ -192,10 +193,18 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 40.h,
                   ),
                   AppButton(
-                      onPressedFunction: () {
-                        // if (_formKey.currentState!.validate()) {
-                        Get.toNamed(Routes.homepageScreen);
-                        // }
+                      onPressedFunction: () async {
+                        if (_formKey.currentState!.validate()) {
+                          var success=await controller.register(
+                              firstName: firstName,
+                              lastName: lastName,
+                              mobile: mobileNo,
+                              email: emailId,
+                              password: password);
+                          if(success)
+                            Get.toNamed(Routes.otpVerficationScreen, arguments: mobileNo);
+
+                        }
                       },
                       child: Text(
                         'Register Now',

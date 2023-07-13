@@ -68,7 +68,12 @@ class ImageView extends StatelessWidget {
             height: height,
             fadeInDuration: const Duration(milliseconds: 1),
             fit: fit,
-            placeholder: Images.icLoading);
+            imageErrorBuilder: (context, error, stackTrace) => Image.asset(
+                  Images.icErrorImage,
+                  width: width,
+                  height: height,
+                ),
+            placeholder: Images.loading);
     } else if (path?.startsWith('assets/') ?? false) {
       imageWidget = path!.contains(".svg")
           ? SvgPicture.asset(
@@ -83,6 +88,11 @@ class ImageView extends StatelessWidget {
               height: height ?? null,
               fit: fit ?? null,
               gaplessPlayback: true,
+              errorBuilder: (context, error, stackTrace) => Image.asset(
+                Images.icErrorImage,
+                width: width,
+                height: height,
+              ),
               color: color ?? null,
             );
     } else {
@@ -91,7 +101,11 @@ class ImageView extends StatelessWidget {
           File(path!),
           width: width ?? null,
           height: height ?? null,
-          fit: fit ?? null,
+          fit: fit ?? null,errorBuilder: (context, error, stackTrace) => Image.asset(
+          Images.icErrorImage,
+          width: width,
+          height: height,
+        ),
         ),
       );
     }

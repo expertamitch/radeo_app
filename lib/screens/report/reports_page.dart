@@ -3,11 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/styling/app_colors.dart';
+import 'package:redeo/widgets/common_app_bar.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:table_calendar/table_calendar.dart';
+
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
-
-import 'package:redeo/widgets/app_button.dart';
 
 class ReportsPage extends StatefulWidget {
   const ReportsPage({Key? key}) : super(key: key);
@@ -18,62 +19,28 @@ class ReportsPage extends StatefulWidget {
 
 class _ReportsPageState extends State<ReportsPage> {
   DateTime selectedDate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.darkGreyColor,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          actions: [
-            Row(
-              children: [
-                AppButton(
-                    onPressedFunction: () {
-                      Get.toNamed(Routes.editReportsScreen);
-                    },
-                    child: Text(
-                      'Edit',
-                      style: w300_12(color: Colors.white),
-                    ),
-                    height: 30.h,
-                    sodiumShapeBorder: true,
-                    width: null,
-                    buttonColor: AppColors.purpleColor),
-                SizedBox(
-                  width: 10.w,
-                ),
-                AppButton(
-                    onPressedFunction: () {
-                      Get.toNamed(Routes.shareReportsScreen);
-                    },
-                    child: Text(
-                      'Share',
-                      style: w300_13(color: Colors.white),
-                    ),
-                    height: 30.h,
-                    sodiumShapeBorder: true,
-                    width: null,
-                    buttonColor: AppColors.blueColor),
-              ],
-            ),
-            SizedBox(
-              width: 10.w,
-            )
-          ],
+        appBar: CustomAppBar(
+          title: 'Reports',
+          button1: 'Edit',
+          button2: 'Share',
+          buttonTap1: () {
+
+
+            Get.toNamed(Routes.editReportsScreen);
+          },
+          buttonTap2: () {
+            Share.share('Share example');
+
+            // Get.toNamed(Routes.shareReportsScreen);
+          },
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            Container(
-              width: double.maxFinite,
-              color: AppColors.darkGreyColor,
-              padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-              child: Text(
-                'Reports',
-                style: w900_30(),
-              ),
-            ),
             Container(
               decoration: BoxDecoration(
                   border: Border(

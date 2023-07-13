@@ -7,6 +7,8 @@ import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import '../../utils/validators.dart';
+import 'controller/auth_controller.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -16,8 +18,11 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  String email = '';
+  AuthController controller = Get.find();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController usernameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +75,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     controller: usernameController,
+                    validator: (value) => Validators.validateEmail(value),
+                    onChanged: (value) => setState(() {
+                      email = value;
+                    }),
                   ),
                   SizedBox(
                     height: 40.h,
@@ -77,7 +86,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   AppButton(
                       buttonColor: AppColors.purpleColor,
                       height: 50.h,
-                      onPressedFunction: () {},
+                      onPressedFunction: () async {
+                        if (_formKey.currentState!.validate()) {
+                          bool success = await controller.forgotPassword(
+                              email: usernameController.text);
+
+                          if (success) Get.toNamed(Routes.forgotPasswordOtpScreen,arguments: email);
+                        }
+                      },
                       child: Text(
                         'Submit Now',
                         style: w900_15(color: Colors.white),

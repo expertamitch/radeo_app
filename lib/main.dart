@@ -149,8 +149,18 @@ Future<void> main() async {
     statusBarIconBrightness: Brightness.dark,
   );
   SystemChrome.setSystemUIOverlayStyle(systemTheme);
+  await ScreenUtil.ensureScreenSize();
+
   runApp(MyApp());
 }
+
+
+
+class NavigationService {
+  static GlobalKey<NavigatorState> navigatorKey =
+  GlobalKey<NavigatorState>();
+}
+
 
 // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 //   debugPrint("FIREBASE_MESSAGING:----    $message");
@@ -303,9 +313,12 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
+
       useInheritedMediaQuery: true,
       builder: (context, child) {
         return GetMaterialApp(
+          navigatorKey: NavigationService.navigatorKey, // set property
+
           // useInheritedMediaQuery: false,
           debugShowCheckedModeBanner: false,
           builder: (context, child) => child ?? Scaffold(),

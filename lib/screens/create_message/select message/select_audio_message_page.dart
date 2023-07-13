@@ -3,7 +3,10 @@ import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
 import '../../../assets/images.dart';
+import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 
@@ -17,14 +20,8 @@ class SelectAudioMessage extends StatefulWidget {
 }
 
 class _SelectAudioMessageState extends State<SelectAudioMessage> {
-  late TextEditingController controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = TextEditingController();
-  }
+  late TextEditingController searchController=TextEditingController();
+  MessageController controller=Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +46,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                   onChanged: (text) {
                     setState(() {});
                   },
-                  searchTextEditingController: controller,
+                  searchTextEditingController: searchController,
                   horizontalPadding: 5),
             ))),
         body: Container(
@@ -69,10 +66,15 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
                 SizedBox(
                   width: 10.w,
                 ),
-                Text(
-                  'Create New Audio',
-                  style: w600_14(
-                    color: AppColors.purpleColor,
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.recordVoiceMessageScreen);
+                  },
+                  child: Text(
+                    'Create New Audio',
+                    style: w600_14(
+                      color: AppColors.purpleColor,
+                    ),
                   ),
                 ),
               ],
@@ -84,15 +86,17 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
               color: AppColors.borderGreyColor,
               thickness: 1,
             ),
-            Expanded(
+            Obx(() => Expanded(
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: controller.audioMessageList.value.length,
                     itemBuilder: (context, index) {
+                      var name=controller.audioMessageList.value[index].file!.split('/');
+                      var ac=name.last;
                       return audioListTile(
-                          title: 'Audiofile_23052023',
+                          title: ac,
                           duration: '00:12',
                           size: '12 KB');
-                    }))
+                    })))
           ]),
         ));
   }
@@ -103,7 +107,9 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
     required String size,
   }) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.back();
+      },
       child: Container(
         decoration: BoxDecoration(
             border:

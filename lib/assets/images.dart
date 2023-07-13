@@ -10,6 +10,7 @@ class Images {
   //screen 6
   static const String closeIcon = "assets/icons/screen 6/Close.svg";
   static const String scanQrBgImg = "assets/images/scan_qr_bg_img.png";
+  static const String dangerTtriangle = "assets/icons/ic_danger.png";
 
   //screen 7
   static const String attachIcon = "assets/icons/screen 7/Attach.svg";
@@ -70,6 +71,7 @@ class Images {
   // static const String attachIcon = "assets/icons/screen 19/Hisotory1.svg";
   static const String cameraIcon = "assets/icons/screen 25/Camera.svg";
   static const String sendIcon = "assets/icons/screen 25/Send.svg";
+  static const String loading = "assets/icons/loading.png";
 
   static const String barcodeImg = "assets/icons/barcode_img.png";
   static const String deleteIcon = "assets/icons/delete_icon.svg";
@@ -81,4 +83,10 @@ class Images {
 
   static const String shareImageImg = "assets/icons/share_image.png";
   static const String qrCodeScanIcon = "assets/icons/qr-code-scan.svg";
+  static const String mapImage = "assets/images/map.png";
+  static const String icErrorImage = "assets/images/ic_error_image.png";
+
+  static const loader = "assets/images/loader.json";
+  static const notFound = "assets/images/not_found.json";
+
 }

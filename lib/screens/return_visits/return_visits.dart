@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import '../../widgets/common_app_bar.dart';
 
 class ReturnVisitsPage extends StatefulWidget {
   const ReturnVisitsPage({Key? key}) : super(key: key);
@@ -18,21 +21,12 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.darkGreyColor,
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
+        appBar:CustomAppBar(
+          title: 'Return Visits',
+
         ),
         body: Column(children: [
-          Container(
-            width: double.maxFinite,
-            color: AppColors.darkGreyColor,
-            padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
-            child: Text(
-              'Return Visits',
-              style: w900_30(),
-            ),
-          ),
+
           Expanded(
               child: ListView.separated(
                   separatorBuilder: (context, index) =>
@@ -40,6 +34,7 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
                   itemCount: 3,
                   itemBuilder: (context, index) {
                     return historyListTile(
+                      index: index,
                         noteString:
                             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et',
                         dateTime: DateTime.now(),
@@ -52,60 +47,78 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
 
   historyListTile(
       {required DateTime dateTime,
+        required int index,
       required String name,
       required String location,
       required String trailingLevelPath,
       required String noteString}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
-                style: w900_12(
-                  color: AppColors.purpleColor,
+    return GestureDetector(
+      onTap: (){
+        Get.toNamed(Routes.noticeOfEventSummaryScreen);
+
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  DateFormat('EEEE, MMM d, yyyy | h:mm a').format(dateTime),
+                  style: w900_12(
+                    color: AppColors.purpleColor,
+                  ),
                 ),
-              ),
-              SvgPicture.asset(
-                trailingLevelPath,
-                height: 30,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            name,
-            style: w600_16(),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Text(
-            location,
-            style: w300_13(color: AppColors.dark2GreyColor),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: AppColors.lightGreyColor,
-                borderRadius: BorderRadius.circular(4)),
-            padding: EdgeInsets.all(10),
-            child: Text(
-              noteString,
-              style: w300_12(color: AppColors.dark2GreyColor),
+                SvgPicture.asset(
+                  trailingLevelPath,
+                  height: 30,
+                ),
+              ],
             ),
-          ),
-        ],
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              name,
+              style: w600_16(),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Text(
+              location,
+              style: w300_13(color: AppColors.dark2GreyColor),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: AppColors.lightGreyColor,
+                  borderRadius: BorderRadius.circular(4)),
+              padding: EdgeInsets.all(10),
+              child: Text(
+                noteString,
+                style: w300_12(color: AppColors.dark2GreyColor),
+              ),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            if(index==1)
+            Align(
+              alignment: Alignment.topRight,
+              child: Text(
+                'Incomplete',
+                style: w300_13(color: AppColors.redColor),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

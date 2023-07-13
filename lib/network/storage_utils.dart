@@ -58,8 +58,9 @@ abstract class StorageUtils {
     GetStorage().write('profileImage', profileImage);
   }
 
-  static String? getToken() {
-    return GetStorage().read('token');
+  static String getToken() {
+    return GetStorage().read('token')
+    ??'';
   }
 
   static String getLoginToken() {

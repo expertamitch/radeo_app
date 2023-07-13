@@ -15,6 +15,8 @@
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSContactsUsageDescription</key>
+    <string>To get contact list</string>
 	<key>CFBundleDisplayName</key>
 	<string>Redeo</string>
 	<key>CFBundleExecutable</key>
@@ -58,5 +60,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>Needed for recording videos.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Needed for recording videos.</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+       <key>NSAllowsArbitraryLoads</key>
+       <true/>
 </dict>
 </plist>

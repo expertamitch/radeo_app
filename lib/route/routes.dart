@@ -6,21 +6,26 @@ abstract class Routes {
   static const loginScreen = '/loginScreen';
   static const registerScreen = '/registerScreen';
   static const forgotPasswordScreen = '/forgotPasswordScreen';
+  static const forgotPasswordOtpScreen = '/forgotPasswordOtpScreen';
+  static const resetPasswordScreen = '/resetPasswordScreen';
   static const otpVerficationScreen = '/otpVerficationScreen';
 
   //create messages
-  static const createMessageScreen = '/createMessageScreen';
-  static const reviewMessageScreen = '/reviewMessageScreen';
+   static const reviewMessageScreen = '/reviewMessageScreen';
   static const selectTextMessageScreen = '/selectTextMessageScreen';
   static const selectAudioMessageScreen = '/selectAudioMessageScreen';
   static const selectVideoMessageScreen = '/selectVideoMessageScreen';
+  static const enterTextMessageScreen = '/enterTextMessageScreen';
+  static const recordVideoMessageScreen = '/recordVideoMessageScreen';
+  static const recordVoiceMessageScreen = '/recordVoiceMessageScreen';
+  static const createCustomMessage = '/createCustomMessage';
 
   //do not call
-  static const doNotCallScreen = '/doNotCallScreen';
+  static const listOfAddressScreen = '/doNotCallScreen';
+  static const addDncScreen = '/addDncScreen';
 
   //event page
-  static const eventScreen = '/eventScreen';
-  static const createEventScreen = '/createEventScreen';
+   static const createEventScreen = '/createEventScreen';
   static const eventDetailsScreen = '/eventDetailsScreen';
   static const editEventDetailsScreen = '/editEventDetailsScreen';
   //invitee
@@ -28,12 +33,10 @@ abstract class Routes {
   static const addInviteeScreen = '/addInviteeScreen';
 
   //field service
-  static const fieldServiceScreen = '/fieldServiceScreen';
-  static const filedServiceMapPageScreen = '/FiledServiceMapScreen';
+   static const filedServiceMapPageScreen = '/FiledServiceMapScreen';
 
   //groups page
-  static const groupsPageScreen = '/groupsPageScreen';
-  static const createGroupScreen = '/createGroupScreen';
+   static const createGroupScreen = '/createGroupScreen';
   static const attendantsScreen = '/attendantsScreen';
 
   //message page
@@ -45,14 +48,17 @@ abstract class Routes {
   static const createReturnPageScreen = '/createReturnPageScreen';
   static const historyPage = '/historyPage';
   static const noticeOfEventSummaryScreen = '/noticeOfEventSummaryScreen';
-  static const returnVisitsScreen = '/returnVisitsScreen';
-  static const scanQrScreen = '/scanQrScreen';
+   static const scanQrScreen = '/scanQrScreen';
 
   //reports page
-  static const reportsScreen = '/reportsScreen';
-  static const editReportsScreen = '/editReportsScreen';
+   static const editReportsScreen = '/editReportsScreen';
   static const shareReportsScreen = '/shareReportsScreen';
 
   //homepage
   static const homepageScreen = '/homepageScreen';
+
+//  territory
+  static const territoryHistoryListScreen= '/territoryHistoryListScreen';
+  static const territoryDetailsScreen= '/territoryDetailsScreen';
+  static const contactPage= '/contactPage';
 }

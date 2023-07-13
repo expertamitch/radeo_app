@@ -1,0 +1,502 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.app.redeo.redeo"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="33" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/debug/AndroidManifest.xml:7:5-66
+15-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/debug/AndroidManifest.xml:7:22-64
+16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+16-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:3:5-79
+16-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:3:22-76
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:4:5-81
+17-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:4:22-78
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+18-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:5:5-80
+18-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:5:22-77
+19    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+19-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:6:5-82
+19-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:6:22-79
+20    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+20-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:8:5-75
+20-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:8:22-73
+21    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+21-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:9:5-74
+21-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:9:22-72
+22    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+22-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:10:5-74
+22-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:10:22-72
+23    <uses-permission android:name="android.permission.READ_CONTACTS" />
+23-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:11:5-71
+23-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:11:22-69
+24    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+24-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:12:5-72
+24-->/home/varinder/AndroidStudioProjects/radeo_app/android/app/src/main/AndroidManifest.xml:12:22-70
+25    <uses-permission android:name="android.permission.WAKE_LOCK" />
+25-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
+25-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
+26    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Permissions options for the `notification` group -->
+26-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
+26-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
+27    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+27-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-77
+27-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:13:22-74
+28    <uses-permission android:name="android.permission.CAMERA" />
+28-->[:camera_android] /home/varinder/AndroidStudioProjects/radeo_app/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-65
+28-->[:camera_android] /home/varinder/AndroidStudioProjects/radeo_app/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-62
+29    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+29-->[:camera_android] /home/varinder/AndroidStudioProjects/radeo_app/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-71
+29-->[:camera_android] /home/varinder/AndroidStudioProjects/radeo_app/build/camera_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-68
+30    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+30-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-81
+30-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-78
+31    <uses-permission android:name="android.permission.VIBRATE" />
+31-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-66
+31-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-63
+32    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+32-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-81
+32-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-78
+33    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+33-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:12:5-79
+33-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:12:22-76
+34    <uses-permission android:name="android.permission.BLUETOOTH" />
+34-->[com.github.canardoux:flutter_sound_core:9.2.13] /home/varinder/.gradle/caches/transforms-3/d82087c5f0801f69a2b54127e42bdc6c/transformed/jetified-flutter_sound_core-9.2.13/AndroidManifest.xml:11:5-68
+34-->[com.github.canardoux:flutter_sound_core:9.2.13] /home/varinder/.gradle/caches/transforms-3/d82087c5f0801f69a2b54127e42bdc6c/transformed/jetified-flutter_sound_core-9.2.13/AndroidManifest.xml:11:22-65
+35    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+35-->[com.github.canardoux:flutter_sound_core:9.2.13] /home/varinder/.gradle/caches/transforms-3/d82087c5f0801f69a2b54127e42bdc6c/transformed/jetified-flutter_sound_core-9.2.13/AndroidManifest.xml:13:5-80
+35-->[com.github.canardoux:flutter_sound_core:9.2.13] /home/varinder/.gradle/caches/transforms-3/d82087c5f0801f69a2b54127e42bdc6c/transformed/jetified-flutter_sound_core-9.2.13/AndroidManifest.xml:13:22-77
+36    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+36-->[com.google.firebase:firebase-iid:21.1.0] /home/varinder/.gradle/caches/transforms-3/bb8a23fa510c2d0bf78ecb2a5172e142/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:26:5-82
+36-->[com.google.firebase:firebase-iid:21.1.0] /home/varinder/.gradle/caches/transforms-3/bb8a23fa510c2d0bf78ecb2a5172e142/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:26:22-79
+37
+38    <queries>
+38-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:24:5-34:15
+39        <intent>
+39-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:25:9-27:18
+40            <action android:name="android.media.browse.MediaBrowserService" />
+40-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:26:13-79
+40-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:26:21-76
+41        </intent>
+42        <intent>
+42-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:28:9-30:18
+43            <action android:name="androidx.media2.session.MediaSessionService" />
+43-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:29:13-82
+43-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:29:21-79
+44        </intent>
+45        <intent>
+45-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:31:9-33:18
+46            <action android:name="androidx.media2.session.MediaLibraryService" />
+46-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:32:13-82
+46-->[androidx.media2:media2-session:1.2.1] /home/varinder/.gradle/caches/transforms-3/f921d35191e816e13bbe81a1a7adc2e8/transformed/jetified-media2-session-1.2.1/AndroidManifest.xml:32:21-79
+47        </intent>
+48    </queries>
+49
+50    <permission
+50-->[androidx.core:core:1.10.1] /home/varinder/.gradle/caches/transforms-3/9c9ab1a476c120097a79d748cec7161f/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+51        android:name="com.app.redeo.redeo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+51-->[androidx.core:core:1.10.1] /home/varinder/.gradle/caches/transforms-3/9c9ab1a476c120097a79d748cec7161f/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+52        android:protectionLevel="signature" />
+52-->[androidx.core:core:1.10.1] /home/varinder/.gradle/caches/transforms-3/9c9ab1a476c120097a79d748cec7161f/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+53
+54    <uses-permission android:name="com.app.redeo.redeo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+54-->[androidx.core:core:1.10.1] /home/varinder/.gradle/caches/transforms-3/9c9ab1a476c120097a79d748cec7161f/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+54-->[androidx.core:core:1.10.1] /home/varinder/.gradle/caches/transforms-3/9c9ab1a476c120097a79d748cec7161f/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+55
+56    <application
+57        android:name="android.app.Application"
+58        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+58-->[androidx.core:core:1.10.1] /home/varinder/.gradle/caches/transforms-3/9c9ab1a476c120097a79d748cec7161f/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+59        android:debuggable="true"
+60        android:icon="@mipmap/ic_launcher"
+61        android:label="redeo" >
+62        <activity
+63            android:name="com.app.redeo.redeo.MainActivity"
+64            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+65            android:exported="true"
+66            android:hardwareAccelerated="true"
+67            android:launchMode="singleTop"
+68            android:requestLegacyExternalStorage="true"
+69            android:theme="@style/LaunchTheme"
+70            android:windowSoftInputMode="adjustResize" >
+71
+72            <!--
+73                 Specifies an Android theme to apply to this Activity as soon as
+74                 the Android process has started. This theme is visible to the user
+75                 while the Flutter UI initializes. After that, this theme continues
+76                 to determine the Window background behind the Flutter UI.
+77            -->
+78            <meta-data
+79                android:name="io.flutter.embedding.android.NormalTheme"
+80                android:resource="@style/NormalTheme" />
+81
+82            <intent-filter>
+83                <action android:name="android.intent.action.MAIN" />
+84
+85                <category android:name="android.intent.category.LAUNCHER" />
+86            </intent-filter>
+87        </activity>
+88        <!--
+89             Don't delete the meta-data below.
+90             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+91        -->
+92        <meta-data
+93            android:name="flutterEmbedding"
+94            android:value="2" />
+95
+96        <service
+96-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-19:72
+97            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
+97-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-107
+98            android:exported="false"
+98-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+99            android:permission="android.permission.BIND_JOB_SERVICE" />
+99-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-69
+100        <service
+100-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:20:9-26:19
+101            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+101-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-97
+102            android:exported="false" >
+102-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-37
+103            <intent-filter>
+103-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-25:29
+104                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+104-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:17-78
+104-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:25-75
+105            </intent-filter>
+106        </service>
+107
+108        <receiver
+108-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:28:9-35:20
+109            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
+109-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-98
+110            android:exported="true"
+110-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-36
+111            android:permission="com.google.android.c2dm.permission.SEND" >
+111-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-73
+112            <intent-filter>
+112-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-34:29
+113                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+113-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:17-81
+113-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:25-78
+114            </intent-filter>
+115        </receiver>
+116
+117        <service
+117-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:37:9-41:19
+118            android:name="com.google.firebase.components.ComponentDiscoveryService"
+118-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:37:18-89
+119            android:directBootAware="true"
+119-->[com.google.firebase:firebase-common:20.3.2] /home/varinder/.gradle/caches/transforms-3/ac7b423c18e0e9c28c2a8c784d1125eb/transformed/jetified-firebase-common-20.3.2/AndroidManifest.xml:34:13-43
+120            android:exported="false" >
+120-->[com.google.firebase:firebase-iid:21.1.0] /home/varinder/.gradle/caches/transforms-3/bb8a23fa510c2d0bf78ecb2a5172e142/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:31:13-37
+121            <meta-data
+121-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:38:13-40:85
+122                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
+122-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:39:17-128
+123                android:value="com.google.firebase.components.ComponentRegistrar" />
+123-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:40:17-82
+124            <meta-data
+124-->[:firebase_core] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+125                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+125-->[:firebase_core] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+126                android:value="com.google.firebase.components.ComponentRegistrar" />
+126-->[:firebase_core] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+127            <meta-data
+127-->[com.google.firebase:firebase-iid:21.1.0] /home/varinder/.gradle/caches/transforms-3/bb8a23fa510c2d0bf78ecb2a5172e142/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:32:13-34:85
+128                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+128-->[com.google.firebase:firebase-iid:21.1.0] /home/varinder/.gradle/caches/transforms-3/bb8a23fa510c2d0bf78ecb2a5172e142/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:33:17-96
+129                android:value="com.google.firebase.components.ComponentRegistrar" />
+129-->[com.google.firebase:firebase-iid:21.1.0] /home/varinder/.gradle/caches/transforms-3/bb8a23fa510c2d0bf78ecb2a5172e142/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:34:17-82
+130            <meta-data
+130-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:55:13-57:85
+131                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+131-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:56:17-119
+132                android:value="com.google.firebase.components.ComponentRegistrar" />
+132-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:57:17-82
+133            <meta-data
+133-->[com.google.firebase:firebase-installations:17.1.3] /home/varinder/.gradle/caches/transforms-3/23dd3dac92cf18ba0aaff92dabeee401/transformed/jetified-firebase-installations-17.1.3/AndroidManifest.xml:17:13-19:85
+134                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+134-->[com.google.firebase:firebase-installations:17.1.3] /home/varinder/.gradle/caches/transforms-3/23dd3dac92cf18ba0aaff92dabeee401/transformed/jetified-firebase-installations-17.1.3/AndroidManifest.xml:18:17-127
+135                android:value="com.google.firebase.components.ComponentRegistrar" />
+135-->[com.google.firebase:firebase-installations:17.1.3] /home/varinder/.gradle/caches/transforms-3/23dd3dac92cf18ba0aaff92dabeee401/transformed/jetified-firebase-installations-17.1.3/AndroidManifest.xml:19:17-82
+136            <meta-data
+136-->[com.google.firebase:firebase-datatransport:18.1.7] /home/varinder/.gradle/caches/transforms-3/6ee35129f48582a6ca9bacb0d0103f7a/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:27:13-29:85
+137                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+137-->[com.google.firebase:firebase-datatransport:18.1.7] /home/varinder/.gradle/caches/transforms-3/6ee35129f48582a6ca9bacb0d0103f7a/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:28:17-115
+138                android:value="com.google.firebase.components.ComponentRegistrar" />
+138-->[com.google.firebase:firebase-datatransport:18.1.7] /home/varinder/.gradle/caches/transforms-3/6ee35129f48582a6ca9bacb0d0103f7a/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:29:17-82
+139        </service>
+140
+141        <provider
+141-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:43:9-47:38
+142            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
+142-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:44:13-102
+143            android:authorities="com.app.redeo.redeo.flutterfirebasemessaginginitprovider"
+143-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:45:13-88
+144            android:exported="false"
+144-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:46:13-37
+145            android:initOrder="99" />
+145-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:47:13-35
+146        <provider
+146-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+147            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+147-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-82
+148            android:authorities="com.app.redeo.redeo.flutter.image_provider"
+148-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-74
+149            android:exported="false"
+149-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+150            android:grantUriPermissions="true" >
+150-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+151            <meta-data
+151-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:75
+152                android:name="android.support.FILE_PROVIDER_PATHS"
+152-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+153                android:resource="@xml/flutter_image_picker_file_paths" />
+153-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-72
+154        </provider>
+155
+156        <receiver
+156-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-18:40
+157            android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver"
+157-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-91
+158            android:exported="false" />
+158-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+159        <receiver
+159-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:19:9-21:40
+160            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
+160-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-97
+161            android:exported="false" />
+161-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-37
+162        <receiver
+162-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:22:9-31:20
+163            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+163-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-101
+164            android:exported="false" >
+164-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-37
+165            <intent-filter>
+165-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-30:29
+166                <action android:name="android.intent.action.BOOT_COMPLETED" />
+166-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:26:17-79
+166-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:26:25-76
+167                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+167-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:27:17-84
+167-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:27:25-81
+168                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+168-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-82
+168-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:28:25-79
+169                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+169-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-82
+169-->[:flutter_local_notifications] /home/varinder/AndroidStudioProjects/radeo_app/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:29:25-79
+170            </intent-filter>
+171        </receiver>
+172        <!--
+173           Declares a provider which allows us to store files to share in
+174           '.../caches/share_plus' and grant the receiving action access
+175        -->
+176        <provider
+176-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-23:20
+177            android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
+177-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-77
+178            android:authorities="com.app.redeo.redeo.flutter.share_provider"
+178-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-74
+179            android:exported="false"
+179-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+180            android:grantUriPermissions="true" >
+180-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-47
+181            <meta-data
+181-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:75
+182                android:name="android.support.FILE_PROVIDER_PATHS"
+182-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+183                android:resource="@xml/flutter_share_file_paths" />
+183-->[:image_picker_android] /home/varinder/AndroidStudioProjects/radeo_app/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-72
+184        </provider>
+185        <!--
+186           This manifest declared broadcast receiver allows us to use an explicit
+187           Intent when creating a PendingItent to be informed of the user's choice
+188        -->
+189        <receiver
+189-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:28:9-34:20
+190            android:name="dev.fluttercommunity.plus.share.SharePlusPendingIntent"
+190-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-82
+191            android:exported="false" >
+191-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-37
+192            <intent-filter>
+192-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-33:29
+193                <action android:name="EXTRA_CHOSEN_COMPONENT" />
+193-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:32:17-65
+193-->[:share_plus] /home/varinder/AndroidStudioProjects/radeo_app/build/share_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:32:25-62
+194            </intent-filter>
+195        </receiver>
+196        <receiver
+196-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:31:9-38:20
+197            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+197-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:32:13-78
+198            android:exported="true"
+198-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:33:13-36
+199            android:permission="com.google.android.c2dm.permission.SEND" >
+199-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:34:13-73
+200            <intent-filter>
+200-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-34:29
+201                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+201-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:17-81
+201-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:25-78
+202            </intent-filter>
+203        </receiver>
+204        <!--
+205             FirebaseMessagingService performs security checks at runtime,
+206             but set to not exported to explicitly avoid allowing another app to call it.
+207        -->
+208        <service
+208-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:44:9-51:19
+209            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+209-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:45:13-82
+210            android:directBootAware="true"
+210-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:46:13-43
+211            android:exported="false" >
+211-->[com.google.firebase:firebase-messaging:23.1.2] /home/varinder/.gradle/caches/transforms-3/7b6984d056f2514a4364a36c1bf50e5c/transformed/jetified-firebase-messaging-23.1.2/AndroidManifest.xml:47:13-37
+212            <intent-filter android:priority="-500" >
+212-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-25:29
+213                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+213-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:17-78
+213-->[:firebase_messaging] /home/varinder/AndroidStudioProjects/radeo_app/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:25-75
+214            </intent-filter>
+215        </service>
+216
+217        <provider
+217-->[com.google.firebase:firebase-common:20.3.2] /home/varinder/.gradle/caches/transforms-3/ac7b423c18e0e9c28c2a8c784d1125eb/transformed/jetified-firebase-common-20.3.2/AndroidManifest.xml:25:9-30:39
+218            android:name="com.google.firebase.provider.FirebaseInitProvider"
+218-->[com.google.firebase:firebase-common:20.3.2] /home/varinder/.gradle/caches/transforms-3/ac7b423c18e0e9c28c2a8c784d1125eb/transformed/jetified-firebase-common-20.3.2/AndroidManifest.xml:26:13-77
+219            android:authorities="com.app.redeo.redeo.firebaseinitprovider"
+219-->[com.google.firebase:firebase-common:20.3.2] /home/varinder/.gradle/caches/transforms-3/ac7b423c18e0e9c28c2a8c784d1125eb/transformed/jetified-firebase-common-20.3.2/AndroidManifest.xml:27:13-72
+220            android:directBootAware="true"
+220-->[com.google.firebase:firebase-common:20.3.2] /home/varinder/.gradle/caches/transforms-3/ac7b423c18e0e9c28c2a8c784d1125eb/transformed/jetified-firebase-common-20.3.2/AndroidManifest.xml:28:13-43
+221            android:exported="false"
+221-->[com.google.firebase:firebase-common:20.3.2] /home/varinder/.gradle/caches/transforms-3/ac7b423c18e0e9c28c2a8c784d1125eb/transformed/jetified-firebase-common-20.3.2/AndroidManifest.xml:29:13-37
+222            android:initOrder="100" />
+222-->[com.google.firebase:firebase-common:20.3.2] /home/varinder/.gradle/caches/transforms-3/ac7b423c18e0e9c28c2a8c784d1125eb/transformed/jetified-firebase-common-20.3.2/AndroidManifest.xml:30:13-36
+223
+224        <activity
+224-->[com.google.android.gms:play-services-base:18.0.1] /home/varinder/.gradle/caches/transforms-3/082fa8f1e076fd76c98f4d760b4e67b1/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+225            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+225-->[com.google.android.gms:play-services-base:18.0.1] /home/varinder/.gradle/caches/transforms-3/082fa8f1e076fd76c98f4d760b4e67b1/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+226            android:exported="false"
+226-->[com.google.android.gms:play-services-base:18.0.1] /home/varinder/.gradle/caches/transforms-3/082fa8f1e076fd76c98f4d760b4e67b1/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+227            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+227-->[com.google.android.gms:play-services-base:18.0.1] /home/varinder/.gradle/caches/transforms-3/082fa8f1e076fd76c98f4d760b4e67b1/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+228
+229        <meta-data
+229-->[com.google.android.gms:play-services-basement:18.1.0] /home/varinder/.gradle/caches/transforms-3/f46b9773282b7a3d38863a46e0e0b5d1/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+230            android:name="com.google.android.gms.version"
+230-->[com.google.android.gms:play-services-basement:18.1.0] /home/varinder/.gradle/caches/transforms-3/f46b9773282b7a3d38863a46e0e0b5d1/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+231            android:value="@integer/google_play_services_version" />
+231-->[com.google.android.gms:play-services-basement:18.1.0] /home/varinder/.gradle/caches/transforms-3/f46b9773282b7a3d38863a46e0e0b5d1/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+232
+233        <uses-library
+233-->[androidx.window:window:1.0.0-beta04] /home/varinder/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+234            android:name="androidx.window.extensions"
+234-->[androidx.window:window:1.0.0-beta04] /home/varinder/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+235            android:required="false" />
+235-->[androidx.window:window:1.0.0-beta04] /home/varinder/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+236        <uses-library
+236-->[androidx.window:window:1.0.0-beta04] /home/varinder/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+237            android:name="androidx.window.sidecar"
+237-->[androidx.window:window:1.0.0-beta04] /home/varinder/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+238            android:required="false" />
+238-->[androidx.window:window:1.0.0-beta04] /home/varinder/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+239
+240        <provider
+240-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+241            android:name="androidx.startup.InitializationProvider"
+241-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:25:13-67
+242            android:authorities="com.app.redeo.redeo.androidx-startup"
+242-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:26:13-68
+243            android:exported="false" >
+243-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:27:13-37
+244            <meta-data
+244-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+245                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+245-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+246                android:value="androidx.startup" />
+246-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+247        </provider>
+248
+249        <receiver
+249-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+250            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+250-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+251            android:directBootAware="false"
+251-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+252            android:enabled="true"
+252-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+253            android:exported="true"
+253-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+254            android:permission="android.permission.DUMP" >
+254-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+255            <intent-filter>
+255-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+256                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+256-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+256-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+257            </intent-filter>
+258            <intent-filter>
+258-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+259                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+259-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+259-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+260            </intent-filter>
+261            <intent-filter>
+261-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+262                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+262-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+262-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+263            </intent-filter>
+264            <intent-filter>
+264-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+265                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+265-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+265-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/varinder/.gradle/caches/transforms-3/36aadc6eb473a87ded89a16c724c2dd8/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+266            </intent-filter>
+267        </receiver>
+268
+269        <service
+269-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /home/varinder/.gradle/caches/transforms-3/33d6bccad0e82c6c7a372dd9ab556e1d/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:28:9-34:19
+270            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+270-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /home/varinder/.gradle/caches/transforms-3/33d6bccad0e82c6c7a372dd9ab556e1d/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:29:13-103
+271            android:exported="false" >
+271-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /home/varinder/.gradle/caches/transforms-3/33d6bccad0e82c6c7a372dd9ab556e1d/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:30:13-37
+272            <meta-data
+272-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /home/varinder/.gradle/caches/transforms-3/33d6bccad0e82c6c7a372dd9ab556e1d/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:31:13-33:39
+273                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+273-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /home/varinder/.gradle/caches/transforms-3/33d6bccad0e82c6c7a372dd9ab556e1d/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:32:17-94
+274                android:value="cct" />
+274-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /home/varinder/.gradle/caches/transforms-3/33d6bccad0e82c6c7a372dd9ab556e1d/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:33:17-36
+275        </service>
+276        <service
+276-->[com.google.android.datatransport:transport-runtime:3.1.8] /home/varinder/.gradle/caches/transforms-3/3764858b96533d74688c4dcfee6ab208/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:26:9-30:19
+277            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+277-->[com.google.android.datatransport:transport-runtime:3.1.8] /home/varinder/.gradle/caches/transforms-3/3764858b96533d74688c4dcfee6ab208/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:27:13-117
+278            android:exported="false"
+278-->[com.google.android.datatransport:transport-runtime:3.1.8] /home/varinder/.gradle/caches/transforms-3/3764858b96533d74688c4dcfee6ab208/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:28:13-37
+279            android:permission="android.permission.BIND_JOB_SERVICE" >
+279-->[com.google.android.datatransport:transport-runtime:3.1.8] /home/varinder/.gradle/caches/transforms-3/3764858b96533d74688c4dcfee6ab208/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:29:13-69
+280        </service>
+281
+282        <receiver
+282-->[com.google.android.datatransport:transport-runtime:3.1.8] /home/varinder/.gradle/caches/transforms-3/3764858b96533d74688c4dcfee6ab208/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:32:9-34:40
+283            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+283-->[com.google.android.datatransport:transport-runtime:3.1.8] /home/varinder/.gradle/caches/transforms-3/3764858b96533d74688c4dcfee6ab208/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:33:13-132
+284            android:exported="false" />
+284-->[com.google.android.datatransport:transport-runtime:3.1.8] /home/varinder/.gradle/caches/transforms-3/3764858b96533d74688c4dcfee6ab208/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:34:13-37
+285    </application>
+286
+287</manifest>

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 
 import '../../../assets/images.dart';
-import '../../../get_controller/create_messages_controller.dart';
-import '../../../styling/app_colors.dart';
+ import '../../../styling/app_colors.dart';
 
 import '../../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
@@ -19,7 +19,7 @@ class ReviewMessagePage extends StatefulWidget {
 }
 
 class _ReviewMessagePageState extends State<ReviewMessagePage> {
-  CreateMessagesController getController = Get.find();
+  MessageController getController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

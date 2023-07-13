@@ -35,7 +35,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^5.1.1
   flutter_screenutil: ^5.6.1
-  get: ^4.6.1
+  get: ^4.6.5
   image_picker: ^0.8.6
   flutter_svg: ^1.0.3
   intl: ^0.17.0
@@ -53,7 +53,18 @@ dependencies:
   flutter_map: ^4.0.0
   latlong2: ^0.8.1
   fluttertoast: ^8.2.1
+  share_plus: ^7.0.0
   dotted_border: ^2.0.0+3
+  lottie: ^2.3.2
+  flutter_contacts: ^1.1.6
+  flutter_sound: ^9.2.13
+  audio_session: ^0.1.6
+  camera: ^0.9.4+3
+  video_player: ^2.2.6
+  permission_handler: ^10.3.0
+  video_thumbnail: ^0.5.3
+  path_provider: ^2.0.15
+
 
 
 
