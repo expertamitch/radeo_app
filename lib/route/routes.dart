@@ -18,6 +18,7 @@ abstract class Routes {
   static const enterTextMessageScreen = '/enterTextMessageScreen';
   static const recordVideoMessageScreen = '/recordVideoMessageScreen';
   static const recordVoiceMessageScreen = '/recordVoiceMessageScreen';
+  static const createCustomMessage = '/createCustomMessage';
 
   //do not call
   static const listOfAddressScreen = '/doNotCallScreen';

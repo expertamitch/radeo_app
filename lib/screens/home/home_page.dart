@@ -195,9 +195,7 @@ class _HomepageState extends State<Homepage> {
                                   : 'Start Timer',
                               style: w900_14(color: Colors.white),
                             ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
+                            Spacer(),
                             Icon(controller.timerStarted.value
                                 ? Icons.pause
                                 : Icons.play_arrow),

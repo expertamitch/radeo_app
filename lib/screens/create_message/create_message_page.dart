@@ -6,10 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/models/custom_message_model.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/widgets/image_view.dart';
 
-import '../../get_controller/create_messages_controller.dart';
+import '../../models/selected_file_model.dart';
 import '../../route/routes.dart';
 import '../../styling/font_style_globle.dart';
 import '../../utils/common_dialogs.dart';
@@ -24,11 +26,11 @@ class CreateMessagePage extends StatefulWidget {
 
 class _CreateMessagePageState extends State<CreateMessagePage> {
   bool response = false;
-
-  CreateMessagesController getController = Get.put(CreateMessagesController());
-
-
+  MessageController controller = Get.find();
   bool selectedFiles = false;
+
+  Rx<SelectedFileModel>? selectedFile;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,324 +93,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 SizedBox(
                   height: 15.h,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Select Message',
-                        style: w300_13(
-                          color: AppColors.blueColor,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                getController.selectedMessageType = 'Text';
-                              });
-                              Get.toNamed(Routes.selectTextMessageScreen);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color:
-                                          getController.selectedMessageType ==
-                                                  'Text'
-                                              ? AppColors.purpleColor
-                                              : AppColors.greyColor),
-                                  borderRadius: BorderRadius.circular(8)),
-                              width: MediaQuery.of(context).size.width * 0.28,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 8,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ImageView(
-                                    path: Images.textFileIcon,
-                                    height: 13,
-                                    color: AppColors.purpleColor,
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  Text(
-                                    'Text',
-                                    style: w300_13(
-                                      color:
-                                          getController.selectedMessageType ==
-                                                  'Text'
-                                              ? AppColors.purpleColor
-                                              : Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                getController.selectedMessageType = 'Audio';
-                              });
-
-                              Get.toNamed(Routes.selectAudioMessageScreen);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color:
-                                          getController.selectedMessageType ==
-                                                  'Audio'
-                                              ? AppColors.purpleColor
-                                              : AppColors.greyColor),
-                                  borderRadius: BorderRadius.circular(8)),
-                              width: MediaQuery.of(context).size.width * 0.28,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 8,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ImageView(
-                                    path: Images.audioIcon,
-                                    height: 13,
-                                    color: AppColors.purpleColor,
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  Text(
-                                    'Audio',
-                                    style: w300_13(
-                                      color:
-                                          getController.selectedMessageType ==
-                                                  'Audio'
-                                              ? AppColors.purpleColor
-                                              : Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                getController.selectedMessageType = 'Video';
-                              });
-
-                              Get.toNamed(Routes.selectVideoMessageScreen);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color:
-                                          getController.selectedMessageType ==
-                                                  'Video'
-                                              ? AppColors.purpleColor
-                                              : AppColors.greyColor),
-                                  borderRadius: BorderRadius.circular(8)),
-                              width: MediaQuery.of(context).size.width * 0.28,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 8,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ImageView(
-                                    path: Images.videoIcon,
-                                    height: 13,
-                                    color: AppColors.purpleColor,
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  Text(
-                                    'Video',
-                                    style: w300_13(
-                                      color:
-                                          getController.selectedMessageType ==
-                                                  'Video'
-                                              ? AppColors.purpleColor
-                                              : Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      if (getController.selectedMessageType == 'Text')
-                        Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: AppColors.lightGreyColor),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            child: Text(
-                              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna',
-                              style: w300_13(color: AppColors.dark2GreyColor),
-                            )),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      if (getController.selectedMessageType == 'Audio')
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: AppColors.lightGreyColor),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 15),
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                Images.audiFileIcon,
-                                width: 30,
-                              ),
-                              SizedBox(
-                                width: 15.w,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Audiofile_23052023',
-                                    style: w300_13(),
-                                  ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '00:12',
-                                        style: w300_10(
-                                            color: AppColors.dark2GreyColor),
-                                      ),
-                                      SizedBox(
-                                        width: 10.w,
-                                      ),
-                                      Text(
-                                        '12 KB',
-                                        style: w300_10(
-                                            color: AppColors.dark2GreyColor),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Expanded(
-                                  child: SizedBox(
-                                width: 5,
-                              )),
-                              GestureDetector(
-                                onTap: () {
-                                  getController.selectedMessageType = null;
-                                  setState(() {});
-                                },
-                                child: ImageView(
-                                  path: Images.closeIcon,
-                                  width: 15,
-                                  color: AppColors.purpleColor,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      if (getController.selectedMessageType == 'Video')
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: AppColors.lightGreyColor),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 10),
-                          child: Row(
-                            children: [
-                              ImageView(
-                                path: 'assets/dummy_data/video 02.png',
-                                height: 50,
-                              ),
-                              SizedBox(
-                                width: 15.w,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'vidofile_23052023',
-                                    style: w300_13(),
-                                  ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '00:12',
-                                        style: w300_10(
-                                            color: AppColors.dark2GreyColor),
-                                      ),
-                                      SizedBox(
-                                        width: 10.w,
-                                      ),
-                                      Text(
-                                        '12 KB',
-                                        style: w300_10(
-                                            color: AppColors.dark2GreyColor),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Expanded(
-                                  child: SizedBox(
-                                width: 5,
-                              )),
-                              GestureDetector(
-                                onTap: () {
-                                  getController.selectedMessageType = null;
-                                  setState(() {});
-                                },
-                                child: ImageView(
-                                  path: Images.closeIcon,
-                                  width: 15,
-                                  color: AppColors.purpleColor,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Divider(
-                  color: AppColors.greyColor,
-                  thickness: 1,
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
+                getMessage(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18.0),
                   child: Column(
@@ -509,95 +194,402 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
     );
   }
 
-  getResponseWidget() {
+  Widget getMessage() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  getController.selectedResponseType = 'Open';
-                });
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: getController.selectedResponseType == 'Open'
-                            ? AppColors.purpleColor
-                            : AppColors.greyColor),
-                    borderRadius: BorderRadius.circular(8)),
-                width: MediaQuery.of(context).size.width * 0.4,
-                padding: EdgeInsets.symmetric(
-                  vertical: 8,
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  'Open',
-                  style: w300_13(
-                    color: getController.selectedResponseType == 'Open'
-                        ? AppColors.purpleColor
-                        : Colors.black,
-                  ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Select Message',
+                style: w300_13(
+                  color: AppColors.blueColor,
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  getController.selectedResponseType = 'Custom';
-                });
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: getController.selectedResponseType == 'Custom'
-                            ? AppColors.purpleColor
-                            : AppColors.greyColor),
-                    borderRadius: BorderRadius.circular(8)),
-                width: MediaQuery.of(context).size.width * 0.4,
-                padding: EdgeInsets.symmetric(
-                  vertical: 8,
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  'Custom',
-                  style: w300_13(
-                    color: getController.selectedResponseType == 'Custom'
-                        ? AppColors.purpleColor
-                        : Colors.black,
+              SizedBox(
+                height: 15.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        controller.selectedMessageType = 'Text';
+                      });
+                      Get.toNamed(Routes.selectTextMessageScreen);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: controller.selectedMessageType == 'Text'
+                                  ? AppColors.purpleColor
+                                  : AppColors.greyColor),
+                          borderRadius: BorderRadius.circular(8)),
+                      width: MediaQuery.of(context).size.width * 0.28,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ImageView(
+                            path: Images.textFileIcon,
+                            height: 13,
+                            color: AppColors.purpleColor,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            'Text',
+                            style: w300_13(
+                              color: controller.selectedMessageType == 'Text'
+                                  ? AppColors.purpleColor
+                                  : Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        controller.selectedMessageType = 'Audio';
+                      });
+
+                      Get.toNamed(Routes.selectAudioMessageScreen);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: controller.selectedMessageType == 'Audio'
+                                  ? AppColors.purpleColor
+                                  : AppColors.greyColor),
+                          borderRadius: BorderRadius.circular(8)),
+                      width: MediaQuery.of(context).size.width * 0.28,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ImageView(
+                            path: Images.audioIcon,
+                            height: 13,
+                            color: AppColors.purpleColor,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            'Audio',
+                            style: w300_13(
+                              color: controller.selectedMessageType == 'Audio'
+                                  ? AppColors.purpleColor
+                                  : Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        controller.selectedMessageType = 'Video';
+                      });
+
+                      Get.toNamed(Routes.selectVideoMessageScreen);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: controller.selectedMessageType == 'Video'
+                                  ? AppColors.purpleColor
+                                  : AppColors.greyColor),
+                          borderRadius: BorderRadius.circular(8)),
+                      width: MediaQuery.of(context).size.width * 0.28,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ImageView(
+                            path: Images.videoIcon,
+                            height: 13,
+                            color: AppColors.purpleColor,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            'Video',
+                            style: w300_13(
+                              color: controller.selectedMessageType == 'Video'
+                                  ? AppColors.purpleColor
+                                  : Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              if (controller.selectedMessageType == 'Text')
+                Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColors.lightGreyColor),
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    child: Text(
+                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna',
+                      style: w300_13(color: AppColors.dark2GreyColor),
+                    )),
+              SizedBox(
+                height: 10.h,
+              ),
+              if (controller.selectedMessageType == 'Audio')
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.lightGreyColor),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        Images.audiFileIcon,
+                        width: 30,
+                      ),
+                      SizedBox(
+                        width: 15.w,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Audiofile_23052023',
+                            style: w300_13(),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                '00:12',
+                                style: w300_10(color: AppColors.dark2GreyColor),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text(
+                                '12 KB',
+                                style: w300_10(color: AppColors.dark2GreyColor),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Expanded(
+                          child: SizedBox(
+                        width: 5,
+                      )),
+                      GestureDetector(
+                        onTap: () {
+                          controller.selectedMessageType = null;
+                          setState(() {});
+                        },
+                        child: ImageView(
+                          path: Images.closeIcon,
+                          width: 15,
+                          color: AppColors.purpleColor,
+                        ),
+                      )
+                    ],
                   ),
                 ),
-              ),
-            ),
-          ],
+              if (controller.selectedMessageType == 'Video')
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: AppColors.lightGreyColor),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  child: Row(
+                    children: [
+                      ImageView(
+                        path: 'assets/dummy_data/video 02.png',
+                        height: 50,
+                      ),
+                      SizedBox(
+                        width: 15.w,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'vidofile_23052023',
+                            style: w300_13(),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                '00:12',
+                                style: w300_10(color: AppColors.dark2GreyColor),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text(
+                                '12 KB',
+                                style: w300_10(color: AppColors.dark2GreyColor),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Expanded(
+                          child: SizedBox(
+                        width: 5,
+                      )),
+                      GestureDetector(
+                        onTap: () {
+                          controller.selectedMessageType = null;
+                          setState(() {});
+                        },
+                        child: ImageView(
+                          path: Images.closeIcon,
+                          width: 15,
+                          color: AppColors.purpleColor,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+            ],
+          ),
         ),
         SizedBox(
           height: 10.h,
         ),
-        for (var r in getController.selectedResponseList) responseListTile(r),
-        Padding(
-          padding: const EdgeInsets.only(left: 28.0),
-          child: TextButton(
-              onPressed: () {},
-              child: Text(
-                '+ Add New',
-                style: w900_12(
-                  color: AppColors.purpleColor,
-                ),
-              )),
-        )
+        Divider(
+          color: AppColors.greyColor,
+          thickness: 1,
+        ),
+        SizedBox(
+          height: 15.h,
+        ),
       ],
     );
   }
 
-  responseListTile(Map<String, dynamic> r) {
+  getResponseWidget() {
+    return Obx(() => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      controller.selectedResponseType = 'Open';
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: controller.selectedResponseType == 'Open'
+                                ? AppColors.purpleColor
+                                : AppColors.greyColor),
+                        borderRadius: BorderRadius.circular(8)),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 8,
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Open',
+                      style: w300_13(
+                        color: controller.selectedResponseType == 'Open'
+                            ? AppColors.purpleColor
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      controller.selectedResponseType = 'Custom';
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: controller.selectedResponseType == 'Custom'
+                                ? AppColors.purpleColor
+                                : AppColors.greyColor),
+                        borderRadius: BorderRadius.circular(8)),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 8,
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Custom',
+                      style: w300_13(
+                        color: controller.selectedResponseType == 'Custom'
+                            ? AppColors.purpleColor
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            for (CustomMessage message in controller.customMessageList.value)
+              responseListTile(message),
+            Padding(
+              padding: const EdgeInsets.only(left: 28.0),
+              child: TextButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.createCustomMessage);
+                  },
+                  child: Text(
+                    '+ Add New',
+                    style: w900_12(
+                      color: AppColors.purpleColor,
+                    ),
+                  )),
+            )
+          ],
+        ));
+  }
+
+  Widget responseListTile(CustomMessage message) {
     return Row(
       children: [
         Checkbox(
-          value: r['isSelected'],
+          value: message.isSelected,
           fillColor: MaterialStateProperty.resolveWith<Color>(
               (Set<MaterialState> states) {
             if (!states.contains(MaterialState.selected)) {
@@ -607,24 +599,28 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             return AppColors.purpleColor;
           }),
           onChanged: (value) {
-            r['isSelected'] = value;
-            int currentResIndex = getController.selectedResponseList.indexOf(r);
-            setState(() {
-              getController.selectedResponseList[currentResIndex] = r;
-            });
+            if (value!) {
+              controller.customMessageList.value.forEach((element) {
+                element.isSelected = false;
+              });
+            }
+            message.isSelected = value;
+            controller.customMessageList.refresh();
           },
         ),
         Expanded(
           child: Text(
-            r['title'],
+            message.content!,
             style: w300_13(),
           ),
         ),
         GestureDetector(
           onTap: () {
             showDeleteConfirmation(
-                context, "Do you want to delete custom message?",yesCallback: (){
-
+                context, "Do you want to delete custom message?",
+                yesCallback: () {
+              Get.back();
+              controller.deleteCustomMessage(message.id!);
             });
           },
           child: ImageView(

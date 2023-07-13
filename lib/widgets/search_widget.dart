@@ -8,8 +8,12 @@ import 'image_view.dart';
 
 class SearchWidget extends StatelessWidget {
   String hint;
+  Function(List<dynamic>) resultCallback;
 
-  SearchWidget({required this.hint});
+  List<dynamic> dataList;
+
+
+  SearchWidget({required this.hint, required this.resultCallback, required this.dataList});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,7 @@ class SearchWidget extends StatelessWidget {
                 border: InputBorder.none,
                 hintText: hint,
                 isDense: true),
+                onChanged: (data){},
           ))
         ],
       ),

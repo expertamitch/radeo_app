@@ -122,7 +122,7 @@ class _TerritoryDetailsScreenState extends State<TerritoryDetailsScreen> {
                               ],
                             ),
                           ),
-                        SearchWidget(hint: 'Search Address...'),
+                        SearchWidget(hint: 'Search Address...',dataList:controller.addresses.value,resultCallback: (data){}, ),
                         Expanded(
                             child: Obx(() => controller
                                     .territoryDetailLoading.value

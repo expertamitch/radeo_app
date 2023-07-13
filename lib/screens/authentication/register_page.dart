@@ -114,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     padding: EdgeInsets.only(left: 5),
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber number) {
-                        mobileNo=number.phoneNumber.toString().replaceAll(number.dialCode.toString(), "");
+                        mobileNo=number.phoneNumber.toString();
                         print(number.phoneNumber);
                       },
                       onInputValidated: (bool value) {
@@ -147,6 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
+                    keyboardType: TextInputType.emailAddress,
                     decoration: inputDecoration.copyWith(labelText: 'Email ID'),
                     validator: (value) => value == null || value.isEmpty
                         ? 'Please enter email id'

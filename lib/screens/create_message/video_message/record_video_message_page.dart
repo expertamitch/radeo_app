@@ -9,11 +9,12 @@ import 'package:redeo/screens/create_message/video_message/video_page.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 
 import '../../../../../assets/images.dart';
-import '../../../../../get_controller/create_messages_controller.dart';
-import '../../../../../styling/app_colors.dart';
+ import '../../../../../styling/app_colors.dart';
 
 import '../../../../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
+
+import '../message_controller.dart';
 
 class RecordVideoMessagePage extends StatefulWidget {
   const RecordVideoMessagePage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class RecordVideoMessagePage extends StatefulWidget {
 }
 
 class _RecordVideoMessagePageState extends State<RecordVideoMessagePage> {
-  CreateMessagesController getController = Get.find();
+  MessageController getController = Get.find();
   TextEditingController textMessageController = TextEditingController();
 
   bool _isLoading = true;

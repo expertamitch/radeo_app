@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:redeo/network/storage_utils.dart';
+import 'package:redeo/route/routes.dart';
 import 'package:redeo/utils/snackbar_util.dart';
 import 'package:redeo/widgets/loader.dart';
 
@@ -156,13 +157,13 @@ class AuthController extends GetxController {
   }
 
   Future<bool> login({
-    required String email,
+    required String mobile,
     required String password,
   }) async {
     try {
       Map<String, dynamic> data = {};
 
-      data['email'] = email;
+      data['mobile'] = mobile;
       data['password'] = password;
 
       showLoader();
@@ -178,7 +179,10 @@ class AuthController extends GetxController {
         return true;
       } else {
         hideLoader();
-        showErrorSnackBar('Invalid email or password');
+        showErrorSnackBar(result.message!);
+
+
+
         return false;
       }
     } on InternetException {
@@ -187,6 +191,14 @@ class AuthController extends GetxController {
     } catch (e) {
       hideLoader();
       showErrorSnackBar(e.toString());
+
+      if(e.toString()=="User not verified!") {
+        var success=await resendOTP(mobileNo: mobile);
+
+        if( success)
+          Get.toNamed(Routes.otpVerficationScreen,arguments: mobile);
+      }
+
 
       return false;
     }

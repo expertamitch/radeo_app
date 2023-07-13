@@ -5,6 +5,7 @@ import 'package:redeo/screens/authentication/forgot_password_otp_page.dart';
 import 'package:redeo/screens/authentication/otp_verification_page.dart';
 import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
+import 'package:redeo/screens/create_message/custom_message/create_custom_message.dart';
 import 'package:redeo/screens/create_message/text_message/enter_text_message_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
@@ -15,14 +16,12 @@ import '../screens/authentication/login_page.dart';
 import '../screens/authentication/reset_password_page.dart';
 import '../screens/chat/chat_messages_page.dart';
 import '../screens/chat/chat_page.dart';
-import '../screens/contacts/contacts_page.dart';
 import '../screens/create_message/record_voice_message_page.dart';
-import '../screens/create_message/video_message/record_video_message_page.dart';
 import '../screens/create_message/review_message/review_message_page.dart';
- import '../screens/create_message/review_message/review_message_page.dart';
 import '../screens/create_message/select message/select_audio_message_page.dart';
 import '../screens/create_message/select message/select_text_message_page.dart';
 import '../screens/create_message/select message/select_video_message_page.dart';
+import '../screens/create_message/video_message/record_video_message_page.dart';
 import '../screens/do_not_call/add_dnc_screen.dart';
 import '../screens/do_not_call/addresses_list_screen.dart';
 import '../screens/event/create_new_event/create_event_page.dart';
@@ -260,10 +259,15 @@ class AppPages {
     ),
 
     GetPage(
-      name: Routes.territoryDetailsScreen,
-      transition: Transition.cupertino,
-      page: () => TerritoryDetailsScreen(),
-      arguments: Get.arguments
-    ),
+        name: Routes.territoryDetailsScreen,
+        transition: Transition.cupertino,
+        page: () => TerritoryDetailsScreen(),
+        arguments: Get.arguments),
+
+    GetPage(
+        name: Routes.createCustomMessage,
+        transition: Transition.cupertino,
+        page: () => CreateCustomMessage(),
+        arguments: Get.arguments),
   ];
 }

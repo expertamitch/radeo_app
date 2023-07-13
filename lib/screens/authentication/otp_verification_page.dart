@@ -98,7 +98,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
           height: 20.h,
         ),
         Expanded(
-          child: Padding(
+          child: SingleChildScrollView(child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -127,15 +127,15 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                     Text('Send code in ', style: w300_14()),
                     sendOtpSecondsCountdown != 0
                         ? Text('00:${sendOtpSecondsCountdown}',
-                            style: w900_14())
+                        style: w900_14())
                         : GestureDetector(
-                            onTap: () async {
-                              mobileNo = Get.arguments;
-                              var success = await controller.resendOTP(
-                                  mobileNo: mobileNo);
-                              if (success) {
-                                sendOtpSecondsCountdown = 60;
-                                timer = Timer.periodic(Duration(seconds: 1),
+                        onTap: () async {
+                          mobileNo = Get.arguments;
+                          var success = await controller.resendOTP(
+                              mobileNo: mobileNo);
+                          if (success) {
+                            sendOtpSecondsCountdown = 60;
+                            timer = Timer.periodic(Duration(seconds: 1),
                                     (timer) {
                                   if (sendOtpSecondsCountdown == 0) {
                                     timer.cancel();
@@ -144,10 +144,10 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                                   }
                                   setState(() {});
                                 });
-                              }
-                            },
-                            child: Text('Get OTP',
-                                style: w900_14(color: AppColors.blueColor))),
+                          }
+                        },
+                        child: Text('Get OTP',
+                            style: w900_14(color: AppColors.blueColor))),
                   ],
                 ),
                 SizedBox(
@@ -179,7 +179,7 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
                 ),
               ],
             ),
-          ),
+          ),),
         )
       ]),
     );

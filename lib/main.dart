@@ -154,6 +154,14 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+
+
+class NavigationService {
+  static GlobalKey<NavigatorState> navigatorKey =
+  GlobalKey<NavigatorState>();
+}
+
+
 // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 //   debugPrint("FIREBASE_MESSAGING:----    $message");
 
@@ -309,6 +317,8 @@ class _MyAppState extends State<MyApp> {
       useInheritedMediaQuery: true,
       builder: (context, child) {
         return GetMaterialApp(
+          navigatorKey: NavigationService.navigatorKey, // set property
+
           // useInheritedMediaQuery: false,
           debugShowCheckedModeBanner: false,
           builder: (context, child) => child ?? Scaffold(),

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {
@@ -14,6 +16,7 @@ class VideoPage extends StatefulWidget {
 
 class _VideoPageState extends State<VideoPage> {
   late VideoPlayerController _videoPlayerController;
+  MessageController controller=Get.find();
 
   @override
   void dispose() {
@@ -38,8 +41,10 @@ class _VideoPageState extends State<VideoPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.check),
-            onPressed: () {
-              print('do something with the file');
+            onPressed: () async {
+               bool success=await controller.saveVideoMessage(widget.filePath);
+               if(success)
+                 Get.back();
             },
           )
         ],

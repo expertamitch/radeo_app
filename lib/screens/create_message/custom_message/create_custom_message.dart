@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
-import 'package:redeo/screens/create_message/text_message/show_text_message_sheet.dart';
-import 'package:redeo/styling/font_style_globle.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
+import 'package:redeo/styling/app_colors.dart';
 
-import '../../../../assets/images.dart';
- import '../../../../styling/app_colors.dart';
+import '../../../styling/font_style_globle.dart';
+import '../../../widgets/app_button.dart';
 
-import '../../../../widgets/image_view.dart';
-import 'package:redeo/widgets/app_button.dart';
-
-import '../message_controller.dart';
-
-class EnterTextMessagePage extends StatefulWidget {
-  const EnterTextMessagePage({Key? key}) : super(key: key);
-
+class CreateCustomMessage extends StatefulWidget {
   @override
-  State<EnterTextMessagePage> createState() => _EnterTextMessagePageState();
+  _CreateCustomMessageState createState() => _CreateCustomMessageState();
 }
 
-class _EnterTextMessagePageState extends State<EnterTextMessagePage> {
-  MessageController getController = Get.find();
+class _CreateCustomMessageState extends State<CreateCustomMessage> {
+  MessageController controller = Get.find();
   TextEditingController textMessageController = TextEditingController();
 
   @override
@@ -35,11 +27,14 @@ class _EnterTextMessagePageState extends State<EnterTextMessagePage> {
             Row(
               children: [
                 AppButton(
-                    onPressedFunction: () {
-                      showTextMessageBottomSheet(textMessageController.text);
+                    onPressedFunction: () async {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      var success = await controller
+                          .saveCustomMessage(textMessageController.text);
+                      if (success) Get.back();
                     },
                     child: Text(
-                      'Next',
+                      'Save',
                       style: w300_12(color: Colors.white),
                     ),
                     sodiumShapeBorder: true,
@@ -59,7 +54,7 @@ class _EnterTextMessagePageState extends State<EnterTextMessagePage> {
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
-              'Enter Text',
+              'Create custom message',
               style: w900_30(),
             ),
           ),
@@ -78,13 +73,14 @@ class _EnterTextMessagePageState extends State<EnterTextMessagePage> {
                     child: TextFormField(
                       style: w300_14(),
                       controller: textMessageController,
+                      keyboardType: TextInputType.multiline,
                       decoration: InputDecoration(
-                      hintStyle: w300_14(
-                        color: AppColors.dark2GreyColor,
-                      ),
-                      contentPadding: EdgeInsets.only(bottom: 10, left: 10),
-                      hintText: 'Enter your text here...',
-                      border: InputBorder.none),
+                          hintStyle: w300_14(
+                            color: AppColors.dark2GreyColor,
+                          ),
+                          contentPadding: EdgeInsets.only(bottom: 10, left: 10),
+                          hintText: 'Enter your text here...',
+                          border: InputBorder.none),
                       maxLines: 99,
                     ),
                   ),

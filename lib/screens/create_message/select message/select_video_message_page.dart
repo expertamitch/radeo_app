@@ -1,12 +1,14 @@
 import 'dart:io';
+
 import 'package:animation_search_bar/animation_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
 import 'package:redeo/styling/font_style_globle.dart';
+
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
-
 import '../../../../widgets/image_view.dart';
 import '../../../route/routes.dart';
 
@@ -18,13 +20,9 @@ class SelectVideoMessagePage extends StatefulWidget {
 }
 
 class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
-  late TextEditingController controller;
-  List allVideosData = [
-    {'thumbnailPath': 'assets/dummy_data/video 01.png', 'name': 'video 01'},
-    {'thumbnailPath': 'assets/dummy_data/video 02.png', 'name': 'video 02'},
-    {'thumbnailPath': 'assets/dummy_data/video 03.png', 'name': 'video 03'},
-    {'thumbnailPath': 'assets/dummy_data/video 04.png', 'name': 'video 04'}
-  ];
+  TextEditingController searchController = TextEditingController();
+
+  MessageController controller = Get.find();
 
   int? selectedVideoIndex;
   bool isLoading = false;
@@ -32,16 +30,6 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
   @override
   void initState() {
     super.initState();
-
-    controller = TextEditingController();
-
-    // controller.addListener(() {
-    //   filteredVideosPaths = allVideosPaths.where((e) {
-    //     String fileName = e.split('/').last;
-    //     return fileName.toLowerCase().contains(controller.text.toLowerCase());
-    //   }).toList();
-    //   setState(() {});
-    // });
   }
 
   @override
@@ -66,7 +54,7 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                 onChanged: (text) {
                   setState(() {});
                 },
-                searchTextEditingController: controller,
+                searchTextEditingController: searchController,
                 horizontalPadding: 5),
           ))),
       body: Container(
@@ -129,17 +117,19 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width.w,
                       child: Wrap(
-                          alignment: allVideosData.length == 2
-                              ? WrapAlignment.start
-                              : WrapAlignment.spaceBetween,
+                          alignment:
+                              controller.videoMessageList.value.length == 2
+                                  ? WrapAlignment.start
+                                  : WrapAlignment.spaceBetween,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runAlignment: allVideosData.length == 2
-                              ? WrapAlignment.start
-                              : WrapAlignment.spaceBetween,
+                          runAlignment:
+                              controller.videoMessageList.value.length == 2
+                                  ? WrapAlignment.start
+                                  : WrapAlignment.spaceBetween,
                           runSpacing: 10,
                           spacing: 10,
                           children: List.generate(
-                              allVideosData.length,
+                              controller.videoMessageList.value.length,
                               (index) => GestureDetector(
                                     onTap: () {
                                       setState(() {
@@ -162,8 +152,10 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                                           Stack(
                                             children: [
                                               ImageView(
-                                                path: allVideosData.elementAt(
-                                                    index)['thumbnailPath'],
+                                                path: controller
+                                                    .videoMessageList.value
+                                                    .elementAt(index)
+                                                    .file!,
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .width *
@@ -216,8 +208,10 @@ class _SelectVideoMessagePageState extends State<SelectVideoMessagePage> {
                                             height: 10.h,
                                           ),
                                           Text(
-                                            allVideosData
-                                                .elementAt(index)['name'],
+                                            controller.videoMessageList
+                                                .value[index].file!
+                                                .split('.')
+                                                .last,
                                             style: w300_13(),
                                             overflow: TextOverflow.ellipsis,
                                           )

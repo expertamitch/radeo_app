@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
 
 class HomePageController extends GetxController {
+  MessageController messageController = Get.isRegistered<MessageController>()
+      ? Get.find<MessageController>()
+      : Get.put(MessageController(), permanent: true);
 
   late GlobalKey<ScaffoldState> drawerKey;
 
-  RxBool timerStarted=false.obs;
-
+  RxBool timerStarted = false.obs;
 
   List<String> menuItems = [
     'Field Log',
@@ -17,21 +20,18 @@ class HomePageController extends GetxController {
     'Groups',
     'Events',
     'DNCs',
-
     'Territory',
     'Reports',
   ];
 
   RxInt currentSelectedIndex = 0.obs;
 
-
-  openDrawer(){
+  openDrawer() {
     drawerKey.currentState!.openDrawer();
   }
 
-  closeDrawer(){
+  closeDrawer() {
     // drawerKey.currentState!.closeDrawer();
     Navigator.pop(drawerKey.currentContext!);
-
   }
 }

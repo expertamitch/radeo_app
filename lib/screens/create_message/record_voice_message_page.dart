@@ -7,8 +7,7 @@ import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redeo/styling/font_style_globle.dart';
-import '../../../../get_controller/create_messages_controller.dart';
-import '../../../../styling/app_colors.dart';
+ import '../../../../styling/app_colors.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'dart:io';
 import 'dart:math';
@@ -20,6 +19,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+
+import 'message_controller.dart';
 
 const int tSAMPLERATE = 8000;
 const int tSTREAMSAMPLERATE = 44000; // 44100 does not work for recorder on iOS
@@ -50,7 +51,7 @@ class RecordVoiceMessagePage extends StatefulWidget {
 }
 
 class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
-  CreateMessagesController getController = Get.find();
+  MessageController controller = Get.find();
   bool _isLoading = true;
   bool _isRecording = false;
 
@@ -215,11 +216,11 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
   Future<void> copyAssets() async {
     var dataBuffer =
         (await rootBundle.load('assets/canardo.png')).buffer.asUint8List();
-    var path = '${await playerModule.getResourcePath()}/assets';
-    if (!await Directory(path).exists()) {
-      await Directory(path).create(recursive: true);
+    var pathF = '${await playerModule.getResourcePath()}/assets';
+    if (!await Directory(pathF).exists()) {
+      await Directory(pathF).create(recursive: true);
     }
-    await File('$path/canardo.png').writeAsBytes(dataBuffer);
+    await File('$pathF/canardo.png').writeAsBytes(dataBuffer);
   }
 
   @override
@@ -271,6 +272,7 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
       playerModule.logger.e('Released unsuccessful');
     }
   }
+  var path = '';
 
   void startRecorder() async {
     try {
@@ -282,7 +284,6 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
               'Microphone permission not granted');
         }
       }
-      var path = '';
       if (!kIsWeb) {
         var tempDir = await getTemporaryDirectory();
         path = '${tempDir.path}/flutter_sound${ext[_codec.index]}';
@@ -526,7 +527,9 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
 
   Future<void> stopPlayer() async {
     try {
+
       await playerModule.stopPlayer();
+
       playerModule.logger.d('stopPlayer');
       if (_playerSubscription != null) {
         await _playerSubscription!.cancel();
@@ -941,7 +944,11 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
             Row(
               children: [
                 AppButton(
-                    onPressedFunction: () {},
+                    onPressedFunction: () async {
+                      bool success=await controller.saveAudioMessage(path);
+                      if(success)
+                        Get.back();
+                    },
                     child: Text(
                       'Next',
                       style: w300_12(color: Colors.white),
