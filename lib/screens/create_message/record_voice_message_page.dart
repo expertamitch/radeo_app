@@ -1,26 +1,25 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_sound/public/flutter_sound_player.dart';
-import 'package:flutter_sound/public/flutter_sound_recorder.dart';
-import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:redeo/styling/font_style_globle.dart';
- import '../../../../styling/app_colors.dart';
-import 'package:redeo/widgets/app_button.dart';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data' show Uint8List;
+
 import 'package:audio_session/audio_session.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart' show DateFormat;
-import 'package:flutter_sound/flutter_sound.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:redeo/styling/font_style_globle.dart';
+import 'package:redeo/widgets/app_button.dart';
 
+import '../../../../styling/app_colors.dart';
 import 'message_controller.dart';
+import 'title_bottom_sheet.dart';
 
 const int tSAMPLERATE = 8000;
 const int tSTREAMSAMPLERATE = 44000; // 44100 does not work for recorder on iOS
@@ -272,6 +271,7 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
       playerModule.logger.e('Released unsuccessful');
     }
   }
+
   var path = '';
 
   void startRecorder() async {
@@ -280,8 +280,10 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
       if (!kIsWeb) {
         var status = await Permission.microphone.request();
         if (status != PermissionStatus.granted) {
+
           throw RecordingPermissionException(
               'Microphone permission not granted');
+
         }
       }
       if (!kIsWeb) {
@@ -527,7 +529,6 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
 
   Future<void> stopPlayer() async {
     try {
-
       await playerModule.stopPlayer();
 
       playerModule.logger.d('stopPlayer');
@@ -945,9 +946,12 @@ class _RecordVoiceMessagePageState extends State<RecordVoiceMessagePage> {
               children: [
                 AppButton(
                     onPressedFunction: () async {
-                      bool success=await controller.saveAudioMessage(path);
-                      if(success)
-                        Get.back();
+                      var data = await showTitleBottomSheet(type: 'audio');
+                      if (data != null) {
+                        int? id =
+                            await controller.saveAudioMessage(path, data);
+                        if (id!=null) Get.back(result: id);
+                      }
                     },
                     child: Text(
                       'Next',

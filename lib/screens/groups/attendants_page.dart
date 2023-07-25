@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:redeo/screens/invite/controller/invite_controller.dart';
 import 'package:redeo/styling/app_colors.dart';
+import 'package:redeo/widgets/search_widget.dart';
 import 'package:redeo/widgets/tiles/attendant_tile.dart';
 
 import '../../assets/images.dart';
@@ -22,7 +23,7 @@ class _AttendantsPageState extends State<AttendantsPage> {
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 100))
-        .then((value) => controller.createAttendantList());
+        .then((value) => controller.createAttendantList(Get.arguments));
     super.initState();
   }
 
@@ -51,45 +52,22 @@ class _AttendantsPageState extends State<AttendantsPage> {
               style: w900_18(),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: AppColors.darkGreyColor,
-                borderRadius: BorderRadius.circular(8)),
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Row(
-              children: [
-                ImageView(
-                  path: Images.searchIcon,
-                  color: Colors.purple,
-                ),
-                SizedBox(width: 15.w),
-                Flexible(
-                    child: TextFormField(
-                  style: w300_12(),
-                  decoration: InputDecoration(
-                      hintStyle: w300_12(
-                        color: AppColors.dark2GreyColor,
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Search Coordinator…',
-                      isDense: true),
-                ))
-              ],
-            ),
-          ),
+           SearchWidget(hint: 'Search Coordinator…', onChange: controller.executeAttendentSearch),
           Expanded(
               child: Obx(() => ListView.builder(
-                  itemCount: controller.attendants.value.length,
+                  itemCount: controller.tempAttendantsList.value.length,
                   itemBuilder: (context, index) {
                     return AttendantTile(
-                      model: controller.attendants.value[index],
+                      model: controller.tempAttendantsList.value[index],
                       onTap: () {
-                        if (!controller.attendants.value[index].selected) {
-                          controller.attendants.value.forEach((element) {
+                        if (Get.arguments != null) {
+                          Get.back(result: controller.tempAttendantsList.value[index]);
+                        } else if (!controller
+                            .tempAttendantsList.value[index].selected) {
+                          controller.tempAttendantsList.value.forEach((element) {
                             element.selected = false;
                           });
-                          controller.attendants.value[index].selected = true;
+                          controller.tempAttendantsList.value[index].selected = true;
                           setState(() {});
                         }
                       },

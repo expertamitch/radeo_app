@@ -1,24 +1,20 @@
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:get/get.dart';
 import 'package:redeo/models/all_redeo_member_list_response_model.dart';
-import 'package:redeo/models/local_attendant_model.dart';
 
-import '../../../models/all_group_list_response_model.dart';
 import '../../../models/phone_contact_model.dart';
 import '../../../network/internet_exception.dart';
 import '../../../network/repository/backend_repo.dart';
 import '../../../utils/snackbar_util.dart';
 
 class ContactsController extends GetxController {
-   RxList<PhoneContactModel> contacts = RxList();
+  RxList<PhoneContactModel> contacts = RxList();
 
-  RxList<Info> redeoList = RxList();
+  List<Info> redeoList = [];
+  RxList<Info> tempRedeoList = RxList();
+
   RxBool contactListLoading = false.obs;
-   RxBool redeoListLoading = false.obs;
-
-
-
-
+  RxBool redeoListLoading = false.obs;
 
   Future<bool> getAllRedeoMemberList() async {
     try {
@@ -27,7 +23,8 @@ class ContactsController extends GetxController {
       var result = await BackendRepo().getRedeoMemberList();
       redeoListLoading.value = false;
 
-      redeoList.value = result.info ?? [];
+      redeoList = result.info ?? [];
+      tempRedeoList.value = redeoList;
 
       return true;
     } on InternetException {
@@ -60,12 +57,18 @@ class ContactsController extends GetxController {
       contactListLoading.value = false;
   }
 
-
-
   @override
   void onInit() {
-     getPhoneContacts();
+    getPhoneContacts();
     getAllRedeoMemberList();
     super.onInit();
+  }
+
+  executeSearch(String searchedText) {
+    tempRedeoList.value = redeoList.map((e) => Info.clone(e)).toList();
+
+    tempRedeoList.value.removeWhere((element) =>
+        !element.fullName!.toLowerCase().contains(searchedText.toLowerCase()));
+    tempRedeoList.refresh();
   }
 }

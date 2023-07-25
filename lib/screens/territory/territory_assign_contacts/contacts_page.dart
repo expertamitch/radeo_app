@@ -23,7 +23,7 @@ class _ContactsPageState extends State<ContactsPage> {
     if (keepChecking) {
       bool selected = false;
 
-      controller.redeoList.forEach((element) {
+      controller.tempRedeoList.forEach((element) {
         if (element.selected) {
           selected = true;
         }
@@ -52,7 +52,7 @@ class _ContactsPageState extends State<ContactsPage> {
     super.initState();
   }
 
-  String contactType = 'Contact'; //Group, Contact, Redeo
+  String contactType = 'Redeo'; //Group, Contact, Redeo
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
@@ -65,7 +65,7 @@ class _ContactsPageState extends State<ContactsPage> {
             buttonTap1: () {
               if (isValid.value) {
                 String id='';
-                controller.redeoList.forEach((element) {
+                controller.tempRedeoList.forEach((element) {
                   if (element.selected) {
                     id= element.id.toString();
                   }
@@ -78,7 +78,7 @@ class _ContactsPageState extends State<ContactsPage> {
 
             }),
         body: Column(children: [
-          SizedBox(
+          /*SizedBox(
             height: 10.h,
           ),
           Container(
@@ -144,11 +144,11 @@ class _ContactsPageState extends State<ContactsPage> {
                 ),
               ),
             ]),
-          ),
+          ),*/
           SizedBox(
             height: 10.h,
           ),
-          if (contactType == 'Contact') AssignContactTabPage(),
+          // if (contactType == 'Contact') AssignContactTabPage(),
           if (contactType == 'Redeo') AssignRedeoTabPage(),
           SizedBox(
             height: 10.h,

@@ -1,7 +1,8 @@
 class AllRedeoMemberListResponseModel {
   AllRedeoMemberListResponseModel({
-      this.message, 
-      this.info,});
+    this.message,
+    this.info,
+  });
 
   AllRedeoMemberListResponseModel.fromJson(dynamic json) {
     message = json['message'];
@@ -24,8 +25,8 @@ class AllRedeoMemberListResponseModel {
     }
     return map;
   }
-
 }
+
 class Info {
   Info({
     this.id,
@@ -33,9 +34,30 @@ class Info {
     this.lastName,
     this.email,
     this.mobile,
+    this.isAttendant=false,
     this.addedBy,
+    this.fullName,this.selected=false,
     this.createdAt,
-    this.updatedAt,});
+    this.updatedAt,
+  });
+
+  factory Info.clone(Info source) {
+    return Info(
+      id: source.id,
+      firstName: source.firstName,
+      lastName: source.lastName,
+      email: source.email,
+      mobile: source.mobile,
+      addedBy: source.addedBy,
+      createdAt: source.createdAt,
+      fullName: source.fullName,
+      updatedAt: source.updatedAt,
+      selected: source.selected,
+      isAttendant: source.isAttendant,
+
+
+    );
+  }
 
   Info.fromJson(dynamic json) {
     id = json['id'];
@@ -46,16 +68,20 @@ class Info {
     addedBy = json['added_by'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    fullName="$firstName ${lastName??''}";
   }
+
   int? id;
   String? firstName;
+  String? fullName;
   String? lastName;
   String? email;
   String? mobile;
   int? addedBy;
   String? createdAt;
   String? updatedAt;
-  bool selected=false;
+  bool selected = false;
+  bool isAttendant = false;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

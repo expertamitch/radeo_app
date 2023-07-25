@@ -12,9 +12,11 @@ import 'image_view.dart';
 class BottomSheetWithButtonWidget extends StatelessWidget {
   BottomSheetWithButtonWidget({
     required this.child,
+    required this.saveCallback
   });
 
   Widget child;
+  VoidCallback saveCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +36,9 @@ class BottomSheetWithButtonWidget extends StatelessWidget {
                     Align(
                       alignment: Alignment.topRight,
                       child: AppButton(
-                          onPressedFunction: () {
-                            Get.back();
-                          },
+                          onPressedFunction:saveCallback,
                           child: Text(
-                            ' Save ',
+                            'Save',
                             style: w300_12(color: Colors.white),
                           ),
                           sodiumShapeBorder: true,

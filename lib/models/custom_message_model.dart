@@ -49,9 +49,10 @@ class Info {
 class CustomMessage {
   int? id;
   bool isSelected=false;
-  File? thumbnail;
   int? userId;
   String? content;
+  String? title;
+  String? thumbnail;
   String? file;
   String? type;
   String? createdAt;
@@ -64,14 +65,17 @@ class CustomMessage {
         this.content,
         this.thumbnail,
         this.file,
+        this.title,
         this.type,
         this.createdAt,
         this.updatedAt});
 
   CustomMessage.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    thumbnail = json['thumbnail'];
     userId = json['user_id'];
     content = json['content'];
+    title = json['title'];
     file = json['file'];
     type = json['type'];
     createdAt = json['created_at'];

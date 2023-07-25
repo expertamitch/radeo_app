@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:redeo/widgets/search_widget.dart';
 import 'package:redeo/widgets/tiles/redeo_tile.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
@@ -36,12 +37,12 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${inviteController.redeoList.value.length} Redeo Contact',
+                        '${inviteController.tempRedeoList.value.length} Redeo Contact',
                         style: w900_15(),
                       ),
                       GestureDetector(
                         onTap: () {
-                          inviteController.redeoList.forEach((element) {
+                          inviteController.tempRedeoList.forEach((element) {
                             element.selected = true;
                           });
                           setState(() {});
@@ -54,55 +55,30 @@ class _RedeoTabPageState extends State<RedeoTabPage> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: AppColors.darkGreyColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  margin: EdgeInsets.symmetric(horizontal: 18),
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Row(
-                    children: [
-                      ImageView(
-                        path: Images.searchIcon,
-                        color: Colors.purple,
-                      ),
-                      SizedBox(width: 15.w),
-                      Flexible(
-                          child: TextFormField(
-                        style: w300_12(),
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Search Redeo Contact',
-                            hintStyle: w300_12(
-                              color: AppColors.dark2GreyColor,
-                            ),
-                            isDense: true),
-                      ))
-                    ],
-                  ),
-                ),
+                SearchWidget(hint: 'Search Redeo Contact', onChange: inviteController.executeRedeoSearch),
                 SizedBox(
                   height: 10.h,
                 ),
                 Expanded(
                     child: Obx(
-                  () => inviteController.redeoList.value.isEmpty
-                      ? NotFoundWidget(
-                          title: 'No Redeo contacts found',
-                        )
+                  () => inviteController.tempRedeoList.value.isEmpty
+                      ? Center(
+                        child: SingleChildScrollView(
+                          child: NotFoundWidget(
+                              title: 'No Redeo contacts found',
+                            ),
+                        ),
+                      )
                       : ListView.builder(
-                          itemCount: inviteController.redeoList.value.length,
+                          itemCount: inviteController.tempRedeoList.value.length,
                           itemBuilder: (context, index) {
                             return RedeoTile(
-                              model: inviteController.redeoList.value[index],
+                              model: inviteController.tempRedeoList.value[index],
                               onTap: () {
                                 inviteController
-                                        .redeoList.value[index].selected =
+                                        .tempRedeoList.value[index].selected =
                                     !inviteController
-                                        .redeoList.value[index].selected;
+                                        .tempRedeoList.value[index].selected;
                                 inviteController.refreshCount();
                                 setState(() {});
                               },

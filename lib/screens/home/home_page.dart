@@ -5,6 +5,7 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
 import 'package:redeo/screens/create_message/create_message_page.dart';
+import 'package:redeo/screens/create_message/message_controller.dart';
 import 'package:redeo/screens/event/events_page.dart';
 import 'package:redeo/screens/field_service/field_service_page.dart';
 import 'package:redeo/screens/groups/controller/groups_controller.dart';
@@ -141,10 +142,12 @@ class _HomepageState extends State<Homepage> {
                         //  groups
                         GroupsController controller = Get.find();
                         controller.getGroupsList();
-                      }
-                      else if(controller.currentSelectedIndex.value==8){
+                      } else if (controller.currentSelectedIndex.value == 8) {
                         TerritoryController controller = Get.find();
                         controller.getTerritoryList();
+                      } else if (controller.currentSelectedIndex.value == 2) {
+                        MessageController msgController = Get.find();
+                        // msgController.reset();
                       }
                     });
                   });

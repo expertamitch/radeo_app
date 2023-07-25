@@ -5,7 +5,7 @@ import 'package:redeo/network/storage_utils.dart';
 import '../route/routes.dart';
 import '../styling/font_style_globle.dart';
 
-showDeleteConfirmation(BuildContext context, String message,
+showConfirmationDialog(BuildContext context, String message,
     {VoidCallback? yesCallback}) {
   // set up the button
   Widget okButton = TextButton(
@@ -48,10 +48,8 @@ showLogoutConfirmation(
     onPressed: () async {
       Navigator.of(context).pop();
       StorageUtils.deleteAll();
-
       await Get.deleteAll(force: true); // resetting getx«
-      Get.offAllNamed(Routes.splash);
-
+      Future.delayed(Duration(seconds: 1)).then((value) => Get.offAllNamed(Routes.mainScreen));
     },
   );
 

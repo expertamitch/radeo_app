@@ -44,7 +44,7 @@ return GestureDetector(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                address.state??'',
+                address.fullAddress??'',
                 style: w300_13(),
               ),
               SizedBox(

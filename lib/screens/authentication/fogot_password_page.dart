@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/colors.dart';
+
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
@@ -18,10 +20,15 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  String email = '';
-  AuthController controller = Get.find();
+  AuthController controller = Get.isRegistered<AuthController>()
+      ? Get.find<AuthController>()
+      : Get.put(AuthController(), permanent: true);
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController usernameController = TextEditingController();
+
+  String mobileNo = '';
+  PhoneNumber number = PhoneNumber(isoCode: 'IN');
+
+  String initialCountry = 'IN';
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +62,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 21.0),
-                    child: Text('Please enter your register email address',
+                    child: Text('Please enter your register mobile number',
                         style: w300_14(color: Colors.white)),
                   ),
                   SizedBox(
@@ -71,14 +78,40 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Column(
                 children: [
-                  TextFormField(
-                    style: w600_14(),
-                    decoration: inputDecoration.copyWith(labelText: 'Email ID'),
-                    controller: usernameController,
-                    validator: (value) => Validators.validateEmail(value),
-                    onChanged: (value) => setState(() {
-                      email = value;
-                    }),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: InternationalPhoneNumberInput(
+                      onInputChanged: (PhoneNumber number) {
+                        mobileNo = number.phoneNumber.toString();
+                        // .replaceAll(number.dialCode.toString(), "");
+                        print(number.phoneNumber);
+                      },
+                      onInputValidated: (bool value) {
+                        print(value);
+                      },
+                      validator: (value) {
+                        return Validators.validateMobile(value);
+                      },
+                      selectorConfig: SelectorConfig(
+                        selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                      ),
+                      ignoreBlank: false,
+                      keyboardAction: TextInputAction.next,
+                      spaceBetweenSelectorAndTextField: 0,
+                      selectorTextStyle: TextStyle(color: Colors.black),
+                      initialValue: number,
+                      maxLength: 10,
+                      formatInput: false,
+                      textStyle: w600_14(),
+                      keyboardType: TextInputType.numberWithOptions(
+                          signed: false, decimal: false),
+                      inputDecoration: inputDecoration.copyWith(
+                        labelText: 'Mobile',
+                      ),
+                      onSaved: (PhoneNumber number) {
+                        print('On Saved: $number');
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 40.h,
@@ -88,10 +121,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       height: 50.h,
                       onPressedFunction: () async {
                         if (_formKey.currentState!.validate()) {
-                          bool success = await controller.forgotPassword(
-                              email: usernameController.text);
+                          bool success =
+                              await controller.forgotPassword(mobile: mobileNo);
 
-                          if (success) Get.toNamed(Routes.forgotPasswordOtpScreen,arguments: email);
+                          if (success)
+                            Get.toNamed(Routes.forgotPasswordOtpScreen,
+                                arguments: mobileNo);
                         }
                       },
                       child: Text(
@@ -103,26 +138,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       height: 20.h,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Don\'t have an account? ', style: w300_12()
-                          //  TextStyle(color: Colors.black, fontSize: 14)
-                          ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.registerScreen);
-                        },
-                        child: Text('Register Now',
-                            style: w900_12(
-                              color: AppColors.purpleColor,
-                            )),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+
+
                 ],
               ),
             ),

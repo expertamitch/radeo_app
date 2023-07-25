@@ -1,16 +1,17 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/style.dart';
+import 'package:pinput/pinput.dart';
 import 'package:redeo/screens/authentication/controller/auth_controller.dart';
+import 'package:redeo/widgets/app_button.dart';
+
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import 'package:redeo/widgets/app_button.dart';
-
 import '../../utils/snackbar_util.dart';
 
 class ForgotPasswordOtp extends StatefulWidget {
@@ -107,16 +108,39 @@ class _ForgotPasswordOtpState extends State<ForgotPasswordOtp> {
                 SizedBox(
                   height: 20.h,
                 ),
-                OTPTextField(
+                Pinput(
                   length: 6,
-                  width: MediaQuery.of(context).size.width,
-                  fieldWidth: MediaQuery.of(context).size.width / 7,
-                  style: w300_14(),
-                  textFieldAlignment: MainAxisAlignment.spaceAround,
-                  fieldStyle: FieldStyle.box,
-                  onCompleted: (pin) {
+                  onChanged: (data){
+                    otp=data;
+                  },
+                  androidSmsAutofillMethod:
+                      AndroidSmsAutofillMethod.smsUserConsentApi,
+                  keyboardType: TextInputType.number,
+                  pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                   defaultPinTheme: PinTheme(
+
+                     width: 50,
+                    height: 050,
+                    textStyle: w300_14(),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0XFFCECECE).withOpacity(0.3),
+                          offset: Offset(1, 4),
+                          blurRadius: 3,
+                          spreadRadius: 0.2,
+                        )
+                      ],
+                      border: Border.all(color: const Color(0XFFCECECE)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.deny(RegExp('[ ]')),
+                  ],
+                  onCompleted: (pin) async {
                     otp = pin;
-                    print("Completed: " + pin);
                   },
                 ),
                 SizedBox(
@@ -132,7 +156,7 @@ class _ForgotPasswordOtpState extends State<ForgotPasswordOtp> {
                             onTap: () async {
                               email = Get.arguments;
                               bool success = await controller.forgotPassword(
-                                  email: email);
+                                  mobile: email);
 
                               if (success) {
                                 sendOtpSecondsCountdown = 60;
@@ -159,7 +183,8 @@ class _ForgotPasswordOtpState extends State<ForgotPasswordOtp> {
                       email = Get.arguments;
                       if (otp.length == 6) {
                         // Get.toNamed(Routes.resetPasswordScreen,arguments: email);
-                        Get.toNamed(Routes.resetPasswordScreen,arguments:[email, otp]);
+                        Get.toNamed(Routes.resetPasswordScreen,
+                            arguments: [email, otp]);
                       } else {
                         showErrorSnackBar('Please enter valid OTP');
                       }

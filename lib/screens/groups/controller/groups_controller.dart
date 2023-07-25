@@ -8,7 +8,8 @@ import '../../../widgets/loader.dart';
 
 class GroupsController extends GetxController {
   RxBool groupsListLoading = false.obs;
-  RxList<GroupModel> groupsList = RxList();
+  List<GroupModel> groupsList = [];
+  RxList<GroupModel> tempGroupsList = RxList();
 
   @override
   void onInit() {
@@ -21,7 +22,8 @@ class GroupsController extends GetxController {
       groupsList.clear();
       groupsListLoading.value = true;
       var result = await BackendRepo().getGroupList();
-      groupsList.value = result.info ?? [];
+      groupsList = result.info ?? [];
+      tempGroupsList.value = groupsList;
       groupsListLoading.value = false;
 
       return true;
@@ -54,6 +56,24 @@ class GroupsController extends GetxController {
     }
   }
 
+  Future<bool> updateGroup(Map<String, dynamic> data, String id) async {
+    try {
+      showLoader();
+      final result = await BackendRepo().editGroup(data: data, id: id);
+      hideLoader();
+
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
+  }
+
   Future<bool> deleteGroup(Map<String, dynamic> data) async {
     try {
       showLoader();
@@ -72,5 +92,11 @@ class GroupsController extends GetxController {
     }
   }
 
+  executeSearch(String searchedText) {
+    tempGroupsList.value = groupsList.map((e) => GroupModel.clone(e)).toList();
 
+    tempGroupsList.value.removeWhere((element) =>
+        !element.groupName!.toLowerCase().contains(searchedText.toLowerCase()));
+    tempGroupsList.refresh();
+  }
 }

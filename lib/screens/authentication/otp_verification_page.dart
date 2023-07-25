@@ -1,16 +1,17 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/style.dart';
+import 'package:pinput/pinput.dart';
 import 'package:redeo/screens/authentication/controller/auth_controller.dart';
+import 'package:redeo/widgets/app_button.dart';
+
 import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
-import 'package:redeo/widgets/app_button.dart';
-
 import '../../utils/snackbar_util.dart';
 
 class OtpVerficationPage extends StatefulWidget {
@@ -98,88 +99,113 @@ class _OtpVerficationPageState extends State<OtpVerficationPage> {
           height: 20.h,
         ),
         Expanded(
-          child: SingleChildScrollView(child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20.h,
-                ),
-                OTPTextField(
-                  length: 6,
-                  width: MediaQuery.of(context).size.width,
-                  fieldWidth: MediaQuery.of(context).size.width / 7,
-                  style: w300_14(),
-                  textFieldAlignment: MainAxisAlignment.spaceAround,
-                  fieldStyle: FieldStyle.box,
-                  onCompleted: (pin) {
-                    otp = pin;
-                    print("Completed: " + pin);
-                  },
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                Row(
-                  children: [
-                    Text('Send code in ', style: w300_14()),
-                    sendOtpSecondsCountdown != 0
-                        ? Text('00:${sendOtpSecondsCountdown}',
-                        style: w900_14())
-                        : GestureDetector(
-                        onTap: () async {
-                          mobileNo = Get.arguments;
-                          var success = await controller.resendOTP(
-                              mobileNo: mobileNo);
-                          if (success) {
-                            sendOtpSecondsCountdown = 60;
-                            timer = Timer.periodic(Duration(seconds: 1),
-                                    (timer) {
-                                  if (sendOtpSecondsCountdown == 0) {
-                                    timer.cancel();
-                                  } else {
-                                    sendOtpSecondsCountdown--;
-                                  }
-                                  setState(() {});
-                                });
-                          }
-                        },
-                        child: Text('Get OTP',
-                            style: w900_14(color: AppColors.blueColor))),
-                  ],
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                AppButton(
-                    onPressedFunction: () async {
-                      mobileNo = Get.arguments;
-                      if (otp.length == 6) {
-                        var success = await controller.verifyMobile(
-                            mobileNo: mobileNo, otp: otp);
-                        if (success) {
-                          Get.offAllNamed(Routes.homepageScreen);
-                        }
-                      } else {
-                        showErrorSnackBar('Please enter valid OTP');
-                      }
-
-                      // Navigator.pop(context);
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Pinput(
+                    length: 6,
+                    onChanged: (data) {
+                      otp = data;
                     },
-                    child: Text(
-                      'Verfy OTP',
-                      style: w900_15(color: Colors.white),
+                    androidSmsAutofillMethod:
+                        AndroidSmsAutofillMethod.smsUserConsentApi,
+                    keyboardType: TextInputType.number,
+                    pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                    showCursor: true,
+                    defaultPinTheme: PinTheme(
+                      width: 50,
+                      height: 050,
+                      textStyle: w300_14(),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0XFFCECECE).withOpacity(0.3),
+                            offset: Offset(1, 4),
+                            blurRadius: 3,
+                            spreadRadius: 0.2,
+                          )
+                        ],
+                        border: Border.all(color: const Color(0XFFCECECE)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    height: 50.h,
-                    buttonColor: AppColors.purpleColor),
-                SizedBox(
-                  height: 20.h,
-                ),
-              ],
+                    inputFormatters: [
+                      FilteringTextInputFormatter.deny(RegExp('[ ]')),
+                    ],
+                    onCompleted: (pin) async {
+                      otp = pin;
+                    },
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  Row(
+                    children: [
+                      Text('Send code in ', style: w300_14()),
+                      sendOtpSecondsCountdown != 0
+                          ? Text('00:${sendOtpSecondsCountdown}',
+                              style: w900_14())
+                          : GestureDetector(
+                              onTap: () async {
+                                mobileNo = Get.arguments;
+                                var success = await controller.resendOTP(
+                                    mobileNo: mobileNo);
+                                if (success) {
+                                  sendOtpSecondsCountdown = 60;
+                                  timer = Timer.periodic(Duration(seconds: 1),
+                                      (timer) {
+                                    if (sendOtpSecondsCountdown == 0) {
+                                      timer.cancel();
+                                    } else {
+                                      sendOtpSecondsCountdown--;
+                                    }
+                                    setState(() {});
+                                  });
+                                }
+                              },
+                              child: Text('Get OTP',
+                                  style: w900_14(color: AppColors.blueColor))),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  AppButton(
+                      onPressedFunction: () async {
+                        mobileNo = Get.arguments;
+                        if (otp.length == 6) {
+                          var success = await controller.verifyMobile(
+                              mobileNo: mobileNo, otp: otp);
+                          if (success) {
+                            Get.offAllNamed(Routes.homepageScreen);
+                          }
+                        } else {
+                          showErrorSnackBar('Please enter valid OTP');
+                        }
+
+                        // Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Verfy OTP',
+                        style: w900_15(color: Colors.white),
+                      ),
+                      height: 50.h,
+                      buttonColor: AppColors.purpleColor),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                ],
+              ),
             ),
-          ),),
+          ),
         )
       ]),
     );

@@ -1,4 +1,3 @@
-
 class TerritoryDetailModel {
   String? message;
   TerritoryDetailInfo? info;
@@ -7,7 +6,9 @@ class TerritoryDetailModel {
 
   TerritoryDetailModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
-    info = json['info'] != null ? new TerritoryDetailInfo.fromJson(json['info']) : null;
+    info = json['info'] != null
+        ? new TerritoryDetailInfo.fromJson(json['info'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -35,16 +36,16 @@ class TerritoryDetailInfo {
 
   TerritoryDetailInfo(
       {this.id,
-        this.userId,
-        this.name,
-        this.image,
-        this.assignedUser,
-        this.assignedTo,
-        this.status,
-        this.assignedOn,
-        this.createdAt,
-        this.updatedAt,
-        this.addresses});
+      this.userId,
+      this.name,
+      this.image,
+      this.assignedUser,
+      this.assignedTo,
+      this.status,
+      this.assignedOn,
+      this.createdAt,
+      this.updatedAt,
+      this.addresses});
 
   TerritoryDetailInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -52,9 +53,13 @@ class TerritoryDetailInfo {
     name = json['name'];
     image = json['image'];
     assignedTo = json['assigned_to'];
-    assignedUser = json['assigned_user']!=null?AssignedUser.fromJson(json['assigned_user']):null;
+    assignedUser = json['assigned_user'] != null
+        ? AssignedUser.fromJson(json['assigned_user'])
+        : null;
     status = json['status'];
-    assignedOn =json['assigned_on']!=null? DateTime.parse(json['assigned_on']):null;
+    assignedOn = json['assigned_on'] != null
+        ? DateTime.parse(json['assigned_on'])
+        : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['addresses'] != null) {
@@ -95,13 +100,13 @@ class AssignedUser {
 
   AssignedUser(
       {this.id,
-        this.firstName,
-        this.lastName,
-        this.email,
-        this.mobile,
-        this.addedBy,
-        this.createdAt,
-        this.updatedAt});
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.mobile,
+      this.addedBy,
+      this.createdAt,
+      this.updatedAt});
 
   AssignedUser.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -128,42 +133,54 @@ class AssignedUser {
   }
 }
 
-
 class Addresses {
   int? id;
   int? territoryId;
   int? userId;
-  int? houseNo;
+  String? houseNo;
   String? streetName;
   String? city;
   String? state;
-  int? zipcode;
+  String? zipcode;
   DateTime? createdAt;
+  String? fullAddress;
   String? updatedAt;
 
   Addresses(
       {this.id,
-        this.territoryId,
-        this.userId,
-        this.houseNo,
-        this.streetName,
-        this.city,
-        this.state,
-        this.zipcode,
-        this.createdAt,
-        this.updatedAt});
+      this.territoryId,
+      this.fullAddress = '',
+      this.userId,
+      this.houseNo,
+      this.streetName,
+      this.city,
+      this.state,
+      this.zipcode,
+      this.createdAt,
+      this.updatedAt});
+
+  factory Addresses.clone(Addresses source) {
+    return Addresses(
+      id: source.id,
+      userId: source.userId,
+      territoryId: source.territoryId,
+      fullAddress: source.fullAddress,
+      createdAt: source.createdAt,
+    );
+  }
 
   Addresses.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     territoryId = json['territory_id'];
     userId = json['user_id'];
-    houseNo = json['house_no'];
-    streetName = json['street_name'];
-    city = json['city'];
-    state = json['state'];
-    zipcode = json['zipcode'];
+    houseNo =json['house_no']!=null? json['house_no'].toString() + ', ':'';
+    streetName =json['street_name']!=null? json['street_name'] + ', ':'';
+    city = json['city']!=null?json['city'] + ', ':'';
+    state =json['state']!=null? json['state']:'';
+    zipcode = json['zipcode']!=null?json['zipcode'].toString()+ '':'';
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = json['updated_at'];
+    fullAddress = "${houseNo.toString()}$streetName$city$state${zipcode.toString()}";
   }
 
   Map<String, dynamic> toJson() {

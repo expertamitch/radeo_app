@@ -95,7 +95,7 @@ class _AssignContactTabPageState extends State<AssignContactTabPage> {
                                       !controller
                                           .contacts.value[index].selected;
 
-                                  controller.redeoList.value.forEach((element) {
+                                  controller.tempRedeoList.value.forEach((element) {
                                     element.selected = false;
                                   });
 

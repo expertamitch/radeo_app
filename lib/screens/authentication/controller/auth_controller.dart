@@ -102,11 +102,11 @@ class AuthController extends GetxController {
   }
 
   Future<bool> forgotPassword({
-    required String email,
+    required String mobile,
   }) async {
     try {
       Map<String, dynamic> data = {};
-      data['email'] = email;
+      data['mobile'] = mobile;
 
       showLoader();
       final result = await BackendRepo().forgotPassword(data: data);
@@ -134,7 +134,7 @@ class AuthController extends GetxController {
   }) async {
     try {
       Map<String, dynamic> data = {};
-      data['email'] = email;
+      data['mobile'] = email;
       data['otp'] = otp;
       data['password'] = password;
 

@@ -7,10 +7,12 @@ import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
 import 'package:redeo/screens/create_message/custom_message/create_custom_message.dart';
 import 'package:redeo/screens/create_message/text_message/enter_text_message_page.dart';
+import 'package:redeo/screens/groups/edit_group_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
 import 'package:redeo/screens/territory/territory_assign_contacts/contacts_page.dart';
 import 'package:redeo/screens/territory/territory_details_screen.dart';
+import 'package:redeo/utils/qr_scanner.dart';
 
 import '../screens/authentication/login_page.dart';
 import '../screens/authentication/reset_password_page.dart';
@@ -21,7 +23,6 @@ import '../screens/create_message/review_message/review_message_page.dart';
 import '../screens/create_message/select message/select_audio_message_page.dart';
 import '../screens/create_message/select message/select_text_message_page.dart';
 import '../screens/create_message/select message/select_video_message_page.dart';
-import '../screens/create_message/video_message/record_video_message_page.dart';
 import '../screens/do_not_call/add_dnc_screen.dart';
 import '../screens/do_not_call/addresses_list_screen.dart';
 import '../screens/event/create_new_event/create_event_page.dart';
@@ -90,10 +91,10 @@ class AppPages {
     //create messages
 
     GetPage(
-      name: Routes.reviewMessageScreen,
-      transition: Transition.cupertino,
-      page: () => ReviewMessagePage(),
-    ),
+        name: Routes.reviewMessageScreen,
+        transition: Transition.cupertino,
+        page: () => ReviewMessagePage(),
+        arguments: Get.arguments),
     GetPage(
       name: Routes.selectTextMessageScreen,
       transition: Transition.cupertino,
@@ -119,11 +120,7 @@ class AppPages {
       transition: Transition.cupertino,
       page: () => RecordVoiceMessagePage(),
     ),
-    GetPage(
-      name: Routes.recordVideoMessageScreen,
-      transition: Transition.cupertino,
-      page: () => RecordVideoMessagePage(),
-    ),
+
 
     //do not call
     GetPage(
@@ -182,7 +179,7 @@ class AppPages {
     GetPage(
       name: Routes.attendantsScreen,
       transition: Transition.cupertino,
-      page: () => AttendantsPage(),
+      page: () => AttendantsPage(),arguments: Get.arguments
     ),
 
     //message
@@ -268,6 +265,17 @@ class AppPages {
         name: Routes.createCustomMessage,
         transition: Transition.cupertino,
         page: () => CreateCustomMessage(),
+        arguments: Get.arguments),
+
+    GetPage(
+        name: Routes.qrScanner,
+        transition: Transition.cupertino,
+        page: () => QRScanner(),
+        arguments: Get.arguments),
+    GetPage(
+        name: Routes.editGroupScreen,
+        transition: Transition.cupertino,
+        page: () => EditGroupPage(),
         arguments: Get.arguments),
   ];
 }

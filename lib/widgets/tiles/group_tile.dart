@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:redeo/network/storage_utils.dart';
+import 'package:redeo/route/routes.dart';
 import 'package:redeo/widgets/radio_selection_widget.dart';
 
 import '../../assets/images.dart';
@@ -30,12 +32,15 @@ class GroupTile extends StatelessWidget {
     return GestureDetector(
         onTap: onTap ?? () {},
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
           decoration: BoxDecoration(
               border:
                   Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
           child: Row(
             children: [
+              SizedBox(
+                width: 15,
+              ),
               SvgPicture.asset(
                 Images.groupPeopleIcon,
                 height: 23.h,
@@ -43,70 +48,105 @@ class GroupTile extends StatelessWidget {
               SizedBox(
                 width: 10.w,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    groupModel.groupName ?? '',
-                    overflow: TextOverflow.ellipsis,
-                    style: w300_12(),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Text(
-                    "${groupModel.groupUsersCount} Members",
-                    style: w300_10(color: Colors.grey),
-                  ),
-                ],
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      groupModel.groupName ?? '',
+                      overflow: TextOverflow.ellipsis,
+                      style: w300_12(),
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Text(
+                      "${groupModel.groupUsersCount} Members",
+                      style: w300_10(color: Colors.grey),
+                    ),
+                  ],
+                ),
               ),
               Expanded(
                   child: SizedBox(
                 width: 10.w,
               )),
               isList
-                  ? Row(
+                  ? groupModel.userId.toString() == StorageUtils.getUid()
+                      ? Row(
+                          children: [
+                            // Icon(Icons.edit),
+                            GestureDetector(
+                              onTap: () {
+                                groupModel.isEditing = true;
+                                Get.toNamed(Routes.editGroupScreen,
+                                    arguments: groupModel);
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                height: 40,
+                                width: 35,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ImageView(
+                                      path: Images.editIcon,
+                                      height: 15,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 4.w,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                showConfirmationDialog(
+                                    context, "Do you want to delete group?",
+                                    yesCallback: () async {
+                                  GroupsController groupsController =
+                                      Get.find();
+                                  Map<String, dynamic> data = {};
+                                  data["group_id"] = groupModel.id!.toString();
+                                  var success =
+                                      await groupsController.deleteGroup(data);
+                                  if (success) {
+                                    Navigator.of(context).pop();
+                                    groupsController.getGroupsList();
+                                  }
+                                });
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                height: 40,
+                                width: 35,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ImageView(
+                                      path: Images.deleteIcon,
+                                      height: 15.h,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                          ],
+                        )
+                      : Container()
+                  : Row(
                       children: [
-                        // Icon(Icons.edit),
-                        ImageView(
-                          path: Images.editIcon,
-                          height: 15,
-                        ),
+                        RadioSelectionWidget(selected: groupModel.selected),
                         SizedBox(
-                          width: 20.w,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            showDeleteConfirmation(
-                                context, "Do you want to delete group?",yesCallback: () async {
-                              GroupsController groupsController=Get.find();
-                              Map<String,dynamic> data={};
-                              data["group_id"]=groupModel.id!.toString();
-                              var success = await groupsController.deleteGroup(data);
-                              if (success) {
-                                groupsController.getGroupsList();
-                                Navigator.of(context).pop();
-                              }
-                            });
-                          },
-                          child: ImageView(
-                            path: Images.deleteIcon,
-                            height: 15.h,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
+                          width: 18.w,
+                        )
                       ],
                     )
-                  : Row(
-                    children: [
-                      RadioSelectionWidget(selected: groupModel.selected),
-                      SizedBox(width: 18.w,)
-
-
-                    ],
-                  )
             ],
           ),
         ));

@@ -41,7 +41,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             ),
             GestureDetector(
               onTap: () {
-                showDeleteConfirmation(context, "Do you want to delete event?");
+                showConfirmationDialog(context, "Do you want to delete event?");
               },
               child: ImageView(
                 path: Images.deleteIcon,

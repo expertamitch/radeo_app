@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:redeo/widgets/search_widget.dart';
 import 'package:redeo/widgets/tiles/contact_tile.dart';
 
 import '../../../../assets/images.dart';
@@ -34,12 +35,12 @@ class _ContactTabPageState extends State<ContactTabPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${inviteController.contacts.value.length} Contacts',
+                          '${inviteController.tempContactsList.value.length} Contacts',
                           style: w900_15(),
                         ),
                         GestureDetector(
                           onTap: () {
-                            inviteController.contacts.forEach((element) {
+                            inviteController.tempContactsList.forEach((element) {
                               element.selected = true;
                             });
                             setState(() {});
@@ -52,54 +53,29 @@ class _ContactTabPageState extends State<ContactTabPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.darkGreyColor,
-                        borderRadius: BorderRadius.circular(8)),
-                    margin: EdgeInsets.symmetric(horizontal: 18),
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: Row(
-                      children: [
-                        ImageView(
-                          path: Images.searchIcon,
-                          color: Colors.purple,
-                        ),
-                        SizedBox(width: 15.w),
-                        Flexible(
-                            child: TextFormField(
-                          style: w300_12(),
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Search Contact...',
-                              hintStyle: w300_12(
-                                color: AppColors.dark2GreyColor,
-                              ),
-                              isDense: true),
-                        ))
-                      ],
-                    ),
-                  ),
+                  SearchWidget(hint: 'Search Contact...', onChange: inviteController.executeContactSearch),
                   SizedBox(
                     height: 10.h,
                   ),
                   Expanded(
-                    child: Obx(() => inviteController.contacts.value.isEmpty
-                        ? NotFoundWidget(
-                            title: 'No contacts found',
-                          )
+                    child: Obx(() => inviteController.tempContactsList.value.isEmpty
+                        ? Center(
+                          child: SingleChildScrollView(
+                            child: NotFoundWidget(
+                                title: 'No contacts found',
+                              ),
+                          ),
+                        )
                         : ListView.builder(
-                            itemCount: inviteController.contacts.value.length,
+                            itemCount: inviteController.tempContactsList.value.length,
                             itemBuilder: (context, index) {
                               return ContactTile(
-                                model: inviteController.contacts.value[index],
+                                model: inviteController.tempContactsList.value[index],
                                 onTap: () {
                                   inviteController
-                                          .contacts.value[index].selected =
+                                          .tempContactsList.value[index].selected =
                                       !inviteController
-                                          .contacts.value[index].selected;
+                                          .tempContactsList.value[index].selected;
                                   inviteController.refreshCount();
                                   setState(() {});
                                 },

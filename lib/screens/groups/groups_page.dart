@@ -5,6 +5,7 @@ import 'package:redeo/screens/groups/controller/groups_controller.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/widgets/not_found_widget.dart';
 import 'package:redeo/widgets/on_screen_loader.dart';
+import 'package:redeo/widgets/search_widget.dart';
 import 'package:redeo/widgets/tiles/group_tile.dart';
 
 import '../../assets/images.dart';
@@ -42,46 +43,28 @@ class _GroupsPageState extends State<GroupsPage> {
           },
         ),
         body: Column(children: [
-          Container(
-            decoration: BoxDecoration(
-                color: AppColors.darkGreyColor,
-                borderRadius: BorderRadius.circular(8)),
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Row(
-              children: [
-                ImageView(
-                  path: Images.searchIcon,
-                  color: Colors.purple,
-                ),
-                SizedBox(width: 15.w),
-                Flexible(
-                    child: TextFormField(
-                  style: w300_12(),
-                  decoration: InputDecoration(
-                      hintStyle: w300_12(
-                        color: AppColors.dark2GreyColor,
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Search Groups…',
-                      isDense: true),
-                ))
-              ],
-            ),
-          ),
+
+          SearchWidget(hint: 'Search Groups…', onChange: (data){
+controller.executeSearch(data);
+          }),
+
           Expanded(
             child: Obx(() => controller.groupsListLoading.value
                 ? OnScreenLoader()
-                : controller.groupsList.value.isEmpty
+                : controller.tempGroupsList.isEmpty
                     ? NotFoundWidget(
                         title: 'No groups found',
                       )
                     : ListView.builder(
-                        itemCount: controller.groupsList.value.length,
+                        itemCount: controller.tempGroupsList.length,
                         itemBuilder: (context, index) {
                           return GroupTile(
-                            groupModel: controller.groupsList.value[index],
+                            groupModel: controller.tempGroupsList[index],
                             isList: true,
+                            onTap: (){
+                              controller.tempGroupsList[index].isEditing=false;
+                              Get.toNamed(Routes.editGroupScreen, arguments: controller.tempGroupsList[index]);
+                            },
                           );
                         })),
           )

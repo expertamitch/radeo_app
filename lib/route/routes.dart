@@ -16,7 +16,6 @@ abstract class Routes {
   static const selectAudioMessageScreen = '/selectAudioMessageScreen';
   static const selectVideoMessageScreen = '/selectVideoMessageScreen';
   static const enterTextMessageScreen = '/enterTextMessageScreen';
-  static const recordVideoMessageScreen = '/recordVideoMessageScreen';
   static const recordVoiceMessageScreen = '/recordVoiceMessageScreen';
   static const createCustomMessage = '/createCustomMessage';
 
@@ -37,6 +36,7 @@ abstract class Routes {
 
   //groups page
    static const createGroupScreen = '/createGroupScreen';
+   static const editGroupScreen = '/editGroupScreen';
   static const attendantsScreen = '/attendantsScreen';
 
   //message page
@@ -56,6 +56,7 @@ abstract class Routes {
 
   //homepage
   static const homepageScreen = '/homepageScreen';
+  static const qrScanner = '/qrScanner';
 
 //  territory
   static const territoryHistoryListScreen= '/territoryHistoryListScreen';

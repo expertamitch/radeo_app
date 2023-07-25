@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:redeo/widgets/search_widget.dart';
 import 'package:redeo/widgets/tiles/redeo_tile.dart';
 import '../../../../assets/images.dart';
 import '../../../../styling/app_colors.dart';
@@ -35,7 +36,7 @@ class _AssignRedeoTabPageState extends State<AssignRedeoTabPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${controller.redeoList.value.length} Redeo Contact',
+                        '${controller.tempRedeoList.value.length} Redeo Contact',
                         style: w900_15(),
                       ),
 
@@ -45,58 +46,36 @@ class _AssignRedeoTabPageState extends State<AssignRedeoTabPage> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: AppColors.darkGreyColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  margin: EdgeInsets.symmetric(horizontal: 18),
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Row(
-                    children: [
-                      ImageView(
-                        path: Images.searchIcon,
-                        color: Colors.purple,
-                      ),
-                      SizedBox(width: 15.w),
-                      Flexible(
-                          child: TextFormField(
-                        style: w300_12(),
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Search Redeo Contact',
-                            hintStyle: w300_12(
-                              color: AppColors.dark2GreyColor,
-                            ),
-                            isDense: true),
-                      ))
-                    ],
-                  ),
-                ),
+                 SearchWidget(hint: 'Search Redeo Contact', onChange: controller.executeSearch),
                 SizedBox(
                   height: 10.h,
                 ),
                 Expanded(
                     child: Obx(
-                  () => controller.redeoList.value.isEmpty
-                      ? NotFoundWidget(
-                          title: 'No Redeo contacts found',
-                        )
+                  () => controller.tempRedeoList.value.isEmpty
+                      ? Center(
+                        child: SingleChildScrollView(
+                          child: NotFoundWidget(
+                              title: 'No Redeo contacts found',
+                            ),
+                        ),
+                      )
                       : ListView.builder(
-                          itemCount: controller.redeoList.value.length,
+                          itemCount: controller.tempRedeoList.value.length,
                           itemBuilder: (context, index) {
                             return RedeoTile(
-                              model: controller.redeoList.value[index],
+                              model: controller.tempRedeoList.value[index],
                               onTap: () {
                                 for (int i = 0;
-                                i < controller.redeoList.value.length;
+                                i < controller.tempRedeoList.value.length;
                                 i++) {
                                   if (i != index)
-                                    controller.redeoList.value[i].selected =
+                                    controller.tempRedeoList.value[i].selected =
                                     false;
                                 }
-                                controller.redeoList.value[index].selected =
+                                controller.tempRedeoList.value[index].selected =
                                 !controller
-                                    .redeoList.value[index].selected;
+                                    .tempRedeoList.value[index].selected;
 
                                 controller.contacts.value.forEach((element) {
                                   element.selected = false;

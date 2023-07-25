@@ -28,8 +28,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
 
   check() {
     if (keepChecking) {
-      LocalAttendantModel? model =
-          inviteController.attendants.value.firstWhereOrNull((a) => a.selected);
+      LocalAttendantModel? model = inviteController.tempAttendantsList.value
+          .firstWhereOrNull((a) => a.selected);
 
       Future.delayed(const Duration(milliseconds: 300)).then((value) {
         isValid.value =
@@ -51,7 +51,6 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,19 +68,28 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                         Map<String, dynamic> data = {};
                         data['group_name'] = groupNameController.text;
                         List<Map<String, dynamic>> usersArray = [];
-                        inviteController.groupsList.forEach((element) {
-                          if (element.selected)
-                            element.users?.forEach((element) {
-                              usersArray.add({
-                                'name':
-                                    "${element.firstName ?? ''} ${element.lastName ?? ''}",
-                                'mobile': element.mobile ?? '',
-                                'contact_type': 'group',
+
+                        inviteController.tempGroupsList.where((p0) => p0.selected).forEach((element) {
+                          element.users?.forEach((element1) {
+                            if (element1.users!.length > 0) {
+                              element1.users!.forEach((data) {
+                                usersArray.add({
+                                  'name':
+                                      "${data.firstName ?? ''} ${data.lastName ?? ''}",
+                                  'mobile': data.mobile ?? '',
+                                  'contact_type': 'group',
+                                  'from_group_id':
+                                      element1.contactType == 'group'
+                                          ? data.from_group_id
+                                          : null,
+                                  'contact_type': element1.contactType
+                                });
                               });
-                            });
+                            }
+                          });
                         });
 
-                        inviteController.redeoList.forEach((element) {
+                        inviteController.tempRedeoList.where((p0) => p0.selected).forEach((element) {
                           if (element.selected)
                             usersArray.add({
                               'name':
@@ -91,7 +99,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                             });
                         });
 
-                        inviteController.contacts.forEach((element) {
+                        inviteController.tempContactsList.where((p0) => p0.selected).forEach((element) {
                           if (element.selected)
                             usersArray.add({
                               'name':
@@ -102,13 +110,23 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                             });
                         });
 
-                        inviteController.attendants.forEach((element) {
-                          if (element.selected)
-                            usersArray.add({
-                              'name': "${element.name}",
-                              'mobile': element.phone,
-                              'is_attendent': true
-                            });
+                        inviteController.tempAttendantsList.forEach((element) {
+                          if (element.selected) {
+                            if (element.type == 'group') {
+                              usersArray.lastWhere((element1) =>
+                                  element1['contact_type'] == 'group' &&
+                                  element1['from_group_id'] ==
+                                      element.from_group_id &&
+                                  element1['mobile'] ==
+                                      element.phone)['is_attendent'] = true;
+                            } else {
+                              usersArray.lastWhere((element1) =>
+                                  element1['mobile'] == element.phone &&
+                                  element1['contact_type'] ==
+                                      element.type)['is_attendent'] = true;
+                            }
+                          }
+
                         });
 
                         data['group_users'] = usersArray;
@@ -259,7 +277,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     Obx(
                       () {
                         LocalAttendantModel? model = inviteController
-                            .attendants.value
+                            .tempAttendantsList.value
                             .firstWhereOrNull((a) => a.selected);
 
                         return Text(
@@ -297,8 +315,6 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           )
         ]));
   }
-
-
 
   @override
   void dispose() {

@@ -25,23 +25,40 @@ class AllGroupListResponseModel {
 }
 
 class GroupModel {
+  bool isEditing = false;
   int? id;
   int? userId;
-  bool selected=false;
+  bool selected = false;
   String? groupName;
   DateTime? createdAt;
   DateTime? updatedAt;
   List<Users>? users;
   int? groupUsersCount;
 
+  factory GroupModel.clone(GroupModel source) {
+    return GroupModel(
+      isEditing: source.isEditing,
+      id: source.id,
+      userId: source.userId,
+      groupName: source.groupName,
+      createdAt: source.createdAt,
+      updatedAt: source.updatedAt,
+      selected: source.selected,
+      users: source.users!.map((e) => Users.clone(e)).toList(),
+      groupUsersCount: source.groupUsersCount,
+    );
+  }
+
   GroupModel(
       {this.id,
-        this.userId,
-        this.groupName,
-        this.createdAt,
-        this.updatedAt,
-        this.users,
-        this.groupUsersCount});
+      this.userId,
+      this.selected = false,
+      this.groupName,
+      this.isEditing = false,
+      this.createdAt,
+      this.updatedAt,
+      this.users,
+      this.groupUsersCount});
 
   GroupModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -74,43 +91,102 @@ class GroupModel {
 }
 
 class Users {
+  String? contactType;
+  List<UserData>? users;
+
+  factory Users.clone(Users source) {
+    return Users(
+      contactType: source.contactType,
+      users: source.users!.map((e) => UserData.clone(e)).toList(),
+    );
+  }
+
+  Users({this.contactType, this.users});
+
+  Users.fromJson(Map<String, dynamic> json) {
+    contactType = json['contact_type'];
+    if (json['users'] != null) {
+      users = <UserData>[];
+      json['users'].forEach((v) {
+        users!.add(new UserData.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['contact_type'] = this.contactType;
+    if (this.users != null) {
+      data['users'] = this.users!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class UserData {
   int? id;
   int? groupId;
   int? userId;
-  bool? isAttendent;
+  bool isAttendent = false;
+  bool selected = false;
+  String? name;
   String? createdAt;
   String? updatedAt;
   String? firstName;
+  String? contact_type;
+  int? from_group_id;
   String? lastName;
   String? email;
   String? mobile;
 
+  UserData({
+    this.id,
+    this.contact_type,
+    this.name,
+    this.groupId,
+    this.userId,
+    this.from_group_id,
+    this.isAttendent = false,
+    this.selected = false,
+    this.createdAt,
+    this.updatedAt,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.mobile,
+  });
 
-  Users(
-      {this.id,
-        this.groupId,
-        this.userId,
-        this.isAttendent,
-        this.createdAt,
-        this.updatedAt,
-        this.firstName,
-        this.lastName,
-        this.email,
-        this.mobile,
-         });
+  factory UserData.clone(UserData source) {
+    return UserData(
+      name: source.name,
+      from_group_id: source.from_group_id,
+      contact_type: source.contact_type,
+      id: source.id,
+      selected: source.selected,
+      groupId: source.groupId,
+      userId: source.userId,
+      isAttendent: source.isAttendent,
+      firstName: source.firstName,
+      lastName: source.lastName,
+      email: source.email,
+      mobile: source.mobile,
+    );
+  }
 
-  Users.fromJson(Map<String, dynamic> json) {
+  UserData.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
     id = json['id'];
+    contact_type = json['contact_type'];
+    from_group_id = json['from_group_id'];
     groupId = json['group_id'];
     userId = json['user_id'];
-    isAttendent = json['is_attendent'];
+    isAttendent = json['is_attendent'] ?? false;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     firstName = json['first_name'];
     lastName = json['last_name'];
     email = json['email'];
     mobile = json['mobile'];
-
   }
 
   Map<String, dynamic> toJson() {

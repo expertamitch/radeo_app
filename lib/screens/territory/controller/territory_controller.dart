@@ -13,7 +13,8 @@ class TerritoryController extends GetxController {
   RxBool territoryDetailLoading = false.obs;
   RxList<TerritoryInfo> territoryList = RxList();
   RxList<TerritoryInfo> territoryHistoryList = RxList();
-  RxList<Addresses> addresses = RxList();
+  List<Addresses> addresses = [];
+  RxList<Addresses> tempAddresses = RxList();
   TerritoryDetailModel? detailModel;
 
   Future<bool> getTerritoryList() async {
@@ -38,12 +39,14 @@ class TerritoryController extends GetxController {
 
   Future<bool> getTerritoryDetail(String id) async {
     try {
-      addresses.value.clear();
+      addresses.clear();
+      tempAddresses.value.clear();
       territoryDetailLoading.value = true;
       var result = await BackendRepo().getTerritoryDetail(id);
       detailModel = result;
 
-      addresses.value = result.info?.addresses ?? [];
+      addresses= result.info?.addresses ?? [];
+      tempAddresses.value=addresses;
       territoryDetailLoading.value = false;
 
       return true;
@@ -61,10 +64,10 @@ class TerritoryController extends GetxController {
   Future<bool> assignTerritory(
       {required String id, required String assigned_to}) async {
     try {
-      addresses.value.clear();
+      addresses.clear();
       showLoader();
       var result =
-      await BackendRepo().assignTerritory(id: id, assigned_to: assigned_to);
+          await BackendRepo().assignTerritory(id: id, assigned_to: assigned_to);
 
       hideLoader();
 
@@ -84,10 +87,9 @@ class TerritoryController extends GetxController {
   Future<bool> updateTerritory(
       {required String id, required String status}) async {
     try {
-      addresses.value.clear();
+      addresses.clear();
       showLoader();
-      var result =
-      await BackendRepo().updateTerritory(id: id, status: status);
+      var result = await BackendRepo().updateTerritory(id: id, status: status);
 
       hideLoader();
 
@@ -122,6 +124,14 @@ class TerritoryController extends GetxController {
 
       return false;
     }
+  }
+
+  executeSearch(String searchedText) {
+    tempAddresses.value = addresses.map((e) => Addresses.clone(e)).toList();
+
+    tempAddresses.value.removeWhere((element) =>
+    !element.fullAddress!.toLowerCase().contains(searchedText.toLowerCase()));
+    tempAddresses.refresh();
   }
 
 

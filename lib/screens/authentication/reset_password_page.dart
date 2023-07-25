@@ -88,6 +88,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 children: [
                   TextFormField(
                     obscuringCharacter: '✱',
+                    textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
                     obscureText: true,
@@ -107,6 +108,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
+                    textInputAction: TextInputAction.done,
+
                     obscureText: true,
                     obscuringCharacter: '✱',
                     decoration: inputDecoration.copyWith(

@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:redeo/widgets/loader.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 
+import '../../models/create_message_request_model.dart';
 import '../../models/custom_message_model.dart';
 import '../../network/internet_exception.dart';
 import '../../network/repository/backend_repo.dart';
@@ -16,9 +16,26 @@ class MessageController extends GetxController {
   RxList<CustomMessage> videoMessageList = RxList();
   RxList<CustomMessage> textMessageList = RxList();
 
-  String? selectedMessageType; //Text, Audio, Video
+  String qrResult = '';
+  TextEditingController locationController = TextEditingController();
+  bool response = false;
 
+  String attachmentFile = '';
+  String? selectedMessageType; //Text, Audio, Video
+  int? selectedMessageId; //Text, Audio, Video
   String selectedResponseType = 'Custom'; //Open, Custom
+
+  reset() {
+    qrResult = '';
+    locationController.text = '';
+    response = false;
+
+    attachmentFile = '';
+    selectedMessageType = null;
+    selectedMessageId = null;
+    selectedResponseType = 'Custom';
+
+  }
 
   @override
   void onInit() {
@@ -69,7 +86,6 @@ class MessageController extends GetxController {
       var data = await BackendRepo().getCustomMessage('video');
       if (data.info != null && data.info!.customMessages != null) {
         videoMessageList.value = data.info!.customMessages!;
-        generateVideoThumbnail();
       }
       return true;
     } on InternetException {
@@ -115,13 +131,41 @@ class MessageController extends GetxController {
     }
   }
 
-  Future<bool> saveVideoMessage(String path) async {
+  Future<int?> saveTextMessage(String message, String title) async {
     try {
       showLoader();
-      var bytes = await File(path).readAsBytes();
 
-      var data =
-          await BackendRepo().createVideoMessage(bytes: bytes, fileName: path);
+      var data = await BackendRepo().createTextMessage(message, title);
+      if (data.info != null) {
+        textMessageList.value.add(data.info!);
+        textMessageList.refresh();
+      }
+      hideLoader();
+      return data.info?.id ?? null;
+    } on InternetException {
+      hideLoader();
+      return null;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+      return null;
+    }
+  }
+
+  Future<int?> saveVideoMessage(
+      {required String videoPath,
+      required String title,
+      required String thumbnailPath}) async {
+    try {
+      showLoader();
+      var videoBytes = await File(videoPath).readAsBytes();
+      var thumbNailBytes = await File(thumbnailPath).readAsBytes();
+
+      var data = await BackendRepo().createVideoMessage(
+          videoBytes: videoBytes,
+          title: title,
+          thumbNailBytes: thumbNailBytes,
+          tName: thumbnailPath.split('.').last);
       if (data.info != null) {
         videoMessageList.value.add(data.info!);
         videoMessageList.value.forEach((element) {
@@ -129,37 +173,26 @@ class MessageController extends GetxController {
         });
         videoMessageList.value.last.isSelected = true;
 
-        final fileName = await VideoThumbnail.thumbnailFile(
-          video: BackendRepo.baseUrl + videoMessageList.value.last.file!,
-          thumbnailPath: (await getTemporaryDirectory()).path,
-          imageFormat: ImageFormat.WEBP,
-          maxHeight: 64,
-          // specify the height of the thumbnail, let the width auto-scaled to keep the source aspect ratio
-          quality: 75,
-        );
-        if (fileName != null)
-          videoMessageList.value.last.thumbnail = File(fileName);
-
         videoMessageList.refresh();
       }
       hideLoader();
-      return true;
+      return data.info?.id ?? null;
     } on InternetException {
       hideLoader();
-      return false;
+      return null;
     } catch (e) {
       hideLoader();
       showErrorSnackBar(e.toString());
-      return false;
+      return null;
     }
   }
 
-  Future<bool> saveAudioMessage(String path) async {
+  Future<int?> saveAudioMessage(String path, String title) async {
     try {
       showLoader();
       var bytes = await File(path).readAsBytes();
       var data =
-      await BackendRepo().createAudioMessage(bytes: bytes, fileName: path);
+          await BackendRepo().createAudioMessage(bytes: bytes, title: title);
       if (data.info != null) {
         audioMessageList.value.add(data.info!);
         audioMessageList.value.forEach((element) {
@@ -169,6 +202,26 @@ class MessageController extends GetxController {
         audioMessageList.refresh();
       }
       hideLoader();
+      return data.info?.id ?? null;
+    } on InternetException {
+      hideLoader();
+      return null;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+      return null;
+    }
+  }
+
+  Future<bool> createMessage(CreateMessageRequestModel model) async {
+    try {
+      showLoader();
+
+      var data = await BackendRepo().createMessage(model: model);
+      if (data.message != null) {
+        showSuccessSnackBar(data.message!);
+      }
+      hideLoader();
       return true;
     } on InternetException {
       hideLoader();
@@ -179,7 +232,6 @@ class MessageController extends GetxController {
       return false;
     }
   }
-
 
   Future<bool> deleteCustomMessage(int id) async {
     try {
@@ -201,19 +253,63 @@ class MessageController extends GetxController {
     }
   }
 
-  generateVideoThumbnail() {
-    videoMessageList.value.forEach((element) async {
-      if (element.thumbnail == null) {
-        final fileName = await VideoThumbnail.thumbnailFile(
-          video: BackendRepo.baseUrl + element.file!,
-          thumbnailPath: (await getTemporaryDirectory()).path,
-          imageFormat: ImageFormat.WEBP,
-          maxHeight: 64,
-          // specify the height of the thumbnail, let the width auto-scaled to keep the source aspect ratio
-          quality: 75,
-        );
-        if (fileName != null) element.thumbnail = File(fileName);
-      }
-    });
+  Future<bool> deleteAudioMessage(int id) async {
+    try {
+      showLoader();
+
+      await BackendRepo().deleteCustomMessage(id);
+      audioMessageList.value.removeWhere((element) => element.id == id);
+      audioMessageList.refresh();
+
+      hideLoader();
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> deleteVideoMessage(int id) async {
+    try {
+      showLoader();
+
+      await BackendRepo().deleteCustomMessage(id);
+      videoMessageList.value.removeWhere((element) => element.id == id);
+      videoMessageList.refresh();
+
+      hideLoader();
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> deleteTextMessage(int id) async {
+    try {
+      showLoader();
+
+      await BackendRepo().deleteCustomMessage(id);
+      textMessageList.value.removeWhere((element) => element.id == id);
+      textMessageList.refresh();
+
+      hideLoader();
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+      return false;
+    }
   }
 }

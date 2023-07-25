@@ -11,7 +11,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:redeo/route/app_pages.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
+import 'package:redeo/screens/home/home_page.dart';
+import 'package:redeo/screens/splash/splash_screen.dart';
 import 'firebase_options.dart';
+import 'network/storage_utils.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -318,7 +321,6 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) {
         return GetMaterialApp(
           navigatorKey: NavigationService.navigatorKey, // set property
-
           // useInheritedMediaQuery: false,
           debugShowCheckedModeBanner: false,
           builder: (context, child) => child ?? Scaffold(),
@@ -330,7 +332,7 @@ class _MyAppState extends State<MyApp> {
             textTheme: Typography.englishLike2018
                 .apply(bodyColor: Colors.black, fontSizeFactor: 1.sp),
           ),
-          home: WelcomePage(),
+          home: SplashScreen(),
           getPages: AppPages.pages,
         );
       },

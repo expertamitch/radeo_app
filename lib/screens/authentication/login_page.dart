@@ -23,21 +23,18 @@ class _LoginPageState extends State<LoginPage> {
   bool rememberPassword = false;
   String password = '';
   String mobileNo = '';
-
-  String initialCountry = 'IN';
   PhoneNumber number = PhoneNumber(isoCode: 'IN');
 
+  String initialCountry = 'IN';
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-
-  final AuthController authController =
-  Get.isRegistered<AuthController>()
+  AuthController authController = Get.isRegistered<AuthController>()
       ? Get.find<AuthController>()
-      : Get.put(AuthController());
+      : Get.put(AuthController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                 AppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
+                  leading: Container(),
                 ),
                 SizedBox(
                   height: 20.h,
@@ -88,8 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: EdgeInsets.only(left: 5),
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber number) {
-                        mobileNo = number.phoneNumber
-                            .toString();
+                        mobileNo = number.phoneNumber.toString();
                         // .replaceAll(number.dialCode.toString(), "");
                         print(number.phoneNumber);
                       },
@@ -103,14 +100,15 @@ class _LoginPageState extends State<LoginPage> {
                         selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                       ),
                       ignoreBlank: false,
+                      keyboardAction: TextInputAction.next,
                       spaceBetweenSelectorAndTextField: 0,
                       selectorTextStyle: TextStyle(color: Colors.black),
                       initialValue: number,
                       maxLength: 10,
                       formatInput: false,
                       textStyle: w600_14(),
-                      keyboardType: TextInputType.numberWithOptions(
-                          signed: true, decimal: true),
+                      keyboardType:
+                      TextInputType.numberWithOptions(signed: false, decimal: false),
                       inputDecoration: inputDecoration.copyWith(
                         labelText: 'Mobile',
                       ),
@@ -124,9 +122,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     obscuringCharacter: '✱',
-                    obscureText: true,
+                    obscureText: true,textInputAction: TextInputAction.done,
                     controller: passwordController,
-                    validator: (value)=>Validators.validatePassword(value),
+                    validator: (value) => Validators.validatePassword(value),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: w600_14(),
                     decoration: inputDecoration.copyWith(labelText: 'Password'),
@@ -137,45 +135,16 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Row(
-                    children: [
-                      Flexible(
-                          child: Row(
-                            children: [
-                              Checkbox(
-                                value: rememberPassword,
-                                fillColor: MaterialStateProperty.resolveWith<Color>(
-                                        (Set<MaterialState> states) {
-                                      if (!states.contains(MaterialState.selected)) {
-                                        return AppColors.dark2GreyColor;
-                                      }
-                                      return AppColors.blueColor;
-                                    }),
-                                onChanged: (value) {
-                                  setState(() {
-                                    rememberPassword = value ?? false;
-                                  });
-                                },
-                              ),
-                              GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      rememberPassword = !rememberPassword;
-                                    });
-                                  },
-                                  child:
-                                  Text('Remember Password', style: w300_12())),
-                            ],
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            Get.toNamed(Routes.forgotPasswordScreen);
-                          },
-                          child: Text('Forgot Password ?',
-                              style: w300_12(
-                                color: AppColors.blueColor,
-                              )))
-                    ],
+                  Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: TextButton(
+                       onPressed: () {
+                         Get.toNamed(Routes.forgotPasswordScreen);
+                       },
+                       child: Text('Forgot Password ?',
+                           style: w300_12(
+                             color: AppColors.blueColor,
+                           ))),
                   ),
                   SizedBox(
                     height: 20.h,
@@ -207,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text('Don\'t have an account? ', style: w300_12()),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.registerScreen);
+                          Get.offNamed(Routes.registerScreen);
                         },
                         child: Text('Register Now',
                             style: w900_12(

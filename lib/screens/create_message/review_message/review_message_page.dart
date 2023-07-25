@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:redeo/screens/create_message/message_controller.dart';
 import 'package:redeo/styling/font_style_globle.dart';
+import 'package:redeo/widgets/app_button.dart';
 
 import '../../../assets/images.dart';
- import '../../../styling/app_colors.dart';
-
+import '../../../models/create_message_request_model.dart';
+import '../../../styling/app_colors.dart';
 import '../../../widgets/image_view.dart';
-import 'package:redeo/widgets/app_button.dart';
+import '../../home/home_page_controller.dart';
 
 class ReviewMessagePage extends StatefulWidget {
   const ReviewMessagePage({Key? key}) : super(key: key);
@@ -19,7 +21,10 @@ class ReviewMessagePage extends StatefulWidget {
 }
 
 class _ReviewMessagePageState extends State<ReviewMessagePage> {
-  MessageController getController = Get.find();
+  MessageController controller = Get.find();
+
+  CreateMessageRequestModel model = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +36,16 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
             Row(
               children: [
                 AppButton(
-                    onPressedFunction: () {},
+                    onPressedFunction: () async {
+                      var success = await controller.createMessage(model);
+                      if (success) {
+                        Get.back();
+                        HomePageController homePageController = Get.find();
+                        homePageController.currentSelectedIndex.value = 1;
+                        homePageController.currentSelectedIndex.value = 2;
+                        controller.reset();
+                      }
+                    },
                     child: Text(
                       'Submit',
                       style: w300_12(color: Colors.white),
@@ -102,7 +116,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Video Message',
+                      '${model.selectedMessageType} Message',
                       style: w300_13(
                         color: AppColors.blueColor,
                       ),
@@ -111,54 +125,112 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.lightGreyColor),
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                    child: Row(
-                      children: [
-                        ImageView(
-                          path: 'assets/dummy_data/video 02.png',
-                          height: 50,
-                        ),
-                        SizedBox(
-                          width: 15.w,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  if (model.selectedMessageType == 'Text')
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.lightGreyColor),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Row(
                           children: [
-                            Text(
-                              'vidofile_23052023',
-                              style: w300_13(),
+                            Expanded(
+                              child: Text(
+                                controller.textMessageList.value
+                                        .lastWhere((element) =>
+                                            element.id ==
+                                            model.selectedMessageId)
+                                        .content ??
+                                    '',
+                                style: w300_13(color: AppColors.dark2GreyColor),
+                              ),
                             ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '00:12',
-                                  style:
-                                      w300_10(color: AppColors.dark2GreyColor),
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Text(
-                                  '12 KB',
-                                  style:
-                                      w300_10(color: AppColors.dark2GreyColor),
-                                ),
-                              ],
-                            )
                           ],
-                        )
-                      ],
+                        )),
+                  if (model.selectedMessageType == 'Audio')
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColors.lightGreyColor),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            Images.audiFileIcon,
+                            width: 30,
+                          ),
+                          SizedBox(
+                            width: 15.w,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                controller.audioMessageList.value
+                                        .lastWhere((element) =>
+                                            element.id ==
+                                            model.selectedMessageId)
+                                        .title ??
+                                    '',
+                                style: w300_13(),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                              child: SizedBox(
+                            width: 5,
+                          )),
+                        ],
+                      ),
                     ),
-                  )
+                  if (model.selectedMessageType == 'Video')
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: AppColors.lightGreyColor),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      child: Row(
+                        children: [
+                          ImageView(
+                            path: (controller.videoMessageList.value
+                                    .lastWhere((element) =>
+                                        element.id == model.selectedMessageId)
+                                    .thumbnail ??
+                                ''),
+                            height: 50,
+                          ),
+                          SizedBox(
+                            width: 15.w,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                controller.videoMessageList.value
+                                        .lastWhere((element) =>
+                                            element.id ==
+                                            model.selectedMessageId)
+                                        .title ??
+                                    '',
+                                style: w300_13(),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                              child: SizedBox(
+                            width: 5,
+                          )),
+                        ],
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -200,7 +272,7 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       ),
                       Flexible(
                         child: Text(
-                          '2006 Chapmans Lane, San Francisco, California',
+                          model.location,
                           style: w300_13(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -221,69 +293,57 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
             SizedBox(
               height: 10.h,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Text(
-                          'Response:',
-                          style: w300_13(
-                            color: AppColors.blueColor,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        Text('Custom',
+            if (model.response)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Response:',
                             style: w300_13(
-                              color: AppColors.purpleColor,
-                            )),
-                      ],
+                              color: AppColors.blueColor,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text(model.selectedResponseType!,
+                              style: w300_13(
+                                color: AppColors.purpleColor,
+                              )),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 7,
-                        backgroundColor: AppColors.purpleColor,
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    if (model.selectedResponseType == 'Custom')
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 7,
+                            backgroundColor: AppColors.purpleColor,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            controller.customMessageList.value
+                                .lastWhere((element) =>
+                                    element.id ==
+                                    model.selectedCustomResponseId)
+                                .content!,
+                            style: w300_13(),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Text(
-                        'The info was helpful, Thanks',
-                        style: w300_13(),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 7,
-                        backgroundColor: AppColors.purpleColor,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Text(
-                        'The info was helpful, Send more',
-                        style: w300_13(),
-                      ),
-                    ],
-                  )
-                ],
+                  ],
+                ),
               ),
-            ),
           ])))
         ]));
   }

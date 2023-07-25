@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:redeo/models/all_group_list_response_model.dart';
 import 'package:redeo/models/custom_message_model.dart';
@@ -7,6 +9,7 @@ import 'package:redeo/models/register_model.dart';
 
 import '../../models/add_custom_message_model.dart';
 import '../../models/all_redeo_member_list_response_model.dart';
+import '../../models/create_message_request_model.dart';
 import '../../models/territory_detail_model.dart';
 import '../../models/territory_list_model.dart';
 import '../api_exception.dart';
@@ -15,18 +18,15 @@ import '../internet_exception.dart';
 import '../storage_utils.dart';
 
 class BackendRepo {
-  static String baseUrl = "http://18.170.57.130/api/";
-  static String storageUrl = "http://18.170.57.130/storage/";
+  static String baseUrl = "http://35.176.71.232/api/";
+  static String storageUrl = "http://35.176.71.232/storage/";
 
   Future<RegisterModel> createAccount(
       {required Map<String, dynamic> data}) async {
     String url = "${baseUrl}register";
     try {
       final response = await apiUtils.post(
-        url: url,
-        data: data,
-        options: getOptions(addAuth: false)
-      );
+          url: url, data: data, options: getOptions(addAuth: false));
       var model = RegisterModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -42,9 +42,7 @@ class BackendRepo {
     String url = "${baseUrl}verify-user";
     try {
       final response = await apiUtils.post(
-        url: url,
-        data: data,options: getOptions(addAuth: false)
-      );
+          url: url, data: data, options: getOptions(addAuth: false));
       var model = RegisterModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -59,9 +57,7 @@ class BackendRepo {
     String url = "${baseUrl}resend-otp";
     try {
       final response = await apiUtils.post(
-        url: url,
-        data: data,options: getOptions(addAuth: false)
-      );
+          url: url, data: data, options: getOptions(addAuth: false));
       var model = RegisterModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -77,9 +73,7 @@ class BackendRepo {
     String url = "${baseUrl}forgot-password-request";
     try {
       final response = await apiUtils.post(
-        url: url,
-        data: data,options: getOptions(addAuth: false)
-      );
+          url: url, data: data, options: getOptions(addAuth: false));
       var model = RegisterModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -95,9 +89,7 @@ class BackendRepo {
     String url = "${baseUrl}forgot-password-update";
     try {
       final response = await apiUtils.post(
-        url: url,
-        data: data,options: getOptions(addAuth: false)
-      );
+          url: url, data: data, options: getOptions(addAuth: false));
       var model = RegisterModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -112,9 +104,7 @@ class BackendRepo {
     String url = "${baseUrl}login";
     try {
       final response = await apiUtils.post(
-        url: url,
-        data: data,options: getOptions(addAuth: false)
-      );
+          url: url, data: data, options: getOptions(addAuth: false));
       var model = RegisterModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -317,14 +307,39 @@ class BackendRepo {
     }
   }
 
+  Future<AddCustomMessageModel> createTextMessage(
+      String name, String title) async {
+    var data = {"type": "text", "content": name, 'title': title};
+
+    String url = "${baseUrl}user/custom-reponse";
+    try {
+      final response =
+          await apiUtils.post(url: url, options: getOptions(), data: data);
+      var model = AddCustomMessageModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
   Future<AddCustomMessageModel> createVideoMessage(
-      {required List<int> bytes, required String fileName}) async {
+      {required List<int> videoBytes,
+      required List<int> thumbNailBytes,
+      required String tName,
+      required String title}) async {
     var formData = FormData.fromMap({
       'file': MultipartFile.fromBytes(
-        bytes,
-        filename:
-            '${DateTime.now().microsecondsSinceEpoch}.${fileName.split('.').last}',
+        videoBytes,
+        filename: '${DateTime.now().microsecondsSinceEpoch}.${title}',
       ),
+      'thumbnail': MultipartFile.fromBytes(
+        thumbNailBytes,
+        filename: '${DateTime.now().microsecondsSinceEpoch}.${tName}',
+      ),
+      'title': title,
       'type': 'video',
       'content': '',
     });
@@ -344,14 +359,14 @@ class BackendRepo {
   }
 
   Future<AddCustomMessageModel> createAudioMessage(
-      {required List<int> bytes, required String fileName}) async {
+      {required List<int> bytes, required String title}) async {
     var formData = FormData.fromMap({
       'file': MultipartFile.fromBytes(
         bytes,
-        filename:
-        '${DateTime.now().microsecondsSinceEpoch}.${fileName.split('.').last}',
+        filename: title,
       ),
       'type': 'audio',
+      'title': title,
       'content': '',
     });
 
@@ -369,6 +384,47 @@ class BackendRepo {
     }
   }
 
+  Future<MessageOnlyModel> createMessage(
+      {required CreateMessageRequestModel model}) async {
+    // var bytes = await File(path).readAsBytes();
+
+    Map<String, dynamic> map = {};
+
+    map = {
+      'location': model.location,
+      'message_id': model.selectedMessageId,
+      'qr_code_id': model.qrResult
+    };
+
+    if (model.response) map['response_type'] = model.selectedResponseType;
+    if (model.response && model.selectedResponseType!.toLowerCase() == 'custom')
+      map['responses[]'] = model.selectedCustomResponseId;
+
+    if (model.attachmentFile != null && model.attachmentFile!.isNotEmpty) {
+      var bytes = await File(model.attachmentFile!).readAsBytes();
+
+      map['attachments[]'] = MultipartFile.fromBytes(
+        bytes,
+        filename:
+            '${DateTime.now().microsecondsSinceEpoch}.${model.attachmentFile!.split('/').last}',
+      );
+    }
+
+    var formData = FormData.fromMap(map);
+
+    String url = "${baseUrl}user/message";
+    try {
+      final response = await apiUtils.postWithProgress(
+          url: url, options: getOptions(), data: formData);
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
   Future<MessageOnlyModel> deleteCustomMessage(int id) async {
     String url = "${baseUrl}user/custom-reponse/$id";
@@ -384,12 +440,28 @@ class BackendRepo {
     }
   }
 
-  Options getOptions({bool addAuth=true}) {
+  Future<MessageOnlyModel> editGroup(
+      {required Map<String, dynamic> data, required String id}) async {
+    String url = "${baseUrl}user/group/$id";
+    try {
+      final response =
+          await apiUtils.put(url: url, data: data, options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Options getOptions({bool addAuth = true}) {
     Options? options = Options();
     options.headers = {};
     options.headers!["Accept"] = "application/json";
-    if(addAuth)
-    options.headers!["Authorization"] = "Bearer ${StorageUtils.getToken()}";
+    if (addAuth)
+      options.headers!["Authorization"] = "Bearer ${StorageUtils.getToken()}";
     return options;
   }
 }

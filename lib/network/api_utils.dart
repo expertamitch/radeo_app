@@ -1,4 +1,5 @@
  import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 
  import '../utils/log_util.dart';
 import 'custom_log_interceptor.dart';
@@ -42,6 +43,8 @@ class ApiUtils {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+
     var result = await _dio.get(
       url,
       queryParameters: queryParameters,
@@ -56,6 +59,7 @@ class ApiUtils {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
+    FocusManager.instance.primaryFocus?.unfocus();
     var result = await _dio.post(
       url,
       data: data,
@@ -73,6 +77,8 @@ class ApiUtils {
     ProgressCallback? onSendProgress,
   }) async {
     //
+    FocusManager.instance.primaryFocus?.unfocus();
+
     var result = await _dio.post(
       url,
       data: data,
@@ -91,6 +97,7 @@ class ApiUtils {
   }) async {
     //Sending FormData:
     //FormData formData = FormData.fromMap({"name": ""});
+    FocusManager.instance.primaryFocus?.unfocus();
 
     var result = await _dio.patch(
       url,
@@ -107,6 +114,8 @@ class ApiUtils {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+
     var result = await _dio.put(
       url,
       data: data,
@@ -125,6 +134,8 @@ class ApiUtils {
     //Options options = Options(headers: secureHeaders);
 
     //var result = await _dio.delete(api, options: options);
+    FocusManager.instance.primaryFocus?.unfocus();
+
     var result = await _dio.delete(
       url,
       queryParameters: queryParameters,data: data,

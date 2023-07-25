@@ -73,74 +73,75 @@ class _TerritoryDetailsScreenState extends State<TerritoryDetailsScreen> {
                 }
               : () {},*/
         ),
-        body: Obx(() => controller.territoryDetailLoading.value
-            ? OnScreenLoader()
-            : controller.addresses.value.isEmpty
-                ? NotFoundWidget(
-                    title: 'No addresses found',
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                        if (controller.detailModel?.info?.assignedUser != null)
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10.h, horizontal: 18),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Assigned to - ',
-                                      style: w600_13(),
-                                    ),
-                                    Text(
-                                      '${controller.detailModel?.info?.assignedUser?.firstName ?? ''} ${controller.detailModel?.info?.assignedUser?.lastName ?? ''}',
-                                      style: w900_16(),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Assign date - ',
-                                      style: w600_13(),
-                                    ),
-                                    Text(
-                                      DateFormat('dd MMMM, yyyy').format(
-                                        controller
-                                            .detailModel!.info!.assignedOn!
-                                            .toLocal(),
-                                      ),
-                                      style: w900_16(),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+        body: Obx(() => Column(
+          children: [
+            if (controller.detailModel?.info?.assignedUser != null)
+              Container(
+                margin: EdgeInsets.symmetric(
+                    vertical: 10.h, horizontal: 18),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Assigned to - ',
+                          style: w600_13(),
+                        ),
+                        Text(
+                          '${controller.detailModel?.info?.assignedUser?.firstName ?? ''} ${controller.detailModel?.info?.assignedUser?.lastName ?? ''}',
+                          style: w900_16(),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Assign date - ',
+                          style: w600_13(),
+                        ),
+                        Text(
+                          DateFormat('dd MMMM, yyyy').format(
+                            controller
+                                .detailModel!.info!.assignedOn!
+                                .toLocal(),
                           ),
-                        SearchWidget(hint: 'Search Address...',dataList:controller.addresses.value,resultCallback: (data){}, ),
-                        Expanded(
-                            child: Obx(() => controller
-                                    .territoryDetailLoading.value
-                                ? OnScreenLoader()
-                                : controller.addresses.value.isEmpty
-                                    ? NotFoundWidget(
-                                        title: 'No addresses found',
-                                      )
-                                    : ListView.builder(
-                                        itemCount:
-                                            controller.addresses.value.length,
-                                        itemBuilder: (context, index) {
-                                          return TerritoryAddressTile(
-                                            address: controller
-                                                .addresses.value[index],
-                                          );
-                                        })))
-                      ])));
+                          style: w900_16(),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+
+
+            !controller.territoryDetailLoading.value?SearchWidget(
+              hint: 'Search Address...',
+              onChange: controller.executeSearch,
+            ):Container(),
+
+            Expanded(child:   controller.territoryDetailLoading.value
+                ? OnScreenLoader()
+                : controller.tempAddresses.value.isEmpty
+                ? Center(
+                  child: SingleChildScrollView(child: NotFoundWidget(
+              title: 'No addresses found',
+            ),),
+                )
+                : ListView.builder(
+                itemCount: controller
+                    .tempAddresses.value.length,
+                itemBuilder: (context, index) {
+                  return TerritoryAddressTile(
+                    address: controller
+                        .tempAddresses.value[index],
+                  );
+                }))
+          ],
+        )));
   }
 
   String getInitials(String bankAccountName) => bankAccountName.isNotEmpty

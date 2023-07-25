@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
-import 'package:redeo/screens/create_message/text_message/show_text_message_sheet.dart';
 import 'package:redeo/styling/font_style_globle.dart';
-
-import '../../../../assets/images.dart';
- import '../../../../styling/app_colors.dart';
-
-import '../../../../widgets/image_view.dart';
 import 'package:redeo/widgets/app_button.dart';
 
+import '../../../../styling/app_colors.dart';
 import '../message_controller.dart';
+import '../title_bottom_sheet.dart';
 
 class EnterTextMessagePage extends StatefulWidget {
   const EnterTextMessagePage({Key? key}) : super(key: key);
@@ -35,11 +30,16 @@ class _EnterTextMessagePageState extends State<EnterTextMessagePage> {
             Row(
               children: [
                 AppButton(
-                    onPressedFunction: () {
-                      showTextMessageBottomSheet(textMessageController.text);
+                    onPressedFunction: () async {
+                      var data = await showTitleBottomSheet(type: 'text');
+                      if (data != null) {
+                        int? id = await getController.saveTextMessage(
+                            textMessageController.text, data);
+                        if (id != null) Get.back(result: id);
+                      }
                     },
                     child: Text(
-                      'Next',
+                      'Save',
                       style: w300_12(color: Colors.white),
                     ),
                     sodiumShapeBorder: true,
@@ -79,12 +79,12 @@ class _EnterTextMessagePageState extends State<EnterTextMessagePage> {
                       style: w300_14(),
                       controller: textMessageController,
                       decoration: InputDecoration(
-                      hintStyle: w300_14(
-                        color: AppColors.dark2GreyColor,
-                      ),
-                      contentPadding: EdgeInsets.only(bottom: 10, left: 10),
-                      hintText: 'Enter your text here...',
-                      border: InputBorder.none),
+                          hintStyle: w300_14(
+                            color: AppColors.dark2GreyColor,
+                          ),
+                          contentPadding: EdgeInsets.only(bottom: 10, left: 10),
+                          hintText: 'Enter your text here...',
+                          border: InputBorder.none),
                       maxLines: 99,
                     ),
                   ),
