@@ -1,0 +1,20 @@
+class CreateNOERequestModel {
+  String? name,
+      nameImage,
+      location,
+      email,
+      telephone,
+      territoryId,
+      maritalStatus,
+      boys,
+      girls,
+      returnVisitType,
+      notificationSelf,
+      notificationOther,
+      indicators,
+      attachments,
+      givenContentType,
+      givenContentName,
+      level,
+      notes;
+}

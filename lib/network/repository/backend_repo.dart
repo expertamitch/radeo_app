@@ -456,6 +456,29 @@ class BackendRepo {
     }
   }
 
+
+
+  Future<MessageOnlyModel> createNOE(
+      {required Map<String, dynamic> map }) async {
+
+    var formData = FormData.fromMap(map);
+
+    String url = "${baseUrl}user/noe";
+    try {
+      final response = await apiUtils.postWithProgress(
+          url: url, options: getOptions(), data: formData);
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
   Options getOptions({bool addAuth = true}) {
     Options? options = Options();
     options.headers = {};

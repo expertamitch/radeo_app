@@ -14,8 +14,8 @@ import '../image_view.dart';
 
 class TerritoryTile extends StatelessWidget {
   TerritoryInfo info;
-
-  TerritoryTile({required this.info});
+  VoidCallback? onTap;
+  TerritoryTile({required this.info, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +37,8 @@ class TerritoryTile extends StatelessWidget {
       }
 
       return GestureDetector(
-        onTap: () {
+        onTap:onTap?? () {
           Get.toNamed(Routes.territoryDetailsScreen, arguments: info);
-          // if (index == 0)
-          //   Get.toNamed(
-          //     Routes.territoryDetailsScreen,
-          //   );
-          // else if (index == 1) {
-          //   Get.toNamed(
-          //     Routes.contactPage,
-          //   );
-          // }
         },
         child: Container(
           decoration: BoxDecoration(
@@ -77,6 +68,7 @@ class TerritoryTile extends StatelessWidget {
                     SizedBox(
                       height: 6.h,
                     ),
+                    if(onTap==null)
                     AppButton(
                         onPressedFunction: () {
                           /*  if (index == 0)

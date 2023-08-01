@@ -25,8 +25,8 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
   bool showLevelError = false;
 
   DateTime? setReturnVisitDate;
-  String? selectedTimePeroid; // 'Everyday','Weekly','Monthy','Yearly'
-  String? selectedNotifyMe; // 'Everyday','Weekly','Monthy','Yearly'
+  String? selectedTimePeroid; // 'Everyday','Weekly','Monthly','Yearly'
+  String? selectedNotifyMe; // 'Everyday','Weekly','Monthly','Yearly'
   int? indicatorStatus; //openForEncouragment, All Set
   int? level;
   @override
@@ -221,7 +221,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         items: <String>[
                           'Everyday',
                           'Weekly',
-                          'Monthy',
+                          'Monthly',
                           'Yearly'
                         ].map((String value) {
                           return DropdownMenuItem<String>(
@@ -261,7 +261,7 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         items: <String>[
                           'Everyday',
                           'Weekly',
-                          'Monthy',
+                          'Monthly',
                           'Yearly'
                         ].map((String value) {
                           return DropdownMenuItem<String>(

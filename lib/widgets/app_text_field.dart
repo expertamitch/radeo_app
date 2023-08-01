@@ -1,133 +1,106 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../styling/app_colors.dart';
+import '../styling/font_style_globle.dart';
+import 'image_view.dart';
 
 class AppTextField extends StatelessWidget {
-  final String? placeHolder;
-
-  final Widget? suffix;
-  final bool obscureText;
-
   final TextEditingController? controller;
 
   final String? Function(String?)? validator;
+  final FocusNode? currentNode;
+  final FocusNode? nextNode;
 
   final bool isEnabled;
   final int minLines;
+  final AutovalidateMode? autovalidateMode;
+  final int? maxLength;
   final int maxLines;
-  final Color fillColor;
-  final bool isChangePadding;
-  final bool isBorderRequired;
   final Function(String)? onChanged;
   final VoidCallback? onEditingComplete;
   final TextInputType? keyboardType;
-final bool isShadow;
+  final TextInputAction? action;
+
+  final String hint;
+  final String? mainHint;
+  final String? prefixPath;
+  final Color? prefixColor;
+  final double? prefixSize;
+
   const AppTextField({
     Key? key,
-    this.placeHolder,
-    this.suffix,
-    this.obscureText = false,
     this.controller,
-    this.isBorderRequired = true,
+    required this.hint,
+    this.action,
+    this.prefixSize,
+    this.autovalidateMode,
+    this.currentNode,
+    this.nextNode,
     this.validator,
+    this.prefixPath,
+    this.mainHint,
+    this.prefixColor,
     this.minLines = 1,
     this.maxLines = 1,
+    this.maxLength,
     this.isEnabled = true,
-    this.isChangePadding = false,
-    this.fillColor =  Colors.black,
     this.onChanged,
     this.keyboardType,
-    this.isShadow = true,
     this.onEditingComplete,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if(isShadow){
-      return Material(
-        elevation:isBorderRequired? 1.0:0,
-        shadowColor: Colors.black,
-        borderRadius: BorderRadius.all(Radius.circular(20.0.sp)),
-        child: TextFormField(
-          minLines: minLines,
-          maxLines: maxLines,
-          controller: controller,
-          maxLength: keyboardType == TextInputType.phone ? 10 : null,
-
-          obscureText: obscureText,
-          validator: (value) => validator == null ? null : validator!(value),
-          onChanged: (value) => onChanged == null ? null : onChanged!(value),
-          onEditingComplete: onEditingComplete,
-          onFieldSubmitted: (value) {},
-          onSaved: (value) {},
-          keyboardType: keyboardType,
-          decoration: InputDecoration(
-              isDense: true,
-              filled: true,
-              counterText: "",
-              hintStyle: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: 'helvetica_neue',
-                  fontSize: 40.sp),
-              border: _border(),
-              contentPadding: isChangePadding
-                  ? EdgeInsets.symmetric(vertical: 0, horizontal: 10.w)
-                  : null,
-              disabledBorder: _border(),
-              enabledBorder: _border(),
-              focusedBorder: _border(),
-              errorBorder: _border(),
-              focusedErrorBorder: _border(),
-              errorStyle: const TextStyle(
-                  color: Colors.red, fontFamily: 'helvetica_neue'),
-              hintText: placeHolder,
-              fillColor: fillColor),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          hint,
+          style: w300_13(
+            color: AppColors.blueColor,
+          ),
         ),
-      );
-    }
-    return TextFormField(
-      minLines: minLines,
-      maxLines: maxLines,
-      controller: controller,
-      obscureText: obscureText,
-      validator: (value) => validator == null ? null : validator!(value),
-      onChanged: (value) => onChanged == null ? null : onChanged!(value),
-      onEditingComplete: onEditingComplete,
-      onFieldSubmitted: (value) {},
-      onSaved: (value) {},
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-          isDense: true,
-          filled: true,
-          hintStyle: TextStyle(
-              color: Colors.black,
-              fontFamily: 'helvetica_neue',
-              fontSize: 40.sp),
-          border: _border(),
-          contentPadding: isChangePadding
-              ? EdgeInsets.symmetric(vertical: 0, horizontal: 10.w)
-              : null,
-          disabledBorder: _border(),
-          enabledBorder: _border(),
-          focusedBorder: _border(),
-          errorBorder: _border(),
-          focusedErrorBorder: _border(),
-          errorStyle: const TextStyle(
-              color: Colors.red, fontFamily: 'helvetica_neue'),
-          hintText: placeHolder,
-          fillColor: fillColor),
+        TextFormField(
+          style: w300_13(),
+          autovalidateMode: autovalidateMode ?? AutovalidateMode.disabled,
+          controller: controller,
+          enabled: isEnabled,
+          focusNode: currentNode,
+          validator: validator,
+          textInputAction: action,
+          keyboardType: keyboardType,
+          maxLines: maxLines,
+          onChanged: onChanged,
+          onEditingComplete: onEditingComplete,
+          minLines: minLines,
+          maxLength: maxLength,
+          onFieldSubmitted: (data) {
+            if (nextNode != null) FocusScope.of(context).requestFocus(nextNode);
+          },
+          decoration: InputDecoration(
+              hintStyle: w300_13(),
+              hintText: mainHint ?? hint,
+              border: InputBorder.none,
+              counterStyle: w300_0(color: Colors.transparent),
+              errorStyle: w300_13(color: AppColors.redColor),
+              prefixIconConstraints: BoxConstraints(maxWidth: 20, minWidth: 20),
+              prefixIcon: prefixPath != null
+                  ? Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ImageView(
+                            path: prefixPath,
+                            color: prefixColor ?? AppColors.purpleColor,
+                            height: prefixSize ?? 18,
+                          ),
+                        ],
+                      ),
+                    )
+                  : null),
+        )
+      ],
     );
-  }
-
-  InputBorder _border() {
-
-    return isBorderRequired
-        ? OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0.sp)),
-            borderSide:   BorderSide(
-              color: Colors.black,
-            ),
-          )
-        : InputBorder.none;
   }
 }

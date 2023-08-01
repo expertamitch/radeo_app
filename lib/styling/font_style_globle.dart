@@ -12,6 +12,10 @@ const double margin = 20;
 * w900 -> bold
 * */
 
+TextStyle w300_0({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 0.sp, color: color, fontFamily: fontRegular);
+}
+
 TextStyle w300_10({Color? color = Colors.black}) {
   return TextStyle(fontSize: 10.sp, color: color, fontFamily: fontRegular);
 }

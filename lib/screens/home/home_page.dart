@@ -21,6 +21,7 @@ import 'package:redeo/utils/common_dialogs.dart';
 import 'package:redeo/widgets/image_view.dart';
 
 import '../do_not_call/dnc_territory_screen.dart';
+import '../notice_of_event/notice_of_event_controller.dart';
 import '../territory/territory_list_screen.dart';
 
 class Homepage extends StatefulWidget {
@@ -147,7 +148,11 @@ class _HomepageState extends State<Homepage> {
                         controller.getTerritoryList();
                       } else if (controller.currentSelectedIndex.value == 2) {
                         MessageController msgController = Get.find();
-                        // msgController.reset();
+                        msgController.reset();
+                      }
+                      else if(controller.currentSelectedIndex==1){
+                        NoticeOfEventController controller=Get.find();
+                        controller.reset();
                       }
                     });
                   });

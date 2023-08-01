@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +11,7 @@ import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 
-import '../../get_controller/notice_of_event_controller.dart';
+import 'notice_of_event_controller.dart';
 import 'package:redeo/widgets/app_button.dart';
 
 class NoticeOfEventSummaryPage extends StatefulWidget {
@@ -141,7 +142,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                     style: w600_12(),
                   ),
                   Text(
-                    'Open for Encouragement',
+                    controller.indicatorsList[controller.indicatorStatus!-1],
                     style: w600_12(
                       color: AppColors.blueColor,
                     ),
@@ -238,7 +239,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
-                          controller.selectedDate!=null?DateFormat('EEEE, MMM d, yyyy | h:mm a')
+                          controller.selectedDate!=null?DateFormat('MMMM,dd yyyy, hh:mm a')
                             .format(controller.selectedDate!):"Sunday, January 5, 2021 | 12:05 pm",
                         textAlign: TextAlign.right,
                         style: w300_13(),
@@ -263,7 +264,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                   SizedBox(
                       width: (MediaQuery.of(context).size.width * .5).w,
                       child: Text(
-                        controller.territoryController.text,
+                        controller.territoryInfo!.name!,
                         textAlign: TextAlign.right,
                         style: w300_13(),
                       ))
@@ -343,27 +344,33 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                     'Attachment',
                     style: w600_12(),
                   ),
-                  OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                      onPressed: () {},
+                  SizedBox(width: 10.w,),
+                  Expanded(
+                    child: DottedBorder(
+                      color: AppColors.greyColor,
+                      strokeWidth: 1,
+                      dashPattern: [5, 5],
+                      borderType: BorderType.RRect,
+                      radius: Radius.circular(8),
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                       child: Row(
                         children: [
-                          Text(
-                            'Filename_23052023',
-                            style: w300_12(),
+                          Expanded(
+                            child: Text(
+                              controller.attachmentFile!.split('/').last,
+                              maxLines: 2,
+                              style: w300_13(),
+                            ),
                           ),
                           SizedBox(
-                            width: 10.w,
+                            width: 10,
                           ),
-                          ImageView(
-                            path: Images.closeIcon,
-                            height: 10,
-                            color: AppColors.purpleColor,
-                          )
+
                         ],
-                      ))
+                      ),
+                    ),
+                  ),
+                   
                 ],
               ),
               Divider(thickness: 1, color: AppColors.borderGreyColor),

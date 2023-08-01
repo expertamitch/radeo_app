@@ -20,7 +20,7 @@ class MessageController extends GetxController {
   TextEditingController locationController = TextEditingController();
   bool response = false;
 
-  String attachmentFile = '';
+  String? attachmentFile;
   String? selectedMessageType; //Text, Audio, Video
   int? selectedMessageId; //Text, Audio, Video
   String selectedResponseType = 'Custom'; //Open, Custom
@@ -30,7 +30,7 @@ class MessageController extends GetxController {
     locationController.text = '';
     response = false;
 
-    attachmentFile = '';
+    attachmentFile = null;
     selectedMessageType = null;
     selectedMessageId = null;
     selectedResponseType = 'Custom';

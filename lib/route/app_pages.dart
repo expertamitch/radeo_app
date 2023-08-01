@@ -10,6 +10,7 @@ import 'package:redeo/screens/create_message/text_message/enter_text_message_pag
 import 'package:redeo/screens/groups/edit_group_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
+import 'package:redeo/screens/territory/choose_territory.dart';
 import 'package:redeo/screens/territory/territory_assign_contacts/contacts_page.dart';
 import 'package:redeo/screens/territory/territory_details_screen.dart';
 import 'package:redeo/utils/qr_scanner.dart';
@@ -260,6 +261,12 @@ class AppPages {
         transition: Transition.cupertino,
         page: () => TerritoryDetailsScreen(),
         arguments: Get.arguments),
+
+    GetPage(
+        name: Routes.chooseTerritory,
+        transition: Transition.cupertino,
+        page: () => ChooseTerritory(),
+        ),
 
     GetPage(
         name: Routes.createCustomMessage,

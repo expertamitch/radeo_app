@@ -1,5 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +12,7 @@ import 'package:redeo/styling/app_colors.dart';
 import 'package:redeo/utils/snackbar_util.dart';
 import 'package:redeo/utils/validators.dart';
 import 'package:redeo/widgets/app_button.dart';
+import 'package:redeo/widgets/attachment_widget.dart';
 import 'package:redeo/widgets/image_view.dart';
 
 import '../../route/routes.dart';
@@ -29,9 +28,7 @@ class CreateMessagePage extends StatefulWidget {
 }
 
 class _CreateMessagePageState extends State<CreateMessagePage> {
-
-   MessageController controller = Get.find();
-
+  MessageController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -49,28 +46,33 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             }
           });
 
-          if (Validators.validateName(controller.locationController.text)!=null) {
+          if (Validators.validateName(controller.locationController.text) !=
+              null) {
             showErrorSnackBar('Please fill location.');
-          } else if (controller.selectedMessageType == null || controller.selectedMessageId == null) {
+          } else if (controller.selectedMessageType == null ||
+              controller.selectedMessageId == null) {
             showErrorSnackBar('Please select message');
           } else if (controller.qrResult.isEmpty) {
             showErrorSnackBar('Please scan QR code');
           } else if (controller.response &&
-              controller. selectedResponseType == 'Custom' &&
+              controller.selectedResponseType == 'Custom' &&
               !cSelected) {
             showErrorSnackBar('Please select response');
           } else {
             CreateMessageRequestModel model = CreateMessageRequestModel();
-            model.location =controller. locationController.text;
-            model.qrResult =controller. qrResult;
+            model.location = controller.locationController.text;
+            model.qrResult = controller.qrResult;
             model.selectedMessageType = controller.selectedMessageType!;
             model.selectedMessageId = controller.selectedMessageId!;
             model.response = controller.response;
-            if (controller.attachmentFile.isNotEmpty)
-              model.attachmentFile =controller. attachmentFile;
+            if (controller.attachmentFile != null)
+              model.attachmentFile = controller.attachmentFile;
 
-            if (controller.response) model.selectedResponseType = controller.selectedResponseType;
-            if (controller.response && controller.selectedResponseType == 'Custom' && cSelected) {
+            if (controller.response)
+              model.selectedResponseType = controller.selectedResponseType;
+            if (controller.response &&
+                controller.selectedResponseType == 'Custom' &&
+                cSelected) {
               model.selectedCustomResponseId = selectedId;
             }
 
@@ -102,7 +104,6 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                         style: w300_13(),
                         autovalidateMode: AutovalidateMode.disabled,
                         controller: controller.locationController,
-
                         decoration: InputDecoration(
                             hintStyle: w300_13(),
                             hintText: 'Select Location',
@@ -136,21 +137,13 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 getMessage(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Attachment',
-                        style: w300_13(
-                          color: AppColors.blueColor,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      getAttachment(),
-                    ],
-                  ),
+                  child: AttachmentWidget(
+                      hint: 'Attachment',
+                      title: 'Select Files',attachment: controller.attachmentFile,
+                      filePickedCallback: (value) {
+                        controller.attachmentFile = value;
+                        setState(() {});
+                      }),
                 ),
                 SizedBox(
                   height: 10.h,
@@ -180,7 +173,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                               value: controller.response,
                               onChanged: (value) {
                                 setState(() {
-                                  controller. response = value;
+                                  controller.response = value;
                                 });
                               },
                             ),
@@ -272,7 +265,9 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                                   });
                               },
                               child: Text(
-                                controller. qrResult.isNotEmpty ? "Re-Scan QR" : 'Scan QR',
+                                controller.qrResult.isNotEmpty
+                                    ? "Re-Scan QR"
+                                    : 'Scan QR',
                                 style: w900_15(color: Colors.white),
                               ),
                               height: 50.h,
@@ -340,8 +335,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             Get.toNamed(Routes.selectTextMessageScreen)?.then((value) {
               if (value != null) {
                 setState(() {
-                  controller.  selectedMessageType = 'Text';
-                  controller.  selectedMessageId = value;
+                  controller.selectedMessageType = 'Text';
+                  controller.selectedMessageId = value;
                 });
               }
             });
@@ -349,7 +344,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
           child: Container(
             decoration: BoxDecoration(
                 border: Border.all(
-                    color:controller. selectedMessageType == 'Text'
+                    color: controller.selectedMessageType == 'Text'
                         ? AppColors.purpleColor
                         : AppColors.greyColor),
                 borderRadius: BorderRadius.circular(8)),
@@ -385,8 +380,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             Get.toNamed(Routes.selectAudioMessageScreen)?.then((value) {
               if (value != null) {
                 setState(() {
-                  controller. selectedMessageType = 'Audio';
-                  controller. selectedMessageId = value;
+                  controller.selectedMessageType = 'Audio';
+                  controller.selectedMessageId = value;
                 });
               }
             });
@@ -416,7 +411,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 Text(
                   'Audio',
                   style: w300_13(
-                    color:controller. selectedMessageType == 'Audio'
+                    color: controller.selectedMessageType == 'Audio'
                         ? AppColors.purpleColor
                         : Colors.black,
                   ),
@@ -430,8 +425,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             Get.toNamed(Routes.selectVideoMessageScreen)?.then((value) {
               if (value != null) {
                 setState(() {
-                  controller.  selectedMessageType = 'Video';
-                  controller. selectedMessageId = value;
+                  controller.selectedMessageType = 'Video';
+                  controller.selectedMessageId = value;
                 });
               }
             });
@@ -439,7 +434,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
           child: Container(
             decoration: BoxDecoration(
                 border: Border.all(
-                    color:controller. selectedMessageType == 'Video'
+                    color: controller.selectedMessageType == 'Video'
                         ? AppColors.purpleColor
                         : AppColors.greyColor),
                 borderRadius: BorderRadius.circular(8)),
@@ -461,7 +456,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 Text(
                   'Video',
                   style: w300_13(
-                    color:controller. selectedMessageType == 'Video'
+                    color: controller.selectedMessageType == 'Video'
                         ? AppColors.purpleColor
                         : Colors.black,
                   ),
@@ -491,8 +486,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   Expanded(
                     child: Text(
                       controller.textMessageList.value
-                              .lastWhere(
-                                  (element) => element.id == controller.selectedMessageId)
+                              .lastWhere((element) =>
+                                  element.id == controller.selectedMessageId)
                               .content ??
                           '',
                       style: w300_13(color: AppColors.dark2GreyColor),
@@ -524,8 +519,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   children: [
                     Text(
                       controller.audioMessageList.value
-                              .lastWhere(
-                                  (element) => element.id ==controller. selectedMessageId)
+                              .lastWhere((element) =>
+                                  element.id == controller.selectedMessageId)
                               .title ??
                           '',
                       style: w300_13(),
@@ -556,8 +551,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                 ),
                 ImageView(
                   path: (controller.videoMessageList.value
-                          .lastWhere(
-                              (element) => element.id ==controller. selectedMessageId)
+                          .lastWhere((element) =>
+                              element.id == controller.selectedMessageId)
                           .thumbnail ??
                       ''),
                   height: 50,
@@ -570,8 +565,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   children: [
                     Text(
                       controller.videoMessageList.value
-                              .lastWhere(
-                                  (element) => element.id ==controller. selectedMessageId)
+                              .lastWhere((element) =>
+                                  element.id == controller.selectedMessageId)
                               .title ??
                           '',
                       style: w300_13(),
@@ -596,8 +591,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
   Widget getCloseIcon() {
     return GestureDetector(
       onTap: () {
-        controller. selectedMessageId = null;
-        controller. selectedMessageType = null;
+        controller.selectedMessageId = null;
+        controller.selectedMessageType = null;
         setState(() {});
       },
       child: Container(
@@ -650,13 +645,13 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  controller. selectedResponseType = 'Custom';
+                  controller.selectedResponseType = 'Custom';
                 });
               },
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(
-                        color:controller. selectedResponseType == 'Custom'
+                        color: controller.selectedResponseType == 'Custom'
                             ? AppColors.purpleColor
                             : AppColors.greyColor),
                     borderRadius: BorderRadius.circular(8)),
@@ -749,76 +744,5 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         )
       ],
     );
-  }
-
-  getAttachment() {
-    if (controller.attachmentFile.isNotEmpty)
-      return Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: AppColors.greyColor),
-            borderRadius: BorderRadius.circular(8)),
-        padding: EdgeInsets.all(8),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                controller.attachmentFile.split('/').last,
-                maxLines: 2,
-                style: w300_13(),
-              ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  controller. attachmentFile = '';
-                });
-              },
-              child: ImageView(
-                path: Images.closeIcon,
-                width: 10,
-                color: AppColors.purpleColor,
-              ),
-            )
-          ],
-        ),
-      );
-    return GestureDetector(
-        onTap: () async {
-          FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-          if (result != null) {
-            setState(() {
-              controller.attachmentFile = result.files.single.path!;
-            });
-          }
-        },
-        child: DottedBorder(
-          color: AppColors.greyColor,
-          strokeWidth: 1,
-          dashPattern: [5, 5],
-          borderType: BorderType.RRect,
-          radius: Radius.circular(8),
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ImageView(
-                path: Images.attachIcon,
-                color: AppColors.purpleColor,
-                height: 15,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                'Select Files',
-                style: w300_13(),
-              )
-            ],
-          ),
-        ));
   }
 }
