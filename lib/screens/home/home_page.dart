@@ -154,6 +154,13 @@ class _HomepageState extends State<Homepage> {
                         NoticeOfEventController controller=Get.find();
                         controller.reset();
                       }
+
+                      else if(controller.currentSelectedIndex==4){
+                        NoticeOfEventController controller=Get.find();
+                        controller.getNOEList();
+                      }
+
+
                     });
                   });
             }),

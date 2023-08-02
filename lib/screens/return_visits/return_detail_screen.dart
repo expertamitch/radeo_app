@@ -4,26 +4,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:redeo/models/return_visit_list_model.dart';
+import 'package:redeo/network/repository/backend_repo.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/image_view.dart';
 
 import '../../assets/images.dart';
+import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
-import '../home/home_page_controller.dart';
-import 'notice_of_event_controller.dart';
+import '../notice_of_event/notice_of_event_controller.dart';
 
-class NoticeOfEventSummaryPage extends StatefulWidget {
-  const NoticeOfEventSummaryPage({Key? key}) : super(key: key);
+class ReturnDetailScreen extends StatefulWidget {
+  const ReturnDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<NoticeOfEventSummaryPage> createState() =>
-      _NoticeOfEventSummaryPageState();
+  State<ReturnDetailScreen> createState() =>
+      _ReturnDetailScreenState();
 }
 
-class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
+class _ReturnDetailScreenState extends State<ReturnDetailScreen> {
   NoticeOfEventController controller = Get.find();
-
+NOEModel model=Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,24 +38,33 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
           Row(
             children: [
               AppButton(
-                  onPressedFunction: () async {
-                    bool success = await controller.createNOE();
-                    if (success) {
-                      Get.back();
-                      HomePageController homePageController = Get.find();
-                      homePageController.currentSelectedIndex.value = 0;
-                      homePageController.currentSelectedIndex.value = 1;
-                      controller.reset();
-                    }
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.createReturnPageScreen, arguments:  Get.arguments);
                   },
                   child: Text(
-                    'Save',
+                    'Create Return',
                     style: w300_12(color: Colors.white),
                   ),
                   height: 30.h,
                   sodiumShapeBorder: true,
                   width: null,
                   buttonColor: AppColors.purpleColor),
+              SizedBox(
+                width: 10.w,
+              ),
+              AppButton(
+                  onPressedFunction: () {
+                    Get.toNamed(Routes.historyPage);
+                  },
+                  child: ImageView(
+                    path: Images.historyIcon,
+                    color: Colors.white,
+                    height: 16,
+                  ),
+                  height: 30.h,
+                  sodiumShapeBorder: true,
+                  width: null,
+                  buttonColor: AppColors.blueColor)
             ],
           ),
           SizedBox(
@@ -76,19 +87,12 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: controller.uploadImg != null
-                            ? Image.file(
-                                controller.uploadImg!,
-                                width: 100,
-                                fit: BoxFit.cover,
-                                height: 60,
-                              )
-                            : ImageView(
-                                path: Images.attachIcon,
-                                width: 100,
-                                fit: BoxFit.cover,
-                                height: 60,
-                              ),
+                        child:Image.network(
+                          BackendRepo.storageUrl+model.nameImage!,
+                          width: 100,
+                          fit: BoxFit.cover,
+                          height: 60,
+                        ),
                       ),
                       SizedBox(
                         height: 10.h,
@@ -108,11 +112,11 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                           decoration: BoxDecoration(
                               border: Border.all(color: AppColors.greyColor),
                               borderRadius: BorderRadius.circular(8)),
-                          child: SvgPicture.asset(controller.level == 1
+                          child: SvgPicture.asset(model.returnVisit!.level == 'cloud'
                               ? 'assets/icons/screen 18/Level 1.svg'
-                              : controller.level == 2
-                                  ? 'assets/icons/screen 18/Level 2.svg'
-                                  : 'assets/icons/screen 18/Level 3.svg')),
+                              : model.returnVisit!.level == 'rain'
+                              ? 'assets/icons/screen 18/Level 2.svg'
+                              : 'assets/icons/screen 18/Level 3.svg')),
                       SizedBox(
                         height: 10.h,
                       ),
@@ -125,29 +129,29 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                 ],
               ),
               getDivider(),
-              getCell('Location', controller.locationController.text),
+              getCell('Location', model.location!),
               getDivider(),
-              getCell('Email', controller.emailController.text),
+              getCell('Email', model.email!),
               getDivider(),
-              getCell('Telephone', controller.telephoneController.text),
+              getCell('Telephone', model.email!),
               getDivider(),
               getCell(
                   'Date and Time',
-                  controller.selectedDate != null
-                      ? DateFormat('MMMM,dd yyyy, hh:mm a')
-                          .format(controller.selectedDate!)
-                      : "Sunday, January 5, 2021 | 12:05 pm"),
+
+                       DateFormat('MMMM,dd yyyy, hh:mm a')
+                          .format(model.dateTime!)
+                      ),
               getDivider(),
-              getCell('Territory', controller.territoryInfo!.name!),
+              getCell('Territory', model.territoryId!.toString()),
               getDivider(),
-              getCell('Given Content Type ', controller.contentTypes),
+              getCell('Given Content Type ', model.givenContentType??''),
               getDivider(),
               getCell(
-                  'Given Content Name ', controller.contentNameController.text),
+                  'Given Content Name ', model.givenContentName??''),
               getDivider(),
               getCell(
                   'Attributes',
-                  '${controller.attributesStatus == 1 ? 'Single' : controller.attributesStatus == 2 ? 'Married' : 'Divorced'} | Boy: ${controller.boysController.text} | Girl : ${controller.girlsController.text} '),
+                  model.maritalStatus!),
               SizedBox(
                 height: 10.h,
               ),
@@ -158,7 +162,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                     borderRadius: BorderRadius.circular(4)),
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  controller.noteController.text,
+                  model.notes!,
                   style: w300_12(color: AppColors.dark2GreyColor),
                 ),
               ),
@@ -190,7 +194,7 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
                         children: [
                           Expanded(
                             child: Text(
-                              controller.attachmentFile!.split('/').last,
+                              model.attachments!,
                               maxLines: 2,
                               style: w300_13(),
                             ),
@@ -207,20 +211,20 @@ class _NoticeOfEventSummaryPageState extends State<NoticeOfEventSummaryPage> {
               getDivider(),
               getCell(
                   'Return Visit',
-                  controller.setReturnVisitDate != null
-                      ? DateFormat('MMMM,dd yyyy, hh:mm a')
-                          .format(controller.setReturnVisitDate!)
-                      : "Sunday, January 5, 2021 | 12:05 pm"),
+
+                        DateFormat('MMMM,dd yyyy, hh:mm a')
+                          .format(model.returnVisit!.returnDate!)
+                       ),
               getDivider(),
-              getCell('Time Period', controller.selectedTimePeroidDD!),
+              getCell('Time Period',model.returnVisit!.type!),
               getDivider(),
-              getCell('Notify Me', controller.selectedNotifyMeDD!),
+              getCell('Notify Me', model.returnVisit!.notificationSelf??''),
               getDivider(),
-              getCell('Notify ${controller.nameController.text}',
-                  controller.notifySelf ? 'Yes' : 'No'),
+              getCell('Notify ${model.name!}',
+                  model.returnVisit!.notificationOther! ? 'Yes' : 'No'),
               getDivider(),
               getCell('Indicators',
-                  controller.indicatorsList[controller.indicatorStatus! - 1]),
+                  model.indicators!),
               getDivider(),
               SizedBox(
                 height: 25.h,

@@ -6,6 +6,7 @@ import 'package:redeo/models/custom_message_model.dart';
 import 'package:redeo/models/dnc_list_response_model.dart';
 import 'package:redeo/models/message_only_model.dart';
 import 'package:redeo/models/register_model.dart';
+import 'package:redeo/models/return_visit_list_model.dart';
 
 import '../../models/add_custom_message_model.dart';
 import '../../models/all_redeo_member_list_response_model.dart';
@@ -456,10 +457,23 @@ class BackendRepo {
     }
   }
 
-
-
   Future<MessageOnlyModel> createNOE(
-      {required Map<String, dynamic> map }) async {
+      {required Map<String, dynamic> map,
+      required String nameImagePath,
+      required String attachmentPath}) async {
+    var bytes = await File(nameImagePath).readAsBytes();
+    map['name_image'] = MultipartFile.fromBytes(
+      bytes,
+      filename:
+          '${DateTime.now().microsecondsSinceEpoch}.${nameImagePath.split('/').last}',
+    );
+
+    var bytes1 = await File(attachmentPath).readAsBytes();
+    map['attachments[]'] = MultipartFile.fromBytes(
+      bytes1,
+      filename:
+          '${DateTime.now().microsecondsSinceEpoch}.${attachmentPath.split('/').last}',
+    );
 
     var formData = FormData.fromMap(map);
 
@@ -477,7 +491,22 @@ class BackendRepo {
     }
   }
 
-
+  Future<ReturnVisitListModel> getNOEList() async {
+    String url = "${baseUrl}user/return";
+    try {
+      final response = await apiUtils.get(
+        url: url,
+        options: getOptions(),
+      );
+      var model = ReturnVisitListModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
   Options getOptions({bool addAuth = true}) {
     Options? options = Options();

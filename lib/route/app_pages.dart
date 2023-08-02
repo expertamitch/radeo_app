@@ -10,6 +10,7 @@ import 'package:redeo/screens/create_message/text_message/enter_text_message_pag
 import 'package:redeo/screens/groups/edit_group_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
+import 'package:redeo/screens/return_visits/return_detail_screen.dart';
 import 'package:redeo/screens/territory/choose_territory.dart';
 import 'package:redeo/screens/territory/territory_assign_contacts/contacts_page.dart';
 import 'package:redeo/screens/territory/territory_details_screen.dart';
@@ -34,7 +35,7 @@ import '../screens/field_service/map_page.dart';
 import '../screens/groups/attendants_page.dart';
 import '../screens/groups/create_group_page.dart';
 import '../screens/invite/invitee_page.dart';
-import '../screens/notice_of_event/create_return_page.dart';
+import '../screens/return_visits/create_return_page.dart';
 import '../screens/notice_of_event/history_page.dart';
 import '../screens/notice_of_event/notice_of_event_summary_page.dart';
 import '../screens/report/edit_report_page.dart';
@@ -205,6 +206,7 @@ class AppPages {
       name: Routes.createReturnPageScreen,
       transition: Transition.cupertino,
       page: () => CreateReturnPage(),
+      arguments: Get.arguments
     ),
     GetPage(
       name: Routes.historyPage,
@@ -283,6 +285,12 @@ class AppPages {
         name: Routes.editGroupScreen,
         transition: Transition.cupertino,
         page: () => EditGroupPage(),
+        arguments: Get.arguments),
+
+    GetPage(
+        name: Routes.returnDetailScreen,
+        transition: Transition.cupertino,
+        page: () => ReturnDetailScreen(),
         arguments: Get.arguments),
   ];
 }

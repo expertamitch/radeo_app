@@ -70,7 +70,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
         appBar: CustomAppBar(
           title: 'Notice of Event',
           isBack: Get.arguments != null,
-          button1: 'Save',
+          button1: 'Review',
           buttonTap1: () {
             FocusManager.instance.primaryFocus?.unfocus();
 

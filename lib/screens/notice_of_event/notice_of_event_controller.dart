@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:redeo/models/return_visit_list_model.dart';
 
 import '../../models/territory_list_model.dart';
 import '../../network/internet_exception.dart';
@@ -11,11 +12,7 @@ import '../../utils/snackbar_util.dart';
 import '../../widgets/loader.dart';
 
 class NoticeOfEventController extends GetxController {
-
-  List<String> indicatorsList=['Open for Encouragement', 'Do Not Contact'];
-
-
-
+  List<String> indicatorsList = ['Open for Encouragement', 'Do Not Contact'];
 
   bool showDateTimeError = false;
   bool showSetReturnVisitDateTimeError = false;
@@ -26,9 +23,9 @@ class NoticeOfEventController extends GetxController {
   bool showTerritoryError = false;
   bool showLevelError = false;
   bool notifySelf = false;
-  bool showTimePeroidDDError= false;
+  bool showTimePeroidDDError = false;
   bool showNotifyMeDDError = false;
-  AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   File? uploadImg;
   String? attachmentFile;
@@ -37,7 +34,7 @@ class NoticeOfEventController extends GetxController {
   TextEditingController locationController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController telephoneController = TextEditingController();
-   TextEditingController boysController = TextEditingController(text: '00');
+  TextEditingController boysController = TextEditingController(text: '00');
   TextEditingController girlsController = TextEditingController(text: '00');
   TextEditingController noteController = TextEditingController();
   TextEditingController contentNameController = TextEditingController();
@@ -52,14 +49,11 @@ class NoticeOfEventController extends GetxController {
   int? indicatorStatus; //openForEncouragment, Don not contract
   int? level;
 
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-
 
   reset() {
     formKey.currentState?.reset();
-    autovalidateMode=AutovalidateMode.disabled;
+    autovalidateMode = AutovalidateMode.disabled;
     showDateTimeError = false;
     showSetReturnVisitDateTimeError = false;
     noticeTypesError = false;
@@ -80,7 +74,7 @@ class NoticeOfEventController extends GetxController {
     emailController.text = '';
     contentNameController.text = '';
     telephoneController.text = '';
-     boysController.text = '';
+    boysController.text = '';
     girlsController.text = '';
     noteController.text = '';
     selectedDate = null;
@@ -96,12 +90,8 @@ class NoticeOfEventController extends GetxController {
     level = null;
   }
 
-
   Future<bool> createNOE() async {
     try {
-
-
-
       Map<String, dynamic> map = {};
 
       map = {
@@ -109,40 +99,44 @@ class NoticeOfEventController extends GetxController {
         'location': locationController.text,
         'email': emailController.text,
         'telephone': telephoneController.text,
-        'marital_status': attributesStatus==1?'single':attributesStatus==2?'married':'divorced',
+        'marital_status': attributesStatus == 1
+            ? 'single'
+            : attributesStatus == 2
+                ? 'married'
+                : 'divorced',
         'territory_id': territoryInfo!.id!.toString(),
-        'girls': girlsController.text,
-        'boys': boysController.text,
-        'return_visit_type': selectedTimePeroidDD!.toLowerCase(),
-        'notification_self': selectedNotifyMeDD!.toLowerCase(),
-        'notification_other': notifySelf,
-        'given_content_type': contentTypes.toLowerCase(),
-        'given_content_name': contentNameController.text,
-        'level': level==1?'cloud':level==2?'rain':'tree',
-        'indicators': indicatorStatus==1?'open-for-encourgament':'do-not-call',
+        'girls': girlsController.text.isEmpty ? 0 : girlsController.text,
+        'boys': boysController.text.isEmpty ? 0 : boysController.text,
+        'return_visit_type': selectedTimePeroidDD!.contains('ly')
+            ? selectedTimePeroidDD!.replaceAll('ly', '').toLowerCase()
+            : selectedTimePeroidDD!.toLowerCase(), //
+        'notification_self': selectedNotifyMeDD!.contains('ly')
+            ? selectedNotifyMeDD!.replaceAll('ly', '').toLowerCase()
+            : selectedNotifyMeDD!.toLowerCase(), //
+        'notification_other': !notifySelf ? 0 : 1, //
+        'given_content_type': contentTypes.toLowerCase(), //
+        'given_content_name': contentNameController.text, //
+        'level': level == 1
+            ? 'cloud'
+            : level == 2
+                ? 'rain'
+                : 'tree',
+        'indicators':
+            indicatorStatus == 1 ? 'open-for-encourgament' : 'do-not-call',
         'notes': noteController.text,
-        'date_time': DateFormat('YYYY-MM-dd HH:mm:ss').format(selectedDate!),
+        'date_time': DateFormat('yyyy-MM-dd HH:mm:ss').format(selectedDate!),
+        'return_date':
+            DateFormat('yyyy-MM-dd HH:mm:ss').format(setReturnVisitDate!),
       };
 
-      var bytes = await uploadImg!.readAsBytes();
-        map['name_image'] = MultipartFile(
-          bytes,
-          filename:
-          '${DateTime.now().microsecondsSinceEpoch}.${uploadImg!.path.split('/').last}',
-        );
 
-
-
-      var bytes1 = await File(attachmentFile!).readAsBytes();
-      map['attachments[]'] = MultipartFile(
-        bytes1,
-        filename:
-        '${DateTime.now().microsecondsSinceEpoch}.${attachmentFile!.split('/').last}',
-      );
 
       showLoader();
 
-      var data = await BackendRepo().createNOE(map: map);
+      var data = await BackendRepo().createNOE(
+          map: map,
+          nameImagePath: uploadImg!.path,
+          attachmentPath: attachmentFile!);
       if (data.message != null) {
         showSuccessSnackBar(data.message!);
       }
@@ -154,6 +148,28 @@ class NoticeOfEventController extends GetxController {
     } catch (e) {
       hideLoader();
       showErrorSnackBar(e.toString());
+      return false;
+    }
+  }
+
+  RxList<NOEModel> noeList = RxList();
+  RxBool noeListLoading = false.obs;
+
+  Future<bool> getNOEList() async {
+    try {
+      noeList.clear();
+      noeListLoading.value = true;
+      var result = await BackendRepo().getNOEList();
+      noeList.value = result.info?.data ?? [];
+      noeListLoading.value = false;
+      return true;
+    } on InternetException {
+      noeListLoading.value = false;
+      return false;
+    } catch (e) {
+      noeListLoading.value = false;
+      showErrorSnackBar(e.toString());
+
       return false;
     }
   }
