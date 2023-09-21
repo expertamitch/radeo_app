@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -10,11 +11,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:redeo/route/app_pages.dart';
-import 'package:redeo/screens/authentication/welcome_page.dart';
-import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/splash/splash_screen.dart';
+
 import 'firebase_options.dart';
-import 'network/storage_utils.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -157,13 +156,9 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-
-
 class NavigationService {
-  static GlobalKey<NavigatorState> navigatorKey =
-  GlobalKey<NavigatorState>();
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
-
 
 // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 //   debugPrint("FIREBASE_MESSAGING:----    $message");
@@ -316,11 +311,11 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
-
       useInheritedMediaQuery: true,
       builder: (context, child) {
         return GetMaterialApp(
-          navigatorKey: NavigationService.navigatorKey, // set property
+          navigatorKey: NavigationService.navigatorKey,
+          // set property
           // useInheritedMediaQuery: false,
           debugShowCheckedModeBanner: false,
           builder: (context, child) => child ?? Scaffold(),

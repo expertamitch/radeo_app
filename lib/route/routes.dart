@@ -47,9 +47,12 @@ abstract class Routes {
   static const createNoticeOfEventScreen = '/createNoticeOfEventScreen';
   static const createReturnPageScreen = '/createReturnPageScreen';
   static const returnDetailScreen = '/returnDetailScreen';
+  static const incompleteReturnsScreen = '/incompleteReturnsScreen';
+  static const incompleteReturnDetailScreen = '/incompleteReturnDetailScreen';
   static const historyPage = '/historyPage';
   static const noticeOfEventSummaryScreen = '/noticeOfEventSummaryScreen';
    static const scanQrScreen = '/scanQrScreen';
+   static const inviteContactsScreen = '/inviteContactsScreen';
 
   //reports page
    static const editReportsScreen = '/editReportsScreen';

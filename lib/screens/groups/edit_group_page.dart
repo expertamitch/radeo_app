@@ -6,7 +6,6 @@ import 'package:redeo/screens/groups/controller/groups_controller.dart';
 import 'package:redeo/screens/groups/select_attendant_bottom_sheet.dart';
 import 'package:redeo/widgets/app_button.dart';
 
-import '../../models/local_attendant_model.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
@@ -38,7 +37,7 @@ class _EditGroupPageState extends State<EditGroupPage> {
         isValid.value =
             (Validators.validateName(groupNameController.text) == null &&
                 model.users!.length > 1 &&
-                attendant != null);
+                attendantsCount > 0);
         setState(() {});
         check();
       });
@@ -47,8 +46,8 @@ class _EditGroupPageState extends State<EditGroupPage> {
 
   RxBool isValid = false.obs;
   bool keepChecking = true;
-  int count = 0;
-  UserData? attendant;
+  int membersCount = 0;
+  int attendantsCount = 0;
 
   @override
   void initState() {
@@ -63,61 +62,38 @@ class _EditGroupPageState extends State<EditGroupPage> {
   }
 
   reCal() {
-    count = 0;
-    attendant = null;
+    membersCount = 0;
+    attendantsCount = 0;
     model.users!.forEach((element) {
       element.users!.forEach((element1) {
-        if (element1.isAttendent) attendant = element1;
+        if (element1.isAttendant) attendantsCount++;
 
-        count++;
+        membersCount++;
       });
     });
 
-    if (attendant == null)
-      inviteController.tempGroupsList
-          .where((p) => p.selected)
-          .forEach((element) {
-        element.users!.forEach((p0) {
-          p0.users!.forEach((p1) {
-            if (p1.isAttendent) {
-              attendant = UserData(
-                  mobile: p1.mobile,
-                  firstName: p1.firstName,
-                  lastName: p1.lastName,
-                  isAttendent: true,
-                  contact_type: p1.contact_type,
-                  from_group_id: p1.from_group_id);
-            }
-          });
+    inviteController.redeoList.where((element) => element.selected).forEach((e) {
+      if (e.isAttendant) attendantsCount++;
+    });
+
+    inviteController.contacts.where((element) => element.selected).forEach((e) {
+      if (e.isAttendant) attendantsCount++;
+    });
+
+    inviteController.groupsList
+        .where((element) => element.selected)
+        .toList()
+        .forEach((element) {
+      element.users!.forEach((element) {
+        element.users!.forEach((element) {
+          if (element.isLocalAttendant) {
+            attendantsCount++;
+          }
         });
       });
+    });
 
-    if (attendant == null)
-      inviteController.tempContactsList
-          .where((p) => p.selected)
-          .forEach((element) {
-        if (element.isAttendant)
-          attendant = UserData(
-            mobile: element.phoneContact.phones[0].number,
-            firstName: element.phoneContact.name.first,
-            lastName: element.phoneContact.name.last,
-            isAttendent: true,
-            contact_type: 'phone',
-          );
-      });
-
-    if (attendant == null)
-      inviteController.redeoList.where((p) => p.selected).forEach((element) {
-        if (element.isAttendant) {
-          attendant = UserData(
-            mobile: element.mobile,
-            firstName: element.firstName,
-            lastName: element.lastName,
-            isAttendent: true,
-            contact_type: 'redeo',
-          );
-        }
-      });
+    setState(() {});
   }
 
   @override
@@ -146,11 +122,13 @@ class _EditGroupPageState extends State<EditGroupPage> {
                                     "${element.firstName ?? ''} ${element.lastName ?? ''}",
                                 'mobile': element.mobile ?? '',
                                 'contact_type': element.contact_type,
-                                'is_attendent': element.isAttendent
+                                'is_attendent': element.isAttendant
                               });
                             });
                           });
-                          inviteController.tempGroupsList.where((p9) => p9.selected).forEach((p0) {
+                          inviteController.groupsList
+                              .where((p9) => p9.selected)
+                              .forEach((p0) {
                             p0.users!.forEach((element) {
                               element.users!.forEach((p2) {
                                 usersArray.add({
@@ -158,13 +136,15 @@ class _EditGroupPageState extends State<EditGroupPage> {
                                       "${p2.firstName ?? ''} ${p2.lastName ?? ''}",
                                   'mobile': p2.mobile ?? '',
                                   'contact_type': element.contactType,
-                                  'is_attendent': p2.isAttendent
+                                  'is_attendent': p2.isAttendant
                                 });
                               });
                             });
                           });
 
-                          inviteController.tempRedeoList.where((p9) => p9.selected).forEach((p0) {
+                          inviteController.redeoList
+                              .where((p9) => p9.selected)
+                              .forEach((p0) {
                             usersArray.add({
                               'name':
                                   "${p0.firstName ?? ''} ${p0.lastName ?? ''}",
@@ -174,7 +154,9 @@ class _EditGroupPageState extends State<EditGroupPage> {
                             });
                           });
 
-                          inviteController.tempContactsList.where((p9) => p9.selected).forEach((p0) {
+                          inviteController.contacts
+                              .where((p9) => p9.selected)
+                              .forEach((p0) {
                             usersArray.add({
                               'name':
                                   "${p0.phoneContact.name.first ?? ''} ${p0.phoneContact.name.last ?? ''}",
@@ -274,7 +256,7 @@ class _EditGroupPageState extends State<EditGroupPage> {
                       height: 2.h,
                     ),
                     Text(
-                      '${count + inviteController.selectedMembersCount.value} Members selected',
+                      '${membersCount + inviteController.selectedMembersCount.value} Members selected',
                       style: w600_13(
                         color: AppColors.blueColor,
                       ),
@@ -353,11 +335,7 @@ class _EditGroupPageState extends State<EditGroupPage> {
                       height: 2.h,
                     ),
                     Text(
-                      attendant == null
-                          ? ''
-                          : ((attendant!.firstName ?? '') +
-                              ' ' +
-                              (attendant!.lastName ?? '')),
+                      "${attendantsCount} attendants selected",
                       style: w600_13(
                         color: AppColors.blueColor,
                       ),
@@ -373,81 +351,80 @@ class _EditGroupPageState extends State<EditGroupPage> {
               if (model.isEditing)
                 AppButton(
                     onPressedFunction: () {
-                      showSelectAttendantBottomSheet(model.users!)
-                          .then((value) {
+                      showSelectAttendantBottomSheet(
+                        model,
+                      ).then((value) {
                         if (value != null) {
-                          model.users!.forEach((element) {
-                            element.users!.forEach((p0) {
-                              p0.isAttendent = false;
-                            });
-                          });
+                          model = value;
 
-                          inviteController.tempGroupsList.forEach((element) {
-                            element.users!.forEach((p0) {
-                              p0.users!.forEach((p1) {
-                                p1.isAttendent = false;
-                              });
-                            });
-                          });
-
-                          inviteController.tempRedeoList.forEach((element) {
-                            element.isAttendant = false;
-                          });
-                          inviteController.tempContactsList.forEach((element) {
-                            element.isAttendant = false;
-                          });
-
-                          LocalAttendantModel m = value;
-                          bool sel = false;
-
-                          model.users!.forEach((element) {
-                            element.users!.forEach((p0) {
-                              if (p0.mobile == m.phone) {
-                                sel = true;
-                                p0.isAttendent = true;
-                              }
-                            });
-                          });
-
-                          if (!sel)
-                            inviteController.tempGroupsList.forEach((element) {
-                              element.users!.forEach((p0) {
-                                p0.users!.forEach((p1) {
-                                  if (p1.mobile == m.phone) {
-                                    sel = true;
-                                    p1.isAttendent = true;
-                                  }
-                                });
-                              });
-                            });
-
-                          if (!sel)
-                            inviteController.tempContactsList
-                                .forEach((element) {
-                              if (element.phoneContact.phones[0].number ==
-                                  m.phone) {
-                                sel = true;
-                                element.isAttendant = true;
-                              }
-                            });
-
-                          if (!sel)
-                            inviteController.redeoList.forEach((element) {
-                              if (element.mobile == m.phone) {
-                                sel = true;
-                                element.isAttendant = true;
-                              }
-                            });
-
-                          attendant = UserData(
-                              isAttendent: true,
-                              id: 1,
-                              firstName: m.name,
-                              mobile: m.phone,
-                              contact_type: m.type,
-                              from_group_id:
-                                  m.type == 'group' ? m.from_group_id : null);
-                          setState(() {});
+                          // model.users!.forEach((element) {
+                          //   element.users!.forEach((p0) {
+                          //     p0.isAttendant = false;
+                          //   });
+                          // });
+                          //
+                          // inviteController.tempGroupsList.forEach((element) {
+                          //   element.users!.forEach((p0) {
+                          //     p0.users!.forEach((p1) {
+                          //       p1.isAttendant = false;
+                          //     });
+                          //   });
+                          // });
+                          //
+                          // inviteController.tempRedeoList.forEach((element) {
+                          //   element.isAttendant = false;
+                          // });
+                          // inviteController.tempContactsList.forEach((element) {
+                          //   element.isAttendant = false;
+                          // });
+                          //
+                          // List<LocalAttendantModel> l = value;
+                          //
+                          // l.forEach((m) {
+                          //   bool sel = false;
+                          //
+                          //   model.users!.forEach((element) {
+                          //     element.users!.forEach((p0) {
+                          //       if (p0.mobile == m.phone) {
+                          //         sel = true;
+                          //         p0.isAttendant = true;
+                          //       }
+                          //     });
+                          //   });
+                          //
+                          //   if (!sel)
+                          //     inviteController.tempGroupsList.forEach((element) {
+                          //       element.users!.forEach((p0) {
+                          //         p0.users!.forEach((p1) {
+                          //           if (p1.mobile == m.phone) {
+                          //             sel = true;
+                          //             p1.isAttendant = true;
+                          //           }
+                          //         });
+                          //       });
+                          //     });
+                          //
+                          //   if (!sel)
+                          //     inviteController.tempContactsList
+                          //         .forEach((element) {
+                          //       if (element.phoneContact.phones[0].number ==
+                          //           m.phone) {
+                          //         sel = true;
+                          //         element.isAttendant = true;
+                          //       }
+                          //     });
+                          //
+                          //   if (!sel)
+                          //     inviteController.redeoList.forEach((element) {
+                          //       if (element.mobile == m.phone) {
+                          //         sel = true;
+                          //         element.isAttendant = true;
+                          //       }
+                          //     });
+                          //   setState(() {});
+                          //
+                          // });
+                          //
                         }
                         reCal();
                       });

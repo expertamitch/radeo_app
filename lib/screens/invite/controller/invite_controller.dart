@@ -92,89 +92,60 @@ class InviteController extends GetxController {
       contactListLoading.value = false;
   }
 
-  createAttendantList(List<Users>? data) {
-    if (data != null) {
-      List<LocalAttendantModel> la = [];
+  createAttendantList() {
+    List<GroupModel> selectedGroupsList =
+        tempGroupsList.where((p0) => p0.selected).toList();
+    List<PhoneContactModel> selectedContactsList =
+        tempContactsList.where((p0) => p0.selected).toList();
+    List<Info> selectedRedeoContactsList =
+        tempRedeoList.where((p0) => p0.selected).toList();
 
+    List<LocalAttendantModel> la = [];
 
-      data.forEach((element) {
-        element.users!.forEach((element1) {
-          la.add(LocalAttendantModel(
-              selected: false,
-              type: element.contactType!,
-              from_group_id: element.contactType == 'group'
-                  ? element1.from_group_id
-                  : null,
-              phone: element1.mobile ?? '',
-              name: "${element1.firstName ?? ''} ${element1.lastName ?? ''}"));
-        });
+    selectedRedeoContactsList.forEach((element) {
+      la.add(LocalAttendantModel(
+          selected: false,
+          phone: element.mobile ?? '',
+          type: 'redeo',
+          name: "${element.firstName} ${element.lastName}"));
+    });
 
+    selectedContactsList.forEach((element) {
+      la.add(LocalAttendantModel(
+          selected: false,
+          type: 'phone',
+          phone: element.phoneContact.phones[0].number,
+          name:
+              "${element.phoneContact.name.first} ${element.phoneContact.name.last}"));
+    });
 
-
+    selectedGroupsList.forEach((element) {
+      element.users?.forEach((element1) {
+        if (element1.users!.length > 0) {
+          element1.users!.forEach((data) {
+            la.add(LocalAttendantModel(
+                selected: false,
+                type: element1.contactType!,
+                from_group_id:
+                    element1.contactType == 'group' ? data.from_group_id : null,
+                phone: data.mobile ?? '',
+                name: "${data.firstName ?? ''} ${data.lastName ?? ''}"));
+          });
+        }
       });
-      attendants = la;
-      tempAttendantsList.value = la;
+    });
 
-
-
-
-
-    } else {
-      List<GroupModel> selectedGroupsList =
-          tempGroupsList.where((p0) => p0.selected).toList();
-      List<PhoneContactModel> selectedContactsList =
-          tempContactsList.where((p0) => p0.selected).toList();
-      List<Info> selectedRedeoContactsList =
-          tempRedeoList.where((p0) => p0.selected).toList();
-
-      List<LocalAttendantModel> la = [];
-
-      selectedRedeoContactsList.forEach((element) {
-        la.add(LocalAttendantModel(
-            selected: false,
-            phone: element.mobile ?? '',
-            type: 'redeo',
-            name: "${element.firstName} ${element.lastName}"));
-      });
-
-      selectedContactsList.forEach((element) {
-        la.add(LocalAttendantModel(
-            selected: false,
-            type: 'phone',
-            phone: element.phoneContact.phones[0].number,
-            name:
-                "${element.phoneContact.name.first} ${element.phoneContact.name.last}"));
-      });
-
-      selectedGroupsList.forEach((element) {
-        element.users?.forEach((element1) {
-          if (element1.users!.length > 0) {
-            element1.users!.forEach((data) {
-              la.add(LocalAttendantModel(
-                  selected: false,
-                  type: element1.contactType!,
-                  from_group_id: element1.contactType == 'group'
-                      ? data.from_group_id
-                      : null,
-                  phone: data.mobile ?? '',
-                  name: "${data.firstName ?? ''} ${data.lastName ?? ''}"));
-            });
-          }
-        });
-      });
-
-      attendants= la;
-      tempAttendantsList.value = la;
-    }
+    attendants = la;
+    tempAttendantsList.value = la;
   }
 
   refreshCount() {
     selectedMembersCount.value = 0;
     tempGroupsList.value.forEach((element) {
       if (element.selected) {
-        int c=0;
+        int c = 0;
         element.users?.forEach((element1) {
-          c=c+element1.users!.length;
+          c = c + element1.users!.length;
         });
         selectedMembersCount.value = selectedMembersCount.value + c;
       }
@@ -209,11 +180,12 @@ class InviteController extends GetxController {
     tempContactsList.value =
         contacts.map((e) => PhoneContactModel.clone(e)).toList();
 
-    tempContactsList.value.removeWhere((element) => !(element
-        .phoneContact.name.first+" "+element
-        .phoneContact.name.last )
-        .toLowerCase()
-        .contains(searchedText.toLowerCase()));
+    tempContactsList.value.removeWhere((element) =>
+        !(element.phoneContact.name.first +
+                " " +
+                element.phoneContact.name.last)
+            .toLowerCase()
+            .contains(searchedText.toLowerCase()));
     tempContactsList.refresh();
   }
 

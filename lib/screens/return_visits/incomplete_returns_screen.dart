@@ -1,3 +1,7 @@
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+
+import '../notice_of_event/notice_of_event_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,29 +17,31 @@ import '../../widgets/common_app_bar.dart';
 import '../../widgets/not_found_widget.dart';
 import '../../widgets/on_screen_loader.dart';
 
-class ReturnVisitsPage extends StatefulWidget {
-  const ReturnVisitsPage({Key? key}) : super(key: key);
+class IncompleteReturnsScreen extends StatefulWidget{
 
   @override
-  State<ReturnVisitsPage> createState() => _ReturnVisitsPageState();
+  _IncompleteReturnsScreenState createState()=> _IncompleteReturnsScreenState();
+
 }
 
-class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
+
+class _IncompleteReturnsScreenState extends State<IncompleteReturnsScreen>{
+
   NoticeOfEventController controller = Get.find();
+
   ScrollController _scrollController = ScrollController();
 
   bool isLoading = false;
 
   @override
   void initState() {
-    controller.getNOEList();
     _scrollController.addListener(() {
       if (_scrollController.position.maxScrollExtent ==
           _scrollController.position.pixels) {
         if (!isLoading) {
-          if (controller.returnVisitListModel?.info?.nextPageUrl != null) {
+          if (controller.incompleteReturnVisitListModel?.info?.nextPageUrl != null) {
             isLoading = !isLoading;
-            controller.getPaginatedNOEList().then((value) => null);
+            controller.getPaginatedIncompleteNOEList().then((value) => null);
           }
           // Perform event when user reach at the end of list (e.g. do Api call)
         }
@@ -49,33 +55,30 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          title: 'Return Visits',
-          button1: 'Incomplete Returns',
-          buttonTap1: (){
-            controller.getIncompleteNOEList();
-            Get.toNamed(Routes.incompleteReturnsScreen);
-          },
+          isBack: true,
+          title: 'Incomplete Returns',
+
         ),
-        body: Obx(() => controller.noeListLoading.value
+        body: Obx(() => controller.incompleteNoeListLoading.value
             ? OnScreenLoader()
-            : controller.noeList.value.isEmpty
-                ? NotFoundWidget(
-                    title: 'No Returns found',
-                  )
-                : ListView.separated(
-                    controller: _scrollController,
-                    separatorBuilder: (context, index) =>
-                        Divider(color: AppColors.greyColor),
-                    itemCount: controller.noeList.length,
-                    itemBuilder: (context, index) {
-                      return historyListTile(controller.noeList[index]);
-                    })));
+            : controller.incompleteNoeList.value.isEmpty
+            ? NotFoundWidget(
+          title: 'No Returns found',
+        )
+            : ListView.separated(
+            controller: _scrollController,
+            separatorBuilder: (context, index) =>
+                Divider(color: AppColors.greyColor),
+            itemCount: controller.incompleteNoeList.length,
+            itemBuilder: (context, index) {
+              return historyListTile(controller.incompleteNoeList[index]);
+            })));
   }
 
   historyListTile(NOEModel noeModel) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.returnDetailScreen, arguments: noeModel);
+        Get.toNamed(Routes.incompleteReturnDetailScreen, arguments: noeModel);
       },
       child: Container(
         color: Colors.transparent,
@@ -89,17 +92,17 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
               children: [
                 Text(
                   DateFormat('EEEE, MMM d, yyyy | h:mm a')
-                      .format(noeModel.returnVisit!.returnDate!),
+                      .format(noeModel.returnVisits![0].returnDate!),
                   style: w900_12(
                     color: AppColors.purpleColor,
                   ),
                 ),
                 SvgPicture.asset(
-                  noeModel.returnVisit!.level == 'cloud'
+                  noeModel.returnVisits![0]!.level == 'cloud'
                       ? 'assets/icons/screen 18/Level 1.svg'
-                      : noeModel.returnVisit!.level == 'rain'
-                          ? 'assets/icons/screen 18/Level 2.svg'
-                          : 'assets/icons/screen 18/Level 3.svg',
+                      : noeModel.returnVisits![0]!.level == 'rain'
+                      ? 'assets/icons/screen 18/Level 2.svg'
+                      : 'assets/icons/screen 18/Level 3.svg',
                   height: 30,
                 ),
               ],
@@ -148,4 +151,5 @@ class _ReturnVisitsPageState extends State<ReturnVisitsPage> {
       ),
     );
   }
+
 }

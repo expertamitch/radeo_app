@@ -3,12 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/models/dnc_list_response_model.dart';
+import 'package:redeo/models/territory_detail_model.dart';
 import 'package:redeo/route/routes.dart';
+import 'package:redeo/screens/do_not_call/controller/dnc_controller.dart';
 import 'package:redeo/widgets/image_view.dart';
 
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
+import '../../widgets/not_found_widget.dart';
+import '../../widgets/on_screen_loader.dart';
+import '../../widgets/search_widget.dart';
 
 class AddressesListScreen extends StatefulWidget {
   const AddressesListScreen({Key? key}) : super(key: key);
@@ -20,6 +26,15 @@ class AddressesListScreen extends StatefulWidget {
 class _AddressesListScreenState extends State<AddressesListScreen> {
   var arguments = Get.arguments;
 
+  DNCController controller = Get.find();
+
+  @override
+  void initState() {
+    Future.delayed(Duration(milliseconds: 200))
+        .then((value) => controller.getTerritoryDetail(arguments));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,79 +42,47 @@ class _AddressesListScreenState extends State<AddressesListScreen> {
         appBar: CustomAppBar(
           title: 'Do Not Call',
           isBack: true,
-          button1: 'Add DNC',
-          buttonTap1: (){
-            Get.toNamed(Routes.addDncScreen);
-          },
-          button2: arguments != null && arguments['showReassign'] != null
-              ? "Re-Assign"
-              : "",
-          buttonTap2: arguments != null && arguments['showReassign'] != null
-              ? () {
-                  //  open contact screen
-                  Get.toNamed(Routes.contactPage);
-                }
-              : () {},
-        ),
-        body: Column(children: [
-          SizedBox(
-            height: 10.h,
-          ),
-          Container(
-            decoration: BoxDecoration(
-                color: AppColors.darkGreyColor,
-                borderRadius: BorderRadius.circular(8)),
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Row(
-              children: [
-                ImageView(
-                  path: Images.searchIcon,
-                  color: Colors.purple,
-                ),
-                SizedBox(width: 15.w),
-                Flexible(
-                    child: TextFormField(
-                      style: w300_13(),
-                      decoration: InputDecoration(
-                          hintStyle: w300_13(
-                            color: AppColors.dark2GreyColor,
-                          ),
-                          border: InputBorder.none,
-                          hintText: 'Search Address...',
-                          isDense: true),
-                    ))
-              ],
-            ),
-          ),
 
+
+        ),
+        body: Obx(() => Column(children: [
+          !controller.dncListLoading.value?SearchWidget(
+            hint: 'Search Address...',
+            onChange: controller.executeSearch,
+          ):Container(),
           Expanded(
-              child: ListView.builder(
-                  itemCount: 2,
+              child: controller.dncListLoading.value
+                  ? OnScreenLoader()
+                  : controller.tempDncList.value.isEmpty
+                  ? Center(
+                child: SingleChildScrollView(child: NotFoundWidget(
+                  title: 'No addresses found',
+                ),),
+              )
+                  : ListView.builder(
+                  itemCount: controller
+                      .tempDncList.value.length,
                   itemBuilder: (context, index) {
                     return doNotCallListTile(
-                      dateTime: DateTime.now(),
-                      location:
-                          '2006 Chapmans Lane, San Francisc 2006 Chapmans Lane, San Franciscoo…',
-                      leadingIconPath: Images.locationIcon,
+                        controller
+                            .tempDncList.value[index],
+
+
+
                     );
                   }))
-        ]));
+        ])));
   }
 
-  doNotCallListTile({
-    required DateTime dateTime,
-    required String location,
-    required String leadingIconPath,
-  }) {
+  doNotCallListTile(DoNotCalls model) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Get.toNamed(Routes.filedServiceMapPageScreen);
-
       },
       child: Container(
         decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+            border:
+                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +90,7 @@ class _AddressesListScreenState extends State<AddressesListScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: ImageView(
-                path: leadingIconPath,
+                path: Images.locationIcon,
                 color: AppColors.purpleColor,
               ),
             ),
@@ -119,7 +102,7 @@ class _AddressesListScreenState extends State<AddressesListScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    location,
+                    model.address??'',
                     style: w300_13(),
                   ),
                   SizedBox(
@@ -129,9 +112,10 @@ class _AddressesListScreenState extends State<AddressesListScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        DateFormat('dd MMM yyyy').format(dateTime),
+                        DateFormat('dd MMM yyyy').format(model.createdAt! ),
                         style: w300_13(color: Colors.grey),
                       ),
+
                       Text(
                         'Do Not Call',
                         style: w300_13(color: Colors.red),

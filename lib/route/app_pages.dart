@@ -7,6 +7,7 @@ import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
 import 'package:redeo/screens/create_message/custom_message/create_custom_message.dart';
 import 'package:redeo/screens/create_message/text_message/enter_text_message_page.dart';
+import 'package:redeo/screens/event/event_details_page/invite_contacts/invite_contacts_page.dart';
 import 'package:redeo/screens/groups/edit_group_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
@@ -36,12 +37,13 @@ import '../screens/groups/attendants_page.dart';
 import '../screens/groups/create_group_page.dart';
 import '../screens/invite/invitee_page.dart';
 import '../screens/return_visits/create_return_page.dart';
-import '../screens/notice_of_event/history_page.dart';
+import '../screens/return_visits/incomplete_return_detail_screen.dart';
+import '../screens/return_visits/incomplete_returns_screen.dart';
+import '../screens/return_visits/return_history_screen.dart';
 import '../screens/notice_of_event/notice_of_event_summary_page.dart';
 import '../screens/report/edit_report_page.dart';
 import '../screens/report/share_report_page.dart';
-import '../screens/scan_qr_page/scan_qr_page.dart';
-import '../screens/splash/splash_binding.dart';
+ import '../screens/splash/splash_binding.dart';
 import '../screens/splash/splash_screen.dart';
 import '../screens/territory/territory_history_list_screen.dart';
 
@@ -148,6 +150,7 @@ class AppPages {
       name: Routes.eventDetailsScreen,
       transition: Transition.cupertino,
       page: () => EventDetailsPage(),
+      arguments: Get.arguments
     ),
     GetPage(
       name: Routes.inviteeScreen,
@@ -157,7 +160,7 @@ class AppPages {
     GetPage(
       name: Routes.addInviteeScreen,
       transition: Transition.cupertino,
-      page: () => AddInviteePage(),
+      page: () => AddInviteePage(),arguments: Get.arguments
     ),
     GetPage(
       name: Routes.editEventDetailsScreen,
@@ -211,7 +214,9 @@ class AppPages {
     GetPage(
       name: Routes.historyPage,
       transition: Transition.cupertino,
-      page: () => HistoryPage(),
+      page: () => ReturnHistoryPage(),
+      arguments:  Get.arguments
+
     ),
     GetPage(
       name: Routes.noticeOfEventSummaryScreen,
@@ -219,12 +224,7 @@ class AppPages {
       page: () => NoticeOfEventSummaryPage(),
     ),
 
-    //scan qr page
-    GetPage(
-      name: Routes.scanQrScreen,
-      transition: Transition.cupertino,
-      page: () => ScanQrPage(),
-    ),
+
 
     //Reports page
 
@@ -291,6 +291,22 @@ class AppPages {
         name: Routes.returnDetailScreen,
         transition: Transition.cupertino,
         page: () => ReturnDetailScreen(),
+        arguments: Get.arguments),
+    GetPage(
+        name: Routes.incompleteReturnDetailScreen,
+        transition: Transition.cupertino,
+        page: () => IncompleteReturnDetailScreen(),
+        arguments: Get.arguments),
+    GetPage(
+        name: Routes.incompleteReturnsScreen,
+        transition: Transition.cupertino,
+        page: () => IncompleteReturnsScreen(),
+        arguments: Get.arguments),
+
+    GetPage(
+        name: Routes.inviteContactsScreen,
+        transition: Transition.cupertino,
+        page: () => InviteContactsPage(),
         arguments: Get.arguments),
   ];
 }

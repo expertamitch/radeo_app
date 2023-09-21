@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:redeo/models/all_group_list_response_model.dart';
 import 'package:redeo/models/custom_message_model.dart';
 import 'package:redeo/models/dnc_list_response_model.dart';
+import 'package:redeo/models/events_model.dart';
+import 'package:redeo/models/field_log_model.dart';
 import 'package:redeo/models/message_only_model.dart';
 import 'package:redeo/models/register_model.dart';
 import 'package:redeo/models/return_visit_list_model.dart';
@@ -11,6 +13,8 @@ import 'package:redeo/models/return_visit_list_model.dart';
 import '../../models/add_custom_message_model.dart';
 import '../../models/all_redeo_member_list_response_model.dart';
 import '../../models/create_message_request_model.dart';
+import '../../models/event_detail_model.dart';
+import '../../models/return_history_model.dart';
 import '../../models/territory_detail_model.dart';
 import '../../models/territory_list_model.dart';
 import '../api_exception.dart';
@@ -158,11 +162,11 @@ class BackendRepo {
     }
   }
 
-  Future<DNCListResponseModel> getDNCList() async {
+  Future<DNCListModel> getDNCList() async {
     String url = "${baseUrl}user/do-not-call";
     try {
       final response = await apiUtils.get(url: url, options: getOptions());
-      var model = DNCListResponseModel.fromJson(response.data);
+      var model = DNCListModel.fromJson(response.data);
       return model;
     } catch (e) {
       if (e is DioError && e.type == DioErrorType.unknown) {
@@ -218,7 +222,21 @@ class BackendRepo {
     }
   }
 
-  Future<TerritoryDetailModel> getTerritoryDetail(String id) async {
+  Future<TerritoryListModel> getAssignedTerritoryList() async {
+    String url = "${baseUrl}user/do-not-call/territory";
+    try {
+      final response = await apiUtils.get(url: url, options: getOptions());
+      var model = TerritoryListModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<TerritoryDetailModel> getTerritoryDetail(int id) async {
     String url = "${baseUrl}user/territory/$id";
     try {
       final response = await apiUtils.get(url: url, options: getOptions());
@@ -307,6 +325,27 @@ class BackendRepo {
       throw ApiException(apiUtils.handleError(e));
     }
   }
+
+  Future<MessageOnlyModel> addDNC({required String territoryId,
+    required String address,
+    required String reason}) async {
+    var data = {"territory_id": territoryId, "address": address,"reason":reason};
+
+    String url = "${baseUrl}user/do-not-call";
+    try {
+      final response =
+      await apiUtils.post(url: url, options: getOptions(), data: data);
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
 
   Future<AddCustomMessageModel> createTextMessage(
       String name, String title) async {
@@ -398,8 +437,12 @@ class BackendRepo {
     };
 
     if (model.response) map['response_type'] = model.selectedResponseType;
-    if (model.response && model.selectedResponseType!.toLowerCase() == 'custom')
-      map['responses[]'] = model.selectedCustomResponseId;
+    if (model.response &&
+        model.selectedResponseType!.toLowerCase() == 'custom') {
+      for (int i = 0; i < model.selectedCustomResponseId.length; i++) {
+        map['responses[${i}]'] = model.selectedCustomResponseId[i];
+      }
+    }
 
     if (model.attachmentFile != null && model.attachmentFile!.isNotEmpty) {
       var bytes = await File(model.attachmentFile!).readAsBytes();
@@ -457,6 +500,99 @@ class BackendRepo {
     }
   }
 
+  Future<MessageOnlyModel> createReturn(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/return";
+    try {
+      final response =
+          await apiUtils.post(url: url, data: data, options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+  Future<MessageOnlyModel> createEvent(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/event";
+    try {
+      final response =
+      await apiUtils.post(url: url, data: data, options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+  Future<EventDetailModel?> addInvitee(
+      {required Map<String, dynamic> data,required  String id}) async {
+    String url = "${baseUrl}user/event/invitee/$id";
+    try {
+      final response =
+      await apiUtils.put(url: url, data: data, options: getOptions());
+      var model = EventDetailModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+
+
+  Future<MessageOnlyModel> deleteEvent(
+      {required String id}) async {
+    String url = "${baseUrl}user/event/$id";
+    try {
+      final response =
+      await apiUtils.delete(url: url,  options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+
+
+  Future<EventsModel> getEventList() async {
+    String url = "${baseUrl}user/event";
+    try {
+      final response = await apiUtils.get(
+        url: url,
+        options: getOptions(),
+      );
+      var model = EventsModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
   Future<MessageOnlyModel> createNOE(
       {required Map<String, dynamic> map,
       required String nameImagePath,
@@ -491,8 +627,8 @@ class BackendRepo {
     }
   }
 
-  Future<ReturnVisitListModel> getNOEList() async {
-    String url = "${baseUrl}user/return";
+  Future<ReturnVisitListModel> getNOEList({String? path}) async {
+    String url = path ?? "${baseUrl}user/return";
     try {
       final response = await apiUtils.get(
         url: url,
@@ -507,6 +643,84 @@ class BackendRepo {
       throw ApiException(apiUtils.handleError(e));
     }
   }
+
+
+  Future<ReturnVisitListModel> getIncompleteNOEList({String? path}) async {
+    String url = path ?? "${baseUrl}user/return/incomplete";
+    try {
+      final response = await apiUtils.get(
+        url: url,
+        options: getOptions(),
+      );
+      var model = ReturnVisitListModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<ReturnHistoryModel> getReturnHistory(String id) async {
+    String url = "${baseUrl}user/return/$id";
+    try {
+      final response = await apiUtils.get(
+        url: url,
+        options: getOptions(),
+      );
+      var model = ReturnHistoryModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<FieldLogModel> getFieldLog(String date) async {
+    String url = "${baseUrl}user/field-logs?date=$date";
+    try {
+      final response = await apiUtils.get(
+        url: url,
+        options: getOptions(),
+      );
+      var model = FieldLogModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+  Future<MessageOnlyModel> sendQr(String id) async {
+    String url = "${baseUrl}user/scan";
+
+    var map={"qr_code_id":id};
+
+    try {
+      final response = await apiUtils.put(
+        url: url,
+        options: getOptions(),
+        data: map
+      );
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+
 
   Options getOptions({bool addAuth = true}) {
     Options? options = Options();

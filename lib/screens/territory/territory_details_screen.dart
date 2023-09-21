@@ -28,7 +28,7 @@ class _TerritoryDetailsScreenState extends State<TerritoryDetailsScreen> {
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 100)).then(
-        (value) => controller.getTerritoryDetail(territoryInfo.id.toString()));
+        (value) => controller.getTerritoryDetail(territoryInfo.id!));
     super.initState();
   }
 

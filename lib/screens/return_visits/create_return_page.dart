@@ -4,11 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:redeo/assets/images.dart';
 import 'package:redeo/models/return_visit_list_model.dart';
 import 'package:redeo/screens/notice_of_event/notice_of_event_controller.dart';
 import 'package:redeo/widgets/app_button.dart';
-import 'package:redeo/widgets/image_view.dart';
 
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
@@ -24,8 +22,7 @@ class CreateReturnPage extends StatefulWidget {
 }
 
 class _CreateReturnPageState extends State<CreateReturnPage> {
-  NOEModel noeModel=Get.arguments;
-
+  NOEModel noeModel = Get.arguments;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -45,11 +42,9 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
   bool showNotifyMeDDError = false;
   bool notifySelf = false;
 
+  TextEditingController detailsController = TextEditingController();
 
-
-  TextEditingController detailsController=TextEditingController();
-
-  NoticeOfEventController controller=Get.find();
+  NoticeOfEventController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -63,17 +58,12 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
             Row(
               children: [
                 AppButton(
-                    onPressedFunction: () {
+                    onPressedFunction: () async {
                       FocusManager.instance.primaryFocus?.unfocus();
 
-                       setState(() {});
+                      setState(() {});
 
                       bool isValid = true;
-
-
-
-
-
 
                       if (selectedTimePeroidDD == null) {
                         showTimePeroidDDError = true;
@@ -84,8 +74,6 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                         showNotifyMeDDError = true;
                         isValid = false;
                       }
-
-
 
                       if (setReturnVisitDate == null) {
                         showSetReturnVisitDateTimeError = true;
@@ -105,7 +93,44 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                       }
 
                       if (isValid) {
-                       }
+                        Map<String, dynamic> map = {};
+
+                        map = {
+                          'noe_id': noeModel.id,
+                          'return_visit_type':
+                              selectedTimePeroidDD!.contains('ly')
+                                  ? selectedTimePeroidDD!
+                                      .replaceAll('ly', '')
+                                      .toLowerCase()
+                                  : selectedTimePeroidDD!.toLowerCase(), //
+                          'notification_self':
+                              selectedNotifyMeDD!.contains('ly')
+                                  ? selectedNotifyMeDD!
+                                      .replaceAll('ly', '')
+                                      .toLowerCase()
+                                  : selectedNotifyMeDD!.toLowerCase(), //
+                          'notification_other': !notifySelf ? 0 : 1, //
+                          'level': level == 1
+                              ? 'cloud'
+                              : level == 2
+                                  ? 'rain'
+                                  : 'tree',
+                          'indicators': indicatorStatus == 1
+                              ? 'open-for-encourgament'
+                              : 'do-not-call',
+                          'description': detailsController.text,
+                          'return_date': DateFormat('yyyy-MM-dd HH:mm:ss')
+                              .format(setReturnVisitDate!),
+                        };
+
+                        bool success = await controller.createReturn(map);
+                        if (success) {
+                          await controller.getNOEList();
+                          NOEModel model = controller.noeList.lastWhere(
+                              (element) => element.id == noeModel.id);
+                          Get.back(result: model);
+                        }
+                      }
                     },
                     child: Text(
                       'Save',
@@ -146,25 +171,24 @@ class _CreateReturnPageState extends State<CreateReturnPage> {
                 child: AppTextField(
                   hint: 'Details',
                   mainHint: 'Enter Details',
-autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller:detailsController,
-
-                  validator: (value) => value!.isEmpty ? 'Please enter a details' : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: detailsController,
+                  validator: (value) =>
+                      value!.isEmpty ? 'Please enter a details' : null,
                   keyboardType: TextInputType.name,
                   action: TextInputAction.done,
                 ),
               ),
               getDivider(),
-                  getReturnVisit(),
-                  getDivider(),
+              getReturnVisit(),
+              getDivider(),
               getIndicators(),
-                  getDivider(),
-                  getLevel(),
+              getDivider(),
+              getLevel(),
             ]),
           )))
         ]));
   }
-
 
   Widget getReturnVisit() {
     return Padding(
@@ -178,28 +202,30 @@ autovalidateMode: AutovalidateMode.onUserInteraction,
             mainHint: 'Select date',
             text: setReturnVisitDate != null
                 ? DateFormat('MMMM,dd yyyy, hh:mm a')
-                .format(setReturnVisitDate!)
+                    .format(setReturnVisitDate!)
                 : null,
             error: 'Please select a date',
             onTap: () async {
+              FocusManager.instance.primaryFocus?.unfocus();
               DateTime? d = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(1990),
-                  builder: (BuildContext context, Widget? child) {
-                    return Theme(
-                      data: ThemeData.light().copyWith(
-                        primaryColor: AppColors.purpleColor,
-                        hintColor: AppColors.purpleColor,
-                        colorScheme:
-                        ColorScheme.light(primary: AppColors.purpleColor),
-                        buttonTheme:
-                        ButtonThemeData(textTheme: ButtonTextTheme.primary),
-                      ),
-                      child: child!,
-                    );
-                  },
-                  lastDate: DateTime(3000));
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime.now(),
+                lastDate: DateTime.now().add(Duration(days: 365 * 2)),
+                builder: (BuildContext context, Widget? child) {
+                  return Theme(
+                    data: ThemeData.light().copyWith(
+                      primaryColor: AppColors.purpleColor,
+                      hintColor: AppColors.purpleColor,
+                      colorScheme:
+                          ColorScheme.light(primary: AppColors.purpleColor),
+                      buttonTheme:
+                          ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                    ),
+                    child: child!,
+                  );
+                },
+              );
               if (d != null) {
                 TimeOfDay? t = await showTimePicker(
                   context: context,
@@ -209,9 +235,9 @@ autovalidateMode: AutovalidateMode.onUserInteraction,
                         primaryColor: AppColors.purpleColor,
                         hintColor: AppColors.purpleColor,
                         colorScheme:
-                        ColorScheme.light(primary: AppColors.purpleColor),
+                            ColorScheme.light(primary: AppColors.purpleColor),
                         buttonTheme:
-                        ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                            ButtonThemeData(textTheme: ButtonTextTheme.primary),
                       ),
                       child: child!,
                     );
@@ -223,8 +249,7 @@ autovalidateMode: AutovalidateMode.onUserInteraction,
                   setReturnVisitDate =
                       DateTime(d.year, d.month, d.day, t.hour, t.minute);
                 } else {
-                  setReturnVisitDate =
-                      DateTime(d.year, d.month, d.day);
+                  setReturnVisitDate = DateTime(d.year, d.month, d.day);
                 }
               }
               setState(() {
@@ -312,8 +337,7 @@ autovalidateMode: AutovalidateMode.onUserInteraction,
       ),
     );
   }
-  
-  
+
   Widget getIndicators() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -398,109 +422,107 @@ autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
 
-
-  Widget getLevel(){
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 18.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Level',
-          style: w300_13(
-            color: AppColors.blueColor,
+  Widget getLevel() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Level',
+            style: w300_13(
+              color: AppColors.blueColor,
+            ),
           ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  level = 1;
-                  showLevelError = false;
-                });
-              },
-              child: Container(
-                  width: MediaQuery.of(context).size.width * .28,
-                  height: 60,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color:  level == 1
-                              ? AppColors.purpleColor
-                              : AppColors.greyColor),
-                      borderRadius: BorderRadius.circular(8)),
-                  child:
-                  SvgPicture.asset('assets/icons/screen 18/Level 1.svg')),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                 level = 2;
-                  showLevelError = false;
-                });
-              },
-              child: Container(
-                  width: MediaQuery.of(context).size.width * .28,
-                  height: 60,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: level == 2
-                              ? AppColors.purpleColor
-                              : AppColors.greyColor),
-                      borderRadius: BorderRadius.circular(8)),
-                  child:
-                  SvgPicture.asset('assets/icons/screen 18/Level 2.svg')),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  level = 3;
-                  showLevelError = false;
-                });
-              },
-              child: Container(
-                  width: MediaQuery.of(context).size.width * .28,
-                  height: 60,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: level == 3
-                              ? AppColors.purpleColor
-                              : AppColors.greyColor),
-                      borderRadius: BorderRadius.circular(8)),
-                  child:
-                  SvgPicture.asset('assets/icons/screen 18/Level 3.svg')),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        if (showLevelError)
-          Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Text(
-              'Please select a level',
-              style: w300_13(
-                color: AppColors.redColor,
+          SizedBox(
+            height: 10.h,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    level = 1;
+                    showLevelError = false;
+                  });
+                },
+                child: Container(
+                    width: MediaQuery.of(context).size.width * .28,
+                    height: 60,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: level == 1
+                                ? AppColors.purpleColor
+                                : AppColors.greyColor),
+                        borderRadius: BorderRadius.circular(8)),
+                    child:
+                        SvgPicture.asset('assets/icons/screen 18/Level 1.svg')),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    level = 2;
+                    showLevelError = false;
+                  });
+                },
+                child: Container(
+                    width: MediaQuery.of(context).size.width * .28,
+                    height: 60,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: level == 2
+                                ? AppColors.purpleColor
+                                : AppColors.greyColor),
+                        borderRadius: BorderRadius.circular(8)),
+                    child:
+                        SvgPicture.asset('assets/icons/screen 18/Level 2.svg')),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    level = 3;
+                    showLevelError = false;
+                  });
+                },
+                child: Container(
+                    width: MediaQuery.of(context).size.width * .28,
+                    height: 60,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: level == 3
+                                ? AppColors.purpleColor
+                                : AppColors.greyColor),
+                        borderRadius: BorderRadius.circular(8)),
+                    child:
+                        SvgPicture.asset('assets/icons/screen 18/Level 3.svg')),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          if (showLevelError)
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(
+                'Please select a level',
+                style: w300_13(
+                  color: AppColors.redColor,
+                ),
               ),
             ),
-          ),
-        SizedBox(
-          height: 20.h,
-        )
-      ],
-    ),
-  );
+          SizedBox(
+            height: 20.h,
+          )
+        ],
+      ),
+    );
+  }
 
-}
-  
   Widget getDivider() {
     return Column(
       children: [
@@ -514,6 +536,4 @@ autovalidateMode: AutovalidateMode.onUserInteraction,
       ],
     );
   }
-
-
 }

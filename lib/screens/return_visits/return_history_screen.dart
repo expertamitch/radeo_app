@@ -1,20 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/models/return_visit_list_model.dart';
+import 'package:redeo/screens/notice_of_event/notice_of_event_controller.dart';
 import 'package:redeo/widgets/image_view.dart';
+
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import '../../widgets/not_found_widget.dart';
+import '../../widgets/on_screen_loader.dart';
 
-class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+class ReturnHistoryPage extends StatefulWidget {
+  const ReturnHistoryPage({Key? key}) : super(key: key);
 
   @override
-  State<HistoryPage> createState() => _HistoryPageState();
+  State<ReturnHistoryPage> createState() => _ReturnHistoryPageState();
 }
 
-class _HistoryPageState extends State<HistoryPage> {
+class _ReturnHistoryPageState extends State<ReturnHistoryPage> {
+  NoticeOfEventController controller = Get.find();
+  RxList<ReturnVisit> list = RxList();
+  NOEModel noeModel=Get.arguments as NOEModel;
+
+  @override
+  void initState() {
+    controller
+        .getReturnHistory((Get.arguments as NOEModel).id.toString())
+        .then((value) {
+      if (value != null) {
+        list.value = value.returnVisits!;
+      }
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,33 +57,26 @@ class _HistoryPageState extends State<HistoryPage> {
               style: w900_30(),
             ),
           ),
-          Expanded(
-              child: ListView.builder(
-                  itemCount: 2,
+          Obx(() => Expanded(
+              child:
+              controller.returnListLoading.value
+                  ? OnScreenLoader()
+                  : list.value.isEmpty
+                  ? NotFoundWidget(
+                title: 'No Returns found',
+              ):ListView.builder(
+                  itemCount: list.value.length,
                   itemBuilder: (context, index) {
-                    if (index == 1)
-                      return historyListTile(
-                          noteString:
-                              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et',
-                          dateTime: DateTime.now(),
-                          subTitle: '2006 Chapmans Lane, San Francisco…',
-                          leadingIconPath: Images.locationIcon,
-                          trailingLevelPath: Images.level1Icon);
-                    return historyListTile(
-                        dateTime: DateTime.now(),
-                        subTitle: '2006 Chapmans Lane, San Francisco…',
-                        leadingIconPath: Images.locationIcon,
-                        trailingLevelPath: Images.level1Icon);
-                  }))
+                       return historyListTile(
+                         model:list[index]
+                          );
+
+                  })))
         ]));
   }
 
   historyListTile(
-      {required DateTime dateTime,
-      required String subTitle,
-      required String leadingIconPath,
-      required String trailingLevelPath,
-      String? noteString}) {
+      {required ReturnVisit model,}) {
     return Container(
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
@@ -70,7 +86,7 @@ class _HistoryPageState extends State<HistoryPage> {
           Row(
             children: [
               ImageView(
-                path: leadingIconPath,
+                path: Images.locationIcon,
                 height: 20,
                 color: AppColors.purpleColor,
               ),
@@ -82,13 +98,12 @@ class _HistoryPageState extends State<HistoryPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                        DateFormat('h:mm a | EEEE, MMM d, yyyy')
-                            .format(dateTime),
+                        DateFormat('EEEE, MMM d, yyyy | h:mm a').format(model.returnDate!),
                         style: w300_13()),
                     SizedBox(
                       height: 4.h,
                     ),
-                    Text(subTitle,
+                    Text(noeModel.location!,
                         style: w300_12(
                           color: Colors.grey,
                         )),
@@ -99,7 +114,11 @@ class _HistoryPageState extends State<HistoryPage> {
                 width: 10.w,
               ),
               SvgPicture.asset(
-                trailingLevelPath,
+                model.level == 'cloud'
+                    ? 'assets/icons/screen 18/Level 1.svg'
+                    : model.level == 'rain'
+                    ? 'assets/icons/screen 18/Level 2.svg'
+                    : 'assets/icons/screen 18/Level 3.svg',
                 height: 35,
               ),
             ],
@@ -107,7 +126,7 @@ class _HistoryPageState extends State<HistoryPage> {
           SizedBox(
             height: 10.h,
           ),
-          if (noteString != null)
+          if (model.description != null)
             Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -116,7 +135,7 @@ class _HistoryPageState extends State<HistoryPage> {
               // margin: EdgeInsets.symmetric(horizontal: 10),
               padding: EdgeInsets.all(10),
               child: Text(
-                noteString,
+                model.description!,
                 style: w300_12(color: AppColors.dark2GreyColor),
               ),
             ),

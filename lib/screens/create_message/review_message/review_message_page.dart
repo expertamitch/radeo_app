@@ -322,25 +322,29 @@ class _ReviewMessagePageState extends State<ReviewMessagePage> {
                       height: 10.h,
                     ),
                     if (model.selectedResponseType == 'Custom')
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 7,
-                            backgroundColor: AppColors.purpleColor,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(
-                            controller.customMessageList.value
-                                .lastWhere((element) =>
-                                    element.id ==
-                                    model.selectedCustomResponseId)
-                                .content!,
-                            style: w300_13(),
-                          ),
-                        ],
-                      ),
+                      Column(
+                        children: model.selectedCustomResponseId
+                            .map(
+                              (e) => Column(children: [Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 7,
+                                    backgroundColor: AppColors.purpleColor,
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  Text(
+                                    controller.customMessageList.value
+                                        .lastWhere((element) => element.id == e)
+                                        .content!,
+                                    style: w300_13(),
+                                  ),
+                                ],
+                              ), SizedBox(height: 8.h,)],),
+                            )
+                            .toList(),
+                      )
                   ],
                 ),
               ),

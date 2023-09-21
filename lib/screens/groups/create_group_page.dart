@@ -25,17 +25,17 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
   );
   GroupsController groupsController = Get.find();
   TextEditingController groupNameController = TextEditingController();
+  int l=0;
 
   check() {
     if (keepChecking) {
-      LocalAttendantModel? model = inviteController.tempAttendantsList.value
-          .firstWhereOrNull((a) => a.selected);
+
 
       Future.delayed(const Duration(milliseconds: 300)).then((value) {
         isValid.value =
-            (Validators.validateName(groupNameController.text) == null &&
+              (Validators.validateName(groupNameController.text) == null &&
                 inviteController.selectedMembersCount.value > 0 &&
-                model != null);
+                l>0);
         setState(() {});
         check();
       });
@@ -47,12 +47,43 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
 
   @override
   void initState() {
+    inviteController.redeoList.where((element) => element.selected).forEach((e) {
+      e.isAttendant=false;
+      e.isVisible=true;
+
+    });
+
+    inviteController.contacts.where((element) => element.selected).forEach((e) {
+      e.isAttendant=false;
+      e.isVisible=true;
+    });
+
+    inviteController.groupsList
+        .where((element) => element.selected)
+        .forEach((element) {
+      element.users!.forEach((users) {
+        users.users!.forEach((e) {
+          e.isLocalAttendant=false;
+          e.isVisible=true;
+        });
+      });
+    });
+
+
     check();
+
+
+
+
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -69,7 +100,9 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                         data['group_name'] = groupNameController.text;
                         List<Map<String, dynamic>> usersArray = [];
 
-                        inviteController.tempGroupsList.where((p0) => p0.selected).forEach((element) {
+                        inviteController.groupsList
+                            .where((p0) => p0.selected)
+                            .forEach((element) {
                           element.users?.forEach((element1) {
                             if (element1.users!.length > 0) {
                               element1.users!.forEach((data) {
@@ -78,6 +111,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                                       "${data.firstName ?? ''} ${data.lastName ?? ''}",
                                   'mobile': data.mobile ?? '',
                                   'contact_type': 'group',
+                                  'is_attendent': data.isLocalAttendant,
                                   'from_group_id':
                                       element1.contactType == 'group'
                                           ? data.from_group_id
@@ -89,19 +123,27 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                           });
                         });
 
-                        inviteController.tempRedeoList.where((p0) => p0.selected).forEach((element) {
+                        inviteController.redeoList
+                            .where((p0) => p0.selected)
+                            .forEach((element) {
                           if (element.selected)
                             usersArray.add({
                               'name':
                                   "${element.firstName ?? ''} ${element.lastName ?? ''}",
                               'mobile': element.mobile ?? '',
+                              'is_attendent': element.isAttendant,
+
                               'contact_type': 'redeo',
                             });
                         });
 
-                        inviteController.tempContactsList.where((p0) => p0.selected).forEach((element) {
+                        inviteController.contacts
+                            .where((p0) => p0.selected)
+                            .forEach((element) {
                           if (element.selected)
                             usersArray.add({
+                              'is_attendent': element.isAttendant,
+
                               'name':
                                   "${element.phoneContact.name.first ?? ''} ${element.phoneContact.name.last ?? ''}",
                               'mobile':
@@ -110,24 +152,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                             });
                         });
 
-                        inviteController.tempAttendantsList.forEach((element) {
-                          if (element.selected) {
-                            if (element.type == 'group') {
-                              usersArray.lastWhere((element1) =>
-                                  element1['contact_type'] == 'group' &&
-                                  element1['from_group_id'] ==
-                                      element.from_group_id &&
-                                  element1['mobile'] ==
-                                      element.phone)['is_attendent'] = true;
-                            } else {
-                              usersArray.lastWhere((element1) =>
-                                  element1['mobile'] == element.phone &&
-                                  element1['contact_type'] ==
-                                      element.type)['is_attendent'] = true;
-                            }
-                          }
 
-                        });
 
                         data['group_users'] = usersArray;
 
@@ -232,8 +257,14 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                 ),
               ),
               AppButton(
-                  onPressedFunction: () {
-                    Get.toNamed(Routes.inviteeScreen);
+                  onPressedFunction: () async {
+                    await Get.toNamed(Routes.inviteeScreen);
+                    calculateAttendants();
+
+                    inviteController.tempAttendantsList.value.clear();
+                    setState(() {
+
+                    });
                   },
                   child: Text(
                     'Select',
@@ -273,21 +304,13 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     ),
                     SizedBox(
                       height: 2.h,
-                    ),
-                    Obx(
-                      () {
-                        LocalAttendantModel? model = inviteController
-                            .tempAttendantsList.value
-                            .firstWhereOrNull((a) => a.selected);
+                    ),Text(
+                      '$l Attendants selected',
+                      style: w600_13(
+                        color: AppColors.blueColor,
+                      ),
+                    )
 
-                        return Text(
-                          model == null ? '' : model.name,
-                          style: w600_13(
-                            color: AppColors.blueColor,
-                          ),
-                        );
-                      },
-                    ),
                   ],
                 ),
               ),
@@ -297,8 +320,9 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                 ),
               ),
               AppButton(
-                  onPressedFunction: () {
-                    Get.toNamed(Routes.attendantsScreen);
+                  onPressedFunction: () async {
+                    await Get.toNamed(Routes.attendantsScreen);
+calculateAttendants();
                   },
                   child: Text(
                     'Select',
@@ -314,6 +338,34 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             ],
           )
         ]));
+  }
+
+  calculateAttendants(){
+    l=0;
+    inviteController.redeoList.where((element) => element.selected).forEach((e) {
+      if(e.isAttendant)
+        l++;
+
+    });
+
+    inviteController.contacts.where((element) => element.selected).forEach((e) {
+      if(e.isAttendant)
+        l++;
+    });
+
+    inviteController.groupsList
+        .where((element) => element.selected)
+        .forEach((element) {
+      element.users!.forEach((users) {
+        users.users!.forEach((e) {
+          if(e.isLocalAttendant)
+            l++;
+        });
+      });
+    });
+    setState(() {
+
+    });
   }
 
   @override

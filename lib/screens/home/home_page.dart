@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
 import 'package:redeo/screens/create_message/create_message_page.dart';
 import 'package:redeo/screens/create_message/message_controller.dart';
+import 'package:redeo/screens/do_not_call/controller/dnc_controller.dart';
+import 'package:redeo/screens/event/event_controller.dart';
 import 'package:redeo/screens/event/events_page.dart';
+import 'package:redeo/screens/field_service/field_log_controller.dart';
 import 'package:redeo/screens/field_service/field_service_page.dart';
 import 'package:redeo/screens/groups/controller/groups_controller.dart';
 import 'package:redeo/screens/groups/groups_page.dart';
@@ -20,6 +25,7 @@ import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/utils/common_dialogs.dart';
 import 'package:redeo/widgets/image_view.dart';
 
+import '../../utils/snackbar_util.dart';
 import '../do_not_call/dnc_territory_screen.dart';
 import '../notice_of_event/notice_of_event_controller.dart';
 import '../territory/territory_list_screen.dart';
@@ -40,10 +46,27 @@ class _HomepageState extends State<Homepage> {
       ? Get.find<GroupsController>()
       : Get.put(GroupsController());
 
+  final EventController eventController = Get.isRegistered<EventController>()
+      ? Get.find<EventController>()
+      : Get.put(EventController());
+
+
+  final FieldLogController fieldLogController =
+      Get.isRegistered<FieldLogController>()
+          ? Get.find<FieldLogController>()
+          : Get.put(FieldLogController());
+
+  final DNCController dncController = Get.isRegistered<DNCController>()
+      ? Get.find<DNCController>()
+      : Get.put(DNCController());
+
   final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a k
 
   @override
   void initState() {
+    fieldLogController.getFieldLog(
+        date: DateFormat('yyyy/MM/dd').format(fieldLogController.selectedDate));
+
     controller.drawerKey = _key;
     super.initState();
   }
@@ -104,9 +127,41 @@ class _HomepageState extends State<Homepage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.pop(context);
-                      Get.toNamed(Routes.scanQrScreen);
+
+                      /* if(Platform.isIOS) {
+                        scan();
+                        return;
+                      }*/
+                      var cameraStatus = await Permission.camera.request();
+                      if (cameraStatus.isGranted) {
+                      } else if (cameraStatus ==
+                          PermissionStatus.permanentlyDenied) {
+                        showConfirmationDialog(context,
+                            "You have denied camera permission. To create new video, you need to allow permission. Press Yes to open settings and allow permission.",
+                            yesCallback: () async {
+                          Get.back();
+                          await openAppSettings();
+                        });
+                      }
+
+                      var audioStatus = await Permission.microphone.request();
+                      if (audioStatus.isGranted) {
+                      } else if (audioStatus ==
+                          PermissionStatus.permanentlyDenied) {
+                        showConfirmationDialog(context,
+                            "You have denied microphone permission. To create new video, you need to allow permission. Press Yes to open settings and allow permission.",
+                            yesCallback: () async {
+                          Get.back();
+                          await openAppSettings();
+                        });
+                      }
+
+                      var camera = await Permission.camera.status;
+                      var audio = await Permission.microphone.status;
+                      if (camera.isGranted && audio.isGranted) scan();
+                      // Get.toNamed(Routes.scanQrScreen);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -139,28 +194,42 @@ class _HomepageState extends State<Homepage> {
 
                     Future.delayed(Duration(milliseconds: 0)).then((value) {
                       controller.currentSelectedIndex.value = i;
-                      if (controller.currentSelectedIndex.value == 5) {
+
+                      if (controller.currentSelectedIndex.value == 0) {
+                        FieldLogController controller = Get.find();
+                        controller.haveMore = false;
+                        controller.page = 1;
+                        controller.getFieldLog(
+                            date: DateFormat('yyyy/MM/dd')
+                                .format(fieldLogController.selectedDate));
+                      }
+                      else if (controller.currentSelectedIndex.value == 6) {
+                        //  groups
+                        EventController controller = Get.find();
+                        controller.getEventsList();
+                      }
+                      else if (controller.currentSelectedIndex.value == 5) {
                         //  groups
                         GroupsController controller = Get.find();
                         controller.getGroupsList();
-                      } else if (controller.currentSelectedIndex.value == 8) {
+                      }
+                      else if (controller.currentSelectedIndex.value == 7) {
+                        DNCController controller = Get.find();
+                        controller.getTerritoryList();
+                      }
+                      else if (controller.currentSelectedIndex.value == 8) {
                         TerritoryController controller = Get.find();
                         controller.getTerritoryList();
                       } else if (controller.currentSelectedIndex.value == 2) {
                         MessageController msgController = Get.find();
                         msgController.reset();
-                      }
-                      else if(controller.currentSelectedIndex==1){
-                        NoticeOfEventController controller=Get.find();
+                      } else if (controller.currentSelectedIndex == 1) {
+                        NoticeOfEventController controller = Get.find();
                         controller.reset();
-                      }
-
-                      else if(controller.currentSelectedIndex==4){
-                        NoticeOfEventController controller=Get.find();
+                      } else if (controller.currentSelectedIndex == 4) {
+                        NoticeOfEventController controller = Get.find();
                         controller.getNOEList();
                       }
-
-
                     });
                   });
             }),
@@ -224,6 +293,23 @@ class _HomepageState extends State<Homepage> {
         SizedBox(height: (MediaQuery.of(context).size.height * 0.02).h),
       ],
     ));
+  }
+
+  scan() {
+    Get.toNamed(Routes.qrScanner)?.then((value) {
+      if (value != null) {
+        setState(() async {
+          if (value.toString().split('/').last.indexOf('-') > 0) {
+            String result = value.toString().split('/').last;
+
+            await controller.sendQR(result);
+            Get.back();
+          } else {
+            showErrorSnackBar('Invalid Redeo QR');
+          }
+        });
+      }
+    });
   }
 
   Widget getDrawerMenuItem(

@@ -325,8 +325,8 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                   );
                 },
                 initialDate: DateTime.now(),
-                firstDate: DateTime(1990),
-                lastDate: DateTime(3000));
+                firstDate: DateTime.now(),
+                lastDate: DateTime.now().add(Duration(days: 365*2)));
             if (choosenDate != null) {
               TimeOfDay? choosenTime = await showTimePicker(
                 context: context,
@@ -947,7 +947,8 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               DateTime? d = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
-                  firstDate: DateTime(1990),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime.now().add(Duration(days: 365*2)),
                   builder: (BuildContext context, Widget? child) {
                     return Theme(
                       data: ThemeData.light().copyWith(
@@ -961,7 +962,7 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
                       child: child!,
                     );
                   },
-                  lastDate: DateTime(3000));
+                  );
               if (d != null) {
                 TimeOfDay? t = await showTimePicker(
                   context: context,

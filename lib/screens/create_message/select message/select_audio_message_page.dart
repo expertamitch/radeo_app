@@ -60,7 +60,7 @@ class _SelectAudioMessageState extends State<SelectAudioMessage> {
             GestureDetector(
               onTap: () async {
                 var status = await Permission.microphone.status;
-                if (status.isGranted) {
+                if (status.isGranted || Platform.isIOS) {
                   Get.toNamed(Routes.recordVoiceMessageScreen)?.then((value) {
                     if(value!=null && value is int){
                       Get.back(result: value);

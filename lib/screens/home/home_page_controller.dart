@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:redeo/models/message_only_model.dart';
 import 'package:redeo/screens/create_message/message_controller.dart';
+import 'package:redeo/widgets/loader.dart';
 
+import '../../network/internet_exception.dart';
+import '../../network/repository/backend_repo.dart';
+import '../../utils/snackbar_util.dart';
 import '../notice_of_event/notice_of_event_controller.dart';
 
 class HomePageController extends GetxController {
@@ -41,4 +46,24 @@ class HomePageController extends GetxController {
     // drawerKey.currentState!.closeDrawer();
     Navigator.pop(drawerKey.currentContext!);
   }
+
+
+  Future<MessageOnlyModel?> sendQR(String id) async {
+    try {
+      showLoader();
+      var result = await BackendRepo().sendQr(id);
+      showSuccessSnackBar(result.message!);
+      hideLoader();
+
+    } on InternetException {
+      hideLoader();
+      return null;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+
+      return null;
+    }
+  }
+
 }

@@ -127,7 +127,10 @@ class UserData {
   int? id;
   int? groupId;
   int? userId;
-  bool isAttendent = false;
+  bool isAttendant = false;
+  bool isLocalAttendant = false;
+  bool isVisible = true;
+
   bool selected = false;
   String? name;
   String? createdAt;
@@ -146,7 +149,8 @@ class UserData {
     this.groupId,
     this.userId,
     this.from_group_id,
-    this.isAttendent = false,
+    this.isAttendant = false,
+    this.isLocalAttendant = false,
     this.selected = false,
     this.createdAt,
     this.updatedAt,
@@ -165,7 +169,7 @@ class UserData {
       selected: source.selected,
       groupId: source.groupId,
       userId: source.userId,
-      isAttendent: source.isAttendent,
+      isAttendant: source.isAttendant,
       firstName: source.firstName,
       lastName: source.lastName,
       email: source.email,
@@ -180,7 +184,7 @@ class UserData {
     from_group_id = json['from_group_id'];
     groupId = json['group_id'];
     userId = json['user_id'];
-    isAttendent = json['is_attendent'] ?? false;
+    isAttendant = json['is_attendent'] ?? false;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     firstName = json['first_name'];
@@ -194,7 +198,7 @@ class UserData {
     data['id'] = this.id;
     data['group_id'] = this.groupId;
     data['user_id'] = this.userId;
-    data['is_attendent'] = this.isAttendent;
+    data['is_attendent'] = this.isAttendant;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['first_name'] = this.firstName;

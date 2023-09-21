@@ -44,24 +44,18 @@ class _TerritoryListScreenState extends State<TerritoryListScreen> {
             Get.toNamed(Routes.territoryHistoryListScreen);
           },
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Obx(() => controller.territoryListLoading.value
-                  ? OnScreenLoader()
-                  : controller.territoryList.value.isEmpty
-                      ? NotFoundWidget(
-                          title: 'No territories found',
-                        )
-                      : ListView.builder(
-                          itemCount: controller.territoryList.value.length,
-                          itemBuilder: (context, index) {
-                            return TerritoryTile(
-                              info: controller.territoryList.value[index],
-                            );
-                          })),
-            ),
-          ],
-        ));
+        body: Obx(() => controller.territoryListLoading.value
+            ? OnScreenLoader()
+            : controller.territoryList.value.isEmpty
+                ? NotFoundWidget(
+                    title: 'No territories found',
+                  )
+                : ListView.builder(
+                    itemCount: controller.territoryList.value.length,
+                    itemBuilder: (context, index) {
+                      return TerritoryTile(
+                        info: controller.territoryList.value[index],
+                      );
+                    })));
   }
 }

@@ -7,27 +7,25 @@ import 'package:redeo/screens/invite/controller/invite_controller.dart';
 
 import '../../models/all_group_list_response_model.dart';
 import '../../models/all_redeo_member_list_response_model.dart';
-import '../../models/local_attendant_model.dart';
-import '../../models/phone_contact_model.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/bottom_sheet_widget.dart';
 import '../../widgets/radio_selection_widget.dart';
 
-Future showSelectAttendantBottomSheet(List<Users> users) {
+Future showSelectAttendantBottomSheet(GroupModel users) {
   return Get.bottomSheet(
     BottomSheetWidget(
-      child: SelectAttendantScreen(tUsers: users),
+      child: SelectAttendantScreen(model: users),
     ),
     isScrollControlled: true,
   );
 }
 
 class SelectAttendantScreen extends StatefulWidget {
-  List<Users> tUsers;
+  GroupModel model;
 
-  SelectAttendantScreen({required this.tUsers});
+  SelectAttendantScreen({required this.model});
 
   @override
   _SelectAttendantScreenState createState() => _SelectAttendantScreenState();
@@ -35,17 +33,14 @@ class SelectAttendantScreen extends StatefulWidget {
 
 class _SelectAttendantScreenState extends State<SelectAttendantScreen> {
   List<Users> cloneUsers = [];
-  List<UserData> cloneGroups = [];
-  List<PhoneContactModel> clonePhoneContacts = [];
-  List<Info> cloneRedeoContacts = [];
-
+  List<int> redeoSelectedIndex = [];
+  List<int> phoneSelectedIndex = [];
+  Map<int, Map<String, List<int>>> groupSelectedIndex = {};
   InviteController inviteController = Get.find();
-
-  LocalAttendantModel? lam;
 
   @override
   void initState() {
-    cloneUsers = widget.tUsers.map((e) => Users.clone(e)).toList();
+    cloneUsers = widget.model.users!.map((e) => Users.clone(e)).toList();
     List<UserData> tmpGroups = [];
     inviteController.tempGroupsList.forEach((element) {
       if (element.selected) {
@@ -55,26 +50,66 @@ class _SelectAttendantScreenState extends State<SelectAttendantScreen> {
       }
     });
 
-    cloneGroups = tmpGroups.map((element) => UserData.clone(element)).toList();
-    cloneGroups.forEach((element) {
-      element.selected = false;
-    });
+    for (int i = 0;
+        i <
+            inviteController.redeoList
+                .where((element) => element.selected)
+                .toList()
+                .length;
+        i++) {
+      if (inviteController.redeoList
+          .where((element) => element.selected)
+          .toList()[i]
+          .isAttendant) redeoSelectedIndex.add(i);
+    }
 
-    cloneRedeoContacts = inviteController.tempRedeoList
-        .where((p0) => p0.selected)
-        .map((e) => Info.clone(e))
-        .toList();
-    cloneRedeoContacts.forEach((element) {
-      element.selected = false;
-    });
+    for (int i = 0;
+        i <
+            inviteController.contacts
+                .where((element) => element.selected)
+                .toList()
+                .length;
+        i++) {
+      if (inviteController.contacts
+          .where((element) => element.selected)
+          .toList()[i]
+          .isAttendant) phoneSelectedIndex.add(i);
+    }
 
-    clonePhoneContacts = inviteController.tempContactsList
-        .where((p0) => p0.selected)
-        .map((e) => PhoneContactModel.clone(e))
-        .toList();
-    clonePhoneContacts.forEach((element) {
-      element.selected = false;
-    });
+    for (int i = 0;
+        i <
+            inviteController.groupsList
+                .where((element) => element.selected)
+                .toList()
+                .length;
+        i++) {
+      inviteController.groupsList
+          .where((group) => group.selected)
+          .toList()[i]
+          .users!
+          .forEach((element) {
+        element.users!.asMap().entries.forEach((data) {
+          if (data.value.isLocalAttendant) {
+            {
+              int groupId = (inviteController.groupsList
+                  .where((group) => group.selected)
+                  .toList()[i]
+                  .id!);
+              if (!groupSelectedIndex.containsKey(groupId))
+                groupSelectedIndex.putIfAbsent(groupId, () => {});
+
+              if (!groupSelectedIndex[groupId]!
+                  .containsKey(data.value.contact_type!))
+                groupSelectedIndex[groupId]!
+                    .putIfAbsent(data.value.contact_type!, () => []);
+
+              groupSelectedIndex[groupId]![data.value.contact_type!]!.add(data.key);
+            }
+          }
+        });
+      });
+    }
+    print(groupSelectedIndex);
 
     super.initState();
   }
@@ -98,410 +133,150 @@ class _SelectAttendantScreenState extends State<SelectAttendantScreen> {
                         Column(
                           children: cloneUsers[0]
                               .users!
-                              .map((e) => GestureDetector(
-                                    onTap: () {
-                                      rbTap(e);
-                                      if (e.selected) {
-                                        lam = LocalAttendantModel(
-                                            index: 0,
-                                            selected: false,
-                                            phone: e.mobile!,
-                                            name:
-                                                "${e.firstName ?? ''} ${e.lastName ?? ''}",
-                                            type: e.contact_type!,
-                                            from_group_id:
-                                                e.contact_type == 'group'
-                                                    ? e.from_group_id
-                                                    : null);
-                                      } else
-                                        lam = null;
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 10,
-                                        horizontal: 20,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: AppColors.greyColor))),
-                                      child: Row(children: [
-                                        SvgPicture.asset(
-                                          Images.peopleIcon,
-                                          height: 23,
-                                        ),
-                                        SizedBox(
-                                          width: 15.w,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${e.firstName} ${e.lastName ?? ''}",
-                                              style: w300_12(),
-                                            ),
-                                            SizedBox(
-                                              height: 4.h,
-                                            ),
-                                            Text(
-                                              e.mobile ?? '',
-                                              style: w300_10(
-                                                color: AppColors.dark2GreyColor,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 15.w,
-                                          ),
-                                        ),
-                                        RadioSelectionWidget(
-                                            selected: e.selected),
-                                      ]),
-                                    ),
-                                  ))
+                              .map((e) => getItem(
+                                  e: e,
+                                  name: "${e.firstName} ${e.lastName ?? ''}",
+                                  mobile: e.mobile ?? '',
+                                  selected: e.isAttendant,
+                                  onTap: () {
+                                    e.isAttendant = !e.isAttendant;
+                                    setState(() {});
+                                  }))
                               .toList(),
                         ),
                         Column(
                           children: cloneUsers[1]
                               .users!
-                              .map((e) => GestureDetector(
-                                    onTap: () {
-                                      rbTap(e);
-                                      if (e.selected) {
-                                        lam = LocalAttendantModel(
-                                            index: 1,
-                                            selected: false,
-                                            phone: e.mobile!,
-                                            name:
-                                                "${e.firstName ?? ''} ${e.lastName ?? ''}",
-                                            type: e.contact_type!,
-                                            from_group_id:
-                                                e.contact_type == 'group'
-                                                    ? e.from_group_id
-                                                    : null);
-                                      } else
-                                        lam = null;
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 10,
-                                        horizontal: 20,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: AppColors.greyColor))),
-                                      child: Row(children: [
-                                        SvgPicture.asset(
-                                          Images.peopleIcon,
-                                          height: 23,
-                                        ),
-                                        SizedBox(
-                                          width: 15.w,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${e.firstName} ${e.lastName ?? ''}",
-                                              style: w300_12(),
-                                            ),
-                                            SizedBox(
-                                              height: 4.h,
-                                            ),
-                                            Text(
-                                              e.mobile ?? '',
-                                              style: w300_10(
-                                                color: AppColors.dark2GreyColor,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 15.w,
-                                          ),
-                                        ),
-                                        RadioSelectionWidget(
-                                            selected: e.selected),
-                                      ]),
-                                    ),
-                                  ))
+                              .map((e) => getItem(
+                                  e: e,
+                                  name: "${e.firstName} ${e.lastName ?? ''}",
+                                  mobile: e.mobile ?? '',
+                                  selected: e.isAttendant,
+                                  onTap: () {
+                                    e.isAttendant = !e.isAttendant;
+                                    setState(() {});
+                                  }))
                               .toList(),
                         ),
                         Column(
                           children: cloneUsers[2]
                               .users!
-                              .map((e) => GestureDetector(
-                                    onTap: () {
-                                      rbTap(e);
-                                      if (e.selected) {
-                                        lam = LocalAttendantModel(
-                                            index: 2,
-                                            selected: false,
-                                            phone: e.mobile!,
-                                            name:
-                                                "${e.firstName ?? ''} ${e.lastName ?? ''}",
-                                            type: e.contact_type!,
-                                            from_group_id:
-                                                e.contact_type == 'group'
-                                                    ? e.from_group_id
-                                                    : null);
-                                      } else
-                                        lam = null;
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 10,
-                                        horizontal: 20,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: AppColors.greyColor))),
-                                      child: Row(children: [
-                                        SvgPicture.asset(
-                                          Images.peopleIcon,
-                                          height: 23,
-                                        ),
-                                        SizedBox(
-                                          width: 15.w,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${e.firstName} ${e.lastName ?? ''}",
-                                              style: w300_12(),
-                                            ),
-                                            SizedBox(
-                                              height: 4.h,
-                                            ),
-                                            Text(
-                                              e.mobile ?? '',
-                                              style: w300_10(
-                                                color: AppColors.dark2GreyColor,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 15.w,
-                                          ),
-                                        ),
-                                        RadioSelectionWidget(
-                                            selected: e.selected),
-                                      ]),
-                                    ),
-                                  ))
+                              .map((e) => getItem(
+                                  e: e,
+                                  name: "${e.firstName} ${e.lastName ?? ''}",
+                                  mobile: e.mobile ?? '',
+                                  selected: e.isAttendant,
+                                  onTap: () {
+                                    e.isAttendant = !e.isAttendant;
+                                    setState(() {});
+                                  }))
                               .toList(),
                         ),
                         Column(
-                          children: cloneRedeoContacts
-                              .map((e) => GestureDetector(
-                                    onTap: () {
-                                      rbTap(e);
-                                      if (e.selected) {
-                                        lam = LocalAttendantModel(
-                                          index: 3,
-                                          selected: false,
-                                          phone: e.mobile!,
-                                          name:
-                                              "${e.firstName ?? ''} ${e.lastName ?? ''}",
-                                          type: 'redeo',
-                                        );
-                                      } else
-                                        lam = null;
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 10,
-                                        horizontal: 20,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: AppColors.greyColor))),
-                                      child: Row(children: [
-                                        SvgPicture.asset(
-                                          Images.peopleIcon,
-                                          height: 23,
-                                        ),
-                                        SizedBox(
-                                          width: 15.w,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${e.firstName} ${e.lastName ?? ''}",
-                                              style: w300_12(),
-                                            ),
-                                            SizedBox(
-                                              height: 4.h,
-                                            ),
-                                            Text(
-                                              e.mobile ?? '',
-                                              style: w300_10(
-                                                color: AppColors.dark2GreyColor,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 15.w,
-                                          ),
-                                        ),
-                                        RadioSelectionWidget(
-                                            selected: e.selected),
-                                      ]),
-                                    ),
-                                  ))
-                              .toList(),
+                          children: [
+                            for (int i = 0;
+                                i <
+                                    inviteController.redeoList
+                                        .where((element) => element.selected)
+                                        .toList()
+                                        .length;
+                                i++)
+                              getItem(
+                                  e: inviteController.redeoList
+                                      .where((element) => element.selected)
+                                      .toList()[i],
+                                  name:
+                                      "${inviteController.redeoList.where((element) => element.selected).toList()[i].firstName} ${inviteController.redeoList.where((element) => element.selected).toList()[i].lastName ?? ''}",
+                                  mobile: inviteController.redeoList
+                                          .where((element) => element.selected)
+                                          .toList()[i]
+                                          .mobile ??
+                                      '',
+                                  selected: redeoSelectedIndex.contains(i),
+                                  onTap: () {
+                                    if (redeoSelectedIndex.contains(i))
+                                      redeoSelectedIndex.remove(i);
+                                    else
+                                      redeoSelectedIndex.add(i);
+
+                                    setState(() {});
+                                  })
+                          ],
                         ),
                         Column(
-                          children: clonePhoneContacts
-                              .map((e) => GestureDetector(
-                                    onTap: () {
-                                      rbTap(e);
-                                      if (e.selected) {
-                                        lam = LocalAttendantModel(
-                                          index: 4,
-                                          selected: false,
-                                          phone:
-                                              e.phoneContact.phones[0].number,
-                                          name:
-                                              "${e.phoneContact.name.first ?? ''} ${e.phoneContact.name.last ?? ''}",
-                                          type: 'phone',
-                                        );
-                                      } else
-                                        lam = null;
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 10,
-                                        horizontal: 20,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: AppColors.greyColor))),
-                                      child: Row(children: [
-                                        SvgPicture.asset(
-                                          Images.peopleIcon,
-                                          height: 23,
-                                        ),
-                                        SizedBox(
-                                          width: 15.w,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${e.phoneContact.name.first} ${e.phoneContact.name.last ?? ''}",
-                                              style: w300_12(),
-                                            ),
-                                            SizedBox(
-                                              height: 4.h,
-                                            ),
-                                            Text(
-                                              e.phoneContact.phones[0].number ??
-                                                  '',
-                                              style: w300_10(
-                                                color: AppColors.dark2GreyColor,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 15.w,
-                                          ),
-                                        ),
-                                        RadioSelectionWidget(
-                                            selected: e.selected),
-                                      ]),
-                                    ),
-                                  ))
-                              .toList(),
+                          children: [
+                            for (int i = 0;
+                                i <
+                                    inviteController.contacts
+                                        .where((element) => element.selected)
+                                        .toList()
+                                        .length;
+                                i++)
+                              getItem(
+                                  e: inviteController.contacts
+                                      .where((element) => element.selected)
+                                      .toList()[i],
+                                  name:
+                                      "${inviteController.contacts.where((element) => element.selected).toList()[i].phoneContact.name.first} ${inviteController.contacts.where((element) => element.selected).toList()[i].phoneContact.name.last ?? ''}",
+                                  mobile: inviteController.contacts
+                                          .where((element) => element.selected)
+                                          .toList()[i]
+                                          .phoneContact
+                                          .phones[0]
+                                          .number ??
+                                      '',
+                                  selected: phoneSelectedIndex.contains(i),
+                                  onTap: () {
+                                    if (phoneSelectedIndex.contains(i))
+                                      phoneSelectedIndex.remove(i);
+                                    else
+                                      phoneSelectedIndex.add(i);
+
+                                    setState(() {});
+                                  })
+                          ],
                         ),
                         Column(
-                          children: cloneGroups
-                              .map((e) => GestureDetector(
-                                    onTap: () {
-                                      rbTap(e);
-                                      if (e.selected) {
-                                        lam = LocalAttendantModel(
-                                            index: 5,
-                                            selected: false,
-                                            phone: e.mobile!,
-                                            name:
-                                                "${e.firstName ?? ''} ${e.lastName ?? ''}",
-                                            type: e.contact_type!,
-                                            from_group_id:
-                                                e.contact_type == 'group'
-                                                    ? e.from_group_id
-                                                    : null);
-                                      } else
-                                        lam = null;
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 10,
-                                        horizontal: 20,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: AppColors.greyColor))),
-                                      child: Row(children: [
-                                        SvgPicture.asset(
-                                          Images.peopleIcon,
-                                          height: 23,
-                                        ),
-                                        SizedBox(
-                                          width: 15.w,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${e.firstName} ${e.lastName ?? ''}",
-                                              style: w300_12(),
-                                            ),
-                                            SizedBox(
-                                              height: 4.h,
-                                            ),
-                                            Text(
-                                              e.mobile ?? '',
-                                              style: w300_10(
-                                                color: AppColors.dark2GreyColor,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 15.w,
-                                          ),
-                                        ),
-                                        RadioSelectionWidget(
-                                            selected: e.selected),
-                                      ]),
-                                    ),
-                                  ))
+                          children: inviteController.groupsList
+                              .where((groupModel) => groupModel.selected)
+                              .toList()
+                              .map((el) => Column(
+                            children: el.users!
+                                .map((data) => Column(
+                              children: data.users!.asMap().entries
+
+                                  .map((e) => getItem(
+                                  e: e,
+                                  name:
+                                  "${e.value.firstName} ${e.value.lastName ?? ''}",
+                                  mobile: e.value.mobile ?? '',
+                                  selected:groupSelectedIndex.containsKey(el.id) && groupSelectedIndex[el.id!]!.containsKey(e.value.contact_type!) && groupSelectedIndex[el.id!]![e.value.contact_type!]!.contains(e.key),
+                                  onTap: () {
+                                    if(groupSelectedIndex.containsKey(el.id) && groupSelectedIndex[el.id!]!.containsKey(e.value.contact_type!) && groupSelectedIndex[el.id!]![e.value.contact_type!]!.contains(e.key)){
+                                    //  already selected
+                                      groupSelectedIndex[el.id!]![e.value.contact_type!]!.remove(e.key);
+                                    }else
+                                      {
+                                        int groupId = el.id!;
+                                        if (!groupSelectedIndex.containsKey(groupId))
+                                          groupSelectedIndex.putIfAbsent(groupId, () => {});
+
+                                        if (!groupSelectedIndex[groupId]!
+                                            .containsKey(e.value.contact_type!))
+                                          groupSelectedIndex[groupId]!
+                                              .putIfAbsent(e.value.contact_type!, () => []);
+
+                                        groupSelectedIndex[groupId]![e.value.contact_type!]!.add(e.key);
+                                      }
+                                    setState(() {});
+                                  }))
+                                  .toList(),
+                            ))
+                                .toList(),
+                          ))
                               .toList(),
-                        ),
+                        )
+
                       ],
                     ),
                   ),
@@ -511,7 +286,89 @@ class _SelectAttendantScreenState extends State<SelectAttendantScreen> {
                 ),
                 AppButton(
                     onPressedFunction: () async {
-                      Get.back(result: lam);
+
+                      for (int i = 0;
+                          i <
+                              inviteController.redeoList
+                                  .where((element) => element.selected)
+                                  .toList()
+                                  .length;
+                          i++) {
+                        if (redeoSelectedIndex.contains(i))
+                          inviteController.redeoList
+                              .where((element) => element.selected)
+                              .toList()[i]
+                              .isAttendant = true;
+                        else
+                          inviteController.redeoList
+                              .where((element) => element.selected)
+                              .toList()[i]
+                              .isAttendant = false;
+                      }
+
+                      for (int i = 0;
+                          i <
+                              inviteController.contacts
+                                  .where((element) => element.selected)
+                                  .toList()
+                                  .length;
+                          i++) {
+                        if (phoneSelectedIndex.contains(i))
+                          inviteController.contacts
+                              .where((element) => element.selected)
+                              .toList()[i]
+                              .isAttendant = true;
+                        else
+                          inviteController.contacts
+                              .where((element) => element.selected)
+                              .toList()[i]
+                              .isAttendant = false;
+                      }
+
+
+
+
+                      for (int i = 0;
+                      i <
+                          inviteController.groupsList
+                              .where((element) => element.selected)
+                              .toList()
+                              .length;
+                      i++) {
+                        inviteController.groupsList
+                            .where((group) => group.selected)
+                            .toList()[i]
+                            .users!
+                            .forEach((element) {
+                          element.users!.asMap().entries.forEach((data) {
+
+
+                            int groupId = (inviteController.groupsList
+                                .where((group) => group.selected)
+                                .toList()[i]
+                                .id!);
+
+                            if(groupSelectedIndex.containsKey(groupId) && groupSelectedIndex[groupId]!.containsKey(data.value.contact_type!) && groupSelectedIndex[groupId]![data.value.contact_type!]!.contains(data.key)){
+                              data.value.isLocalAttendant=true;
+                            }
+                            else
+                              data.value.isLocalAttendant=false;
+
+                          });
+                        });
+                      }
+
+
+
+
+
+                      inviteController.tempRedeoList
+                          .where((p0) => p0.selected)
+                          .map((e) => Info.clone(e))
+                          .toList();
+
+                      widget.model.users = cloneUsers;
+                      Get.back(result: widget.model);
                     },
                     child: Text(
                       'Select',
@@ -530,27 +387,56 @@ class _SelectAttendantScreenState extends State<SelectAttendantScreen> {
     );
   }
 
-  rbTap(var e) {
-    if (!e.selected) {
-      cloneUsers.forEach((element) {
-        element.users!.forEach((p0) {
-          p0.selected = false;
-        });
-      });
-      cloneGroups.forEach((element) {
-        element.selected = false;
-      });
-      clonePhoneContacts.forEach((element) {
-        element.selected = false;
-      });
-      cloneRedeoContacts.forEach((element) {
-        element.selected = false;
-      });
-      e.selected = true;
-    } else {
-      e.selected = false;
-    }
-
-    setState(() {});
+  Widget getItem(
+      {required dynamic e,
+      required String name,
+      required String mobile,
+      required bool selected,
+      int? index,
+      required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 20,
+        ),
+        decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: AppColors.greyColor))),
+        child: Row(children: [
+          SvgPicture.asset(
+            Images.peopleIcon,
+            height: 23,
+          ),
+          SizedBox(
+            width: 15.w,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${index ?? ''} $name",
+                style: w300_12(),
+              ),
+              SizedBox(
+                height: 4.h,
+              ),
+              Text(
+                mobile,
+                style: w300_10(
+                  color: AppColors.dark2GreyColor,
+                ),
+              )
+            ],
+          ),
+          Expanded(
+            child: SizedBox(
+              width: 15.w,
+            ),
+          ),
+          RadioSelectionWidget(selected: selected),
+        ]),
+      ),
+    );
   }
 }

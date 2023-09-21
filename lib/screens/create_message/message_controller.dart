@@ -34,7 +34,9 @@ class MessageController extends GetxController {
     selectedMessageType = null;
     selectedMessageId = null;
     selectedResponseType = 'Custom';
-
+    customMessageList.value.forEach((element) {
+      element.isSelected = false;
+    });
   }
 
   @override

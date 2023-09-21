@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:redeo/models/events_model.dart';
+import 'package:redeo/screens/event/event_controller.dart';
 import 'package:redeo/widgets/image_view.dart';
 
 import '../../assets/images.dart';
@@ -9,6 +11,9 @@ import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
+import '../../widgets/not_found_widget.dart';
+import '../../widgets/on_screen_loader.dart';
+import '../../widgets/search_widget.dart';
 
 class EventPage extends StatefulWidget {
   const EventPage({Key? key}) : super(key: key);
@@ -19,6 +24,7 @@ class EventPage extends StatefulWidget {
 
 class _EventPageState extends State<EventPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  EventController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -32,61 +38,40 @@ class _EventPageState extends State<EventPage> {
           },
         ),
         body: Column(children: [
-          Container(
-            decoration: BoxDecoration(
-                color: AppColors.darkGreyColor,
-                borderRadius: BorderRadius.circular(8)),
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Row(
-              children: [
-                ImageView(
-                  path: Images.searchIcon,
-                  color: Colors.purple,
-                ),
-                SizedBox(width: 15.w),
-                Flexible(
-                    child: TextFormField(
-                  style: w300_13(),
-                  decoration: InputDecoration(
-                      hintStyle: w300_13(
-                        color: AppColors.dark2GreyColor,
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Search Event...',
-                      isDense: true),
-                ))
-              ],
-            ),
-          ),
+          SearchWidget(
+              hint: 'Search Event…',
+              onChange: (data) {
+                controller.executeSearch(data);
+              }),
           Expanded(
-              child: ListView.builder(
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    return eventListTile(
-                        dateTime: DateTime.now(),
-                        name: 'John Doe',
-                        location:
-                            '2006 Chapmans Lane, San Francisc 2006 Chapmans Lane, San Franciscoo…',
-                        leadingIconPath: Images.locationIcon,
-                        requestedBy: index == 1);
-                  }))
+            child: Obx(() => controller.eventsListLoading.value
+                ? OnScreenLoader()
+                : controller.tempEventList.isEmpty
+                    ? NotFoundWidget(
+                        title: 'No Events found',
+                      )
+                    : ListView.builder(
+                        itemCount: controller.tempEventList.length,
+                        itemBuilder: (context, index) {
+                          return eventListTile(
+                              model: controller.tempEventList[index]);
+                        })),
+          )
         ]));
   }
 
   eventListTile({
-    required DateTime dateTime,
-    required String name,
-    required String location,
-    required String leadingIconPath,
+    required EventInfoModel model,
     bool requestedBy = false,
   }) {
     return GestureDetector(
       onTap: () {
+        // Get.toNamed(Routes.editEventDetailsScreen);
+
         if (requestedBy)
           Get.toNamed(Routes.editEventDetailsScreen);
         else
-          Get.toNamed(Routes.eventDetailsScreen);
+          Get.toNamed(Routes.eventDetailsScreen, arguments: model);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -96,7 +81,7 @@ class _EventPageState extends State<EventPage> {
         child: ListTile(
           minLeadingWidth: 10,
           title: Text(
-            name,
+            model.name ?? '',
             overflow: TextOverflow.ellipsis,
             style: w300_14(),
           ),
@@ -107,21 +92,22 @@ class _EventPageState extends State<EventPage> {
                 height: 5.h,
               ),
               Text(
-                location,
+                model.location ?? '',
                 style: w300_12(color: AppColors.dark2GreyColor),
               ),
               SizedBox(
                 height: 5.h,
               ),
               Text(
-                DateFormat('dd MMM yyyy, h:mm a').format(dateTime),
+                DateFormat('dd MMM yyyy, h:mm a')
+                    .format(model.dateTime ?? DateTime.now()),
                 style: w300_12(color: AppColors.dark2GreyColor),
               ),
               if (requestedBy)
                 SizedBox(
                   height: 20.h,
                 ),
-              if (requestedBy)
+              if (false)
                 Text(
                   'Requested by John Doe',
                   style: w600_14(color: AppColors.purpleColor)

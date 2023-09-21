@@ -1,27 +1,33 @@
 import 'package:get/get.dart';
 import 'package:redeo/widgets/loader.dart';
 
+import '../../../models/dnc_list_response_model.dart';
 import '../../../models/territory_detail_model.dart';
 import '../../../models/territory_list_model.dart';
 import '../../../network/internet_exception.dart';
 import '../../../network/repository/backend_repo.dart';
 import '../../../utils/snackbar_util.dart';
 
-class TerritoryController extends GetxController {
+class DNCController extends GetxController {
+  RxBool dncListLoading = false.obs;
   RxBool territoryListLoading = false.obs;
-  RxBool territoryHistoryLoading = false.obs;
-  RxBool territoryDetailLoading = false.obs;
+
   RxList<TerritoryInfo> territoryList = RxList();
-  RxList<TerritoryInfo> territoryHistoryList = RxList();
+  List<DoNotCalls> dncList = [];
+  RxList<DoNotCalls> tempDncList = RxList();
+
+  RxBool territoryDetailLoading = false.obs;
+
   List<Addresses> addresses = [];
   RxList<Addresses> tempAddresses = RxList();
+
   TerritoryDetailModel? detailModel;
 
   Future<bool> getTerritoryList() async {
     try {
       territoryList.clear();
       territoryListLoading.value = true;
-      var result = await BackendRepo().getTerritoryList();
+      var result = await BackendRepo().getAssignedTerritoryList();
       territoryList.value = result.info ?? [];
       territoryListLoading.value = false;
 
@@ -61,79 +67,66 @@ class TerritoryController extends GetxController {
     }
   }
 
-  Future<bool> assignTerritory(
-      {required String id, required String assigned_to}) async {
+  Future<bool> getDNCList(int id) async {
     try {
-      addresses.clear();
-      showLoader();
-      var result =
-          await BackendRepo().assignTerritory(id: id, assigned_to: assigned_to);
+      dncList.clear();
+      tempDncList.clear;
+      dncListLoading.value = true;
+      var result = await BackendRepo().getDNCList();
 
-      hideLoader();
 
-      getTerritoryList();
+      result.info?.forEach((element) {
+        if(element.id==id){
+          tempDncList.value=element.doNotCalls??[];
+          dncList=element.doNotCalls??[];
+        }
+      });
+      dncListLoading.value = false;
+
       return true;
     } on InternetException {
-      hideLoader();
+      dncListLoading.value = false;
       return false;
     } catch (e) {
-      hideLoader();
+      dncListLoading.value = false;
       showErrorSnackBar(e.toString());
-
       return false;
     }
   }
 
-  Future<bool> updateTerritory(
-      {required String id, required String status}) async {
+
+
+
+     Future<String?> addDNC(
+      {required String territoryId,
+      required String address,
+      required String reason}) async {
     try {
-      addresses.clear();
+
       showLoader();
-      var result = await BackendRepo().updateTerritory(id: id, status: status);
+      var result = await BackendRepo().addDNC(reason: reason,territoryId: territoryId,address: address,);
 
       hideLoader();
-
-      getTerritoryList();
-      return true;
+      return result.message!;
     } on InternetException {
       hideLoader();
-      return false;
+      return null;
     } catch (e) {
       hideLoader();
       showErrorSnackBar(e.toString());
 
-      return false;
+      return null;
     }
-  }
 
-  Future<bool> getTerritoryHistory() async {
-    try {
-      territoryHistoryList.clear();
-      territoryHistoryLoading.value = true;
-      var result = await BackendRepo().getTerritoryHistory();
-      territoryHistoryList.value = result.info ?? [];
-      territoryHistoryLoading.value = false;
 
-      return true;
-    } on InternetException {
-      territoryHistoryLoading.value = false;
-      return false;
-    } catch (e) {
-      territoryHistoryLoading.value = false;
-      showErrorSnackBar(e.toString());
-
-      return false;
-    }
   }
 
   executeSearch(String searchedText) {
-    tempAddresses.value = addresses.map((e) => Addresses.clone(e)).toList();
+    tempDncList.value = dncList.map((e) => DoNotCalls.clone(e)).toList();
 
-    tempAddresses.value.removeWhere((element) =>
-    !element.fullAddress!.toLowerCase().contains(searchedText.toLowerCase()));
-    tempAddresses.refresh();
+    tempDncList.value.removeWhere((element) => !element.address!
+        .toLowerCase()
+        .contains(searchedText.toLowerCase()));
+    tempDncList.refresh();
   }
-
-
-
 }

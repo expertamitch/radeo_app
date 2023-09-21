@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,11 +40,11 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         button1: 'Review',
         buttonTap1: () {
           bool cSelected = false;
-          int selectedId = 0;
+          List<int> selectedId = [];
           controller.customMessageList.value.forEach((element) {
             if (element.isSelected) {
               cSelected = true;
-              selectedId = element.id!;
+               selectedId.add(element.id!);
             }
           });
 
@@ -139,7 +141,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 18.0),
                   child: AttachmentWidget(
                       hint: 'Attachment',
-                      title: 'Select Files',attachment: controller.attachmentFile,
+                      title: 'Select Files',
+                      attachment: controller.attachmentFile,
                       filePickedCallback: (value) {
                         controller.attachmentFile = value;
                         setState(() {});
@@ -216,6 +219,12 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                           ),
                           AppButton(
                               onPressedFunction: () async {
+                              /*  if(Platform.isIOS)
+                                  {
+                                    scan();
+                                    return;
+                                  }
+*/
                                 var cameraStatus =
                                     await Permission.camera.request();
                                 if (cameraStatus.isGranted) {
@@ -245,24 +254,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                                 var camera = await Permission.camera.status;
                                 var audio = await Permission.microphone.status;
                                 if (camera.isGranted && audio.isGranted)
-                                  Get.toNamed(Routes.qrScanner)?.then((value) {
-                                    if (value != null) {
-                                      setState(() {
-                                        if (value
-                                                .toString()
-                                                .split('/')
-                                                .last
-                                                .indexOf('-') >
-                                            0) {
-                                          controller.qrResult =
-                                              value.toString().split('/').last;
-                                        } else {
-                                          showErrorSnackBar('Invalid Redeo QR');
-                                        }
-                                        print(controller.qrResult);
-                                      });
-                                    }
-                                  });
+                                  scan();
                               },
                               child: Text(
                                 controller.qrResult.isNotEmpty
@@ -282,6 +274,27 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         ),
       ]),
     );
+  }
+
+  scan(){
+    Get.toNamed(Routes.qrScanner)?.then((value) {
+      if (value != null) {
+        setState(() {
+          if (value
+              .toString()
+              .split('/')
+              .last
+              .indexOf('-') >
+              0) {
+            controller.qrResult =
+                value.toString().split('/').last;
+          } else {
+            showErrorSnackBar('Invalid Redeo QR');
+          }
+          print(controller.qrResult);
+        });
+      }
+    });
   }
 
   Widget getMessage() {
@@ -713,12 +726,12 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
             return AppColors.purpleColor;
           }),
           onChanged: (value) {
-            if (value!) {
+            /*if (value!) {
               controller.customMessageList.value.forEach((element) {
                 element.isSelected = false;
               });
-            }
-            message.isSelected = value;
+            }*/
+            message.isSelected = value!;
             controller.customMessageList.refresh();
           },
         ),

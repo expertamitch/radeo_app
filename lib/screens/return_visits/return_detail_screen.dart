@@ -9,6 +9,7 @@ import 'package:redeo/network/repository/backend_repo.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/image_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../assets/images.dart';
 import '../../route/routes.dart';
@@ -19,13 +20,13 @@ class ReturnDetailScreen extends StatefulWidget {
   const ReturnDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<ReturnDetailScreen> createState() =>
-      _ReturnDetailScreenState();
+  State<ReturnDetailScreen> createState() => _ReturnDetailScreenState();
 }
 
 class _ReturnDetailScreenState extends State<ReturnDetailScreen> {
   NoticeOfEventController controller = Get.find();
-NOEModel model=Get.arguments;
+  NOEModel model = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +40,11 @@ NOEModel model=Get.arguments;
             children: [
               AppButton(
                   onPressedFunction: () {
-                    Get.toNamed(Routes.createReturnPageScreen, arguments:  Get.arguments);
+                    Get.toNamed(Routes.createReturnPageScreen, arguments: model)
+                        ?.then((value) {
+                      if (value != null && value is NOEModel) model = value;
+                      setState(() {});
+                    });
                   },
                   child: Text(
                     'Create Return',
@@ -54,7 +59,7 @@ NOEModel model=Get.arguments;
               ),
               AppButton(
                   onPressedFunction: () {
-                    Get.toNamed(Routes.historyPage);
+                    Get.toNamed(Routes.historyPage, arguments: model);
                   },
                   child: ImageView(
                     path: Images.historyIcon,
@@ -87,8 +92,8 @@ NOEModel model=Get.arguments;
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child:Image.network(
-                          BackendRepo.storageUrl+model.nameImage!,
+                        child: Image.network(
+                          model.nameImage!.startsWith('http')?model.nameImage!:BackendRepo.storageUrl + model.nameImage!,
                           width: 100,
                           fit: BoxFit.cover,
                           height: 60,
@@ -112,11 +117,12 @@ NOEModel model=Get.arguments;
                           decoration: BoxDecoration(
                               border: Border.all(color: AppColors.greyColor),
                               borderRadius: BorderRadius.circular(8)),
-                          child: SvgPicture.asset(model.returnVisit!.level == 'cloud'
-                              ? 'assets/icons/screen 18/Level 1.svg'
-                              : model.returnVisit!.level == 'rain'
-                              ? 'assets/icons/screen 18/Level 2.svg'
-                              : 'assets/icons/screen 18/Level 3.svg')),
+                          child: SvgPicture.asset(
+                              model.returnVisit!.level == 'cloud'
+                                  ? 'assets/icons/screen 18/Level 1.svg'
+                                  : model.returnVisit!.level == 'rain'
+                                      ? 'assets/icons/screen 18/Level 2.svg'
+                                      : 'assets/icons/screen 18/Level 3.svg')),
                       SizedBox(
                         height: 10.h,
                       ),
@@ -133,25 +139,18 @@ NOEModel model=Get.arguments;
               getDivider(),
               getCell('Email', model.email!),
               getDivider(),
-              getCell('Telephone', model.email!),
+              getCell('Telephone', model.telephone??''),
               getDivider(),
-              getCell(
-                  'Date and Time',
-
-                       DateFormat('MMMM,dd yyyy, hh:mm a')
-                          .format(model.dateTime!)
-                      ),
+              getCell('Date and Time',
+                  DateFormat('MMMM,dd yyyy, hh:mm a').format(model.dateTime!)),
               getDivider(),
-              getCell('Territory', model.territoryId!.toString()),
+              getCell('Territory', model.territoryName!.toString()),
               getDivider(),
-              getCell('Given Content Type ', model.givenContentType??''),
+              getCell('Given Content Type ', model.givenContentType?.capitalize ?? ''),
               getDivider(),
-              getCell(
-                  'Given Content Name ', model.givenContentName??''),
+              getCell('Given Content Name ', model.givenContentName ?? ''),
               getDivider(),
-              getCell(
-                  'Attributes',
-                  model.maritalStatus!),
+              getCell('Attributes', model.maritalStatus!.capitalize!),
               SizedBox(
                 height: 10.h,
               ),
@@ -182,27 +181,32 @@ NOEModel model=Get.arguments;
                     width: 10.w,
                   ),
                   Expanded(
-                    child: DottedBorder(
-                      color: AppColors.greyColor,
-                      strokeWidth: 1,
-                      dashPattern: [5, 5],
-                      borderType: BorderType.RRect,
-                      radius: Radius.circular(8),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              model.attachments!,
-                              maxLines: 2,
-                              style: w300_13(),
+                    child: GestureDetector(
+                      onTap: (){
+                        launchUrl(Uri.parse(BackendRepo.storageUrl+model.attachments!),mode: LaunchMode.externalApplication);
+                      },
+                      child: DottedBorder(
+                        color: AppColors.greyColor,
+                        strokeWidth: 1,
+                        dashPattern: [5, 5],
+                        borderType: BorderType.RRect,
+                        radius: Radius.circular(8),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                model.attachments!,
+                                maxLines: 2,
+                                style: w300_13(),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                        ],
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -211,20 +215,17 @@ NOEModel model=Get.arguments;
               getDivider(),
               getCell(
                   'Return Visit',
-
-                        DateFormat('MMMM,dd yyyy, hh:mm a')
-                          .format(model.returnVisit!.returnDate!)
-                       ),
+                  DateFormat('MMMM,dd yyyy, hh:mm a')
+                      .format(model.returnVisit!.returnDate!)),
               getDivider(),
-              getCell('Time Period',model.returnVisit!.type!),
+              getCell('Time Period', model.returnVisit!.type=='month'?'Monthly':model.returnVisit!.type=='year'?'Yearly':model.returnVisit!.type=='week'?'Weekly':model.returnVisit!.type!),
               getDivider(),
-              getCell('Notify Me', model.returnVisit!.notificationSelf??''),
+              getCell('Notify Me', model.returnVisit!.notificationSelf=='month'?'Monthly':model.returnVisit!.notificationSelf=='year'?'Yearly':model.returnVisit!.notificationSelf=='week'?'Weekly':model.returnVisit!.notificationSelf!),
               getDivider(),
               getCell('Notify ${model.name!}',
-                  model.returnVisit!.notificationOther! ? 'Yes' : 'No'),
+                  !model.returnVisit!.notificationOther! ? 'Yes' : 'No'),
               getDivider(),
-              getCell('Indicators',
-                  model.indicators!),
+              getCell('Indicators', model.indicators=='open-for-encourgament'?'Open for Encouragement':'Do Not Contact'),
               getDivider(),
               SizedBox(
                 height: 25.h,
@@ -259,13 +260,14 @@ NOEModel model=Get.arguments;
           title,
           style: w600_12(),
         ),
-        SizedBox(
-            width: (MediaQuery.of(context).size.width * .5).w,
-            child: Text(
-              desc,
-              textAlign: TextAlign.right,
-              style: w300_13(),
-            ))
+        
+        Expanded(
+          child: Text(
+            desc,
+            textAlign: TextAlign.right,
+            style: w300_13(),
+          ),
+        )
       ],
     );
   }

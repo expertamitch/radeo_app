@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:redeo/models/all_group_list_response_model.dart';
+import 'package:redeo/screens/event/event_controller.dart';
+import 'package:redeo/widgets/app_button.dart';
+import 'package:redeo/widgets/search_widget.dart';
 
 import '../../../assets/images.dart';
+import '../../../models/events_model.dart';
 import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
-
 import '../../../utils/common_dialogs.dart';
 import '../../../widgets/image_view.dart';
-import 'package:redeo/widgets/app_button.dart';
+import '../../../widgets/loader.dart';
 
 class EventDetailsPage extends StatefulWidget {
   const EventDetailsPage({Key? key}) : super(key: key);
@@ -20,6 +25,21 @@ class EventDetailsPage extends StatefulWidget {
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
+  List<UserData> userList = [];
+  RxList<UserData> tempUserList = RxList();
+
+  EventController controller = Get.find();
+  late EventInfoModel model;
+
+  @override
+  void initState() {
+    model = Get.arguments;
+
+    userList = model.eventUsers!;
+    tempUserList.value = model.eventUsers!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +50,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           iconTheme: IconThemeData(color: Colors.black),
           actions: [
             GestureDetector(
-                onTap: () {
-                },
+                onTap: () {},
                 child: ImageView(
                   path: Images.editIcon,
                   height: 17,
@@ -41,7 +60,18 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             ),
             GestureDetector(
               onTap: () {
-                showConfirmationDialog(context, "Do you want to delete event?");
+                showConfirmationDialog(context, "Do you want to delete event?",
+                    yesCallback: () async {
+                  bool success =
+                      await controller.deleteEvent(model.id.toString());
+                  if (success) {
+                    showLoader();
+                    await controller.getEventsList();
+                    hideLoader();
+                    Get.back();
+                    Get.back();
+                  }
+                });
               },
               child: ImageView(
                 path: Images.deleteIcon,
@@ -76,14 +106,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         SizedBox(
                           height: 30.h,
                         ),
-                        // PrettyQr(
-                        //   // image: AssetImage('images/twitter.png'),
-                        //   typeNumber: 3,
-                        //   size: 150,
-                        //   data: 'https://www.google.ru',
-                        //   errorCorrectLevel: QrErrorCorrectLevel.M,
-                        //   roundEdges: true, elementColor: Colors.white,
-                        // ),
                         ImageView(
                           path: Images.barcodeImg,
                           width: MediaQuery.of(context).size.width * 0.35,
@@ -92,7 +114,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           height: 10.h,
                         ),
                         Text(
-                          'Event Name',
+                          model.name!,
                           style: w900_18(
                             color: Colors.white,
                           ),
@@ -101,7 +123,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           height: 5.h,
                         ),
                         Text(
-                          '27 Apr 2023, 3:17 PM',
+                          DateFormat('dd MMM yyyy, h:mm a')
+                              .format(model.dateTime ?? DateTime.now()),
                           style: w300_13(
                             color: Colors.white,
                           ),
@@ -110,7 +133,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           height: 5.h,
                         ),
                         Text(
-                          '2006 Chapmans Lane, San Francisco, California',
+                          model.location!,
                           style: w300_13(
                             color: Colors.white,
                           ),
@@ -125,6 +148,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     height: 20.h,
                   ),
                   Container(
+                    width: Get.width,
                     decoration: BoxDecoration(
                         color: AppColors.darkGreyColor,
                         borderRadius: BorderRadius.circular(4)),
@@ -141,9 +165,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         SizedBox(
                           height: 10.h,
                         ),
-                        Text(
-                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero',
-                            style: w300_12()),
+                        Text(model.description!, style: w300_12()),
                       ],
                     ),
                   ),
@@ -160,8 +182,18 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ),
                       ),
                       AppButton(
-                          onPressedFunction: () {
-                            Get.toNamed(Routes.addInviteeScreen);
+                          onPressedFunction: () async {
+                             Get.toNamed(
+                                Routes.addInviteeScreen,
+                                arguments: model)?.then((detailModel) {
+                               if (detailModel != null) {
+                                 model = detailModel;
+                                 userList = model.eventUsers!;
+                                 tempUserList.value = model.eventUsers!;
+                                 setState(() {});
+                               }
+                             });
+
                           },
                           child: Text(
                             'Add Invitee',
@@ -176,50 +208,18 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.darkGreyColor,
-                        borderRadius: BorderRadius.circular(8)),
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: Row(
-                      children: [
-                        ImageView(
-                          path: Images.searchIcon,
-                          color: Colors.purple,
-                        ),
-                        SizedBox(width: 15.w),
-                        Flexible(
-                            child: TextFormField(
-                          style: w300_13(),
-                          decoration: InputDecoration(
-                              hintStyle: w300_13(
-                                color: AppColors.dark2GreyColor,
-                              ),
-                              border: InputBorder.none,
-                              hintText: 'Search Clients...',
-                              isDense: true),
-                        ))
-                      ],
-                    ),
-                  ),
+                  SearchWidget(
+                      hint: 'Search Clients...', onChange: executeSearch),
                   SizedBox(
                     height: 10.h,
                   ),
-                  clientLstTile(
-                      status: 'Accepted',
-                      subtitle:
-                          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod.',
-                      title: 'John Doe Client'),
-                  clientLstTile(
-                      status: 'Rejected',
-                      subtitle:
-                          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod.',
-                      title: 'John Doe Client'),
-                  clientLstTile(
-                      status: 'Pending',
-                      subtitle:
-                          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod.',
-                      title: 'John Doe Client'),
+                  Obx(() => Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: tempUserList
+                            .map((e) =>
+                                clientLstTile(data: e, status: 'Pending'))
+                            .toList(),
+                      )),
                   SizedBox(
                     height: 20.h,
                   )
@@ -230,11 +230,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         ]));
   }
 
-  clientLstTile(
-      {required String title,
-      required String subtitle,
-      required String status}) {
+  Widget clientLstTile({required UserData data, required String status}) {
     return Container(
+      width: Get.width,
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: AppColors.greyColor))),
       padding: EdgeInsets.symmetric(vertical: 10),
@@ -249,16 +247,16 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           SizedBox(
             width: 15.w,
           ),
-          Flexible(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: w300_14()),
+                Text(data.name ?? '', style: w300_14()),
                 SizedBox(
                   height: 5.h,
                 ),
                 Text(
-                  subtitle,
+                  data.mobile ?? '',
                   style: w300_12(color: AppColors.dark2GreyColor),
                 ),
               ],
@@ -276,5 +274,13 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         ],
       ),
     );
+  }
+
+  executeSearch(String searchedText) {
+    tempUserList.value = userList.map((e) => UserData.clone(e)).toList();
+
+    tempUserList.value.removeWhere((element) =>
+        !element.name!.toLowerCase().contains(searchedText.toLowerCase()));
+    tempUserList.refresh();
   }
 }

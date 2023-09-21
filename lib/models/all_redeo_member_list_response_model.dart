@@ -82,6 +82,7 @@ class Info {
   String? updatedAt;
   bool selected = false;
   bool isAttendant = false;
+  bool isVisible = true;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

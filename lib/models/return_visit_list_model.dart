@@ -106,6 +106,7 @@ class NOEModel {
   String? location;
   String? email;
   String? telephone;
+  String? territoryName;
   int? territoryId;
   String? givenContentType;
   String? givenContentName;
@@ -119,6 +120,7 @@ class NOEModel {
   String? createdAt;
   String? updatedAt;
   ReturnVisit? returnVisit;
+  List<ReturnVisit>? returnVisits;
 
   NOEModel(
       {this.id,
@@ -128,8 +130,10 @@ class NOEModel {
         this.location,
         this.email,
         this.telephone,
+        this.territoryName,
         this.territoryId,
         this.givenContentType,
+        this.returnVisits,
         this.givenContentName,
         this.maritalStatus,
         this.boys,
@@ -147,6 +151,7 @@ class NOEModel {
     userId = json['user_id'];
     name = json['name'];
     nameImage = json['name_image'];
+    territoryName = json['territory_name'];
     location = json['location'];
     email = json['email'];
     telephone = json['telephone'];
@@ -165,6 +170,12 @@ class NOEModel {
     returnVisit = json['return_visit'] != null
         ? new ReturnVisit.fromJson(json['return_visit'])
         : null;
+    if (json['return_visits'] != null) {
+      returnVisits = <ReturnVisit>[];
+      json['return_visits'].forEach((v) {
+        returnVisits!.add(new ReturnVisit.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {

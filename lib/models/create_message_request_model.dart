@@ -4,7 +4,7 @@ class CreateMessageRequestModel
   String location = '';
   String selectedMessageType='';
   int selectedMessageId=0;
-  int? selectedCustomResponseId;
+  List<int> selectedCustomResponseId=[];
   bool response=false;
 
 
