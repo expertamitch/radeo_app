@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "23456483694",
+    "project_id": "redeo-f4c25",
+    "storage_bucket": "redeo-f4c25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23456483694:android:0861fffb6cb04ad9ef997f",
+        "android_client_info": {
+          "package_name": "com.app.redeo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALIUnSldoP4s_h866Fmx2h18w-FAjRfkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
