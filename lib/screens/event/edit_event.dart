@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:redeo/models/all_group_list_response_model.dart';
+import 'package:redeo/models/events_model.dart';
 import 'package:redeo/screens/event/event_controller.dart';
+import 'package:redeo/screens/event/remove_event_users_bottom_sheet.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/loader.dart';
 
@@ -10,16 +13,18 @@ import '../../../route/routes.dart';
 import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 import '../../../widgets/tiles/disabled_text_field.dart';
-import '../../invite/controller/invite_controller.dart';
+import '../../models/update_event_model.dart';
+import '../groups/remove_users_bottom_sheet.dart';
+import '../invite/controller/invite_controller.dart';
 
-class CreateEventPage extends StatefulWidget {
-  const CreateEventPage({Key? key}) : super(key: key);
-
+class EditEvent extends StatefulWidget {
   @override
-  State<CreateEventPage> createState() => _CreateEventPageState();
+  _EditEventState createState() => _EditEventState();
 }
 
-class _CreateEventPageState extends State<CreateEventPage> {
+class _EditEventState extends State<EditEvent> {
+  late EventInfoModel model;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   InviteController inviteController = Get.put(
     InviteController(),
@@ -38,9 +43,29 @@ class _CreateEventPageState extends State<CreateEventPage> {
   TextEditingController locationController = TextEditingController();
 
   EventController controller = Get.find();
+  int membersCount = 0;
 
   @override
   void initState() {
+    EventInfoModel tModel = Get.arguments;
+
+    model = EventInfoModel.clone(tModel);
+
+    nameController.text = model.name ?? '';
+    descController.text = model.description ?? '';
+    locationController.text = model.location ?? '';
+    datetime = model.dateTime ?? DateTime.now();
+
+    openEvent = model.type == 'open';
+
+    selectedRecurrence = model.recurrence == 'everyday'
+        ? 'Daily'
+        : model.recurrence == 'every-year'
+            ? 'Once a Year'
+            : model.recurrence == 'every-month'
+                ? 'Once a Month'
+                : 'Once a Week';
+
     inviteController.redeoList
         .where((element) => element.selected)
         .forEach((e) {
@@ -53,22 +78,19 @@ class _CreateEventPageState extends State<CreateEventPage> {
       e.isVisible = true;
     });
 
-    inviteController.groupsList
-        .where((element) => element.selected)
-        .forEach((element) {
-      element.users!.forEach((users) {
-        users.users!.forEach((e) {
-          e.isLocalAttendant = false;
-          e.isVisible = true;
-        });
-      });
-    });
+    reCal();
     super.initState();
+  }
+
+  reCal() {
+    membersCount = 0;
+    membersCount = model.eventUsers?.length ?? 0;
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: AppColors.darkGreyColor,
@@ -119,45 +141,29 @@ class _CreateEventPageState extends State<CreateEventPage> {
 
                         List<Map<String, dynamic>> usersArray = [];
 
-
-                        inviteController.redeoList
-                            .where((p0) => p0.selected)
-                            .forEach((element) {
-                          if (element.selected)
-                            usersArray.add({
-                              'name':
-                                  "${element.firstName ?? ''} ${element.lastName ?? ''}",
-                              'mobile': element.mobile ?? '',
-                              'contact_type': 'redeo',
-                            });
-                        });
-
-                        inviteController.contacts
-                            .where((p0) => p0.selected)
-                            .forEach((element) {
-                          if (element.selected)
-                            usersArray.add({
-                              'name':
-                                  "${element.phoneContact.name.first ?? ''} ${element.phoneContact.name.last ?? ''}",
-                              'mobile':
-                                  element.phoneContact.phones[0].number ?? '',
-                              'contact_type': 'phone',
-                            });
+                        model.eventUsers?.forEach((element) {
+                          usersArray.add({
+                            'name':
+                                "${element.firstName ?? ''} ${element.lastName ?? ''}",
+                            'mobile': element.mobile ?? '',
+                            'contact_type': element.contact_type ?? '',
+                          });
                         });
 
                         data['contacts'] = usersArray;
 
-                        bool success = await controller.createEvent(data);
-                        if (success) {
+                        EventInfoModel? response = await controller.updateEvent(
+                            data, model.id.toString());
+                        if (response!=null) {
                           showLoader();
                           await controller.getEventsList();
                           hideLoader();
-                          Get.back();
+                          Get.back(result:  response);
                         }
                       }
                     },
                     child: Text(
-                      'Submit',
+                      'Save',
                       style: w300_12(color: Colors.white),
                     ),
                     sodiumShapeBorder: true,
@@ -177,7 +183,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
             color: AppColors.darkGreyColor,
             padding: EdgeInsets.only(left: 18, right: 16, bottom: 20),
             child: Text(
-              'Create Event',
+              'Edit Event',
               style: w900_30(),
             ),
           ),
@@ -250,7 +256,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                               height: 30.h,
                             ),
                           ]))))
-        ])));
+        ]));
   }
 
   Widget getEventName() {
@@ -424,6 +430,77 @@ class _CreateEventPageState extends State<CreateEventPage> {
   }
 
   Widget getInvitee() {
+    return Row(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Invitee',
+                style: w300_13(
+                  color: AppColors.blueColor,
+                ),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Text(
+                '${membersCount} Invitee selected',
+                style: w600_13(
+                  color: AppColors.blueColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Spacer(),
+        SizedBox(
+          width: 18.w,
+        ),
+        AppButton(
+            onPressedFunction: () {
+              showRemoveEventUsersBottomSheet(model.eventUsers!).then((value) {
+                if (value != null) {
+                  model.eventUsers = value;
+                  setState(() {});
+                }
+                reCal();
+              });
+            },
+            child: Text(
+              'Remove',
+              style: w300_13(color: Colors.white),
+            ),
+            sodiumShapeBorder: true,
+            width: null,
+            height: 30.h,
+            buttonColor: AppColors.purpleColor),
+        SizedBox(
+          width: 8.w,
+        ),
+        AppButton(
+            onPressedFunction: () async {
+              Get.toNamed(Routes.inviteContactsScreen)?.then((result) {
+                if (result != null) model.eventUsers!.add(result);
+                reCal();
+              });
+              reCal();
+            },
+            child: Text(
+              'Add',
+              style: w300_13(color: Colors.white),
+            ),
+            sodiumShapeBorder: true,
+            width: null,
+            height: 30.h,
+            buttonColor: AppColors.purpleColor),
+        SizedBox(
+          width: 18.w,
+        ),
+      ],
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0),
       child: DisabledTextField(
@@ -434,9 +511,9 @@ class _CreateEventPageState extends State<CreateEventPage> {
         error: 'Please select invitee',
         onTap: () async {
           FocusManager.instance.primaryFocus?.unfocus();
-          await Get.toNamed(Routes.inviteContactsScreen);
-          if(inviteController.selectedMembersCount.value >0)
-          showInviteeError =false ;
+          await Get.toNamed(Routes.inviteeScreen);
+          if (inviteController.selectedMembersCount.value > 0)
+            showInviteeError = false;
 
           setState(() {});
         },

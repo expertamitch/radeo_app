@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:redeo/models/all_group_list_response_model.dart';
 import 'package:redeo/screens/groups/controller/groups_controller.dart';
 import 'package:redeo/screens/groups/select_attendant_bottom_sheet.dart';
+import 'package:redeo/screens/groups/show_user_bottom_sheet.dart';
 import 'package:redeo/widgets/app_button.dart';
 
 import '../../route/routes.dart';
@@ -268,6 +269,19 @@ class _EditGroupPageState extends State<EditGroupPage> {
               SizedBox(
                 width: 18.w,
               ),
+              if (!model.isEditing)
+                AppButton(
+                    onPressedFunction: () {
+                      showUsersBottomSheet(model.users!, false);
+                    },
+                    child: Text(
+                      'View',
+                      style: w300_13(color: Colors.white),
+                    ),
+                    sodiumShapeBorder: true,
+                    width: null,
+                    height: 30.h,
+                    buttonColor: AppColors.purpleColor),
               if (model.isEditing)
                 AppButton(
                     onPressedFunction: () {
@@ -348,6 +362,22 @@ class _EditGroupPageState extends State<EditGroupPage> {
                   width: 18.w,
                 ),
               ),
+
+              if (!model.isEditing)
+                AppButton(
+                    onPressedFunction: () {
+                      showUsersBottomSheet(model.users!, true);
+                    },
+                    child: Text(
+                      'View',
+                      style: w300_13(color: Colors.white),
+                    ),
+                    sodiumShapeBorder: true,
+                    width: null,
+                    height: 30.h,
+                    buttonColor: AppColors.purpleColor),
+
+
               if (model.isEditing)
                 AppButton(
                     onPressedFunction: () {
@@ -438,7 +468,7 @@ class _EditGroupPageState extends State<EditGroupPage> {
                     height: 30.h,
                     buttonColor: AppColors.purpleColor),
               SizedBox(
-                width: 18.w,
+                width: 26.w,
               ),
             ],
           )

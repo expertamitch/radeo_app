@@ -230,9 +230,9 @@ class _CreateNoticeOfEventState extends State<CreateNoticeOfEvent> {
               child: Row(
                 children: [
                   ImageView(
-                    path: controller.uploadImg == null
-                        ? Images.uploadImg
-                        : controller.uploadImg!.path,
+                      path: controller.uploadImg == null
+                          ? Images.uploadImg
+                          : controller.uploadImg!.path,
                     width: 80.w,
                   ),
                 ],

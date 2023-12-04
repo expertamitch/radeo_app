@@ -27,6 +27,7 @@ abstract class Routes {
    static const createEventScreen = '/createEventScreen';
   static const eventDetailsScreen = '/eventDetailsScreen';
   static const editEventDetailsScreen = '/editEventDetailsScreen';
+  static const editEventScreen = '/editEventScreen';
   //invitee
   static const inviteeScreen = '/inviteeScreen';
   static const addInviteeScreen = '/addInviteeScreen';

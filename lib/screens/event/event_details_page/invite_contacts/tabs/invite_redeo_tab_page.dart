@@ -7,6 +7,7 @@ import 'package:redeo/widgets/tiles/redeo_tile.dart';
 import '../../../../../styling/font_style_globle.dart';
 import '../../../../../widgets/not_found_widget.dart';
 import '../../../../../widgets/on_screen_loader.dart';
+import '../../../../invite/controller/invite_controller.dart';
 import '../../../../territory/controller/contacts_controller.dart';
 
 class InviteRedeoTabPage extends StatefulWidget {
@@ -17,7 +18,8 @@ class InviteRedeoTabPage extends StatefulWidget {
 }
 
 class _InviteRedeoTabPageState extends State<InviteRedeoTabPage> {
-  ContactsController controller = Get.find();
+  // ContactsController controller = Get.find();
+  InviteController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _InviteRedeoTabPageState extends State<InviteRedeoTabPage> {
                 ),
                 SearchWidget(
                     hint: 'Search Redeo Contact',
-                    onChange: controller.executeSearch),
+                    onChange: controller.executeRedeoSearch),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -75,7 +77,7 @@ class _InviteRedeoTabPageState extends State<InviteRedeoTabPage> {
                                     !controller
                                         .tempRedeoList.value[index].selected;
 
-                                controller.contacts.value.forEach((element) {
+                                controller.tempContactsList.forEach((element) {
                                   element.selected = false;
                                 });
 

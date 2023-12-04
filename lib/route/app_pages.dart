@@ -29,6 +29,7 @@ import '../screens/create_message/select message/select_video_message_page.dart'
 import '../screens/do_not_call/add_dnc_screen.dart';
 import '../screens/do_not_call/addresses_list_screen.dart';
 import '../screens/event/create_new_event/create_event_page.dart';
+import '../screens/event/edit_event.dart';
 import '../screens/event/event_details_page/add_invitee_page.dart';
 import '../screens/event/event_details_page/edit_event_details_page.dart';
 import '../screens/event/event_details_page/event_details_page.dart';
@@ -166,6 +167,7 @@ class AppPages {
       name: Routes.editEventDetailsScreen,
       transition: Transition.cupertino,
       page: () => EditEventDetailsPage(),
+      arguments: Get.arguments
     ),
 
     GetPage(
@@ -197,6 +199,7 @@ class AppPages {
       name: Routes.chatMessageScreen,
       transition: Transition.cupertino,
       page: () => ChatMessagePage(),
+      arguments: Get.arguments
     ),
 
     //notice of event
@@ -245,6 +248,14 @@ class AppPages {
       transition: Transition.cupertino,
       page: () => Homepage(),
     ),
+
+    //homepage
+    GetPage(
+      name: Routes.editEventScreen,
+      transition: Transition.cupertino,
+      page: () => EditEvent(),arguments: Get.arguments
+    ),
+
 
     GetPage(
       name: Routes.territoryHistoryListScreen,

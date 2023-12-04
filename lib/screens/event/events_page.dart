@@ -68,10 +68,15 @@ class _EventPageState extends State<EventPage> {
       onTap: () {
         // Get.toNamed(Routes.editEventDetailsScreen);
 
-        if (requestedBy)
-          Get.toNamed(Routes.editEventDetailsScreen);
+        if(model.type!='open')
+          Get.toNamed(Routes.editEventDetailsScreen,arguments: model);
         else
           Get.toNamed(Routes.eventDetailsScreen, arguments: model);
+
+        /*if (requestedBy)
+          Get.toNamed(Routes.editEventDetailsScreen);
+        else
+          Get.toNamed(Routes.eventDetailsScreen, arguments: model);*/
       },
       child: Container(
         decoration: BoxDecoration(

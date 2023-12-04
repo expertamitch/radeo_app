@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:redeo/models/all_group_list_response_model.dart';
+import 'package:redeo/models/chat_history_model.dart';
+import 'package:redeo/models/chat_list_model.dart';
 import 'package:redeo/models/custom_message_model.dart';
 import 'package:redeo/models/dnc_list_response_model.dart';
 import 'package:redeo/models/events_model.dart';
@@ -9,6 +11,8 @@ import 'package:redeo/models/field_log_model.dart';
 import 'package:redeo/models/message_only_model.dart';
 import 'package:redeo/models/register_model.dart';
 import 'package:redeo/models/return_visit_list_model.dart';
+import 'package:redeo/models/timer_model.dart';
+import 'package:redeo/models/update_event_model.dart';
 
 import '../../models/add_custom_message_model.dart';
 import '../../models/all_redeo_member_list_response_model.dart';
@@ -326,15 +330,20 @@ class BackendRepo {
     }
   }
 
-  Future<MessageOnlyModel> addDNC({required String territoryId,
-    required String address,
-    required String reason}) async {
-    var data = {"territory_id": territoryId, "address": address,"reason":reason};
+  Future<MessageOnlyModel> addDNC(
+      {required String territoryId,
+      required String address,
+      required String reason}) async {
+    var data = {
+      "territory_id": territoryId,
+      "address": address,
+      "reason": reason
+    };
 
     String url = "${baseUrl}user/do-not-call";
     try {
       final response =
-      await apiUtils.post(url: url, options: getOptions(), data: data);
+          await apiUtils.post(url: url, options: getOptions(), data: data);
       var model = MessageOnlyModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -344,8 +353,6 @@ class BackendRepo {
       throw ApiException(apiUtils.handleError(e));
     }
   }
-
-
 
   Future<AddCustomMessageModel> createTextMessage(
       String name, String title) async {
@@ -516,13 +523,12 @@ class BackendRepo {
     }
   }
 
-
   Future<MessageOnlyModel> createEvent(
       {required Map<String, dynamic> data}) async {
     String url = "${baseUrl}user/event";
     try {
       final response =
-      await apiUtils.post(url: url, data: data, options: getOptions());
+          await apiUtils.post(url: url, data: data, options: getOptions());
       var model = MessageOnlyModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -533,13 +539,28 @@ class BackendRepo {
     }
   }
 
+  Future<UpdateEventModel> updateEvent(
+      {required Map<String, dynamic> data, required String eventId}) async {
+    String url = "${baseUrl}user/event/$eventId";
+    try {
+      final response =
+          await apiUtils.get(url: url, data: data, options: getOptions());
+      var model = UpdateEventModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
   Future<EventDetailModel?> addInvitee(
-      {required Map<String, dynamic> data,required  String id}) async {
+      {required Map<String, dynamic> data, required String id}) async {
     String url = "${baseUrl}user/event/invitee/$id";
     try {
       final response =
-      await apiUtils.put(url: url, data: data, options: getOptions());
+          await apiUtils.put(url: url, data: data, options: getOptions());
       var model = EventDetailModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -550,16 +571,10 @@ class BackendRepo {
     }
   }
 
-
-
-
-
-  Future<MessageOnlyModel> deleteEvent(
-      {required String id}) async {
+  Future<MessageOnlyModel> deleteEvent({required String id}) async {
     String url = "${baseUrl}user/event/$id";
     try {
-      final response =
-      await apiUtils.delete(url: url,  options: getOptions());
+      final response = await apiUtils.delete(url: url, options: getOptions());
       var model = MessageOnlyModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -569,10 +584,6 @@ class BackendRepo {
       throw ApiException(apiUtils.handleError(e));
     }
   }
-
-
-
-
 
   Future<EventsModel> getEventList() async {
     String url = "${baseUrl}user/event";
@@ -590,8 +601,6 @@ class BackendRepo {
       throw ApiException(apiUtils.handleError(e));
     }
   }
-
-
 
   Future<MessageOnlyModel> createNOE(
       {required Map<String, dynamic> map,
@@ -627,6 +636,35 @@ class BackendRepo {
     }
   }
 
+  Future<UpdateEventModel> updateClosedEvent({
+    required Map<String, dynamic> map,
+    String? nameImagePath,
+    required String eventId,
+  }) async {
+    if (nameImagePath != null) {
+      var bytes = await File(nameImagePath).readAsBytes();
+      map['image'] = MultipartFile.fromBytes(
+        bytes,
+        filename:
+            '${DateTime.now().microsecondsSinceEpoch}.${nameImagePath.split('/').last}',
+      );
+    }
+
+    var formData = FormData.fromMap(map);
+
+    String url = "${baseUrl}user/event/request/$eventId";
+    try {
+      final response = await apiUtils.postWithProgress(
+          url: url, options: getOptions(), data: formData);
+      return UpdateEventModel.fromJson(response.data);
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
   Future<ReturnVisitListModel> getNOEList({String? path}) async {
     String url = path ?? "${baseUrl}user/return";
     try {
@@ -644,6 +682,39 @@ class BackendRepo {
     }
   }
 
+  Future<ChatListModel> getChatList() async {
+    String url = "${baseUrl}user/chat/users";
+    try {
+      final response = await apiUtils.get(
+        url: url,
+        options: getOptions(),
+      );
+      var model = ChatListModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<ChatHistoryModel> getChatHistory(String uid) async {
+    String url = "${baseUrl}user/chat/history?for_user=$uid";
+    try {
+      final response = await apiUtils.get(
+        url: url,
+        options: getOptions(),
+      );
+      var model = ChatHistoryModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
   Future<ReturnVisitListModel> getIncompleteNOEList({String? path}) async {
     String url = path ?? "${baseUrl}user/return/incomplete";
@@ -696,18 +767,14 @@ class BackendRepo {
     }
   }
 
-
   Future<MessageOnlyModel> sendQr(String id) async {
     String url = "${baseUrl}user/scan";
 
-    var map={"qr_code_id":id};
+    var map = {"qr_code_id": id};
 
     try {
-      final response = await apiUtils.put(
-        url: url,
-        options: getOptions(),
-        data: map
-      );
+      final response =
+          await apiUtils.put(url: url, options: getOptions(), data: map);
       var model = MessageOnlyModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -718,9 +785,91 @@ class BackendRepo {
     }
   }
 
+  Future<TimerModel?> getTimer() async {
+    String url = "${baseUrl}user/timer";
 
+    try {
+      final response = await apiUtils.get(url: url, options: getOptions());
+      var model = TimerModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
+  Future<TimerModel?> postTimer({
+    required Map<String, dynamic> map,
+  }) async {
+    String url = "${baseUrl}user/timer";
 
+    try {
+      final response =
+          await apiUtils.post(url: url, options: getOptions(), data: map);
+      var model = TimerModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<MessageOnlyModel> sendMessage({
+    List<int>? bytes,
+    String? message,
+    required String? messageType,
+    required String? forUser,
+  }) async {
+    if (bytes == null) {
+      var formData = {
+        'message': message ?? '',
+        'for_user': forUser,
+        'message_type': messageType,
+      };
+
+      String url = "${baseUrl}user/chat";
+      try {
+        final response = await apiUtils.post(
+            url: url, options: getOptions(), data: formData);
+        var model = MessageOnlyModel.fromJson(response.data);
+        return model;
+      } catch (e) {
+        if (e is DioError && e.type == DioErrorType.unknown) {
+          throw InternetException();
+        }
+        throw ApiException(apiUtils.handleError(e));
+      }
+    } else {
+      var formData = FormData.fromMap({
+        'file': bytes == null
+            ? null
+            : MultipartFile.fromBytes(
+                bytes,
+                filename: '${DateTime.now().microsecondsSinceEpoch}.${title}',
+              ),
+        'message': message ?? '',
+        'for_user': forUser,
+        'message_type': messageType,
+      });
+
+      String url = "${baseUrl}user/chat";
+      try {
+        final response = await apiUtils.postWithProgress(
+            url: url, options: getOptions(), data: formData);
+        var model = MessageOnlyModel.fromJson(response.data);
+        return model;
+      } catch (e) {
+        if (e is DioError && e.type == DioErrorType.unknown) {
+          throw InternetException();
+        }
+        throw ApiException(apiUtils.handleError(e));
+      }
+    }
+  }
 
   Options getOptions({bool addAuth = true}) {
     Options? options = Options();

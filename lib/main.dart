@@ -1,13 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
+ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:redeo/route/app_pages.dart';
@@ -15,7 +11,7 @@ import 'package:redeo/screens/splash/splash_screen.dart';
 
 import 'firebase_options.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+/*final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 const String darwinNotificationCategoryPlain = 'plainCategory';
@@ -42,16 +38,16 @@ class ReceivedNotification {
 
 String? selectedNotificationPayload;
 
-const String navigationActionId = 'id_3';
+const String navigationActionId = 'id_3';*/
 
 Future<void> main() async {
   await GetStorage.init();
   //firebase init start
-  var data1 = await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // var data1 = await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
 
-  var _ = await FirebaseMessaging.instance.requestPermission();
+  /*var _ = await FirebaseMessaging.instance.requestPermission();
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -122,7 +118,7 @@ Future<void> main() async {
     android: initializationSettingsAndroid,
     iOS: initializationSettingsDarwin,
     macOS: initializationSettingsDarwin,
-  );
+  );*/
 
   // await flutterLocalNotificationsPlugin.initialize(
   //   initializationSettings,

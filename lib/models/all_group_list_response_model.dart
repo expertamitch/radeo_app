@@ -141,11 +141,13 @@ class UserData {
   String? lastName;
   String? email;
   String? mobile;
+  String? status;
 
   UserData({
     this.id,
     this.contact_type,
     this.name,
+    this.status,
     this.groupId,
     this.userId,
     this.from_group_id,
@@ -162,6 +164,7 @@ class UserData {
 
   factory UserData.clone(UserData source) {
     return UserData(
+      status: source.status,
       name: source.name,
       from_group_id: source.from_group_id,
       contact_type: source.contact_type,
@@ -178,6 +181,7 @@ class UserData {
   }
 
   UserData.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
     name = json['name'];
     id = json['id'];
     contact_type = json['contact_type'];

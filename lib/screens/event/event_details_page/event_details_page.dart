@@ -34,7 +34,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   @override
   void initState() {
     model = Get.arguments;
-
     userList = model.eventUsers!;
     tempUserList.value = model.eventUsers!;
     super.initState();
@@ -50,10 +49,24 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           iconTheme: IconThemeData(color: Colors.black),
           actions: [
             GestureDetector(
-                onTap: () {},
-                child: ImageView(
-                  path: Images.editIcon,
-                  height: 17,
+                onTap: () {
+                  Get.toNamed(Routes.editEventScreen, arguments: model)
+                      ?.then((value) {
+                    if (value != null && value is EventInfoModel) {
+                      this.model = value;
+                      setState(() {
+                        userList = model.eventUsers!;
+                        tempUserList.value = model.eventUsers!;
+                      });
+                    }
+                  });
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: ImageView(
+                    path: Images.editIcon,
+                    height: 17,
+                  ),
                 )),
             SizedBox(
               width: 15.w,
@@ -73,9 +86,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   }
                 });
               },
-              child: ImageView(
-                path: Images.deleteIcon,
-                height: 17,
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: ImageView(
+                  path: Images.deleteIcon,
+                  height: 17,
+                ),
               ),
             ),
             SizedBox(
@@ -183,17 +199,16 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       ),
                       AppButton(
                           onPressedFunction: () async {
-                             Get.toNamed(
-                                Routes.addInviteeScreen,
-                                arguments: model)?.then((detailModel) {
-                               if (detailModel != null) {
-                                 model = detailModel;
-                                 userList = model.eventUsers!;
-                                 tempUserList.value = model.eventUsers!;
-                                 setState(() {});
-                               }
-                             });
-
+                            Get.toNamed(Routes.addInviteeScreen,
+                                    arguments: model)
+                                ?.then((detailModel) {
+                              if (detailModel != null) {
+                                model = detailModel;
+                                userList = model.eventUsers!;
+                                tempUserList.value = model.eventUsers!;
+                                setState(() {});
+                              }
+                            });
                           },
                           child: Text(
                             'Add Invitee',

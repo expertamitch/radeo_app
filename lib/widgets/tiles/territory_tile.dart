@@ -31,6 +31,12 @@ class TerritoryTile extends StatelessWidget {
       statusTitle = 'Assign';
     }
     else if(info.assignedTo!=null && int.parse(StorageUtils.getUid()!) == info.assignedTo! && info.status == 'in-use' )
+    {
+      //  territory assigned to me
+      statusTitle = 'Complete';
+    }
+
+    else if(info.assignedTo!=null && int.parse(StorageUtils.getUid()!) == info.assignedTo! && info.status == 'in-use' )
       {
       //  territory assigned to me
         statusTitle = 'Complete';

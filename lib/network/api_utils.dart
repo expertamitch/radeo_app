@@ -41,13 +41,14 @@ class ApiUtils {
   Future<Response> get({
     required String url,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? data,
     Options? options,
   }) async {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var result = await _dio.get(
       url,
-      queryParameters: queryParameters,
+      queryParameters: queryParameters,data: data,
       options: options,
     );
     return result;

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:redeo/assets/images.dart';
+import 'package:redeo/models/chat_list_model.dart';
+import 'package:redeo/screens/chat/chat_controller.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
 import '../../widgets/common_app_bar.dart';
+import '../../widgets/not_found_widget.dart';
+import '../../widgets/on_screen_loader.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -15,6 +19,16 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  ChatController controller = Get.find();
+
+  @override
+  void initState() {
+    Future.delayed(Duration(milliseconds: 100)).then((value) {
+      controller.getChatList();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,42 +37,34 @@ class _ChatPageState extends State<ChatPage> {
           isBack: Get.arguments != null,
           title: 'Chat',
         ),
-        body: Column(children: [
-          Expanded(
-              child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      Divider(color: AppColors.greyColor),
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    return messageListTile(
-                      isNewMsg: index == 0 ? true : false,
-                      title: 'John Doe',
-                      subtitle:
-                          '2006 Chapmans Lane, San Francisc 2006 Chapmans Lane, San Franciscoo…',
-                      timeAgo: '2 min ago',
-                      leadingIconPath: Images.locationIcon,
-                    );
-                  }))
-        ]));
+        body: Obx(() => controller.chatsLoading.value
+            ? OnScreenLoader()
+            : controller.chatList.isEmpty
+                ? NotFoundWidget(
+                    title: 'No chats found',
+                  )
+                : ListView.separated(
+                    separatorBuilder: (context, index) =>
+                        Divider(color: AppColors.greyColor),
+                    itemCount: controller.chatList.length,
+                    itemBuilder: (context, index) {
+                      return messageListTile(controller.chatList.value[index]);
+                    })));
   }
 
-  messageListTile({
-    required bool isNewMsg,
-    required String title,
-    required String subtitle,
-    required String timeAgo,
-    required String leadingIconPath,
-  }) {
+  messageListTile(ChatListItem item) {
     return GestureDetector(
       onTap: () {
         print('yo');
-        Get.toNamed(Routes.chatMessageScreen);
+        Get.toNamed(Routes.chatMessageScreen,
+            arguments: {"uid": item.user!.id!.toString(),"name":"${item.user!.firstName ?? ''} ${item.user!.lastName ?? ''}"});
       },
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: AppColors.purpleColor,
           child: Text(
-            getInitials(title),
+            getInitials(
+                "${item.user!.firstName ?? ''} ${item.user!.lastName ?? ''}"),
             style: w900_12(
               color: Colors.white,
             ),
@@ -70,22 +76,22 @@ class _ChatPageState extends State<ChatPage> {
           children: [
             Flexible(
               child: Text(
-                title,
+                "${item.user!.firstName ?? ''} ${item.user!.lastName ?? ''}",
                 overflow: TextOverflow.ellipsis,
                 style: w900_14(),
               ),
             ),
             Text(
-              timeAgo,
-              style: isNewMsg ? w900_12() : w300_12(),
+              timeago.format(item.user!.message!.createdAt!),
+              style: false ? w900_12() : w300_12(),
             ),
           ],
         ),
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: Text(
-            subtitle,
-            style: isNewMsg
+            item.user?.message?.messageContent ?? '',
+            style: false
                 ? w900_12()
                 : w300_12(
                     color: Colors.grey,

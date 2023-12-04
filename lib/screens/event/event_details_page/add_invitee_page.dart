@@ -14,6 +14,7 @@ import '../../../styling/app_colors.dart';
 import '../../../styling/font_style_globle.dart';
 import '../../../widgets/image_view.dart';
 import '../../../widgets/loader.dart';
+import '../../invite/controller/invite_controller.dart';
 import '../../territory/controller/contacts_controller.dart';
 
 class AddInviteePage extends StatefulWidget {
@@ -25,6 +26,10 @@ class AddInviteePage extends StatefulWidget {
 
 class _AddInviteePageState extends State<AddInviteePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  InviteController inviteController = Get.put(
+    InviteController(),
+    permanent: false,
+  );
 
   TextEditingController nameController = TextEditingController();
   String mobile = '';
@@ -160,19 +165,18 @@ class _AddInviteePageState extends State<AddInviteePage> {
                           AppButton(
                               onPressedFunction: () async {
                                 await Get.toNamed(Routes.inviteContactsScreen);
-                                ContactsController controller = Get.find();
-                                mobile = '';
+                                 mobile = '';
                                 for (int i = 0;
-                                    i < controller.contacts.value.length;
+                                    i < inviteController.contacts.length;
                                     i++) {
-                                  if (controller.contacts.value[i].selected) {
-                                    mobile = controller.contacts.value[i]
+                                  if (inviteController.contacts[i].selected) {
+                                    mobile = inviteController.contacts[i]
                                         .phoneContact.phones[0].number;
                                     setState(() {});
                                   }
                                 }
 
-                                controller.tempRedeoList.value.forEach((element) {
+                                inviteController.tempRedeoList. forEach((element) {
                                   if (element.selected) {
                                     mobile = element.mobile!;
                                     setState(() {});

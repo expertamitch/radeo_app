@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
+import 'package:redeo/screens/chat/chat_controller.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
 import 'package:redeo/screens/create_message/create_message_page.dart';
 import 'package:redeo/screens/create_message/message_controller.dart';
@@ -203,6 +204,16 @@ class _HomepageState extends State<Homepage> {
                             date: DateFormat('yyyy/MM/dd')
                                 .format(fieldLogController.selectedDate));
                       }
+
+                      else if (controller.currentSelectedIndex.value == 3) {
+                        //  groups
+                        ChatController controller = Get.find();
+                        controller.getChatList();
+                      }
+
+
+
+
                       else if (controller.currentSelectedIndex.value == 6) {
                         //  groups
                         EventController controller = Get.find();
@@ -269,13 +280,22 @@ class _HomepageState extends State<Homepage> {
                         onPressed: () {
                           controller.timerStarted.value =
                               !controller.timerStarted.value;
+
+
+                          if(controller.timerStarted.value)
+                            controller.stopWatchTimer.onStartTimer();
+                          else
+                            controller.stopWatchTimer.onStopTimer();
+
+
+                          controller.sendTimer();
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               controller.timerStarted.value
-                                  ? '00:00:56'
+                                  ? controller.showTime.value
                                   : 'Start Timer',
                               style: w900_14(color: Colors.white),
                             ),

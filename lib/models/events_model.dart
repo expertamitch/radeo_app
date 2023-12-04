@@ -43,6 +43,12 @@ class EventInfoModel {
   List<UserData>? eventUsers;
 
   factory EventInfoModel.clone(EventInfoModel source) {
+    List<UserData>? cloneUsers=[];
+    source.eventUsers?.forEach((element) {
+      cloneUsers.add(UserData.clone(element));
+    });
+
+
     return EventInfoModel(
       id: source.id,
       name: source.name,
@@ -56,7 +62,7 @@ class EventInfoModel {
       createdAt: source.createdAt,
       updatedAt: source.updatedAt,
       requested: source.requested,
-      eventUsers: source.eventUsers,
+      eventUsers: cloneUsers,
     );
   }
 

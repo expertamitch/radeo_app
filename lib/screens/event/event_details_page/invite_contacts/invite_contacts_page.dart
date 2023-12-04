@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-  import 'package:redeo/widgets/common_app_bar.dart';
+import 'package:redeo/models/all_group_list_response_model.dart';
+import 'package:redeo/widgets/common_app_bar.dart';
 
- import '../../../../styling/app_colors.dart';
+import '../../../../styling/app_colors.dart';
 import '../../../../styling/font_style_globle.dart';
+import '../../../invite/controller/invite_controller.dart';
 import '../../../territory/controller/contacts_controller.dart';
 import 'tabs/invite_contact_tab_page.dart';
 import 'tabs/invite_redeo_tab_page.dart';
@@ -17,11 +19,11 @@ class InviteContactsPage extends StatefulWidget {
 }
 
 class _InviteContactsPageState extends State<InviteContactsPage> {
-  ContactsController controller = Get.put(ContactsController());
+  // ContactsController controller = Get.put(ContactsController());
+  InviteController controller = Get.find();
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -34,15 +36,41 @@ class _InviteContactsPageState extends State<InviteContactsPage> {
             title: 'Invitee',
             isBack: true,
             button1: 'Done',
+            backPress: () {
+              Get.back();
+            },
             buttonTap1: () {
-                String id='';
-                controller.tempRedeoList.forEach((element) {
-                  if (element.selected) {
-                    id= element.id.toString();
-                  }
-                });
-                Get.back( result: id);
+              controller.selectedMembersCount.value = 0;
+              String id = '';
+              controller.tempRedeoList.forEach((element) {
+                if (element.selected) {
+                  Get.back(
+                      result: UserData(
+                          contact_type: 'redeo',
+                          firstName: element.firstName,
+                          lastName: element.lastName,
+                          name: element.fullName,
+                          mobile: element.mobile));
+                  id = element.id.toString();
+                  controller.selectedMembersCount++;
+                }
+              });
+              controller.tempContactsList.forEach((element) {
+                if (element.selected) {
+                  Get.back(
+                      result: UserData(
+                          contact_type: 'phone',
+                          firstName: element.phoneContact.name.first,
+                          lastName: element.phoneContact.name.last,
+                          name:
+                              "${element.phoneContact.name.first} ${element.phoneContact.name.last}",
+                          mobile: element.phoneContact.phones[0].number));
 
+                  controller.selectedMembersCount++;
+                }
+              });
+
+ 
             }),
         body: Column(children: [
           SizedBox(
@@ -54,7 +82,6 @@ class _InviteContactsPageState extends State<InviteContactsPage> {
                 borderRadius: BorderRadius.circular(24),
                 color: AppColors.lightBlueColor),
             child: Row(children: [
-
               Expanded(
                 child: GestureDetector(
                   onTap: () {
