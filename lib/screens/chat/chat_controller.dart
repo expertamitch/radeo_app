@@ -86,6 +86,10 @@ class ChatController extends GetxController {
     required String? forUser,
   }) async {
     try {
+
+      await Future.delayed(Duration(seconds: 1));
+      showLoader();
+
       List<int>? bytes;
 
       if (path != null) bytes = await File(path).readAsBytes();
@@ -95,15 +99,18 @@ class ChatController extends GetxController {
           messageType: messageType,
           bytes: bytes,
           message: message);
+      hideLoader();
 
       await getChatHistory(forUser.toString(), loader: false);
 
-      messagesList.refresh();
-
       return true;
     } on InternetException {
+      hideLoader();
+
       return false;
     } catch (e) {
+      hideLoader();
+
       showErrorSnackBar(e.toString());
 
       return false;

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/models/chat_history_model.dart';
 import 'package:redeo/network/storage_utils.dart';
@@ -25,7 +26,7 @@ class ChatMessagePage extends StatefulWidget {
 class _ChatMessagePageState extends State<ChatMessagePage> {
   ChatController controller = Get.find();
 
-  // PusherChannelsFlutter pusher = PusherChannelsFlutter.getInstance();
+  PusherChannelsFlutter pusher = PusherChannelsFlutter.getInstance();
 
   TextEditingController messageController = TextEditingController();
   String? filePath;
@@ -36,10 +37,10 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
   void initState() {
     Future.delayed(Duration(milliseconds: 500)).then((value) async {
       await controller.getChatHistory(uid);
-      refresh();
+      // refresh();
     });
 
-    // initPusher();
+    initPusher();
 
     super.initState();
   }
@@ -63,7 +64,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
   event = chatEvent
   */
 
-  /*initPusher() async {
+  initPusher() async {
     try {
       await pusher.init(
         apiKey: '56033aefb471f52cde31',
@@ -86,12 +87,12 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
           print('OnEvent');
         },
       );
-      await pusher.subscribe(channelName: 'user-chat-23');
+      await pusher.subscribe(channelName: 'user-chat-$uid');
       await pusher.connect();
     } catch (e) {
       print("ERROR: $e");
     }
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -194,8 +195,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
 
                               filePath = null;
                               setState(() {});
-                              Get.back();
-                            }
+                             }
                           },
                           child: ImageView(
                             path: Images.cameraIcon,
@@ -214,17 +214,19 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      String m = messageController.text;
-                      messageController.text = '';
+                      if(messageController.text.isNotEmpty) {
+                        String m = messageController.text;
+                        messageController.text = '';
 
-                      controller.sendMessage(
-                        messageType: 'message',
-                        forUser: uid,
-                        message: m,
-                      );
+                        controller.sendMessage(
+                          messageType: 'message',
+                          forUser: uid,
+                          message: m,
+                        );
 
-                      setState(() {});
-                      FocusManager.instance.primaryFocus?.unfocus();
+                        setState(() {});
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      }
                     },
                     child: SvgPicture.asset(
                       Images.sendIcon,
@@ -362,6 +364,9 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                         }
                       },
                       child: Container(
+                        color: Colors.transparent,
+                        width: Get.width,
+                        alignment: Alignment.center,
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 10.h),
                         child: Text(
@@ -396,6 +401,9 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                         }
                       },
                       child: Container(
+                        color: Colors.transparent,
+                        width: Get.width,
+                        alignment: Alignment.center,
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 10.h),
                         child: Text(
@@ -430,6 +438,9 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                         }
                       },
                       child: Container(
+                        color: Colors.transparent,
+                        width: Get.width,
+                        alignment: Alignment.center,
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 10.h),
                         child: Text(
