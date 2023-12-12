@@ -101,7 +101,6 @@ class ChatController extends GetxController {
           message: message);
       hideLoader();
 
-      await getChatHistory(forUser.toString(), loader: false);
 
       return true;
     } on InternetException {

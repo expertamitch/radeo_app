@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,7 +86,17 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
         onEvent: (
           er,
         ) {
-          print('OnEvent');
+          if(controller.messagesList.value.length==0){
+            controller.messagesList.value.add(
+                MessageItemData.fromJson(json.decode(er.data.toString())['msg']));
+          }
+          else
+            {
+              controller.messagesList.value.insert(0,
+                  MessageItemData.fromJson(json.decode(er.data.toString())['msg']));
+            }
+
+          controller.messagesList.refresh();
         },
       );
       await pusher.subscribe(channelName: 'user-chat-$uid');
@@ -195,7 +207,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
 
                               filePath = null;
                               setState(() {});
-                             }
+                            }
                           },
                           child: ImageView(
                             path: Images.cameraIcon,
@@ -214,7 +226,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      if(messageController.text.isNotEmpty) {
+                      if (messageController.text.isNotEmpty) {
                         String m = messageController.text;
                         messageController.text = '';
 

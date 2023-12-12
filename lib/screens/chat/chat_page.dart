@@ -54,10 +54,12 @@ class _ChatPageState extends State<ChatPage> {
 
   messageListTile(ChatListItem item) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         print('yo');
-        Get.toNamed(Routes.chatMessageScreen,
+        await Get.toNamed(Routes.chatMessageScreen,
             arguments: {"uid": item.user!.id!.toString(),"name":"${item.user!.firstName ?? ''} ${item.user!.lastName ?? ''}"});
+
+     controller.getChatList();
       },
       child: ListTile(
         leading: CircleAvatar(

@@ -248,7 +248,7 @@ class _HomepageState extends State<Homepage> {
         Row(
           children: [
             Expanded(
-              flex: 4,
+              flex: 3,
               child: GestureDetector(
                 onTap: () {
                   showLogoutConfirmation(

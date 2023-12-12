@@ -70,6 +70,8 @@ dependencies:
   stop_watch_timer: ^3.0.2
   timeago: ^3.3.0
   pusher_channels_flutter:
+  geocoder_buddy: ^1.0.1
+  yandex_geocoder: ^2.1.0
 
 
 

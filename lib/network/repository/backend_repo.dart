@@ -27,8 +27,8 @@ import '../internet_exception.dart';
 import '../storage_utils.dart';
 
 class BackendRepo {
-  static String baseUrl = "http://35.176.71.232/api/";
-  static String storageUrl = "http://35.176.71.232/storage/";
+  static String baseUrl = "https://myredeo.com/api/";
+  static String storageUrl = "https://myredeo.com/storage/";
 
   Future<RegisterModel> createAccount(
       {required Map<String, dynamic> data}) async {

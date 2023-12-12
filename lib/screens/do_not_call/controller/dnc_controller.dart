@@ -1,5 +1,7 @@
+import 'package:geocoder_buddy/geocoder_buddy.dart';
 import 'package:get/get.dart';
 import 'package:redeo/widgets/loader.dart';
+import 'package:yandex_geocoder/yandex_geocoder.dart';
 
 import '../../../models/dnc_list_response_model.dart';
 import '../../../models/territory_detail_model.dart';
@@ -9,6 +11,8 @@ import '../../../network/repository/backend_repo.dart';
 import '../../../utils/snackbar_util.dart';
 
 class DNCController extends GetxController {
+  final YandexGeocoder geo = YandexGeocoder(apiKey: 'Your Api Key');
+
   RxBool dncListLoading = false.obs;
   RxBool territoryListLoading = false.obs;
 
@@ -51,8 +55,8 @@ class DNCController extends GetxController {
       var result = await BackendRepo().getTerritoryDetail(id);
       detailModel = result;
 
-      addresses= result.info?.addresses ?? [];
-      tempAddresses.value=addresses;
+      addresses = result.info?.addresses ?? [];
+      tempAddresses.value = addresses;
       territoryDetailLoading.value = false;
 
       return true;
@@ -74,11 +78,10 @@ class DNCController extends GetxController {
       dncListLoading.value = true;
       var result = await BackendRepo().getDNCList();
 
-
       result.info?.forEach((element) {
-        if(element.id==id){
-          tempDncList.value=element.doNotCalls??[];
-          dncList=element.doNotCalls??[];
+        if (element.id == id) {
+          tempDncList.value = element.doNotCalls ?? [];
+          dncList = element.doNotCalls ?? [];
         }
       });
       dncListLoading.value = false;
@@ -94,17 +97,17 @@ class DNCController extends GetxController {
     }
   }
 
-
-
-
-     Future<String?> addDNC(
+  Future<String?> addDNC(
       {required String territoryId,
       required String address,
       required String reason}) async {
     try {
-
       showLoader();
-      var result = await BackendRepo().addDNC(reason: reason,territoryId: territoryId,address: address,);
+      var result = await BackendRepo().addDNC(
+        reason: reason,
+        territoryId: territoryId,
+        address: address,
+      );
 
       hideLoader();
       return result.message!;
@@ -117,16 +120,25 @@ class DNCController extends GetxController {
 
       return null;
     }
-
-
   }
 
   executeSearch(String searchedText) {
     tempDncList.value = dncList.map((e) => DoNotCalls.clone(e)).toList();
 
-    tempDncList.value.removeWhere((element) => !element.address!
-        .toLowerCase()
-        .contains(searchedText.toLowerCase()));
+    tempDncList.value.removeWhere((element) =>
+        !element.address!.toLowerCase().contains(searchedText.toLowerCase()));
     tempDncList.refresh();
+  }
+
+  getLatLng(String address) async {
+    final GeocodeResponse _latLong = await geo.getGeocode(GeocodeRequest(
+      geocode: AddressGeocode(
+        address: 'Jalandhar Bus Stand, Unnamed Road, Jawahar Nagar, Jalandhar, Punjab',
+      ),
+    ));
+
+
+    List<GBSearchData> data = await GeocoderBuddy.query('Jalandhar Bus Stand, Unnamed Road, Jawahar Nagar, Jalandhar, Punjab');
+    print(data[0].lat);
   }
 }

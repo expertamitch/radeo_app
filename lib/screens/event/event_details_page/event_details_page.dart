@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:redeo/models/all_group_list_response_model.dart';
+import 'package:redeo/network/storage_utils.dart';
 import 'package:redeo/screens/event/event_controller.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/search_widget.dart';
@@ -47,7 +48,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           backgroundColor: AppColors.darkGreyColor,
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
-          actions: [
+          actions:model.userId.toString()==    StorageUtils.getUid()? [
+
             GestureDetector(
                 onTap: () {
                   Get.toNamed(Routes.editEventScreen, arguments: model)
@@ -97,7 +99,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             SizedBox(
               width: 15.w,
             )
-          ],
+          ]:[],
         ),
         body: Stack(children: [
           Container(
