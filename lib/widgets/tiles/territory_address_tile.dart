@@ -19,7 +19,7 @@ class TerritoryAddressTile extends StatelessWidget{
   Widget build(BuildContext context) {
 return GestureDetector(
   onTap: () {
-    Get.toNamed(Routes.filedServiceMapPageScreen);
+    Get.toNamed(Routes.filedServiceMapPageScreen,arguments: address.fullAddress);
   },
   child: Container(
     decoration: BoxDecoration(

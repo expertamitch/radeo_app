@@ -11,10 +11,12 @@ import '../../styling/font_style_globle.dart';
 
 class RedeoTile extends StatelessWidget{
   Info model;
+  bool showRadioButton=true;
   VoidCallback? onTap;
 
   RedeoTile({required this.model,
     this.onTap,
+    this.showRadioButton=true,
   });
 
 
@@ -61,6 +63,7 @@ class RedeoTile extends StatelessWidget{
               width: 15.w,
             ),
           ),
+          if(showRadioButton)
           RadioSelectionWidget(selected: model.selected)
         ]),
       ),

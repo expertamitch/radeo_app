@@ -1,7 +1,7 @@
+import 'package:fl_geocoder/fl_geocoder.dart';
 import 'package:geocoder_buddy/geocoder_buddy.dart';
 import 'package:get/get.dart';
 import 'package:redeo/widgets/loader.dart';
-import 'package:yandex_geocoder/yandex_geocoder.dart';
 
 import '../../../models/dnc_list_response_model.dart';
 import '../../../models/territory_detail_model.dart';
@@ -11,7 +11,6 @@ import '../../../network/repository/backend_repo.dart';
 import '../../../utils/snackbar_util.dart';
 
 class DNCController extends GetxController {
-  final YandexGeocoder geo = YandexGeocoder(apiKey: 'Your Api Key');
 
   RxBool dncListLoading = false.obs;
   RxBool territoryListLoading = false.obs;
@@ -130,15 +129,5 @@ class DNCController extends GetxController {
     tempDncList.refresh();
   }
 
-  getLatLng(String address) async {
-    final GeocodeResponse _latLong = await geo.getGeocode(GeocodeRequest(
-      geocode: AddressGeocode(
-        address: 'Jalandhar Bus Stand, Unnamed Road, Jawahar Nagar, Jalandhar, Punjab',
-      ),
-    ));
 
-
-    List<GBSearchData> data = await GeocoderBuddy.query('Jalandhar Bus Stand, Unnamed Road, Jawahar Nagar, Jalandhar, Punjab');
-    print(data[0].lat);
-  }
 }

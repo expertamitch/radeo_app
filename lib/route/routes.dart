@@ -71,4 +71,7 @@ abstract class Routes {
 
 
   static const contactPage= '/contactPage';
+
+  // add new contact manually screen
+   static const addNewContactManually= '/addNewContactManually';
 }

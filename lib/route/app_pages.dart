@@ -5,6 +5,7 @@ import 'package:redeo/screens/authentication/forgot_password_otp_page.dart';
 import 'package:redeo/screens/authentication/otp_verification_page.dart';
 import 'package:redeo/screens/authentication/register_page.dart';
 import 'package:redeo/screens/authentication/welcome_page.dart';
+import 'package:redeo/screens/create_contact/existing_contacts/add_manual_contact.dart';
 import 'package:redeo/screens/create_message/custom_message/create_custom_message.dart';
 import 'package:redeo/screens/create_message/text_message/enter_text_message_page.dart';
 import 'package:redeo/screens/event/event_details_page/invite_contacts/invite_contacts_page.dart';
@@ -44,7 +45,7 @@ import '../screens/return_visits/return_history_screen.dart';
 import '../screens/notice_of_event/notice_of_event_summary_page.dart';
 import '../screens/report/edit_report_page.dart';
 import '../screens/report/share_report_page.dart';
- import '../screens/splash/splash_binding.dart';
+import '../screens/splash/splash_binding.dart';
 import '../screens/splash/splash_screen.dart';
 import '../screens/territory/territory_history_list_screen.dart';
 
@@ -126,7 +127,6 @@ class AppPages {
       page: () => RecordVoiceMessagePage(),
     ),
 
-
     //do not call
     GetPage(
         name: Routes.listOfAddressScreen,
@@ -148,32 +148,30 @@ class AppPages {
       page: () => CreateEventPage(),
     ),
     GetPage(
-      name: Routes.eventDetailsScreen,
-      transition: Transition.cupertino,
-      page: () => EventDetailsPage(),
-      arguments: Get.arguments
-    ),
+        name: Routes.eventDetailsScreen,
+        transition: Transition.cupertino,
+        page: () => EventDetailsPage(),
+        arguments: Get.arguments),
     GetPage(
       name: Routes.inviteeScreen,
       transition: Transition.cupertino,
       page: () => InviteePage(),
     ),
     GetPage(
-      name: Routes.addInviteeScreen,
-      transition: Transition.cupertino,
-      page: () => AddInviteePage(),arguments: Get.arguments
-    ),
+        name: Routes.addInviteeScreen,
+        transition: Transition.cupertino,
+        page: () => AddInviteePage(),
+        arguments: Get.arguments),
     GetPage(
-      name: Routes.editEventDetailsScreen,
-      transition: Transition.cupertino,
-      page: () => EditEventDetailsPage(),
-      arguments: Get.arguments
-    ),
+        name: Routes.editEventDetailsScreen,
+        transition: Transition.cupertino,
+        page: () => EditEventDetailsPage(),
+        arguments: Get.arguments),
 
     GetPage(
       name: Routes.filedServiceMapPageScreen,
       transition: Transition.cupertino,
-      page: () => FiledServiceMapPage(),
+      page: () => FiledServiceMapPage(),arguments: Get.arguments
     ),
 
     //groups
@@ -184,10 +182,10 @@ class AppPages {
       page: () => CreateGroupPage(),
     ),
     GetPage(
-      name: Routes.attendantsScreen,
-      transition: Transition.cupertino,
-      page: () => AttendantsPage(),arguments: Get.arguments
-    ),
+        name: Routes.attendantsScreen,
+        transition: Transition.cupertino,
+        page: () => AttendantsPage(),
+        arguments: Get.arguments),
 
     //message
     GetPage(
@@ -196,11 +194,10 @@ class AppPages {
         page: () => ChatPage(),
         arguments: Get.arguments),
     GetPage(
-      name: Routes.chatMessageScreen,
-      transition: Transition.cupertino,
-      page: () => ChatMessagePage(),
-      arguments: Get.arguments
-    ),
+        name: Routes.chatMessageScreen,
+        transition: Transition.cupertino,
+        page: () => ChatMessagePage(),
+        arguments: Get.arguments),
 
     //notice of event
     GetPage(
@@ -209,25 +206,20 @@ class AppPages {
         page: () => CreateNoticeOfEvent(),
         arguments: Get.arguments),
     GetPage(
-      name: Routes.createReturnPageScreen,
-      transition: Transition.cupertino,
-      page: () => CreateReturnPage(),
-      arguments: Get.arguments
-    ),
+        name: Routes.createReturnPageScreen,
+        transition: Transition.cupertino,
+        page: () => CreateReturnPage(),
+        arguments: Get.arguments),
     GetPage(
-      name: Routes.historyPage,
-      transition: Transition.cupertino,
-      page: () => ReturnHistoryPage(),
-      arguments:  Get.arguments
-
-    ),
+        name: Routes.historyPage,
+        transition: Transition.cupertino,
+        page: () => ReturnHistoryPage(),
+        arguments: Get.arguments),
     GetPage(
       name: Routes.noticeOfEventSummaryScreen,
       transition: Transition.cupertino,
       page: () => NoticeOfEventSummaryPage(),
     ),
-
-
 
     //Reports page
 
@@ -251,11 +243,10 @@ class AppPages {
 
     //homepage
     GetPage(
-      name: Routes.editEventScreen,
-      transition: Transition.cupertino,
-      page: () => EditEvent(),arguments: Get.arguments
-    ),
-
+        name: Routes.editEventScreen,
+        transition: Transition.cupertino,
+        page: () => EditEvent(),
+        arguments: Get.arguments),
 
     GetPage(
       name: Routes.territoryHistoryListScreen,
@@ -276,10 +267,10 @@ class AppPages {
         arguments: Get.arguments),
 
     GetPage(
-        name: Routes.chooseTerritory,
-        transition: Transition.cupertino,
-        page: () => ChooseTerritory(),
-        ),
+      name: Routes.chooseTerritory,
+      transition: Transition.cupertino,
+      page: () => ChooseTerritory(),
+    ),
 
     GetPage(
         name: Routes.createCustomMessage,
@@ -318,6 +309,12 @@ class AppPages {
         name: Routes.inviteContactsScreen,
         transition: Transition.cupertino,
         page: () => InviteContactsPage(),
+        arguments: Get.arguments),
+
+    GetPage(
+        name: Routes.addNewContactManually,
+        transition: Transition.cupertino,
+        page: () => AddManualContact(),
         arguments: Get.arguments),
   ];
 }

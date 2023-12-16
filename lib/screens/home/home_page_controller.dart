@@ -48,6 +48,7 @@ class HomePageController extends GetxController {
     'DNCs',
     'Territory',
     'Reports',
+    'Add Contact',
   ];
 
   RxInt currentSelectedIndex = 0.obs;

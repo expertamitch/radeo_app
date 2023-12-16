@@ -91,5 +91,6 @@ class Images {
 
   static const loader = "assets/images/loader.json";
   static const notFound = "assets/images/not_found.json";
+  static const mapStyle = "assets/images/map_style.json";
 
 }

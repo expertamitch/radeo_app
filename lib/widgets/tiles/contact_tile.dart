@@ -12,9 +12,11 @@ import '../../styling/font_style_globle.dart';
 class ContactTile extends StatelessWidget{
   PhoneContactModel model;
   VoidCallback? onTap;
+  bool showRadioButton;
 
   ContactTile({required this.model,
     this.onTap,
+    this.showRadioButton=true
   });
 
 
@@ -61,6 +63,7 @@ class ContactTile extends StatelessWidget{
               width: 15.w,
             ),
           ),
+          if(showRadioButton)
           RadioSelectionWidget(selected: model.selected)
         ]),
       ),

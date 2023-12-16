@@ -77,8 +77,7 @@ class _AddressesListScreenState extends State<AddressesListScreen> {
   doNotCallListTile(DoNotCalls model) {
     return GestureDetector(
       onTap: () {
-        controller.getLatLng(model.address!);
-        Get.toNamed(Routes.filedServiceMapPageScreen);
+         Get.toNamed(Routes.filedServiceMapPageScreen,arguments: model.address);
       },
       child: Container(
         decoration: BoxDecoration(

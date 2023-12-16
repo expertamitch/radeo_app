@@ -1,13 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
 
-import 'package:redeo/widgets/app_button.dart';
+import 'package:fl_geocoder/fl_geocoder.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:redeo/screens/home/home_page_controller.dart';
+import '../../assets/images.dart';
 import '../../route/routes.dart';
 import '../../styling/app_colors.dart';
 import '../../styling/font_style_globle.dart';
+import '../../widgets/loader.dart';
 
 class FiledServiceMapPage extends StatefulWidget {
   const FiledServiceMapPage({Key? key}) : super(key: key);
@@ -16,7 +24,152 @@ class FiledServiceMapPage extends StatefulWidget {
   State<FiledServiceMapPage> createState() => _FiledServiceMapPageState();
 }
 
-class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
+class _FiledServiceMapPageState extends State<FiledServiceMapPage>
+    with WidgetsBindingObserver {
+  final geocoder = FlGeocoder('AIzaSyA3RgI5FNsff4VWoh_i4IXIODZWPFk8U2o');
+  Location? destLocation;
+  LatLng? currentLocation;
+  final Completer<GoogleMapController> _controller = Completer();
+
+  CameraPosition? _kGoogle = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    getLatLng(Get.arguments);
+
+    WidgetsBinding.instance.addObserver(this);
+
+    initialise();
+  }
+
+  // THIS is called whenever life cycle changed
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (state == AppLifecycleState.resumed) {
+      var hasPermission = await Geolocator.checkPermission();
+      if (hasPermission == LocationPermission.always ||
+          hasPermission == LocationPermission.whileInUse) {
+        initialise();
+      }
+    }
+  }
+
+  initialise() async {
+    await getUserLocation();
+
+    var hasPermission = await Geolocator.checkPermission();
+    if (hasPermission == LocationPermission.always ||
+        hasPermission == LocationPermission.whileInUse) {
+      _kGoogle = CameraPosition(
+        target: LatLng(currentLocation!.latitude, currentLocation!.longitude),
+      );
+
+      setState(() {});
+    } else {
+      LocationPermission permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.deniedForever) {
+        Widget okButton = TextButton(
+          child: Text("Okay"),
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
+        );
+
+        Widget noButton = TextButton(
+          child: Text("Not for now"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        );
+
+        // set up the AlertDialog
+        AlertDialog alert = AlertDialog(
+          title: Text(
+            "Permission required",
+            style: w600_16(),
+            textAlign: TextAlign.start,
+          ),
+          content: Text(
+            'Please provide location permission to continue using app.',
+            style: w600_14().copyWith(
+              height: 1.5,
+            ),
+            maxLines: 4,
+            textAlign: TextAlign.start,
+          ),
+          actions: [okButton, noButton],
+        );
+
+        // show the dialog
+        var result = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
+
+        if (result != null) {
+          openAppSettings().then((value) {
+            Geolocator.checkPermission();
+            if (hasPermission == LocationPermission.always ||
+                hasPermission == LocationPermission.whileInUse) {
+              initialise();
+            }
+          });
+        }
+      } else
+        initialise();
+    }
+  }
+
+  getLatLng(String address) async {
+    var add = await geocoder.findAddressesFromAddress(
+        'Jalandhar Bus Stand, Unnamed Road, Jawahar Nagar, Jalandhar, Punjab');
+    if (add.length > 0) {
+      destLocation = add[0].geometry.location;
+      setState(() {});
+    }
+  }
+
+  Future<void> getUserLocation() async {
+    var hasPermission = await Geolocator.checkPermission();
+
+    if (hasPermission == LocationPermission.denied ||
+        hasPermission == LocationPermission.deniedForever ||
+        hasPermission == LocationPermission.unableToDetermine) {
+      LocationPermission permission = await Geolocator.requestPermission();
+    } else {
+      showLoader();
+      Position location = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      currentLocation = LatLng(location.latitude, location.longitude);
+      setState(() {});
+      hideLoader();
+    }
+
+    return;
+  }
+
+  void changeMapMode(GoogleMapController mapController) {
+    getJsonFile(Images.mapStyle)
+        .then((value) => setMapStyle(value, mapController));
+  }
+
+  //helper function
+  void setMapStyle(String mapStyle, GoogleMapController mapController) {
+    mapController.setMapStyle(mapStyle);
+  }
+
+  //helper function
+  Future<String> getJsonFile(String path) async {
+    ByteData byte = await rootBundle.load(path);
+    var list = byte.buffer.asUint8List(byte.offsetInBytes, byte.lengthInBytes);
+    return utf8.decode(list);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,27 +177,27 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
         Expanded(
           child: Stack(
             children: [
-              FlutterMap(
-                options: MapOptions(
-                  center: LatLng(51.509364, -0.128928),
-                  zoom: 9.2,
-                ),
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.example.app',
-                  ),
-                ],
-                nonRotatedChildren: [
-                  RichAttributionWidget(
-                    attributions: [
-                      TextSourceAttribution('OpenStreetMap contributors',
-                          onTap: null),
-                    ],
-                  ),
-                ],
-              ),
+              currentLocation == null
+                  ? GoogleMap(initialCameraPosition: _kGoogle!)
+                  : GoogleMap(
+                      mapType: MapType.normal,
+                      myLocationEnabled: true,
+                      onMapCreated: (gmapController) {
+                        _controller.complete(gmapController);
+                        Future.delayed(Duration(seconds: 1), () async {
+                          gmapController.animateCamera(
+                            CameraUpdate.newCameraPosition(
+                              CameraPosition(
+                                target: LatLng(currentLocation!.latitude,
+                                    currentLocation!.longitude),
+                                zoom: 13.5,
+                              ),
+                            ),
+                          );
+                        });
+                      },
+                      initialCameraPosition: _kGoogle!,
+                    ),
               Positioned(
                 top: 10,
                 left: 10,
@@ -60,20 +213,40 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
           ),
         ),
         Container(
-          height: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+          margin: EdgeInsets.only(top: 8, bottom: 8),
+          child: Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            spacing: 16,
+            runSpacing: 8,
             children: [
+              if (destLocation != null)
+                SizedBox(
+                    height: 40,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          primary: AppColors.purpleColor),
+                      onPressed: () {
+                        MapsLauncher.launchCoordinates(
+                            destLocation!.latitude, destLocation!.longitude);
+                      },
+                      child: Text(
+                        'Get Direction',
+                        style: w300_12(color: Colors.white),
+                      ),
+                    )),
               SizedBox(
                   height: 40,
-                  width: MediaQuery.of(context).size.width * 0.28,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.createNoticeOfEventScreen, arguments: true);
+                      Get.toNamed(Routes.createNoticeOfEventScreen,
+                          arguments: true);
                     },
                     child: Text(
                       'NOE',
@@ -82,14 +255,17 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                   )),
               SizedBox(
                   height: 40,
-                  width: MediaQuery.of(context).size.width * 0.28,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.chatScreen, arguments: true);
+                      HomePageController homePageController = Get.find();
+                      homePageController.currentSelectedIndex.value = 2;
+                      Get.until((route) => route.isFirst);
+
+                      Get.back();
                     },
                     child: Text(
                       'Message',
@@ -105,7 +281,9 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage> {
                             borderRadius: BorderRadius.circular(10)),
                         primary: AppColors.purpleColor),
                     onPressed: () {
-                      Get.toNamed(Routes.listOfAddressScreen, );
+                      Get.toNamed(
+                        Routes.listOfAddressScreen,
+                      );
                     },
                     child: Text(
                       'DNC',

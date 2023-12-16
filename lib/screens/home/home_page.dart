@@ -7,6 +7,7 @@ import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
 import 'package:redeo/screens/chat/chat_controller.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
+import 'package:redeo/screens/create_contact/existing_contacts/existing_contacts_page.dart';
 import 'package:redeo/screens/create_message/create_message_page.dart';
 import 'package:redeo/screens/create_message/message_controller.dart';
 import 'package:redeo/screens/do_not_call/controller/dnc_controller.dart';
@@ -90,6 +91,7 @@ class _HomepageState extends State<Homepage> {
               DNCTerritoryScreen(),
               TerritoryListScreen(),
               ReportsPage(),
+              ExistingContactsPage()
             ],
           )),
     );
