@@ -17,7 +17,7 @@ class NotFoundWidget extends StatelessWidget {
         children: [
           Lottie.asset(
             Images.notFound,
-            width: Get.width * 0.5,
+            width: Get.width * 0.35,
 
           ),
           if(title!=null)

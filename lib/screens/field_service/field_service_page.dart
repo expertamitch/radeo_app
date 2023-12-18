@@ -106,9 +106,11 @@ class _FieldServicePageState extends State<FieldServicePage> {
               child:controller.fieldLogLoading.value
                   ? OnScreenLoader()
                   : controller.fieldLogs.value.isEmpty
-                  ? NotFoundWidget(
-                title: 'No field log found',
-              ): ListView.builder(
+                  ? SingleChildScrollView(
+                    child: NotFoundWidget(
+                                    title: 'No field log found',
+                                  ),
+                  ): ListView.builder(
                   controller: _scrollController,
                   itemCount: controller.fieldLogs.value.length,
                   itemBuilder: (context, index) {

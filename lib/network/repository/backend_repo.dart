@@ -16,6 +16,7 @@ import 'package:redeo/models/update_event_model.dart';
 
 import '../../models/add_custom_message_model.dart';
 import '../../models/all_redeo_member_list_response_model.dart';
+import '../../models/create_contact_model.dart';
 import '../../models/create_message_request_model.dart';
 import '../../models/event_detail_model.dart';
 import '../../models/return_history_model.dart';
@@ -870,6 +871,26 @@ class BackendRepo {
       }
     }
   }
+
+
+  Future<CreateContactModel> createContact(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/contacts";
+    try {
+      final response =
+      await apiUtils.post(url: url, data: data, options: getOptions());
+      var model = CreateContactModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
 
   Options getOptions({bool addAuth = true}) {
     Options? options = Options();

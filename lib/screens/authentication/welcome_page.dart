@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:redeo/network/storage_utils.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/image_view.dart';
@@ -19,10 +20,17 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  List<String> scopes = <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ];
+
   @override
   void initState() {
     Future.delayed(Duration(seconds: 1)).then((value) {
-      if (StorageUtils.getToken().isNotEmpty)
+      if (StorageUtils
+          .getToken()
+          .isNotEmpty)
         Get.offAllNamed(Routes.homepageScreen);
     });
     super.initState();
@@ -54,7 +62,10 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
             ImageView(
               path: Images.welcomeScreenLogo,
-              width: MediaQuery.of(context).size.width * 0.4,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.4,
             ),
             Expanded(
               child: SizedBox(
@@ -113,26 +124,44 @@ class _WelcomePageState extends State<WelcomePage> {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 15,
-                    ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey, width: 0.5)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset('assets/icons/screen 1/google.svg',
-                            height: 20, semanticsLabel: 'Acme Logo'),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Text(
-                          'Google',
-                          style: w600_12(),
-                        )
-                      ],
+                  child: GestureDetector(
+                    onTap: () async {
+                      GoogleSignIn _googleSignIn = GoogleSignIn(
+                        scopes: scopes,
+                      );
+                      try {
+                        GoogleSignInAccount? account = await _googleSignIn
+                            .signIn();
+                        if (account != null)
+                          {
+                            account.email;
+                          }
+                      } catch (error) {
+                        print(error);
+                      }
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 15,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.grey, width: 0.5)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/icons/screen 1/google.svg',
+                              height: 20, semanticsLabel: 'Acme Logo'),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            'Google',
+                            style: w600_12(),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

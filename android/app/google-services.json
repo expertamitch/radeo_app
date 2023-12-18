@@ -12,7 +12,12 @@
           "package_name": "com.app.redeo"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "23456483694-v1u3ljs9cbuhck4foma9tre4sl7iuui4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyALIUnSldoP4s_h866Fmx2h18w-FAjRfkA"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23456483694-v1u3ljs9cbuhck4foma9tre4sl7iuui4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "23456483694-csjij8q1fb2jj21hlbboe8nivls8bfan.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jack.redeo"
+              }
+            }
+          ]
         }
       }
     }

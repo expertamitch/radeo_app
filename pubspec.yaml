@@ -66,7 +66,6 @@ dependencies:
   qr_code_scanner: ^1.0.1
   file_picker: ^5.3.0
   url_launcher: ^6.1.11
-  google_sign_in: ^6.1.5
   stop_watch_timer: ^3.0.2
   timeago: ^3.3.0
   pusher_channels_flutter:
@@ -74,6 +73,8 @@ dependencies:
   fl_geocoder: ^0.1.0+1
   geolocator: ^9.0.2
   maps_launcher: ^2.2.0
+  google_sign_in: ^6.2.1
+
 
 
 

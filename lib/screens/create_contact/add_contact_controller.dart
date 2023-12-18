@@ -8,6 +8,7 @@ import '../../../models/phone_contact_model.dart';
 import '../../../network/internet_exception.dart';
 import '../../../network/repository/backend_repo.dart';
 import '../../../utils/snackbar_util.dart';
+import '../../widgets/loader.dart';
 
 class AddContactController extends GetxController {
   List<PhoneContactModel> contacts = [];
@@ -91,4 +92,34 @@ class AddContactController extends GetxController {
         !element.fullName!.toLowerCase().contains(searchedText.toLowerCase()));
     tempRedeoList.refresh();
   }
+
+
+
+Future<bool>  createContact(String fName,String lName, String phone) async {
+    try {
+
+      Map<String, dynamic> map = {};
+
+      map['mobile']=phone;
+      map['first_name']=fName;
+      map['last_name']=lName;
+
+      showLoader();
+      var result = await BackendRepo().createContact(data: map);
+       hideLoader();
+
+          return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
+  }
+
+
+
 }

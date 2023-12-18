@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:redeo/network/storage_utils.dart';
 import 'package:redeo/route/routes.dart';
@@ -203,4 +206,29 @@ class AuthController extends GetxController {
       return false;
     }
   }
+
+
+  Future<String> getFirebaseToken() async {
+    if (Platform.isIOS) {
+      String? apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+      if (apnsToken != null) {
+        String? token = await FirebaseMessaging.instance.getToken();
+        return token!;
+      } else {
+        await Future<void>.delayed(
+          const Duration(
+            seconds: 3,
+          ),
+        );
+
+        apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+        String? token = await FirebaseMessaging.instance.getToken();
+        return token!;
+      }
+    } else {
+      String? token = await FirebaseMessaging.instance.getToken();
+      return token!;
+    }
+  }
+
 }
