@@ -16,8 +16,8 @@ class InviteController extends GetxController {
   List<PhoneContactModel> contacts = [];
   RxList<PhoneContactModel> tempContactsList = RxList();
 
-  List<Info> redeoList = [];
-  RxList<Info> tempRedeoList = RxList();
+  List<ContactInfo> redeoList = [];
+  RxList<ContactInfo> tempRedeoList = RxList();
 
   List<LocalAttendantModel> attendants = [];
   RxList<LocalAttendantModel> tempAttendantsList = RxList();
@@ -97,7 +97,7 @@ class InviteController extends GetxController {
         tempGroupsList.where((p0) => p0.selected).toList();
     List<PhoneContactModel> selectedContactsList =
         tempContactsList.where((p0) => p0.selected).toList();
-    List<Info> selectedRedeoContactsList =
+    List<ContactInfo> selectedRedeoContactsList =
         tempRedeoList.where((p0) => p0.selected).toList();
 
     List<LocalAttendantModel> la = [];
@@ -190,7 +190,7 @@ class InviteController extends GetxController {
   }
 
   executeRedeoSearch(String searchedText) {
-    tempRedeoList.value = redeoList.map((e) => Info.clone(e)).toList();
+    tempRedeoList.value = redeoList.map((e) => ContactInfo.clone(e)).toList();
 
     tempRedeoList.value.removeWhere((element) =>
         !element.fullName!.toLowerCase().contains(searchedText.toLowerCase()));

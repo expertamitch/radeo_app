@@ -33,7 +33,6 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
   MessageController controller = Get.find();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +45,7 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
           controller.customMessageList.value.forEach((element) {
             if (element.isSelected) {
               cSelected = true;
-               selectedId.add(element.id!);
+              selectedId.add(element.id!);
             }
           });
 
@@ -88,7 +87,6 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
         Expanded(
           child: Form(
             key: _formKey,
-
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,12 +222,6 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                             ),
                             AppButton(
                                 onPressedFunction: () async {
-                                /*  if(Platform.isIOS)
-                                    {
-                                      scan();
-                                      return;
-                                    }
-            */
                                   var cameraStatus =
                                       await Permission.camera.request();
                                   if (cameraStatus.isGranted) {
@@ -257,7 +249,8 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
                                   }
 
                                   var camera = await Permission.camera.status;
-                                  var audio = await Permission.microphone.status;
+                                  var audio =
+                                      await Permission.microphone.status;
                                   if (camera.isGranted && audio.isGranted)
                                     scan();
                                 },
@@ -282,18 +275,15 @@ class _CreateMessagePageState extends State<CreateMessagePage> {
     );
   }
 
-  scan(){
+  scan() {
     Get.toNamed(Routes.qrScanner)?.then((value) {
       if (value != null) {
-        setState(() {
-          if (value
-              .toString()
-              .split('/')
-              .last
-              .indexOf('-') >
-              0) {
-            controller.qrResult =
-                value.toString().split('/').last;
+        setState(() async {
+          if (value.toString().split('/').last.indexOf('-') > 0) {
+            bool isValid = await controller
+                .validateQRCode(value.toString().split('/').last);
+
+            if (isValid) controller.qrResult = value.toString().split('/').last;
           } else {
             showErrorSnackBar('Invalid Redeo QR');
           }

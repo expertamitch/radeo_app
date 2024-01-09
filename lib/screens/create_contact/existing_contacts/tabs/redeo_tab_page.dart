@@ -7,7 +7,8 @@ import 'package:redeo/widgets/tiles/redeo_tile.dart';
 import '../../../../../styling/font_style_globle.dart';
 import '../../../../../widgets/not_found_widget.dart';
 import '../../../../../widgets/on_screen_loader.dart';
- import '../../add_contact_controller.dart';
+import '../../../../route/routes.dart';
+import '../../add_contact_controller.dart';
 
 class RedeoTabPage extends StatefulWidget {
   const RedeoTabPage({Key? key}) : super(key: key);
@@ -64,25 +65,16 @@ class _InviteRedeoTabPageState extends State<RedeoTabPage> {
                           itemBuilder: (context, index) {
                             return RedeoTile(
                               model: controller.tempRedeoList.value[index],
+                              showEditButton: true,
+                              onEditTap: () async {
+                                await Get.toNamed(Routes.addEditContactManually,
+                                    arguments:
+                                    controller.tempRedeoList.value[index]);
+                                controller.getAllRedeoMemberList();
+
+                              },
                               showRadioButton: false,
-                              // onTap: () {
-                              //   for (int i = 0;
-                              //       i < controller.tempRedeoList.value.length;
-                              //       i++) {
-                              //     if (i != index)
-                              //       controller.tempRedeoList.value[i].selected =
-                              //           false;
-                              //   }
-                              //   controller.tempRedeoList.value[index].selected =
-                              //       !controller
-                              //           .tempRedeoList.value[index].selected;
-                              //
-                              //   controller.tempContactsList.forEach((element) {
-                              //     element.selected = false;
-                              //   });
-                              //
-                              //   setState(() {});
-                              // },
+
                             );
                           },
                         ),

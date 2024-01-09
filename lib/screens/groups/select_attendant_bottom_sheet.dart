@@ -364,7 +364,7 @@ class _SelectAttendantScreenState extends State<SelectAttendantScreen> {
 
                       inviteController.tempRedeoList
                           .where((p0) => p0.selected)
-                          .map((e) => Info.clone(e))
+                          .map((e) => ContactInfo.clone(e))
                           .toList();
 
                       widget.model.users = cloneUsers;

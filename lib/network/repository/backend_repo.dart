@@ -19,6 +19,7 @@ import '../../models/all_redeo_member_list_response_model.dart';
 import '../../models/create_contact_model.dart';
 import '../../models/create_message_request_model.dart';
 import '../../models/event_detail_model.dart';
+import '../../models/reports_model.dart';
 import '../../models/return_history_model.dart';
 import '../../models/territory_detail_model.dart';
 import '../../models/territory_list_model.dart';
@@ -872,13 +873,12 @@ class BackendRepo {
     }
   }
 
-
   Future<CreateContactModel> createContact(
       {required Map<String, dynamic> data}) async {
     String url = "${baseUrl}user/contacts";
     try {
       final response =
-      await apiUtils.post(url: url, data: data, options: getOptions());
+          await apiUtils.post(url: url, data: data, options: getOptions());
       var model = CreateContactModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -889,8 +889,97 @@ class BackendRepo {
     }
   }
 
+  Future<CreateContactModel> editContact(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/contacts";
+    try {
+      final response =
+          await apiUtils.put(url: url, data: data, options: getOptions());
+      var model = CreateContactModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
+  Future<MessageOnlyModel> updateReports(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/report";
+    try {
+      final response =
+          await apiUtils.put(url: url, data: data, options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
+  Future<ReportsModel> getReport(String date) async {
+    String url = "${baseUrl}user/report?date=$date";
+    try {
+      final response = await apiUtils.get(url: url, options: getOptions());
+      var model = ReportsModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<MessageOnlyModel> validateQRCode(Map<String, dynamic> data) async {
+    String url = "${baseUrl}user/verify-qr";
+    try {
+      final response =
+          await apiUtils.get(url: url, data: data, options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<MessageOnlyModel> saveFirebaseToken(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/token";
+    try {
+      final response =
+          await apiUtils.post(url: url, data: data, options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+  Future<MessageOnlyModel?> getPlans() async {
+    String url = "${baseUrl}user/plan";
+
+    try {
+      final response = await apiUtils.get(url: url, options: getOptions());
+      var model = TimerModel.fromJson(response.data);
+      return MessageOnlyModel();
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
 
   Options getOptions({bool addAuth = true}) {
     Options? options = Options();

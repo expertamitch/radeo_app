@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "23456483694-ukfpa1mb7dkjpsbf9jqspvq4ata18o3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.redeo",
+            "certificate_hash": "4ad9f0fa4895387ce39cd30ff7d3181d5977dbf9"
+          }
+        },
+        {
           "client_id": "23456483694-v1u3ljs9cbuhck4foma9tre4sl7iuui4.apps.googleusercontent.com",
           "client_type": 3
         }

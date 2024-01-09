@@ -127,7 +127,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: GestureDetector(
                     onTap: () async {
                       GoogleSignIn _googleSignIn = GoogleSignIn(
-                        scopes: scopes,
+                        scopes: scopes,forceCodeForRefreshToken: true,signInOption: SignInOption.standard,clientId: '23456483694-v1u3ljs9cbuhck4foma9tre4sl7iuui4.apps.googleusercontent.com'
                       );
                       try {
                         GoogleSignInAccount? account = await _googleSignIn
@@ -135,6 +135,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         if (account != null)
                           {
                             account.email;
+                            account.serverAuthCode;
                           }
                       } catch (error) {
                         print(error);

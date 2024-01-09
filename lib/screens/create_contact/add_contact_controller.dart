@@ -14,8 +14,8 @@ class AddContactController extends GetxController {
   List<PhoneContactModel> contacts = [];
   RxList<PhoneContactModel> tempContactsList = RxList();
 
-  List<Info> redeoList = [];
-  RxList<Info> tempRedeoList = RxList();
+  List<ContactInfo> redeoList = [];
+  RxList<ContactInfo> tempRedeoList = RxList();
 
   RxBool contactListLoading = false.obs;
   RxBool groupsListLoading = false.obs;
@@ -86,29 +86,27 @@ class AddContactController extends GetxController {
   }
 
   executeRedeoSearch(String searchedText) {
-    tempRedeoList.value = redeoList.map((e) => Info.clone(e)).toList();
+    tempRedeoList.value = redeoList.map((e) => ContactInfo.clone(e)).toList();
 
     tempRedeoList.value.removeWhere((element) =>
         !element.fullName!.toLowerCase().contains(searchedText.toLowerCase()));
     tempRedeoList.refresh();
   }
 
-
-
-Future<bool>  createContact(String fName,String lName, String phone) async {
+  Future<bool> createContact(String fName, String lName, String phone, String code) async {
     try {
-
       Map<String, dynamic> map = {};
 
-      map['mobile']=phone;
-      map['first_name']=fName;
-      map['last_name']=lName;
+      map['country_code'] = code;
+      map['mobile'] = phone;
+      map['first_name'] = fName;
+      map['last_name'] = lName;
 
       showLoader();
       var result = await BackendRepo().createContact(data: map);
-       hideLoader();
+      hideLoader();
 
-          return true;
+      return true;
     } on InternetException {
       hideLoader();
       return false;
@@ -120,6 +118,31 @@ Future<bool>  createContact(String fName,String lName, String phone) async {
     }
   }
 
+  Future<bool> editContact(
+      String fName, String lName, String phone, String id, String code) async {
+    try {
+      Map<String, dynamic> map = {};
 
+      map['id'] = id;
+      map['country_code'] = code;
 
+      map['mobile'] = phone;
+      map['first_name'] = fName;
+      map['last_name'] = lName;
+
+      showLoader();
+      var result = await BackendRepo().editContact(data: map);
+      hideLoader();
+
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
+  }
 }

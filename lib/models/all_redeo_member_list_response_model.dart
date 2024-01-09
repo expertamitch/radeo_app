@@ -9,13 +9,13 @@ class AllRedeoMemberListResponseModel {
     if (json['info'] != null) {
       info = [];
       json['info'].forEach((v) {
-        info!.add(Info.fromJson(v));
+        info!.add(ContactInfo.fromJson(v));
       });
     }
   }
 
   String? message;
-  List<Info>? info;
+  List<ContactInfo>? info;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -27,12 +27,13 @@ class AllRedeoMemberListResponseModel {
   }
 }
 
-class Info {
-  Info({
+class ContactInfo {
+  ContactInfo({
     this.id,
     this.firstName,
     this.lastName,
     this.email,
+    this.country_code,
     this.mobile,
     this.isAttendant=false,
     this.addedBy,
@@ -41,8 +42,9 @@ class Info {
     this.updatedAt,
   });
 
-  factory Info.clone(Info source) {
-    return Info(
+  factory ContactInfo.clone(ContactInfo source) {
+    return ContactInfo(
+      country_code: source.country_code,
       id: source.id,
       firstName: source.firstName,
       lastName: source.lastName,
@@ -59,7 +61,8 @@ class Info {
     );
   }
 
-  Info.fromJson(dynamic json) {
+  ContactInfo.fromJson(dynamic json) {
+    country_code = json['country_code'];
     id = json['id'];
     firstName = json['first_name'];
     lastName = json['last_name'];
@@ -73,6 +76,7 @@ class Info {
 
   int? id;
   String? firstName;
+  String? country_code;
   String? fullName;
   String? lastName;
   String? email;
@@ -86,6 +90,7 @@ class Info {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['country_code'] = country_code;
     map['id'] = id;
     map['first_name'] = firstName;
     map['last_name'] = lastName;

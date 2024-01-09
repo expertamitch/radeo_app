@@ -40,7 +40,7 @@ class _RemoveUserScreenState extends State<RemoveUserScreen> {
   List<Users> cloneUsers = [];
   List<GroupModel> cloneGroups = [];
   List<PhoneContactModel> clonePhoneContacts = [];
-  List<Info> cloneRedeoContacts = [];
+  List<ContactInfo> cloneRedeoContacts = [];
 
   InviteController inviteController = Get.find();
 
@@ -58,7 +58,7 @@ class _RemoveUserScreenState extends State<RemoveUserScreen> {
 
     cloneRedeoContacts = inviteController.tempRedeoList
         .where((p0) => p0.selected)
-        .map((e) => Info.clone(e))
+        .map((e) => ContactInfo.clone(e))
         .toList();
     cloneRedeoContacts.forEach((element) {
       element.selected = false;

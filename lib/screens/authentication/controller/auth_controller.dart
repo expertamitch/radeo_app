@@ -184,8 +184,6 @@ class AuthController extends GetxController {
         hideLoader();
         showErrorSnackBar(result.message!);
 
-
-
         return false;
       }
     } on InternetException {
@@ -195,18 +193,39 @@ class AuthController extends GetxController {
       hideLoader();
       showErrorSnackBar(e.toString());
 
-      if(e.toString()=="User not verified!") {
-        var success=await resendOTP(mobileNo: mobile);
+      if (e.toString() == "User not verified!") {
+        var success = await resendOTP(mobileNo: mobile);
 
-        if( success)
-          Get.toNamed(Routes.otpVerficationScreen,arguments: mobile);
+        if (success)
+          Get.toNamed(Routes.otpVerficationScreen, arguments: mobile);
       }
-
 
       return false;
     }
   }
 
+  saveFirebaseToken() async {
+
+    try {
+      String token = await getFirebaseToken();
+
+      Map<String, dynamic> data = {};
+
+      data['firebase_token'] = token;
+
+      showLoader();
+      final result = await BackendRepo().saveFirebaseToken(data: data);
+      hideLoader();
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
+  }
 
   Future<String> getFirebaseToken() async {
     if (Platform.isIOS) {
@@ -230,5 +249,4 @@ class AuthController extends GetxController {
       return token!;
     }
   }
-
 }

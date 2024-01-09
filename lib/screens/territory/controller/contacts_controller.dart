@@ -10,8 +10,8 @@ import '../../../utils/snackbar_util.dart';
 class ContactsController extends GetxController {
   RxList<PhoneContactModel> contacts = RxList();
 
-  List<Info> redeoList = [];
-  RxList<Info> tempRedeoList = RxList();
+  List<ContactInfo> redeoList = [];
+  RxList<ContactInfo> tempRedeoList = RxList();
 
   RxBool contactListLoading = false.obs;
   RxBool redeoListLoading = false.obs;
@@ -65,7 +65,7 @@ class ContactsController extends GetxController {
   }
 
   executeSearch(String searchedText) {
-    tempRedeoList.value = redeoList.map((e) => Info.clone(e)).toList();
+    tempRedeoList.value = redeoList.map((e) => ContactInfo.clone(e)).toList();
 
     tempRedeoList.value.removeWhere((element) =>
         !element.fullName!.toLowerCase().contains(searchedText.toLowerCase()));

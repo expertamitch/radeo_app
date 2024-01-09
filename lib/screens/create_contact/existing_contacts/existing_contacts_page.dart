@@ -34,7 +34,7 @@ class _ExistingContactsPageState extends State<ExistingContactsPage> {
           title: 'Contacts',
           button1: 'Add Contact',
           buttonTap1: () async {
-            await Get.toNamed(Routes.addNewContactManually);
+            await Get.toNamed(Routes.addEditContactManually);
             controller.getAllRedeoMemberList();
           },
         ),

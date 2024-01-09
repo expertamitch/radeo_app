@@ -35,7 +35,7 @@ class RemoveUserScreen extends StatefulWidget {
 class _RemoveUserScreenState extends State<RemoveUserScreen> {
   List<UserData> cloneUsers = [];
    List<PhoneContactModel> clonePhoneContacts = [];
-  List<Info> cloneRedeoContacts = [];
+  List<ContactInfo> cloneRedeoContacts = [];
 
   InviteController inviteController = Get.find();
 

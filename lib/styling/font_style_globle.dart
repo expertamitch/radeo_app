@@ -20,6 +20,11 @@ TextStyle w300_10({Color? color = Colors.black}) {
   return TextStyle(fontSize: 10.sp, color: color, fontFamily: fontRegular);
 }
 
+
+TextStyle w300_11({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 11.sp, color: color, fontFamily: fontRegular);
+}
+
 TextStyle w300_13({Color? color = Colors.black}) {
   return TextStyle(fontSize: 13.sp, color: color, fontFamily: fontRegular);
 }
@@ -98,6 +103,10 @@ TextStyle w900_18({Color? color = Colors.black}) {
 
 TextStyle w900_20({Color? color = Colors.black}) {
   return TextStyle(fontSize: 20.sp, color: color, fontFamily: fontBold);
+}
+
+TextStyle w900_25({Color? color = Colors.black}) {
+  return TextStyle(fontSize: 25.sp, color: color, fontFamily: fontBold);
 }
 
 TextStyle w900_30({Color? color = Colors.black}) {

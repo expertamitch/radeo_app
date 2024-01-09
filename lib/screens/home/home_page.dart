@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
+import 'package:redeo/screens/authentication/controller/auth_controller.dart';
 import 'package:redeo/screens/chat/chat_controller.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
 import 'package:redeo/screens/create_contact/existing_contacts/existing_contacts_page.dart';
@@ -19,6 +20,10 @@ import 'package:redeo/screens/groups/controller/groups_controller.dart';
 import 'package:redeo/screens/groups/groups_page.dart';
 import 'package:redeo/screens/home/home_page_controller.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
+import 'package:redeo/screens/plans/plans_controller.dart';
+import 'package:redeo/screens/plans/plans_screen.dart';
+import 'package:redeo/screens/read_unread/read_unread_screen.dart';
+import 'package:redeo/screens/report/reports_controller.dart';
 import 'package:redeo/screens/report/reports_page.dart';
 import 'package:redeo/screens/return_visits/return_visits.dart';
 import 'package:redeo/screens/territory/controller/territory_controller.dart';
@@ -52,11 +57,19 @@ class _HomepageState extends State<Homepage> {
       ? Get.find<EventController>()
       : Get.put(EventController());
 
+  final PlansController plansController = Get.isRegistered<PlansController>()
+      ? Get.find<PlansController>()
+      : Get.put(PlansController());
 
   final FieldLogController fieldLogController =
       Get.isRegistered<FieldLogController>()
           ? Get.find<FieldLogController>()
           : Get.put(FieldLogController());
+
+  final ReportsController reportsController =
+      Get.isRegistered<ReportsController>()
+          ? Get.find<ReportsController>()
+          : Get.put(ReportsController(), permanent: true);
 
   final DNCController dncController = Get.isRegistered<DNCController>()
       ? Get.find<DNCController>()
@@ -70,6 +83,9 @@ class _HomepageState extends State<Homepage> {
         date: DateFormat('yyyy/MM/dd').format(fieldLogController.selectedDate));
 
     controller.drawerKey = _key;
+
+    AuthController authController = Get.find();
+    authController.saveFirebaseToken();
     super.initState();
   }
 
@@ -91,7 +107,9 @@ class _HomepageState extends State<Homepage> {
               DNCTerritoryScreen(),
               TerritoryListScreen(),
               ReportsPage(),
-              ExistingContactsPage()
+              ExistingContactsPage(),
+              ReadUnreadScreen(),
+              PlansScreen()
             ],
           )),
     );
@@ -205,35 +223,30 @@ class _HomepageState extends State<Homepage> {
                         controller.getFieldLog(
                             date: DateFormat('yyyy/MM/dd')
                                 .format(fieldLogController.selectedDate));
-                      }
-
-                      else if (controller.currentSelectedIndex.value == 3) {
+                      } else if (controller.currentSelectedIndex.value == 3) {
                         //  groups
                         ChatController controller = Get.find();
                         controller.getChatList();
-                      }
-
-
-
-
-                      else if (controller.currentSelectedIndex.value == 6) {
+                      } else if (controller.currentSelectedIndex.value == 6) {
                         //  groups
                         EventController controller = Get.find();
                         controller.getEventsList();
-                      }
-                      else if (controller.currentSelectedIndex.value == 5) {
+                      } else if (controller.currentSelectedIndex.value == 5) {
                         //  groups
                         GroupsController controller = Get.find();
                         controller.getGroupsList();
-                      }
-                      else if (controller.currentSelectedIndex.value == 7) {
+                      } else if (controller.currentSelectedIndex.value == 7) {
                         DNCController controller = Get.find();
                         controller.getTerritoryList();
-                      }
-                      else if (controller.currentSelectedIndex.value == 8) {
+                      } else if (controller.currentSelectedIndex.value == 8) {
                         TerritoryController controller = Get.find();
                         controller.getTerritoryList();
-                      } else if (controller.currentSelectedIndex.value == 2) {
+                      }
+                      else if (controller.currentSelectedIndex.value == 9) {
+                        ReportsController controller = Get.find();
+                        controller.getReports(DateFormat('yyyy-MM-dd').format(DateTime.now()));
+                      }
+                      else if (controller.currentSelectedIndex.value == 2) {
                         MessageController msgController = Get.find();
                         msgController.reset();
                       } else if (controller.currentSelectedIndex == 1) {
@@ -243,6 +256,12 @@ class _HomepageState extends State<Homepage> {
                         NoticeOfEventController controller = Get.find();
                         controller.getNOEList();
                       }
+                      else if (controller.currentSelectedIndex.value == 12) {
+                        PlansController controller = Get.find();
+                        controller.getPlans();
+                      }
+
+
                     });
                   });
             }),
@@ -283,12 +302,10 @@ class _HomepageState extends State<Homepage> {
                           controller.timerStarted.value =
                               !controller.timerStarted.value;
 
-
-                          if(controller.timerStarted.value)
+                          if (controller.timerStarted.value)
                             controller.stopWatchTimer.onStartTimer();
                           else
                             controller.stopWatchTimer.onStopTimer();
-
 
                           controller.sendTimer();
                         },

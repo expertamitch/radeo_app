@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:redeo/screens/report/reports_controller.dart';
 import 'package:redeo/styling/app_colors.dart';
 import 'package:table_calendar/table_calendar.dart';
+import '../../models/reports_model.dart';
 import '../../styling/font_style_globle.dart';
 
 import 'package:redeo/widgets/app_button.dart';
+
+import '../../widgets/not_found_widget.dart';
 
 class EditReportsPage extends StatefulWidget {
   const EditReportsPage({Key? key}) : super(key: key);
@@ -15,10 +20,43 @@ class EditReportsPage extends StatefulWidget {
 }
 
 class _EditReportsPageState extends State<EditReportsPage> {
-  DateTime selectedDate = DateTime.now();
+  ReportsController controller = Get.find();
+  DateTime? selectedDate;
 
-  String hoursDropDownValue = "24";
-  String minDropDownValue = "30";
+  String hoursDropDownValue = "0";
+  String minDropDownValue = "0";
+  String secDropDownValue = "0";
+
+  @override
+  void initState() {
+    selectedDate = Get.arguments;
+    Future.delayed(Duration(milliseconds: 500)).then((value) => getData());
+    super.initState();
+  }
+
+  getData() async {
+    await controller.getReports(DateFormat('yyyy-MM-dd').format(selectedDate!));
+    if (controller.reports.isNotEmpty) {
+      if (controller.reports[0].key!.toLowerCase() == 'time' &&
+          controller.reports[0].value != null &&
+          controller.reports[0].value!.contains(':')) {
+        hoursDropDownValue =
+            int.parse(controller.reports[0].value!.split(':').first.toString())
+                .toString();
+
+        minDropDownValue =
+            int.parse(controller.reports[0].value!.split(':')[1].toString())
+                .toString();
+
+        secDropDownValue =
+            int.parse(controller.reports[0].value!.split(':').last.toString())
+                .toString();
+
+        setState(() {});
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +69,22 @@ class _EditReportsPageState extends State<EditReportsPage> {
             Row(
               children: [
                 AppButton(
-                    onPressedFunction: () {},
+                    onPressedFunction: () async {
+                      Map<String, dynamic> map = {};
+                      map['date'] =
+                          DateFormat('yyyy-MM-dd').format(selectedDate!);
+                      map['time'] =
+                          "${hoursDropDownValue.length == 1 ? '0$hoursDropDownValue' : hoursDropDownValue}:${minDropDownValue.length == 1 ? '0$minDropDownValue' : minDropDownValue}:${secDropDownValue.length == 1 ? '0$secDropDownValue' : secDropDownValue}";
+
+                      controller.reports.forEach((element) {
+                        if (element.key != 'Time') {
+                          map[element.key!] = element.value;
+                        }
+                      });
+
+                      bool success = await controller.updateReports(map);
+                      if (success) Get.back();
+                    },
                     child: Text(
                       'Save',
                       style: w300_12(color: Colors.white),
@@ -65,15 +118,16 @@ class _EditReportsPageState extends State<EditReportsPage> {
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: TableCalendar(
                 firstDay: DateTime.utc(2010, 10, 16),
-                lastDay: DateTime.utc(2030, 3, 14),
-                focusedDay: selectedDate,
+                lastDay: DateTime.now(),
+                focusedDay: selectedDate!,
                 availableCalendarFormats: {
                   CalendarFormat.month: 'Month',
                 },
-                availableGestures: AvailableGestures.none,
+                // availableGestures: AvailableGestures.none,
                 onDaySelected: (focusedDay, s) {
                   setState(() {
                     selectedDate = focusedDay;
+                    getData();
                     print('up');
                   });
                 },
@@ -108,265 +162,161 @@ class _EditReportsPageState extends State<EditReportsPage> {
             SizedBox(
               height: 5.h,
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Column(
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Time',
-                            style: w600_13(),
-                          ),
-                          Expanded(
-                              child: SizedBox(
-                            width: 2,
-                          )),
-                          Container(
-                            width: 55,
-                            decoration: BoxDecoration(
-                                color: AppColors.darkGreyColor,
-                                borderRadius: BorderRadius.circular(2)),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 3, horizontal: 5),
-                            child: DropdownButton<String>(
-                              underline: SizedBox(),
-                              isDense: true,
-                              isExpanded: true,
-                              value: hoursDropDownValue,
-                              icon: Icon(Icons.keyboard_arrow_down_sharp,
-                                  weight: .5, size: 20),
-                              items: List.generate(
-                                      24, (index) => (index + 1).toString())
-                                  .toList()
-                                  .map((String value) {
-                                return DropdownMenuItem(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: w300_13(),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (_) {},
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: 55,
-                            decoration: BoxDecoration(
-                                color: AppColors.darkGreyColor,
-                                borderRadius: BorderRadius.circular(2)),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 3, horizontal: 5),
-                            child: DropdownButton<String>(
-                              underline: SizedBox(),
-                              isDense: true,
-                              isExpanded: true,
-                              icon: Icon(Icons.keyboard_arrow_down_sharp,
-                                  weight: .5, size: 20),
-                              value: minDropDownValue,
-                              items: List.generate(
-                                      60, (index) => (index + 1).toString())
-                                  .toList()
-                                  .map((String value) {
-                                return DropdownMenuItem(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: w300_13(),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (_) {},
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Return Visits',
-                            style: w600_13(),
-                          ),
-                          SizedBox(
-                            width: 20,
-                            child: TextFormField(
-                              initialValue: '6',
-                              style: w300_13(),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                border: InputBorder.none,
-                                prefixIconConstraints:
-                                    BoxConstraints(maxWidth: 20, minWidth: 20),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Bible Studies',
-                            style: w600_13(),
-                          ),
-                          SizedBox(
-                            width: 20,
-                            child: TextFormField(
-                              initialValue: '6',
-                              style: w300_13(),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                border: InputBorder.none,
-                                prefixIconConstraints:
-                                    BoxConstraints(maxWidth: 20, minWidth: 20),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Return Visits',
-                            style: w600_13(),
-                          ),
-                          SizedBox(
-                            width: 20,
-                            child: TextFormField(
-                              initialValue: '2',
-                              style: w300_13(),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                border: InputBorder.none,
-                                prefixIconConstraints:
-                                    BoxConstraints(maxWidth: 20, minWidth: 20),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Magazines',
-                            style: w600_13(),
-                          ),
-                          SizedBox(
-                            width: 20,
-                            child: TextFormField(
-                              initialValue: '10',
-                              style: w300_13(),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                border: InputBorder.none,
-                                prefixIconConstraints:
-                                    BoxConstraints(maxWidth: 20, minWidth: 20),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Brochures',
-                            style: w600_13(),
-                          ),
-                          SizedBox(
-                            width: 20,
-                            child: TextFormField(
-                              initialValue: '15',
-                              style: w300_13(),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                border: InputBorder.none,
-                                prefixIconConstraints:
-                                    BoxConstraints(maxWidth: 20, minWidth: 20),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  color: AppColors.borderGreyColor))),
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Videos',
-                            style: w600_13(),
-                          ),
-                          SizedBox(
-                            width: 20,
-                            child: TextFormField(
-                              initialValue: '3',
-                              style: w300_13(),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                border: InputBorder.none,
-                                prefixIconConstraints:
-                                    BoxConstraints(maxWidth: 20, minWidth: 20),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                ],
-              ),
-            )
+            Obx(() => controller.reports.isEmpty && !controller.loading.value
+                ? NotFoundWidget()
+                : Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: ListView.builder(
+                        itemBuilder: (c, i) {
+                          return getItem(controller.reports[i]);
+                        },
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: controller.reports.length),
+                  )),
           ]),
+        ));
+  }
+
+  Widget getItem(ReportInfo info) {
+    return Container(
+        decoration: BoxDecoration(
+            border:
+                Border(bottom: BorderSide(color: AppColors.borderGreyColor))),
+        padding: EdgeInsets.symmetric(vertical: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              info.key!,
+              style: w600_13(),
+            ),
+            if (info.key!.toLowerCase() == 'time')
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: SizedBox(
+                      width: 2,
+                    )),
+                    Container(
+                      width: 55,
+                      decoration: BoxDecoration(
+                          color: AppColors.darkGreyColor,
+                          borderRadius: BorderRadius.circular(2)),
+                      padding: EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+                      child: DropdownButton<String>(
+                        underline: SizedBox(),
+                        isDense: true,
+                        isExpanded: true,
+                        value: hoursDropDownValue,
+                        icon: Icon(Icons.keyboard_arrow_down_sharp,
+                            weight: .5, size: 20),
+                        items: List.generate(24, (index) => (index).toString())
+                            .toList()
+                            .map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: w300_13(),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (_) {
+                          hoursDropDownValue = _.toString();
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 55,
+                      decoration: BoxDecoration(
+                          color: AppColors.darkGreyColor,
+                          borderRadius: BorderRadius.circular(2)),
+                      padding: EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+                      child: DropdownButton<String>(
+                        underline: SizedBox(),
+                        isDense: true,
+                        isExpanded: true,
+                        icon: Icon(Icons.keyboard_arrow_down_sharp,
+                            weight: .5, size: 20),
+                        value: minDropDownValue,
+                        items: List.generate(60, (index) => (index).toString())
+                            .toList()
+                            .map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: w300_13(),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (_) {
+                          minDropDownValue = _.toString();
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 55,
+                      decoration: BoxDecoration(
+                          color: AppColors.darkGreyColor,
+                          borderRadius: BorderRadius.circular(2)),
+                      padding: EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+                      child: DropdownButton<String>(
+                        underline: SizedBox(),
+                        isDense: true,
+                        isExpanded: true,
+                        icon: Icon(Icons.keyboard_arrow_down_sharp,
+                            weight: .5, size: 20),
+                        value: secDropDownValue,
+                        items: List.generate(60, (index) => (index).toString())
+                            .toList()
+                            .map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: w300_13(),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (_) {
+                          secDropDownValue = _.toString();
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            if (info.key!.toLowerCase() != 'time')
+              SizedBox(
+                width: 20,
+                child: TextFormField(
+                  initialValue: info.value == '0' ? '' : info.value,
+                  style: w300_13(),
+                  onChanged: (data) {
+                    info.value = data;
+                  },
+                  decoration: InputDecoration(
+                    isDense: true,
+                    border: InputBorder.none,
+                    hintText: '0',
+                    prefixIconConstraints:
+                        BoxConstraints(maxWidth: 20, minWidth: 20),
+                  ),
+                ),
+              ),
+          ],
         ));
   }
 }

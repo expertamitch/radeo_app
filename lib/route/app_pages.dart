@@ -227,6 +227,7 @@ class AppPages {
       name: Routes.editReportsScreen,
       transition: Transition.cupertino,
       page: () => EditReportsPage(),
+      arguments: Get.arguments
     ),
     GetPage(
       name: Routes.shareReportsScreen,
@@ -312,7 +313,7 @@ class AppPages {
         arguments: Get.arguments),
 
     GetPage(
-        name: Routes.addNewContactManually,
+        name: Routes.addEditContactManually,
         transition: Transition.cupertino,
         page: () => AddManualContact(),
         arguments: Get.arguments),

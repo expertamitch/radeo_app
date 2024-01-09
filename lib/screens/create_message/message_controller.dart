@@ -314,4 +314,24 @@ class MessageController extends GetxController {
       return false;
     }
   }
+
+  Future<bool> validateQRCode(String id) async {
+    try {
+      showLoader();
+      Map<String, dynamic> data = {};
+      data['qr_code_id'] = id;
+
+      await BackendRepo().validateQRCode(data);
+
+      hideLoader();
+      return true;
+    } on InternetException {
+      hideLoader();
+      return false;
+    } catch (e) {
+      hideLoader();
+      showErrorSnackBar(e.toString());
+      return false;
+    }
+  }
 }

@@ -49,6 +49,8 @@ class HomePageController extends GetxController {
     'Territory',
     'Reports',
     'Add Contact',
+    'Read/Unread',
+    'Plans',
   ];
 
   RxInt currentSelectedIndex = 0.obs;

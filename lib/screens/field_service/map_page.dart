@@ -31,10 +31,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage>
   LatLng? currentLocation;
   final Completer<GoogleMapController> _controller = Completer();
 
-  CameraPosition? _kGoogle = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  CameraPosition? _kGoogle;
 
   @override
   void initState() {
@@ -47,82 +44,18 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage>
   }
 
   // THIS is called whenever life cycle changed
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.resumed) {
-      var hasPermission = await Geolocator.checkPermission();
-      if (hasPermission == LocationPermission.always ||
-          hasPermission == LocationPermission.whileInUse) {
-        initialise();
-      }
-    }
-  }
+  // void didChangeAppLifecycleState(AppLifecycleState state) async {
+  //   if (state == AppLifecycleState.resumed) {
+  //     var hasPermission = await Geolocator.checkPermission();
+  //     if (hasPermission == LocationPermission.always ||
+  //         hasPermission == LocationPermission.whileInUse) {
+  //       initialise();
+  //     }
+  //   }
+  // }
 
   initialise() async {
     await getUserLocation();
-
-    var hasPermission = await Geolocator.checkPermission();
-    if (hasPermission == LocationPermission.always ||
-        hasPermission == LocationPermission.whileInUse) {
-      _kGoogle = CameraPosition(
-        target: LatLng(currentLocation!.latitude, currentLocation!.longitude),
-      );
-
-      setState(() {});
-    } else {
-      LocationPermission permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.deniedForever) {
-        Widget okButton = TextButton(
-          child: Text("Okay"),
-          onPressed: () {
-            Navigator.of(context).pop(true);
-          },
-        );
-
-        Widget noButton = TextButton(
-          child: Text("Not for now"),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        );
-
-        // set up the AlertDialog
-        AlertDialog alert = AlertDialog(
-          title: Text(
-            "Permission required",
-            style: w600_16(),
-            textAlign: TextAlign.start,
-          ),
-          content: Text(
-            'Please provide location permission to continue using app.',
-            style: w600_14().copyWith(
-              height: 1.5,
-            ),
-            maxLines: 4,
-            textAlign: TextAlign.start,
-          ),
-          actions: [okButton, noButton],
-        );
-
-        // show the dialog
-        var result = await showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return alert;
-          },
-        );
-
-        if (result != null) {
-          openAppSettings().then((value) {
-            Geolocator.checkPermission();
-            if (hasPermission == LocationPermission.always ||
-                hasPermission == LocationPermission.whileInUse) {
-              initialise();
-            }
-          });
-        }
-      } else
-        initialise();
-    }
   }
 
   getLatLng(String address) async {
@@ -146,6 +79,20 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage>
       Position location = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       currentLocation = LatLng(location.latitude, location.longitude);
+
+Future.delayed(Duration(seconds: 0)).then((value) {
+
+  _kGoogle = CameraPosition(
+    target: currentLocation!,
+    zoom: 14.4746,
+  );
+  setState(() {
+
+  });
+});
+
+
+
       setState(() {});
       hideLoader();
     }
@@ -178,7 +125,7 @@ class _FiledServiceMapPageState extends State<FiledServiceMapPage>
           child: Stack(
             children: [
               currentLocation == null
-                  ? GoogleMap(initialCameraPosition: _kGoogle!)
+                  ?Container(color: Colors.white,)
                   : GoogleMap(
                       mapType: MapType.normal,
                       myLocationEnabled: true,

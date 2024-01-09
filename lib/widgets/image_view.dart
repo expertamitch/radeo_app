@@ -80,7 +80,7 @@ class ImageView extends StatelessWidget {
               path!,
               width: width ?? null,
               height: height ?? null,
-              color: color ?? Colors.black,
+              color: color
             )
           : Image.asset(
               path!,

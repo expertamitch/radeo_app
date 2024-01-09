@@ -57,6 +57,12 @@ class Images {
   static const String level1Icon = "assets/icons/screen 18/Level 1.svg";
   static const String level2Icon = "assets/icons/screen 18/Level 2.svg";
   static const String level3Icon = "assets/icons/screen 18/Level 3.svg";
+
+  static const String icLocation = "assets/icons/ic_location.svg";
+  static const String icReadCheck = "assets/icons/ic_read_check.svg";
+  static const String icUnreadCheck = "assets/icons/ic_unread_check.svg";
+
+
   static const String selectRadioIcon =
       "assets/icons/screen 18/Select_Radio.svg";
   static const String unselectRadioIcon =

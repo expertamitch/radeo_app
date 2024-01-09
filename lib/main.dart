@@ -1,6 +1,7 @@
 import 'dart:async';
 
- import 'package:flutter/foundation.dart';
+ import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
  import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,10 +43,10 @@ const String navigationActionId = 'id_3';*/
 
 Future<void> main() async {
   await GetStorage.init();
-  //firebase init start
-  // var data1 = await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  // firebase init start
+  var data1 = await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   /*var _ = await FirebaseMessaging.instance.requestPermission();
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
