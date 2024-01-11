@@ -1,18 +1,23 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
  import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
  import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:redeo/route/app_pages.dart';
+import 'package:redeo/route/routes.dart';
 import 'package:redeo/screens/splash/splash_screen.dart';
 
 import 'firebase_options.dart';
 
-/*final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 const String darwinNotificationCategoryPlain = 'plainCategory';
@@ -22,7 +27,6 @@ final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
 
 final StreamController<String?> selectNotificationStream =
     StreamController<String?>.broadcast();
-4,32,014
 class ReceivedNotification {
   ReceivedNotification({
     required this.id,
@@ -39,7 +43,7 @@ class ReceivedNotification {
 
 String? selectedNotificationPayload;
 
-const String navigationActionId = 'id_3';*/
+const String navigationActionId = 'id_3';
 
 Future<void> main() async {
   await GetStorage.init();
@@ -48,7 +52,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  /*var _ = await FirebaseMessaging.instance.requestPermission();
+  var _ = await FirebaseMessaging.instance.requestPermission();
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -119,25 +123,25 @@ Future<void> main() async {
     android: initializationSettingsAndroid,
     iOS: initializationSettingsDarwin,
     macOS: initializationSettingsDarwin,
-  );*/
+  );
 
-  // await flutterLocalNotificationsPlugin.initialize(
-  //   initializationSettings,
-  //   onDidReceiveNotificationResponse:
-  //       (NotificationResponse notificationResponse) {
-  //     switch (notificationResponse.notificationResponseType) {
-  //       case NotificationResponseType.selectedNotification:
-  //         selectNotificationStream.add(notificationResponse.payload);
-  //         break;
-  //       case NotificationResponseType.selectedNotificationAction:
-  //         if (notificationResponse.actionId == navigationActionId) {
-  //           selectNotificationStream.add(notificationResponse.payload);
-  //         }
-  //         break;
-  //     }
-  //   },
-  //   onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
-  // );
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse:
+        (NotificationResponse notificationResponse) {
+      switch (notificationResponse.notificationResponseType) {
+        case NotificationResponseType.selectedNotification:
+          selectNotificationStream.add(notificationResponse.payload);
+          break;
+        case NotificationResponseType.selectedNotificationAction:
+          if (notificationResponse.actionId == navigationActionId) {
+            selectNotificationStream.add(notificationResponse.payload);
+          }
+          break;
+      }
+    },
+    onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
+  );
 
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -157,141 +161,141 @@ class NavigationService {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
 
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-//   debugPrint("FIREBASE_MESSAGING:----    $message");
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  debugPrint("FIREBASE_MESSAGING:----    $message");
 
-//   RemoteNotification? notification = message.notification;
-//   print('Handling a background message ${message.data}');
+  RemoteNotification? notification = message.notification;
+  print('Handling a background message ${message.data}');
 
-//   try {
-//     String initialRoute = Routes.mainScreen;
+  try {
+    String initialRoute = Routes.mainScreen;
 
-//     final NotificationAppLaunchDetails? notificationAppLaunchDetails =
-//         !kIsWeb && Platform.isLinux
-//             ? null
-//             : await flutterLocalNotificationsPlugin
-//                 .getNotificationAppLaunchDetails();
+    final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+        !kIsWeb && Platform.isLinux
+            ? null
+            : await flutterLocalNotificationsPlugin
+                .getNotificationAppLaunchDetails();
 
-//     if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-//       selectedNotificationPayload =
-//           notificationAppLaunchDetails!.notificationResponse?.payload;
-//       initialRoute = Routes.mainScreen;
-//     }
+    if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+      selectedNotificationPayload =
+          notificationAppLaunchDetails!.notificationResponse?.payload;
+      initialRoute = Routes.mainScreen;
+    }
 
-//     const AndroidInitializationSettings initializationSettingsAndroid =
-//         AndroidInitializationSettings('@drawable/ic_notification');
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@drawable/ic_notification');
 
-//     final List<DarwinNotificationCategory> darwinNotificationCategories =
-//         <DarwinNotificationCategory>[
-//       DarwinNotificationCategory(
-//         darwinNotificationCategoryPlain,
-//         actions: <DarwinNotificationAction>[
-//           DarwinNotificationAction.plain('id_1', 'Action 1'),
-//           DarwinNotificationAction.plain(
-//             'id_2',
-//             'Action 2 (destructive)',
-//             options: <DarwinNotificationActionOption>{
-//               DarwinNotificationActionOption.destructive,
-//             },
-//           ),
-//           DarwinNotificationAction.plain(
-//             'id_4',
-//             'Action 4 (auth required)',
-//             options: <DarwinNotificationActionOption>{
-//               DarwinNotificationActionOption.authenticationRequired,
-//             },
-//           ),
-//         ],
-//         options: <DarwinNotificationCategoryOption>{
-//           DarwinNotificationCategoryOption.hiddenPreviewShowTitle,
-//         },
-//       )
-//     ];
+    final List<DarwinNotificationCategory> darwinNotificationCategories =
+        <DarwinNotificationCategory>[
+      DarwinNotificationCategory(
+        darwinNotificationCategoryPlain,
+        actions: <DarwinNotificationAction>[
+          DarwinNotificationAction.plain('id_1', 'Action 1'),
+          DarwinNotificationAction.plain(
+            'id_2',
+            'Action 2 (destructive)',
+            options: <DarwinNotificationActionOption>{
+              DarwinNotificationActionOption.destructive,
+            },
+          ),
+          DarwinNotificationAction.plain(
+            'id_4',
+            'Action 4 (auth required)',
+            options: <DarwinNotificationActionOption>{
+              DarwinNotificationActionOption.authenticationRequired,
+            },
+          ),
+        ],
+        options: <DarwinNotificationCategoryOption>{
+          DarwinNotificationCategoryOption.hiddenPreviewShowTitle,
+        },
+      )
+    ];
 
-//     final DarwinInitializationSettings initializationSettingsDarwin =
-//         DarwinInitializationSettings(
-//       requestAlertPermission: false,
-//       requestBadgePermission: false,
-//       requestSoundPermission: false,
-//       onDidReceiveLocalNotification:
-//           (int id, String? title, String? body, String? payload) async {
-//         didReceiveLocalNotificationStream.add(
-//           ReceivedNotification(
-//             id: id,
-//             title: title,
-//             body: body,
-//             payload: payload,
-//           ),
-//         );
-//       },
-//       notificationCategories: darwinNotificationCategories,
-//     );
+    final DarwinInitializationSettings initializationSettingsDarwin =
+        DarwinInitializationSettings(
+      requestAlertPermission: false,
+      requestBadgePermission: false,
+      requestSoundPermission: false,
+      onDidReceiveLocalNotification:
+          (int id, String? title, String? body, String? payload) async {
+        didReceiveLocalNotificationStream.add(
+          ReceivedNotification(
+            id: id,
+            title: title,
+            body: body,
+            payload: payload,
+          ),
+        );
+      },
+      notificationCategories: darwinNotificationCategories,
+    );
 
-//     final InitializationSettings initializationSettings =
-//         InitializationSettings(
-//       android: initializationSettingsAndroid,
-//       iOS: initializationSettingsDarwin,
-//       macOS: initializationSettingsDarwin,
-//     );
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsDarwin,
+      macOS: initializationSettingsDarwin,
+    );
 
-//     await flutterLocalNotificationsPlugin.initialize(
-//       initializationSettings,
-//       onDidReceiveNotificationResponse:
-//           (NotificationResponse notificationResponse) {
-//         switch (notificationResponse.notificationResponseType) {
-//           case NotificationResponseType.selectedNotification:
-//             selectNotificationStream.add(notificationResponse.payload);
-//             break;
-//           case NotificationResponseType.selectedNotificationAction:
-//             if (notificationResponse.actionId == navigationActionId) {
-//               selectNotificationStream.add(notificationResponse.payload);
-//             }
-//             break;
-//         }
-//       },
-//       onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
-//     );
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) {
+        switch (notificationResponse.notificationResponseType) {
+          case NotificationResponseType.selectedNotification:
+            selectNotificationStream.add(notificationResponse.payload);
+            break;
+          case NotificationResponseType.selectedNotificationAction:
+            if (notificationResponse.actionId == navigationActionId) {
+              selectNotificationStream.add(notificationResponse.payload);
+            }
+            break;
+        }
+      },
+      onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
+    );
 
-//     AndroidNotification? android = message.notification?.android;
-//     if (!kIsWeb) {
-//       await showPN(notification.hashCode, message);
-//     }
-//   } catch (e) {
-//     print(e);
-//   }
-// }
+    AndroidNotification? android = message.notification?.android;
+    if (!kIsWeb) {
+      await showPN(notification.hashCode, message);
+    }
+  } catch (e) {
+    print(e);
+  }
+}
 
-// @pragma('vm:entry-point')
-// void notificationTapBackground(NotificationResponse notificationResponse) {
-//   // ignore: avoid_print
-//   print('notification(${notificationResponse.id}) action tapped: '
-//       '${notificationResponse.actionId} with'
-//       ' payload: ${notificationResponse.payload}');
-//   if (notificationResponse.input?.isNotEmpty ?? false) {
-//     // ignore: avoid_print
-//     print(
-//         'notification action tapped with input: ${notificationResponse.input}');
-//   }
-// }
+@pragma('vm:entry-point')
+void notificationTapBackground(NotificationResponse notificationResponse) {
+  // ignore: avoid_print
+  print('notification(${notificationResponse.id}) action tapped: '
+      '${notificationResponse.actionId} with'
+      ' payload: ${notificationResponse.payload}');
+  if (notificationResponse.input?.isNotEmpty ?? false) {
+    // ignore: avoid_print
+    print(
+        'notification action tapped with input: ${notificationResponse.input}');
+  }
+}
 
-// Future<void> showPN(int notificationId, RemoteMessage message) async {
-//   // String tripId =
-//   //     jsonDecode(jsonDecode(message.data['default'])['GCM'])['data']['trip_id'];
-//   String title = message.notification!.title!;
-//   String body = message.notification!.body!;
+Future<void> showPN(int notificationId, RemoteMessage message) async {
+  // String tripId =
+  //     jsonDecode(jsonDecode(message.data['default'])['GCM'])['data']['trip_id'];
+  String title = message.notification!.title!;
+  String body = message.notification!.body!;
 
-//   const AndroidNotificationDetails androidNotificationDetails =
-//       AndroidNotificationDetails('velox_notification_id', 'velox_notifications',
-//           channelDescription: 'Channel to show notifications',
-//           importance: Importance.max,
-//           priority: Priority.high,
-//           ticker: 'ticker');
-//   const NotificationDetails notificationDetails =
-//       NotificationDetails(android: androidNotificationDetails);
-//   await flutterLocalNotificationsPlugin.show(
-//       notificationId, title, body, notificationDetails,
-//       payload: json.encode(message.data));
-// }
+  const AndroidNotificationDetails androidNotificationDetails =
+      AndroidNotificationDetails('velox_notification_id', 'velox_notifications',
+          channelDescription: 'Channel to show notifications',
+          importance: Importance.max,
+          priority: Priority.high,
+          ticker: 'ticker');
+  const NotificationDetails notificationDetails =
+      NotificationDetails(android: androidNotificationDetails);
+  await flutterLocalNotificationsPlugin.show(
+      notificationId, title, body, notificationDetails,
+      payload: json.encode(message.data));
+}
 
 class MyApp extends StatefulWidget {
   @override
