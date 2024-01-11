@@ -2,9 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:redeo/models/plans_model.dart';
+import 'package:redeo/screens/plans/plans_controller.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 
 import '../../widgets/common_app_bar.dart';
+import '../../widgets/not_found_widget.dart';
+import '../../widgets/on_screen_loader.dart';
 
 class PlansScreen extends StatefulWidget {
   @override
@@ -12,6 +16,8 @@ class PlansScreen extends StatefulWidget {
 }
 
 class _PlansScreenState extends State<PlansScreen> {
+  PlansController plansController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,22 +30,26 @@ class _PlansScreenState extends State<PlansScreen> {
             height: 10.h,
           ),
           Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.only(top: 26.h),
-                itemBuilder: (c, i) {
-                  return getItem(i == 1);
-                },
-                separatorBuilder: (c, i) {
-                  return Container(
-                    height: 15.h,
-                  );
-                },
-                itemCount: 5),
+            child: Obx(() =>plansController.plansLoading.value
+                ? OnScreenLoader(): plansController.plansList.isEmpty &&
+                    !plansController.plansLoading.value
+                ? NotFoundWidget()
+                : ListView.separated(
+                    padding: EdgeInsets.only(top: 26.h),
+                    itemBuilder: (c, i) {
+                      return getItem(plansController.plansList.value[i]);
+                    },
+                    separatorBuilder: (c, i) {
+                      return Container(
+                        height: 15.h,
+                      );
+                    },
+                    itemCount: plansController.plansList.value.length)),
           )
         ]));
   }
 
-  Widget getItem(bool isActive) {
+  Widget getItem(PlanDetail planDetail) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
@@ -51,7 +61,9 @@ class _PlansScreenState extends State<PlansScreen> {
             padding:
                 EdgeInsets.only(top: 8.h, bottom: 8.h, left: 16.w, right: 18.w),
             decoration: BoxDecoration(
-                color: isActive ? Color(0XFF74167B) : Color(0XFF1F1F1F),
+                color: planDetail.id == plansController.activePlanId.value
+                    ? Color(0XFF74167B)
+                    : Color(0XFF1F1F1F),
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(5), topRight: Radius.circular(5))),
             child: Row(
@@ -60,14 +72,14 @@ class _PlansScreenState extends State<PlansScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'PLAN A',
+                      planDetail.name ?? '',
                       style: w600_13(color: Colors.white),
                     ),
-                    if (isActive)
+                    if (planDetail.id == plansController.activePlanId.value)
                       SizedBox(
                         height: 4,
                       ),
-                    if (isActive)
+                    if (planDetail.id == plansController.activePlanId.value)
                       Text(
                         'Active Now',
                         style: w300_11(color: Colors.white),
@@ -76,7 +88,7 @@ class _PlansScreenState extends State<PlansScreen> {
                 ),
                 Spacer(),
                 Text(
-                  '\$00.00',
+                  '\$${planDetail.price}',
                   style: w900_25(color: Colors.white),
                 )
               ],
@@ -93,47 +105,50 @@ class _PlansScreenState extends State<PlansScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '10 Video uploads, 50 QR code',
+                  planDetail.details!
+                      .toString()
+                      .substring(1, planDetail.details!.toString().length - 1),
                   style: w300_13(color: Color(0XFF73BAD9)),
                 ),
                 SizedBox(
-                  height: 23,
+                  height: 15,
                 ),
-                Text(
-                  '- Bullet points 1',
-                  style: w300_11(color: Colors.black),
+                Column(
+                  children: planDetail.planPoints!
+                      .map((e) => Column(
+                            children: [
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                '- $e',
+                                style: w300_11(color: Colors.black),
+                              ),
+                            ],
+                          ))
+                      .toList(),
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  '- Bullet points 1',
-                  style: w300_11(color: Colors.black),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  '- Bullet points 1',
-                  style: w300_11(color: Colors.black),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  '- Bullet points 1',
-                  style: w300_11(color: Colors.black),
-                ),
-                if (!isActive)
-                  Container(
-                    margin: EdgeInsets.only(top: 14.h),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: Colors.black, width: 1)),
-                    padding: EdgeInsets.symmetric(vertical: 14.h),
-                    width: Get.width,
-                    alignment: Alignment.center,
-                    child: Text('Buy Now', style: w300_11(),),
+                if (planDetail.id != plansController.activePlanId.value)
+                  GestureDetector(
+                    onTap: () async {
+                     await plansController.buyPlan(planDetail.id.toString());
+
+                     setState(() {
+
+                     });},
+                    child: Container(
+                      margin: EdgeInsets.only(top: 14.h),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black, width: 1)),
+                      padding: EdgeInsets.symmetric(vertical: 14.h),
+                      width: Get.width,
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Buy Now',
+                        style: w300_11(),
+                      ),
+                    ),
                   )
               ],
             ),

@@ -14,11 +14,13 @@ import 'package:redeo/models/return_visit_list_model.dart';
 import 'package:redeo/models/timer_model.dart';
 import 'package:redeo/models/update_event_model.dart';
 
+import '../../models/active_plan_model.dart';
 import '../../models/add_custom_message_model.dart';
 import '../../models/all_redeo_member_list_response_model.dart';
 import '../../models/create_contact_model.dart';
 import '../../models/create_message_request_model.dart';
 import '../../models/event_detail_model.dart';
+import '../../models/plans_model.dart';
 import '../../models/reports_model.dart';
 import '../../models/return_history_model.dart';
 import '../../models/territory_detail_model.dart';
@@ -966,13 +968,46 @@ class BackendRepo {
     }
   }
 
-  Future<MessageOnlyModel?> getPlans() async {
+  Future<PlansModel?> getPlans() async {
     String url = "${baseUrl}user/plan";
 
     try {
       final response = await apiUtils.get(url: url, options: getOptions());
-      var model = TimerModel.fromJson(response.data);
-      return MessageOnlyModel();
+      return PlansModel.fromJson(response.data);
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+  Future<MessageOnlyModel> buyPlan(
+      {required Map<String, dynamic> data}) async {
+    String url = "${baseUrl}user/plan/buy";
+    try {
+      final response = await apiUtils.post(
+          url: url, data: data, options: getOptions());
+      var model = MessageOnlyModel.fromJson(response.data);
+      return model;
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+  Future<ActivePlanModel?> getUserPlan() async {
+    String url = "${baseUrl}user/plan/info";
+
+    try {
+      final response = await apiUtils.get(url: url, options: getOptions());
+      return ActivePlanModel.fromJson(response.data);
     } catch (e) {
       if (e is DioError && e.type == DioErrorType.unknown) {
         throw InternetException();

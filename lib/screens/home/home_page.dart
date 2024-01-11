@@ -258,6 +258,7 @@ class _HomepageState extends State<Homepage> {
                       }
                       else if (controller.currentSelectedIndex.value == 12) {
                         PlansController controller = Get.find();
+                        controller.getUserPlan();
                         controller.getPlans();
                       }
 
