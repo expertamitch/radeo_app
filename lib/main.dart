@@ -48,20 +48,29 @@ const String navigationActionId = 'id_3';
 Future<void> main() async {
   await GetStorage.init();
   // firebase init start
-  var data1 = await Firebase.initializeApp(
+  // var data1 = await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    // name: 'redeo-f4c25',
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+
+
 
   var _ = await FirebaseMessaging.instance.requestPermission();
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
-  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     print("onMessage Customer: called");
     print(message.data);
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
-    // showPN(notification.hashCode, message);
+    showPN(notification.hashCode, message);
   });
   //firebase init end
 
@@ -143,7 +152,6 @@ Future<void> main() async {
     onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
   );
 
-  WidgetsFlutterBinding.ensureInitialized();
 
   final systemTheme = SystemUiOverlayStyle.light.copyWith(
     systemNavigationBarColor: Colors.white,
@@ -163,6 +171,7 @@ class NavigationService {
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   debugPrint("FIREBASE_MESSAGING:----    $message");
+  await Firebase.initializeApp();
 
   RemoteNotification? notification = message.notification;
   print('Handling a background message ${message.data}');

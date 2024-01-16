@@ -92,7 +92,7 @@ class Images {
   static const String mapImage = "assets/images/map.png";
   static const String icErrorImage = "assets/images/ic_error_image.png";
   static const String icSplashIcon = "assets/images/splash_icon.png";
-  static const String icDefault = "assets/images/default.png";
+  static const String icDefault = "assets/images/ic_notification.png";
   static const String scanQr = "assets/images/scan_qr.png";
 
   static const loader = "assets/images/loader.json";
