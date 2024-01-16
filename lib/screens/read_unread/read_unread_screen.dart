@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:redeo/assets/images.dart';
+import 'package:redeo/screens/read_unread/read_unread_controller.dart';
 import 'package:redeo/styling/font_style_globle.dart';
 import 'package:redeo/widgets/image_view.dart';
 
@@ -13,6 +15,9 @@ class ReadUnreadScreen extends StatefulWidget {
 }
 
 class _ReadUnreadScreenState extends State<ReadUnreadScreen> {
+  ReadUnreadController controller=Get.find();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
  import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:redeo/route/app_pages.dart';
@@ -161,6 +162,9 @@ Future<void> main() async {
   );
   SystemChrome.setSystemUIOverlayStyle(systemTheme);
   await ScreenUtil.ensureScreenSize();
+
+  Stripe.publishableKey = 'pk_test_51OSgwXCxwIk1tW9B3zjQo1N0hm8ZZAmstiFPxEifD5RQ2ZFWJ38Nh99ltQU7REhuSckr3biOO1jzspurrMTXfp0800sITFa3lp';
+
 
   runApp(MyApp());
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -30,21 +29,22 @@ class _PlansScreenState extends State<PlansScreen> {
             height: 10.h,
           ),
           Expanded(
-            child: Obx(() =>plansController.plansLoading.value
-                ? OnScreenLoader(): plansController.plansList.isEmpty &&
-                    !plansController.plansLoading.value
-                ? NotFoundWidget()
-                : ListView.separated(
-                    padding: EdgeInsets.only(top: 26.h),
-                    itemBuilder: (c, i) {
-                      return getItem(plansController.plansList.value[i]);
-                    },
-                    separatorBuilder: (c, i) {
-                      return Container(
-                        height: 15.h,
-                      );
-                    },
-                    itemCount: plansController.plansList.value.length)),
+            child: Obx(() => plansController.plansLoading.value
+                ? OnScreenLoader()
+                : plansController.plansList.isEmpty &&
+                        !plansController.plansLoading.value
+                    ? NotFoundWidget()
+                    : ListView.separated(
+                        padding: EdgeInsets.only(top: 26.h),
+                        itemBuilder: (c, i) {
+                          return getItem(plansController.plansList.value[i]);
+                        },
+                        separatorBuilder: (c, i) {
+                          return Container(
+                            height: 15.h,
+                          );
+                        },
+                        itemCount: plansController.plansList.value.length)),
           )
         ]));
   }
@@ -131,11 +131,12 @@ class _PlansScreenState extends State<PlansScreen> {
                 if (planDetail.id != plansController.activePlanId.value)
                   GestureDetector(
                     onTap: () async {
-                     await plansController.buyPlan(planDetail.id.toString());
-
-                     setState(() {
-
-                     });},
+                      plansController
+                          .getPaymentIntent(planDetail.price.toString());
+                      // Stripe.instance.initPaymentSheet(paymentSheetParameters: )
+                      await plansController.buyPlan(planDetail.id.toString());
+                      setState(() {});
+                    },
                     child: Container(
                       margin: EdgeInsets.only(top: 14.h),
                       decoration: BoxDecoration(

@@ -35,6 +35,7 @@ import 'package:redeo/widgets/image_view.dart';
 import '../../utils/snackbar_util.dart';
 import '../do_not_call/dnc_territory_screen.dart';
 import '../notice_of_event/notice_of_event_controller.dart';
+import '../read_unread/read_unread_controller.dart';
 import '../territory/territory_list_screen.dart';
 
 class Homepage extends StatefulWidget {
@@ -60,6 +61,12 @@ class _HomepageState extends State<Homepage> {
   final PlansController plansController = Get.isRegistered<PlansController>()
       ? Get.find<PlansController>()
       : Get.put(PlansController());
+
+  final ReadUnreadController readUnreadController = Get.isRegistered<ReadUnreadController>()
+      ? Get.find<ReadUnreadController>()
+      : Get.put(ReadUnreadController());
+
+
 
   final FieldLogController fieldLogController =
       Get.isRegistered<FieldLogController>()
@@ -241,12 +248,11 @@ class _HomepageState extends State<Homepage> {
                       } else if (controller.currentSelectedIndex.value == 8) {
                         TerritoryController controller = Get.find();
                         controller.getTerritoryList();
-                      }
-                      else if (controller.currentSelectedIndex.value == 9) {
+                      } else if (controller.currentSelectedIndex.value == 9) {
                         ReportsController controller = Get.find();
-                        controller.getReports(DateFormat('yyyy-MM-dd').format(DateTime.now()));
-                      }
-                      else if (controller.currentSelectedIndex.value == 2) {
+                        controller.getReports(
+                            DateFormat('yyyy-MM-dd').format(DateTime.now()));
+                      } else if (controller.currentSelectedIndex.value == 2) {
                         MessageController msgController = Get.find();
                         msgController.reset();
                       } else if (controller.currentSelectedIndex == 1) {
@@ -256,13 +262,16 @@ class _HomepageState extends State<Homepage> {
                         NoticeOfEventController controller = Get.find();
                         controller.getNOEList();
                       }
+                      else if (controller.currentSelectedIndex.value == 11) {
+                        ReadUnreadController controller = Get.find();
+                        controller.getMessages();
+
+                      }
                       else if (controller.currentSelectedIndex.value == 12) {
                         PlansController controller = Get.find();
                         controller.getUserPlan();
                         controller.getPlans();
                       }
-
-
                     });
                   });
             }),

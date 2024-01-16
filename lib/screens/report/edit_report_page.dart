@@ -77,7 +77,7 @@ class _EditReportsPageState extends State<EditReportsPage> {
                           "${hoursDropDownValue.length == 1 ? '0$hoursDropDownValue' : hoursDropDownValue}:${minDropDownValue.length == 1 ? '0$minDropDownValue' : minDropDownValue}:${secDropDownValue.length == 1 ? '0$secDropDownValue' : secDropDownValue}";
 
                       controller.reports.forEach((element) {
-                        if (element.key != 'Time') {
+                        if (element.key!.toLowerCase() != 'time' && element.key!.toLowerCase() != 'date') {
                           map[element.key!] = element.value;
                         }
                       });

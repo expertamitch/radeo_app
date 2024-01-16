@@ -74,6 +74,7 @@ dependencies:
   geolocator: ^9.0.2
   maps_launcher: ^2.2.0
   google_sign_in: ^6.2.1
+  flutter_stripe: ^10.0.0
 
 
 

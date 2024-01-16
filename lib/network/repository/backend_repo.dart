@@ -982,6 +982,20 @@ class BackendRepo {
     }
   }
 
+  Future<PlansModel?> getReadUnread() async {
+    String url = "${baseUrl}user/message?date=&is_read=";
+
+    try {
+      final response = await apiUtils.get(url: url, options: getOptions());
+      return PlansModel.fromJson(response.data);
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
 
 
   Future<MessageOnlyModel> buyPlan(
@@ -1007,6 +1021,21 @@ class BackendRepo {
 
     try {
       final response = await apiUtils.get(url: url, options: getOptions());
+      return ActivePlanModel.fromJson(response.data);
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+  Future<ActivePlanModel?> getPaymentIntent(Map<String, dynamic> data) async {
+    String url = "${baseUrl}user/plan/intent";
+
+    try {
+      final response = await apiUtils.post(url: url,data: data, options: getOptions());
       return ActivePlanModel.fromJson(response.data);
     } catch (e) {
       if (e is DioError && e.type == DioErrorType.unknown) {
