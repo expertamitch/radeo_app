@@ -74,4 +74,6 @@ abstract class Routes {
 
   // add new contact manually screen
    static const addEditContactManually= '/addNewContactManually';
-}
+   static const readDetailScreen= '/readDetailScreen';
+
+ }

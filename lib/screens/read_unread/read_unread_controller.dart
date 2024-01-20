@@ -1,32 +1,60 @@
 import 'package:get/get.dart';
 
 import '../../models/plans_model.dart';
+import '../../models/read_unread_list_model.dart';
 import '../../network/internet_exception.dart';
 import '../../network/repository/backend_repo.dart';
 import '../../utils/snackbar_util.dart';
 
 class ReadUnreadController extends GetxController {
-  RxList<PlanDetail> messageList = RxList();
 
-RxBool messageLoading = false.obs;
 
-  Future<bool> getMessages() async {
+
+  RxBool messagesLoading = false.obs;
+  RxList<ReadUnreadMessageModel> messagesList = RxList();
+  RxBool messageListLoading = false.obs;
+  ReadUnreadListModel? readUnreadMessageModel = null;
+
+
+
+  Future<bool> getMesageList() async {
     try {
-      messageLoading.value = true;
-      messageList.clear();
-      var result = await BackendRepo().getReadUnread();
-      messageLoading.value = false;
-      messageList.value = result?.info ?? [];
+      messagesList.clear();
+      messageListLoading.value = true;
+      readUnreadMessageModel = await BackendRepo().getReadUnread();
+      messagesList.value = readUnreadMessageModel!.info?.data ?? [];
+      messageListLoading.value = false;
       return true;
     } on InternetException {
-      messageLoading.value = false;
+      messageListLoading.value = false;
       return false;
     } catch (e) {
-      messageLoading.value = false;
+      messageListLoading.value = false;
       showErrorSnackBar(e.toString());
+
       return false;
     }
   }
+
+  Future<bool> getPaginatedMessageList() async {
+    try {
+      readUnreadMessageModel = await BackendRepo()
+          .getReadUnread(path: readUnreadMessageModel!.info!.nextPageUrl!);
+      messagesList.value.addAll(readUnreadMessageModel!.info?.data ?? []);
+      messageListLoading.value = false;
+      messagesList.refresh();
+      return true;
+    } on InternetException {
+      return false;
+    } catch (e) {
+      showErrorSnackBar(e.toString());
+
+      return false;
+    }
+  }
+
+
+
 
 
 

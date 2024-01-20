@@ -78,36 +78,44 @@ class ChatController extends GetxController {
   }
 
 
-
   Future<bool> sendMessage({
     String? path,
     String? message,
+    bool? shouldShowLoader,
     required String? messageType,
     required String? forUser,
   }) async {
+    if(shouldShowLoader==null)
+      shouldShowLoader=true;
     try {
 
-      await Future.delayed(Duration(seconds: 1));
-      showLoader();
+      if(shouldShowLoader) {
+        await Future.delayed(Duration(seconds: 1));
+
+        showLoader();
+      }
 
       List<int>? bytes;
 
       if (path != null) bytes = await File(path).readAsBytes();
 
-      var model = await BackendRepo().sendMessage(
+       await BackendRepo().sendMessage(
           forUser: forUser,
           messageType: messageType,
           bytes: bytes,
           message: message);
+      if(shouldShowLoader)
       hideLoader();
 
 
       return true;
     } on InternetException {
+      if(shouldShowLoader)
       hideLoader();
 
       return false;
     } catch (e) {
+      if(shouldShowLoader)
       hideLoader();
 
       showErrorSnackBar(e.toString());

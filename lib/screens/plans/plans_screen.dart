@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
+import 'package:redeo/models/payment_intent_model.dart';
 import 'package:redeo/models/plans_model.dart';
 import 'package:redeo/screens/plans/plans_controller.dart';
 import 'package:redeo/styling/font_style_globle.dart';
+import 'package:redeo/utils/snackbar_util.dart';
 
 import '../../widgets/common_app_bar.dart';
 import '../../widgets/not_found_widget.dart';
@@ -131,10 +134,34 @@ class _PlansScreenState extends State<PlansScreen> {
                 if (planDetail.id != plansController.activePlanId.value)
                   GestureDetector(
                     onTap: () async {
-                      plansController
+                      PaymentIntentModel? model = await plansController
                           .getPaymentIntent(planDetail.price.toString());
-                      // Stripe.instance.initPaymentSheet(paymentSheetParameters: )
-                      await plansController.buyPlan(planDetail.id.toString());
+
+                      await Stripe.instance.initPaymentSheet(
+                        paymentSheetParameters: SetupPaymentSheetParameters(
+                            paymentIntentClientSecret:
+                                model?.info?.clientSecret,
+                            merchantDisplayName: 'Redeo'),
+                      );
+
+                      try {
+                        await Stripe.instance
+                            .presentPaymentSheet()
+                            .then((value) async {
+                          await plansController.buyPlan(
+                              planDetail.id.toString(),
+                              model?.info?.id ?? '',
+                              model?.info?.clientSecret ?? '');
+                        }).onError((error, stackTrace) {
+                          throw Exception(error);
+                        });
+                      } on StripeException catch (e) {
+                        // showErrorSnackBar(e.error.message ?? '');
+                      } catch (e) {
+                        print('$e');
+                        // showErrorSnackBar(e.toString());
+                      }
+
                       setState(() {});
                     },
                     child: Container(

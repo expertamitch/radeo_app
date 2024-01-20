@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:redeo/models/payment_intent_model.dart';
 
 import '../../models/plans_model.dart';
 import '../../network/internet_exception.dart';
@@ -45,10 +46,10 @@ class PlansController extends GetxController {
     }
   }
 
-  Future<bool> buyPlan(String planId) async {
+  Future<bool> buyPlan(String planId, String paymentId, String clientSecret) async {
     try {
       plansLoading.value = true;
-      Map<String, dynamic> data = {"plan_id": planId};
+      Map<String, dynamic> data = {"plan_id": planId,'payment_id':paymentId,'client_secret':clientSecret};
       var result = await BackendRepo().buyPlan(data: data);
       await getUserPlan();
       plansLoading.value = false;
@@ -63,20 +64,20 @@ class PlansController extends GetxController {
     }
   }
 
-  Future<bool> getPaymentIntent(String amount) async {
+  Future<PaymentIntentModel?> getPaymentIntent(String amount) async {
     try {
       plansLoading.value = true;
       Map<String, dynamic> data = {"amount": amount, "currency": 'usd'};
       var result = await BackendRepo().getPaymentIntent(data);
        plansLoading.value = false;
-      return true;
+      return result;
     } on InternetException {
       plansLoading.value = false;
-      return false;
+      return null;
     } catch (e) {
       plansLoading.value = false;
       showErrorSnackBar(e.toString());
-      return false;
+      return null;
     }
   }
 }

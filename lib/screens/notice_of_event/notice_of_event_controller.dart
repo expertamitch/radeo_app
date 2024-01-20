@@ -174,7 +174,6 @@ class NoticeOfEventController extends GetxController {
 
 
   RxBool returnListLoading = false.obs;
-
   RxList<NOEModel> noeList = RxList();
   RxBool noeListLoading = false.obs;
   ReturnVisitListModel? returnVisitListModel = null;

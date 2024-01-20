@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:camera/camera.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import 'package:redeo/assets/images.dart';
@@ -86,15 +88,15 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
         onEvent: (
           er,
         ) {
-          if(controller.messagesList.value.length==0){
-            controller.messagesList.value.add(
-                MessageItemData.fromJson(json.decode(er.data.toString())['msg']));
+          if (controller.messagesList.value.length == 0) {
+            controller.messagesList.value.add(MessageItemData.fromJson(
+                json.decode(er.data.toString())['msg']));
+          } else {
+            controller.messagesList.value.insert(
+                0,
+                MessageItemData.fromJson(
+                    json.decode(er.data.toString())['msg']));
           }
-          else
-            {
-              controller.messagesList.value.insert(0,
-                  MessageItemData.fromJson(json.decode(er.data.toString())['msg']));
-            }
 
           controller.messagesList.refresh();
         },
@@ -118,6 +120,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
           appBar: AppBar(
             backgroundColor: AppColors.darkGreyColor,
             elevation: 0,
+
             iconTheme: IconThemeData(color: Colors.black),
           ),
           body: Column(children: [
@@ -190,11 +193,19 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                         ),
                         GestureDetector(
                           onTap: () async {
-                            FilePickerResult? result = await FilePicker.platform
+                            XFile? pickedFile = await ImagePicker().pickImage(
+                                source: ImageSource.camera,
+                                imageQuality: 40
+                            );
+                            if (pickedFile != null) {
+                              filePath =   pickedFile.path ;
+
+
+                           /* FilePickerResult? result = await FilePicker.platform
                                 .pickFiles(type: FileType.image);
 
                             if (result != null) {
-                              filePath = result.files.single.path!;
+                              filePath = result.files.single.path!;*/
 
                               String m = messageController.text;
                               messageController.text = '';
@@ -231,13 +242,13 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
                         messageController.text = '';
 
                         controller.sendMessage(
-                          messageType: 'message',
-                          forUser: uid,
-                          message: m,
-                        );
+                            messageType: 'message',
+                            forUser: uid,
+                            message: m,
+                            shouldShowLoader: false);
 
-                        setState(() {});
-                        FocusManager.instance.primaryFocus?.unfocus();
+                        // setState(() {});
+                        // FocusManager.instance.primaryFocus?.unfocus();
                       }
                     },
                     child: SvgPicture.asset(

@@ -51,6 +51,7 @@ class HomePageController extends GetxController {
     'Add Contact',
     'Read/Unread',
     'Plans',
+    'Notifications',
   ];
 
   RxInt currentSelectedIndex = 0.obs;

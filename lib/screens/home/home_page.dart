@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redeo/assets/images.dart';
 import 'package:redeo/route/routes.dart';
+import 'package:redeo/screens/alerts/alerts_controller.dart';
+import 'package:redeo/screens/alerts/alerts_screen.dart';
 import 'package:redeo/screens/authentication/controller/auth_controller.dart';
 import 'package:redeo/screens/chat/chat_controller.dart';
 import 'package:redeo/screens/chat/chat_page.dart';
@@ -67,6 +69,11 @@ class _HomepageState extends State<Homepage> {
       : Get.put(ReadUnreadController());
 
 
+ final AlertsController alertsController = Get.isRegistered<AlertsController>()
+      ? Get.find<AlertsController>()
+      : Get.put(AlertsController());
+
+
 
   final FieldLogController fieldLogController =
       Get.isRegistered<FieldLogController>()
@@ -116,7 +123,8 @@ class _HomepageState extends State<Homepage> {
               ReportsPage(),
               ExistingContactsPage(),
               ReadUnreadScreen(),
-              PlansScreen()
+              PlansScreen(),
+              AlertsScreen()
             ],
           )),
     );
@@ -264,7 +272,7 @@ class _HomepageState extends State<Homepage> {
                       }
                       else if (controller.currentSelectedIndex.value == 11) {
                         ReadUnreadController controller = Get.find();
-                        controller.getMessages();
+                        controller.getMesageList();
 
                       }
                       else if (controller.currentSelectedIndex.value == 12) {
@@ -272,6 +280,11 @@ class _HomepageState extends State<Homepage> {
                         controller.getUserPlan();
                         controller.getPlans();
                       }
+                      else if (controller.currentSelectedIndex.value == 13) {
+                        AlertsController controller = Get.find();
+                         controller.getNotifications();
+                      }
+
                     });
                   });
             }),

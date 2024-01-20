@@ -60,7 +60,7 @@ class ApiUtils {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
-    FocusManager.instance.primaryFocus?.unfocus();
+    // FocusManager.instance.primaryFocus?.unfocus();
     var result = await _dio.post(
       url,
       data: data,

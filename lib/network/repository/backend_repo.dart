@@ -9,6 +9,8 @@ import 'package:redeo/models/dnc_list_response_model.dart';
 import 'package:redeo/models/events_model.dart';
 import 'package:redeo/models/field_log_model.dart';
 import 'package:redeo/models/message_only_model.dart';
+import 'package:redeo/models/payment_intent_model.dart';
+import 'package:redeo/models/read_unread_list_model.dart';
 import 'package:redeo/models/register_model.dart';
 import 'package:redeo/models/return_visit_list_model.dart';
 import 'package:redeo/models/timer_model.dart';
@@ -20,6 +22,7 @@ import '../../models/all_redeo_member_list_response_model.dart';
 import '../../models/create_contact_model.dart';
 import '../../models/create_message_request_model.dart';
 import '../../models/event_detail_model.dart';
+import '../../models/notification_list_model.dart';
 import '../../models/plans_model.dart';
 import '../../models/reports_model.dart';
 import '../../models/return_history_model.dart';
@@ -982,12 +985,28 @@ class BackendRepo {
     }
   }
 
-  Future<PlansModel?> getReadUnread() async {
-    String url = "${baseUrl}user/message?date=&is_read=";
+  Future<NotificationListModel?> getAlerts({String? path}) async {
+    String url = path ?? "${baseUrl}user/notification";
 
     try {
       final response = await apiUtils.get(url: url, options: getOptions());
-      return PlansModel.fromJson(response.data);
+      return NotificationListModel.fromJson(response.data);
+    } catch (e) {
+      if (e is DioError && e.type == DioErrorType.unknown) {
+        throw InternetException();
+      }
+      throw ApiException(apiUtils.handleError(e));
+    }
+  }
+
+
+
+  Future<ReadUnreadListModel?> getReadUnread({String? path}) async {
+    String url = path ?? "${baseUrl}user/message?date=&is_read=";
+
+    try {
+      final response = await apiUtils.get(url: url, options: getOptions());
+      return ReadUnreadListModel.fromJson(response.data);
     } catch (e) {
       if (e is DioError && e.type == DioErrorType.unknown) {
         throw InternetException();
@@ -1031,12 +1050,12 @@ class BackendRepo {
   }
 
 
-  Future<ActivePlanModel?> getPaymentIntent(Map<String, dynamic> data) async {
+  Future<PaymentIntentModel?> getPaymentIntent(Map<String, dynamic> data) async {
     String url = "${baseUrl}user/plan/intent";
 
     try {
       final response = await apiUtils.post(url: url,data: data, options: getOptions());
-      return ActivePlanModel.fromJson(response.data);
+      return PaymentIntentModel.fromJson(response.data);
     } catch (e) {
       if (e is DioError && e.type == DioErrorType.unknown) {
         throw InternetException();

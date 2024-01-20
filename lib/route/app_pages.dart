@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:redeo/route/routes.dart';
+import 'package:redeo/screens/alerts/alerts_screen.dart';
 import 'package:redeo/screens/authentication/fogot_password_page.dart';
 import 'package:redeo/screens/authentication/forgot_password_otp_page.dart';
 import 'package:redeo/screens/authentication/otp_verification_page.dart';
@@ -12,6 +13,7 @@ import 'package:redeo/screens/event/event_details_page/invite_contacts/invite_co
 import 'package:redeo/screens/groups/edit_group_page.dart';
 import 'package:redeo/screens/home/home_page.dart';
 import 'package:redeo/screens/notice_of_event/create_notice_of_event_page.dart';
+import 'package:redeo/screens/read_unread/read_detail_screen.dart';
 import 'package:redeo/screens/return_visits/return_detail_screen.dart';
 import 'package:redeo/screens/territory/choose_territory.dart';
 import 'package:redeo/screens/territory/territory_assign_contacts/contacts_page.dart';
@@ -169,10 +171,10 @@ class AppPages {
         arguments: Get.arguments),
 
     GetPage(
-      name: Routes.filedServiceMapPageScreen,
-      transition: Transition.cupertino,
-      page: () => FiledServiceMapPage(),arguments: Get.arguments
-    ),
+        name: Routes.filedServiceMapPageScreen,
+        transition: Transition.cupertino,
+        page: () => FiledServiceMapPage(),
+        arguments: Get.arguments),
 
     //groups
 
@@ -224,11 +226,10 @@ class AppPages {
     //Reports page
 
     GetPage(
-      name: Routes.editReportsScreen,
-      transition: Transition.cupertino,
-      page: () => EditReportsPage(),
-      arguments: Get.arguments
-    ),
+        name: Routes.editReportsScreen,
+        transition: Transition.cupertino,
+        page: () => EditReportsPage(),
+        arguments: Get.arguments),
     GetPage(
       name: Routes.shareReportsScreen,
       transition: Transition.cupertino,
@@ -316,6 +317,12 @@ class AppPages {
         name: Routes.addEditContactManually,
         transition: Transition.cupertino,
         page: () => AddManualContact(),
+        arguments: Get.arguments),
+
+    GetPage(
+        name: Routes.readDetailScreen,
+        transition: Transition.cupertino,
+        page: () => ReadDetailScreen(),
         arguments: Get.arguments),
   ];
 }
