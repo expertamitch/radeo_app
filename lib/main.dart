@@ -175,7 +175,7 @@ class NavigationService {
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   debugPrint("FIREBASE_MESSAGING:----    $message");
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
 
   RemoteNotification? notification = message.notification;
   print('Handling a background message ${message.data}');

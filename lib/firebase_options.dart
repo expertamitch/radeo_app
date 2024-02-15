@@ -58,8 +58,8 @@ class DefaultFirebaseOptions {
   );
 
   static FirebaseOptions ios =  FirebaseOptions(
-    apiKey: 'AIzaSyALIUnSldoP4s_h866Fmx2h18w-FAjRfkA',
-    appId: '1:23456483694:android:0861fffb6cb04ad9ef997f',
+    apiKey: 'AIzaSyBf90e9r4WfdFasQwi_DtjpqSWjRVbw9Ek',
+    appId: '1:23456483694:ios:7a5e968fac0971a5ef997f',
     messagingSenderId: '23456483694',
     projectId: 'redeo-f4c25',
     storageBucket: 'redeo-f4c25.appspot.com',

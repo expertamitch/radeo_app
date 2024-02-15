@@ -71,7 +71,7 @@ class _ChatMessagePageState extends State<ChatMessagePage> {
   initPusher() async {
     try {
       await pusher.init(
-        apiKey: '56033aefb471f52cde31',
+        apiKey: '6ced992fdd260089f2d8',
         cluster: 'ap2',
         onConnectionStateChange: (sf, s) {
           print('Connection change');

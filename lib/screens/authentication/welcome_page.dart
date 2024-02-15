@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:redeo/network/storage_utils.dart';
 import 'package:redeo/widgets/app_button.dart';
 import 'package:redeo/widgets/image_view.dart';
@@ -126,20 +126,20 @@ class _WelcomePageState extends State<WelcomePage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      GoogleSignIn _googleSignIn = GoogleSignIn(
-                        scopes: scopes,forceCodeForRefreshToken: true,signInOption: SignInOption.standard,clientId: '23456483694-v1u3ljs9cbuhck4foma9tre4sl7iuui4.apps.googleusercontent.com'
-                      );
-                      try {
-                        GoogleSignInAccount? account = await _googleSignIn
-                            .signIn();
-                        if (account != null)
-                          {
-                            account.email;
-                            account.serverAuthCode;
-                          }
-                      } catch (error) {
-                        print(error);
-                      }
+                      // GoogleSignIn _googleSignIn = GoogleSignIn(
+                      //   scopes: scopes,forceCodeForRefreshToken: true,signInOption: SignInOption.standard,clientId: '23456483694-v1u3ljs9cbuhck4foma9tre4sl7iuui4.apps.googleusercontent.com'
+                      // );
+                      // try {
+                      //   GoogleSignInAccount? account = await _googleSignIn
+                      //       .signIn();
+                      //   if (account != null)
+                      //     {
+                      //       account.email;
+                      //       account.serverAuthCode;
+                      //     }
+                      // } catch (error) {
+                      //   print(error);
+                      // }
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(
